@@ -13,3 +13,7 @@ elif [ "$(expr substr $(uname -s) 1 5)" == 'Linux' ]; then
     cp custom_font/* ~/.fonts/
     fc-cache -fv
 fi
+
+# zsh install 
+curl -L https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh | sh
+
