@@ -7,9 +7,11 @@ neocomplete.vim
 neoinclude.vim
 neosnippet
 neosnippet-snippets
+nerdtree
 unite.vim
 vim-clang
 vim-colors-solarized
+vim-django-support
 vim-endwise
 vim-pyenv
 vim-python-pep8-indent

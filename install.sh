@@ -3,7 +3,10 @@ ln -s ~/dotfiles/.vimrc ~/.vimrc
 ln -s ~/dotfiles/.bashrc ~/.bashrc
 ln -s ~/dotfiles/.vim ~/.vim
 ln -s ~/dotfiles/.zshrc ~/.zshrc
-ln -s ~/dotfiles/.oh-my-zsh ~/.oh-my-zsh
+ln -s ~/dotfiles/.tmux ~/.tmux
+ln -s ~/dotfiles/.tmux.conf ~/.tmux.conf
+
+rm -rf ~/.vim/bundle/neobundle.vim
 
 if [ "$(uname)" == 'Darwin' ]; then
     # OS = Mac
@@ -13,7 +16,4 @@ elif [ "$(expr substr $(uname -s) 1 5)" == 'Linux' ]; then
     cp custom_font/* ~/.fonts/
     fc-cache -fv
 fi
-
-# zsh install 
-curl -L https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh | sh
 

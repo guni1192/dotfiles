@@ -1,17 +1,17 @@
 "行番号の表示"
 set number
-"メニューバーに表示"
-set title
 "全角文字の幅を2に固定"
 set ambiwidth=double
 "tabはスペース4つ分"
 set tabstop=4
-"tabを半角スペースで挿入する"
+"tabで半角スペースで挿入する"
 set expandtab
 "Vimが自動で生成するtabをスペース4つ分にする"
 set shiftwidth=4
 "改行時、自動でインデント"
 set smartindent
+"オートインデントをオン
+set autoindent
 "空白文字の可視化"
 set list
 "可視化した空白文字の表示形式"
@@ -28,7 +28,7 @@ set whichwrap=b,s,h,l,<,>,[,]
 "バックスペースを制限無しにする"
 set backspace=indent,eol,start
 set wildmenu
-set clipboard+=unnamed
+set clipboard+=unnamed,autoselect
 "単語補完の入力候補の最大数"
 set pumheight=10
 set showmatch
@@ -38,12 +38,13 @@ set wildmenu wildmode=list:full
 set softtabstop=4
 "ノーマルモードのキーバインド"
 inoremap jj <ESC>
-
+" NERDTreeをctrl+eで開く
+nnoremap <silent><C-e> :NERDTreeToggle<CR>
 " ファイルタイプ別のプラグイン/インデントを有効にする
+filetype plugin indent on
 autocmd FileType c set cindent
 autocmd FileType cpp set cindent
 
-filetype plugin indent on
 " iTerm2のときトラックパッドでスクロールできるようにする
 set mouse=a
 
@@ -73,6 +74,7 @@ NeoBundle 'Shougo/neosnippet'
 NeoBundle 'Shougo/neosnippet-snippets'
 NeoBundle 'davidhalter/jedi-vim'
 NeoBundle 'kana/vim-smartinput'
+" ステータスラインの表示
 NeoBundle 'itchyny/lightline.vim'
 " colorscheme
 NeoBundle 'tomasr/molokai'
@@ -93,11 +95,20 @@ NeoBundle 'Shougo/vimproc.vim', {
 NeoBundle 'tpope/vim-endwise'
 
 NeoBundle 'Shougo/neoinclude.vim'
+
+NeoBundle 'lambdalisue/vim-django-support'
 " 補完用に jedi-vim を追加
 NeoBundleLazy "davidhalter/jedi-vim", {
       \ "autoload": {
       \   "filetypes": ["python", "python3", "djangohtml"]
       \ }}
+NeoBundle 'scrooloose/nerdtree'
+
+"djangoの補完用プラグイン
+NeoBundleLazy "lambdalisue/vim-django-support",{
+    \ "autoload": {
+    \   "filetypes": ["python", "python3", "djangohtml"]
+    \ }}
 
 " pyenv 処理用に vim-pyenv を追加
 " depends が指定されているため jedi-vim より後にロードされる
@@ -122,7 +133,7 @@ highlight Normal ctermbg=none
 "///////////////////////////////////////////////////////////////////////////
 "インクルードパスの指定
 let g:neocomplete#include_paths = {
-  \ 'cpp'  : '.,/usr/include/c++/4.2.1,/usr/local/Cellar/boost/1.60.0_2/include/boost',
+  \ 'cpp'  : '.,/usr.include,/usr/include/c++/4.2.1,/usr/local/Cellar/boost/1.60.0_2/include/boost',
   \ 'c'    : '.,/usr/include',
   \ 'ruby' : '.,$HOME/.rvm/rubies/**/lib/ruby/1.8/',
   \ }
@@ -176,7 +187,7 @@ inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
 "inoremap <expr><Space> pumvisible() ? "\<C-y>" : "\<Space>"
 
 " AutoComplPop like behavior.
-"let g:neocomplete#enable_auto_select = 1
+let g:neocomplete#enable_auto_select = 1
 
 " Shell like behavior(not recommended).
 "set completeopt+=longest
@@ -185,13 +196,13 @@ let g:neocomplete#disable_auto_complete = 0
 "inoremap <expr><TAB>  pumvisible() ? "\<Down>" : "\<C-x>\<C-u>"
 
 " Enable omni completion.
-autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-autocmd FileType python setlocal omnifunc=python3complete#Complete
-autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
-autocmd FileType cpp setlocal omnifunc=cppcomplete#Complete
-autocmd FileType c   setlocal omnifunc=ccomplete#Complete
+autocmd FileType css            setlocal omnifunc=csscomplete#CompleteCSS
+autocmd FileType html,markdown  setlocal omnifunc=htmlcomplete#CompleteTags
+autocmd FileType javascript     setlocal omnifunc=javascriptcomplete#CompleteJS
+autocmd FileType python         setlocal omnifunc=python3complete#Complete
+autocmd FileType xml            setlocal omnifunc=xmlcomplete#CompleteTags
+autocmd FileType cpp            setlocal omnifunc=cppcomplete#Complete
+autocmd FileType c              setlocal omnifunc=ccomplete#Complete
 " Enable heavy omni completion.
 if !exists('g:neocomplete#sources#omni#input_patterns')
   let g:neocomplete#sources#omni#input_patterns = {}
@@ -214,7 +225,7 @@ if !exists('g:neocomplete#force_omni_input_patterns')
         let g:neocomplete#force_omni_input_patterns = {}
 endif
 
-let g:neocomplete#force_omni_input_patterns.python = '\h\w*\|[^. \t]\.\w*'
+let g:neocomplete#force_omni_input_patterns.python3 = '\h\w*\|[^. \t]\.\w*'
 
 let g:rsenseUseOmniFunc = 1
  
@@ -228,7 +239,7 @@ let g:neocomplete#force_omni_input_patterns.ruby =
 " docstringは表示しない
 autocmd FileType python setlocal completeopt-=preview
 " end
-
+"------------------------------------------------------------------------------
 " vim-clang setting
 " disable auto completion for vim-clanG
 let g:clang_auto = 0

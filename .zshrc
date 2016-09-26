@@ -1,5 +1,8 @@
 # Path to your oh-my-zsh installation.
-export ZSH=/Users/IIGUNI/.oh-my-zsh
+export ZSH=$HOME/.oh-my-zsh
+
+
+alias tmux="tmux -2"
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
