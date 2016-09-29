@@ -13,3 +13,11 @@ alias yrs='yaourt -Rs'
 
 # emacsを256色で使うための設定
 export TERM="xterm-256color"
+
+
+#PS1="[@${HOST%%.*} %1~]%(!.#.$) "
+PS1="[${USER}@${HOST%%.*} %1~]%(!.#.$) " # Linux bashと同じ形式
+RPROMPT="%T" # 右側に時間表示
+setopt transient_rprompt # 右側まで入力がきたら時間表示を消す
+setopt prompt_subst # 変数展開など便利なプロント
+bindkey -e # emacsライクなキーバインド
