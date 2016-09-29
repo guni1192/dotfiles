@@ -3,8 +3,7 @@
 ln -s ~/dotfiles/.zshrc_mac ~/.zshrc
 ln -s ~/dotfiles/.tmux ~/.tmux
 ln -s ~/dotfiles/.tmux.conf ~/.tmux.conf
-
-rm -rf ~/.vim/bundle/neobundle.vim
+ln -s ~/dotfiles/.emacs.el ~/.emacs.el
 
 if [ "$(uname)" == 'Darwin' ]; then
     # OS = Mac
