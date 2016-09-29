@@ -16,10 +16,9 @@
 (package-initialize)
 
 ;; color-theme
-(when(require 'color-theme)
-  (color-theme-initialize)
-  (when(require 'color-theme-solarized)
-    (color-theme-solarized-dark)))
+(require 'color-theme)
+(color-theme-initialize)
+(color-theme-solarized)
 
 
 ;; ここでインストールしたパッケージのロードパスを通す

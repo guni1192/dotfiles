@@ -10,3 +10,6 @@ alias prs='sudo pacman -Rs'
 alias ys='yaourt -S'
 alias yr='yarout -R'
 alias yrs='yaourt -Rs'
+
+# emacsを256色で使うための設定
+export TERM="xterm-256color"
