@@ -1,1 +1,0 @@
-/Users/IIGUNI/dotfiles/.vim

@@ -1,0 +1,11 @@
+# Default Settiing
+alias e='emacs -nw'
+alias la='ls -a'
+alias ll='ls -al'
+# ArchLinux's alias of packeage manager 
+alias ps='sudo pacman -S'
+alias pr='sudo pacman -R'
+alias prs='sudo pacman -Rs'
+alias ys='yaourt -S'
+alias yr='yarout -R'
+alisa yrs='yaourt -Rs'

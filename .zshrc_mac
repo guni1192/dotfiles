@@ -3,7 +3,8 @@ export ZSH=$HOME/.oh-my-zsh
 
 
 alias tmux="tmux -2"
-
+alias e='emacs -nw'
+alias vim='echo "Use emacs"'
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
