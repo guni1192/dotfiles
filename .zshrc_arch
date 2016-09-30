@@ -11,6 +11,12 @@ alias ys='yaourt -S'
 alias yr='yarout -R'
 alias yrs='yaourt -Rs'
 
+
+# pyenv
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
+
 # emacsを256色で使うための設定
 export TERM="xterm-256color"
 
