@@ -7,10 +7,11 @@ alias ll='ls -al'
 alias ps='sudo pacman -S'
 alias pr='sudo pacman -R'
 alias prs='sudo pacman -Rs'
+alias psyu='sudo pacman -Syu'
 alias ys='yaourt -S'
 alias yr='yarout -R'
 alias yrs='yaourt -Rs'
-
+alias vim='echo "Use Emacs"'
 
 # pyenv
 export PYENV_ROOT="$HOME/.pyenv"
