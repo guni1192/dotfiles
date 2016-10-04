@@ -4,6 +4,7 @@ Xft.rgba:                   rgb
 Xft.hinting:                true
 Xft.hintstyle:              hintslight
 
+
 !-------------------------------------------------------------------------------
 ! URxvt settings
 !!-------------------------------------------------------------------------------
@@ -54,7 +55,7 @@ URxvt*iso14755: false
 ! urxvt*shading: 20 
 urxvt*shading: 10
 URxvt*inheritPixmap: true
-
+"""
 ! Molokai
 !!Source https://github.com/brianbuccola/dotfiles/blob/master/xcolors/molokai
 ! vim: set ft=xdefaults:
@@ -97,7 +98,7 @@ URxvt*color14:      #4eb4fa
 !white
 URxvt*color7:       #5f5f5f
 URxvt*color15:      #d0d0d0
-
+"""
 !-------------------------------------------------------------------------------
 ! Emacs settings
 !-------------------------------------------------------------------------------

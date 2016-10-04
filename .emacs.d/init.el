@@ -28,7 +28,9 @@
   (add-to-list 'ac-sources 'ac-source-c-headers) 
   (add-to-list 'achead:include-directories '"/usr/local/Cellar/gcc6/6.2.0/include/c++/6.2.0") 
   (add-to-list 'achead:include-directories '"/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include") 
-  (add-to-list 'achead:include-directories '"/usr/local/include/boost/")) 
+  (add-to-list 'achead:include-directories '"/usr/local/include/boost/")
+  (add-to-list 'achead:include-directories '"/usr/include")
+  (add-to-list 'achead:include-directories '"/usr/include/c++/6.2.1"))
 
 ;; c/c++ hooks
 (add-hook 'c++-mode-hook 'my:ac-c-header-init)
