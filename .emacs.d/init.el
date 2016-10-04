@@ -22,18 +22,31 @@
     (color-theme-solarized-dark)))
 
 
-;; ここでインストールしたパッケージのロードパスを通す
-(add-to-list 'load-path "~/.emacs.d/elpa/jedi-0.1.2")
-(require 'jedi)
-(jedi:setup)
-(define-key jedi-mode-map (kbd "<C-tab>") nil) ;;C-tabはウィンドウの移動に用いる
-(setq jedi:complete-on-dot t)
+;; auto-complete
+(require 'auto-complete)
+(require 'auto-complete-config)
+(ac-config-default)
+;; yasnippet
+(require 'yasnippet)
+(yas-global-mode 1)
+;; auto-complete-c-headers
+(defun my:ac-c-header-init()
+  (require 'auto-complete-c-headers)
+  (add-to-list 'ac-sources 'ac-source-c-headers)
+  (add-to-list 'achead:include-directories '"/usr/local/Cellar/gcc6/6.2.0/include/c++/6.2.0")
+  (add-to-list 'achead:include-directories '"/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include")
+  (add-to-list 'achead:include-directories '"/usr/local/include/boost/"))
 
+;; c/c++ hooks
+(add-hook 'c++-mode-hook 'my:ac-c-header-init)
+(add-hook 'c-mode-hook 'my:ac-c-header-init)
 
-
-
-
-
+;; インデント設定
+(defun my-c-c++-mode-init()
+  (setq c-basic-offset 4)
+  )
+(add-hook 'c-mode-hook 'my-c-c++-mode-init)
+(add-hook 'c++-mode-hook 'my-c-c++-mode-init)
 
 
 ;; ロードパスの設定
@@ -78,9 +91,6 @@
 ;; 複数ウィンドウを禁止する
 (setq ns-pop-up-frames nil)
 
-;; ウィンドウを透明にする
-;; アクティブウィンドウ／非アクティブウィンドウ（alphaの値で透明度を指定）
-(add-to-list 'default-frame-alist '(alpha . (0.85 0.85)))
 
 ;; メニューバーを消す
 (menu-bar-mode -1)
