@@ -24,10 +24,12 @@
 (yas-global-mode 1) 
 ;; auto-complete-c-headers 
 (defun my:ac-c-header-init() 
-  (require 'auto-complete-c-headers) 
+  (require 'auto-complete-c-headers)
+  ;; Macのインクルードパス
   (add-to-list 'ac-sources 'ac-source-c-headers) 
   (add-to-list 'achead:include-directories '"/usr/local/Cellar/gcc6/6.2.0/include/c++/6.2.0") 
-  (add-to-list 'achead:include-directories '"/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include") 
+  (add-to-list 'achead:include-directories '"/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include")
+  ;; Linuxのインクルードパス
   (add-to-list 'achead:include-directories '"/usr/local/include/boost/")
   (add-to-list 'achead:include-directories '"/usr/include")
   (add-to-list 'achead:include-directories '"/usr/include/c++/6.2.1"))
@@ -43,8 +45,7 @@
 (add-hook 'c-mode-hook 'my-c-c++-mode-init)
 (add-hook 'c++-mode-hook 'my-c-c++-mode-init)
 
-(setq load-path (append
-                 '("~/.emacs.d")
+;; (setq load-path (append '("~/.emacs.d")
 
 ;; 環境を日本語、UTF-8にする
 (set-locale-environment nil)
@@ -75,7 +76,6 @@
 
 ;; 複数ウィンドウを禁止する
 (setq ns-pop-up-frames nil)
-
 
 ;; メニューバーを消す
 (menu-bar-mode -1)
@@ -109,10 +109,6 @@
 ;; スクロールは１行ごとに
 (setq scroll-conservatively 1)
 
-;; シフト＋矢印で範囲選択
-(setq pc-select-selection-keys-only t)
-(pc-selection-mode 1)
-
 ;; C-kで行全体を削除する
 (setq kill-whole-line t)
 
@@ -131,12 +127,7 @@
     (ding)))
 (setq ring-bell-function 'my-bell-function)
 
-;; Macのキーバインドを使う
-(mac-key-mode 1)
 
 ;; Macのoptionをメタキーにする
 (setq mac-option-modifier 'meta)
-
-
-
 
