@@ -110,9 +110,16 @@ Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include")
 (show-paren-mode 1)
 
 ;; ウィンドウ内に収まらないときだけ、カッコ内も光らせる
-;;(setq show-paren-style 'mixed)
-;;(set-face-background 'show-paren-match-face "grey")
-;;(set-face-foreground 'show-paren-match-face "black")
+(setq show-paren-style 'mixed)
+(set-face-background 'show-paren-match-face "grey")
+(set-face-foreground 'show-paren-match-face "black")
+
+;;括弧の補完
+(global-set-key (kbd "(") 'skeleton-pair-insert-maybe)
+(global-set-key (kbd "{") 'skeleton-pair-insert-maybe)
+(global-set-key (kbd "[") 'skeleton-pair-insert-maybe)
+(global-set-key (kbd "\"") 'skeleton-pair-insert-maybe)
+(setq skeleton-pair 1)
 
 ;; スペース、タブなどを可視化する
 (global-whitespace-mode 1)
