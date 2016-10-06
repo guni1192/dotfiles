@@ -4,7 +4,8 @@
 (add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/") t)
 
 ;; Marmaladeを追加
-(add-to-list 'package-archives  '("marmalade" . "http://marmalade-repo.org/packages/") t)
+(add-to-list
+ 'package-archives  '("marmalade" . "http://marmalade-repo.org/packages/") t)
 
 ;; 初期化
 (package-initialize)
@@ -27,8 +28,12 @@
   (require 'auto-complete-c-headers)
   ;; Macのインクルードパス
   (add-to-list 'ac-sources 'ac-source-c-headers) 
-  (add-to-list 'achead:include-directories '"/usr/local/Cellar/gcc6/6.2.0/include/c++/6.2.0") 
-  (add-to-list 'achead:include-directories '"/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include")
+  (add-to-list
+   'achead:include-directories \
+   '"/usr/local/Cellar/gcc6/6.2.0/include/c++/6.2.0") 
+  (add-to-list
+   'achead:include-directories '"/Applications/Xcode.app/Contents/\
+Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include")
   ;; Linuxのインクルードパス
   (add-to-list 'achead:include-directories '"/usr/local/include/boost/")
   (add-to-list 'achead:include-directories '"/usr/include")
