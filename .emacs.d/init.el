@@ -45,7 +45,13 @@
 (add-hook 'c-mode-hook 'my-c-c++-mode-init)
 (add-hook 'c++-mode-hook 'my-c-c++-mode-init)
 
-;; (setq load-path (append '("~/.emacs.d")
+
+;; elpy
+(elpy-enable)
+;; key-binding
+(define-key yas-minor-mode-map (kbd "C-c k") 'yas-expand)
+(define-key global-map (kbd "C-c o") 'iedit-mode)
+
 
 ;; 環境を日本語、UTF-8にする
 (set-locale-environment nil)
@@ -99,9 +105,9 @@
 (show-paren-mode 1)
 
 ;; ウィンドウ内に収まらないときだけ、カッコ内も光らせる
-(setq show-paren-style 'mixed)
-(set-face-background 'show-paren-match-face "grey")
-(set-face-foreground 'show-paren-match-face "black")
+;;(setq show-paren-style 'mixed)
+;;(set-face-background 'show-paren-match-face "grey")
+;;(set-face-foreground 'show-paren-match-face "black")
 
 ;; スペース、タブなどを可視化する
 (global-whitespace-mode 1)
