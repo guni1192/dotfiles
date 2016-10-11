@@ -15,11 +15,7 @@
   (color-theme-initialize)
   (when(require 'color-theme-solarized)
     (color-theme-solarized-dark)))
-(set-frame-parameter nil 'alpha 70)
-
-;; 括弧補完
-(require 'smartparens-config)
-(smartparens-global-mode t)
+(set-frame-parameter nil 'alpha 0)
 
 ;; auto-complete
 (require 'auto-complete)
