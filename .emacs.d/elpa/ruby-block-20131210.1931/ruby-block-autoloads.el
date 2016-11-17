@@ -3,7 +3,9 @@
 ;;; Code:
 (add-to-list 'load-path (directory-file-name (or (file-name-directory #$) (car load-path))))
 
-;;;### (autoloads nil nil ("ruby-block.el") (22527 12731 0 0))
+;;;### (autoloads nil nil ("../../../../.emacs.d/elpa/ruby-block-20131210.1931/ruby-block-autoloads.el"
+;;;;;;  "../../../../.emacs.d/elpa/ruby-block-20131210.1931/ruby-block.el")
+;;;;;;  (22574 13418 937456 801000))
 
 ;;;***
 

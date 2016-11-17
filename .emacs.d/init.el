@@ -2,18 +2,15 @@
 
 ;; MELPAを追加
 (add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/") t)
-(add-to-list 'package-archives
-             '("melpa-stable" . "http://stable.melpa.org/packages/") t)
+(add-to-list 'package-archives '("melpa-stable" . "http://stable.melpa.org/packages/") t)
 ;; Marmaladeを追加
-(add-to-list
- 'package-archives  '("marmalade" . "http://marmalade-repo.org/packages/") t)
+(add-to-list 'package-archives  '("marmalade" . "http://marmalade-repo.org/packages/") t)
 
 ;; 初期化
 (package-initialize)
 
-<<<<<<< HEAD
 ;; multi-term
-(require 'multi-term)
+;;(require 'multi-term)
 
 ;; color-theme
 ;;(when(require 'color-theme)
@@ -21,29 +18,26 @@
 ;;  (when(require 'color-theme-solarized)
 ;;    (color-theme-solarized-dark)))
 (load-theme 'wombat)
-(set-frame-parameter nil 'alpha 90)
-=======
+
 (require 'powerline)
 (powerline-default-theme)
-
 
 (load-theme 'wombat t)
 (enable-theme 'wombat)
 
-
->>>>>>> dotfiles
-
 ;; 括弧補完
-(require 'smartparens-config)
-(smartparens-global-mode t)
+;;(require 'smartparens-config)
+;;(smartparens-global-mode t)
 
 ;; auto-complete
 (require 'auto-complete)
 (require 'auto-complete-config)
 (ac-config-default)
+
 ;; yasnippet
 (require 'yasnippet)
 (yas-global-mode 1)
+
 ;; auto-complete-c-headers
 (defun my:ac-c-header-init()
   (require 'auto-complete-c-headers)
@@ -67,8 +61,6 @@
 (add-hook 'c-mode-hook 'my-c-c++-mode-init)
 (add-hook 'c++-mode-hook 'my-c-c++-mode-init)
 
-
-
 ;; c/c++ hooks
 (add-hook 'c++-mode-hook 'my:ac-c-header-init)
 (add-hook 'c-mode-hook 'my:ac-c-header-init)
@@ -89,7 +81,7 @@
 ;;; Python
 ;; elpy
 (elpy-enable)
-<<<<<<< HEAD
+
 ;; key-binding
 (define-key yas-minor-mode-map (kbd "C-c k") 'yas-expand)
 (define-key global-map (kbd "C-c o") 'iedit-mode)
@@ -108,10 +100,7 @@
   (define-key ruby-mode-map (kbd "C-c c") 'smart-compile)
   (define-key ruby-mode-map (kbd "C-c C-c") (kbd "C-c c C-m"))
 
-;; Basic Setting
-=======
 
->>>>>>> dotfiles
 ;; 環境を日本語、UTF-8にする
 (set-locale-environment nil)
 (set-language-environment "Japanese")
@@ -163,14 +152,6 @@
 ;; 対応する括弧を光らせる
 (show-paren-mode 1)
 
-<<<<<<< HEAD
-;; ウィンドウ内に収まらないときだけ、カッコ内も光らせる
-(setq show-paren-style 'mixed)
-(set-face-background 'show-paren-match-face "grey")
-(set-face-foreground 'show-paren-match-face "black")
-
-=======
->>>>>>> dotfiles
 ;; スペース、タブなどを可視化する
 ;(global-whitespace-mode 1)
 
@@ -179,7 +160,6 @@
 
 ;; C-kで行全体を削除する
 (setq kill-whole-line t)
-
 
 ;; "yes or no" の選択を "y or n" にする
 (fset 'yes-or-no-p 'y-or-n-p)
@@ -192,38 +172,3 @@
               backward-char forward-char))
     (ding)))
 (setq ring-bell-function 'my-bell-function)
-
-
-<<<<<<< HEAD
-;; Macのoptionをメタキーにする
-(setq mac-option-modifier 'meta)
-
-=======
->>>>>>> dotfiles
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
-<<<<<<< HEAD
- '(package-selected-packages
-   (quote
-    (google-c-style multi-term iedit smart-compile ruby-end ruby-block rbenv smartparens epc elpy color-theme-solarized color-theme-monokai color-theme-molokai auto-complete-c-headers ac-python))))
-=======
- '(custom-safe-themes
-   (quote
-    ("42c7f1aa7a3db4ab8efabf1d10c158c2f1414ac57cb207cde815eadad72170d2" "8db4b03b9ae654d4a57804286eb3e332725c84d7cdab38463cb6b97d5762ad26" "4aee8551b53a43a883cb0b7f3255d6859d766b6c5e14bcb01bed572fcbef4328" default)))
- '(package-selected-packages
-   (quote
-    (haskell-mode smartparens powerline package-utils epc elpy color-theme-solarized color-theme-sanityinc-solarized color-theme-monokai color-theme-molokai auto-complete-c-headers ac-python))))
->>>>>>> dotfiles
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
-<<<<<<< HEAD
-(put 'set-goal-column 'disabled nil)
-=======
->>>>>>> dotfiles

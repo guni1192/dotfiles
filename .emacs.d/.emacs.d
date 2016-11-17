@@ -1,1 +1,0 @@
-/home/guni/dotfiles/.emacs.d
