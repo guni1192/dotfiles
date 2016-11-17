@@ -4,115 +4,95 @@ Xft.rgba:                   rgb
 Xft.hinting:                true
 Xft.hintstyle:              hintslight
 
+! URXVT FONTS
+!------------------------------------------------
+URxvt*font: xft:DejaVu\ Sans\ Mono\ for\ Powerline-10
+URxvt*letterSpace: -1
+URxvt*allow_bold: true
+ 
+ 
+! URXVT ENABLE LINK SUPPORT
+!------------------------------------------------
+ 
+URxvt.perl-ext-common: default,matcher,tabbedex,vtwheel,clipboard
+!tabbed
+!URxvt.matcher.button:   1
+!URxvt.perl-ext:      default,url-select
+!URxvt.keysym.M-u: perl:url-select:select_next
+!URxvt.url-select.launcher:   /usr/bin/xdg-open
+!URxvt.url-select.underline: true
+URxvt.perl-ext-common: selection-to-clipboard 
+!URxvt.perl-ext-common: default,matcher
+!URxvt.url-launcher: /usr/bin/xdg-open
+!URxvt.matcher.button: 1
+ 
+!disable the fucking bell
+URxvt.insecure:                         false
+ 
+! URXVT COPY PASTE SHORTCUTS
+!------------------------------------------------
+ 
+URxvt.keysym.M-c:                       perl:clipboard:copy
+URxvt.keysym.M-v:                       perl:clipboard:pasteq
+! URXVT SCROLLBAR AND CURSOR STYLE
+!------------------------------------------------
+ 
+URxvt*saveLines:                        300000
+URxvt.scrollBar:                        false
+!URxvt*scrollstyle:                     plain
+URxvt*cursorBlink:                      true
+URxvt*cursorUnderline:          true
+URxvt*cursorColor:                      #4e9a06
+ 
+! URXVT TABS
+!------------------------------------------------
+ 
+URxvt.tabbedex.autohide:        yes
+URxvt.tabbedex.tabbar-fg:       2
+URxvt.tabbedex.tabbar-bg:       0
+URxvt.tabbedex.tab-fg:          10
+URxvt.tabbedex.tab-bg:          0
+URxvt.tabbedex.title:           yes
+URxvt.tabbedex.new-button:  no
+ 
+! URXVT FULLSCREEN TOGGLE
+!------------------------------------------------
+ 
+URxvt.keysym.F11:                       perl:fullscreen:switch
+URxvt.perl-ext-common: default,matcher,vtwheel
+URxvt.url-launcher: /usr/bin/firefox
+URxvt.matcher.button: 1
+ 
+! URXVT COLORS
+!------------------------------------------------
+ 
 
-!-------------------------------------------------------------------------------
-! URxvt settings
-!!-----------------------------------------------------------------------------
-URxvt.depth:                32
-URxvt.geometry:             90x30
-URxvt.transparent:          false
-URxvt.fading:               0
-! URxvt.urgentOnBell:         true
-! URxvt.visualBell:           true
-URxvt.loginShell:           true
-URxvt.saveLines:            10000
-URxvt.internalBorder:       3
-URxvt.lineSpace:            0
 
-! Fonts
-URxvt.allow_bold:           true
-URxvt*font: xft:Ricty-Bold:size=12.5:antialias=true
-
-! Fix font space
-!URxvt*letterSpace: -1
-
-! Scrollbar
-URxvt.scrollStyle:          rxvt
-URxvt.scrollBar:            false
-
-! Perl extensions
-URxvt.perl-ext-common:      default,tabbedex,clipboard
-URxvt.matcher.button:       1
-URxvt.urlLauncher:          google-chrome
-URxvt.keysym.M-t:           perl:tabbedex:new_tab
-URxvt.keysym.M-n:           perl:tabbedex:next_tab
-URxvt.keysym.M-p:           perl:tabbedex:prev_tab
-URxvt.tabbed.no-tabbedex-keys: true
-URxvt.tabbed.not-consumable-keys: 0xff22, 0xff23, 0xff2a
-
-! Cursor
-URxvt.cursorBlink:          true
-URxvt.cursorColor:          #657b83
-URxvt.cursorUnderline:      false
-
-! Pointer
-URxvt.pointerBlank:         true
-
-! iso 14755 disable
-URxvt*iso14755: false
-
-! Color
-! urxvt*shading: 20 
-urxvt*shading: 10
-URxvt*inheritPixmap: true
-
-! Cursor
-URxvt.cursorBlink:          true
-URxvt.cursorColor:          #657b83
-URxvt.cursorUnderline:      false
-
-! Pointer
-URxvt.pointerBlank:         true
-
-!!Source http://github.com/altercation/solarized
-
-*background: #002b36
-*foreground: #657b83
-!!*fading: 40
-*fadeColor: #002b36
-*cursorColor: #93a1a1
-*pointerColorBackground: #586e75
-*pointerColorForeground: #93a1a1
-
-!! black dark/light
-*color0: #073642
-*color8: #002b36
-
-!! red dark/light
-*color1: #dc322f
-*color9: #cb4b16
-
-!! green dark/light
-*color2: #859900
-*color10: #586e75
-
-!! yellow dark/light
-*color3: #b58900
-*color11: #657b83
-
-!! blue dark/light
-*color4: #268bd2
-*color12: #839496
-
-!! magenta dark/light
-*color5: #d33682
-*color13: #6c71c4
-
-!! cyan dark/light
-*color6: #2aa198
-*color14: #93a1a1
-
-!! white dark/light
-*color7: #eee8d5
-*color15: #fdf6e3
-!-------------------------------------------------------------------------------
-! Emacs settings
-!-------------------------------------------------------------------------------
-! 透明にできない...
-Emacs*foreground: white
-Emacs*background: black
-
-!emacs.transparent: false
-!emacs*shading: 10
-
-Emacs*useXIM: true
+*background:                           [75]#000000
+*foreground:                            #ADADAD
+urxvt*depth: 32
+urxvt*shading: 50 
+! Black
+URxvt.color0:  #000000
+URxvt.color8:  #4c4c4c
+! Red
+URxvt.color1:  #cd0000
+0;59;49M0;59;49mURxvt.color9:  #ff0000
+! Green
+URxvt.color2:  #00cd00
+URxvt.color10: #00ff00
+! Yellow
+URxvt.color3:  #cdcd00
+URxvt.color11: #ffff00
+! Blue
+URxvt.color4:  #1e90ff
+URxvt.color12: #4682b4
+! Magenta
+URxvt.color5:  #cd00cd
+URxvt.color13: #ff00ff
+! Cyan
+URxvt.color6:  #00cdcd
+URxvt.color14: #00ffff
+! White
+URxvt.color7:  #cfcfcf
+URxvt.color15: #a8a8a8

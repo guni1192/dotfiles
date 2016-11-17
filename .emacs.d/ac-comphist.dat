@@ -1,4 +1,14 @@
-((("datetime" .
+((("myLogHook" .
+   [0 0 0 0 0 0 0 0 1])
+  ("molokai" .
+   [1 0 0 1 0 0 0])
+  ("enable-theme" .
+   [0 0 0 0 0 0 0 0 1 0 0 0])
+  ("load-theme" .
+   [1 0 0 0 0 0 1 1 0 0])
+  ("powerline" .
+   [0 0 0 0 1 0 0 0 1])
+  ("datetime" .
    [0 0 0 1 0 0 0 0])
   ("person2" .
    [0 0 0 0 0 0 1])
@@ -31,7 +41,7 @@
   ("ac-modes" .
    [0 0 0 0 0 0 0 1])
   ("l" .
-   [1])
+   [3])
   ("python-mode-hook" .
    [0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1])
   ("python" .
@@ -85,7 +95,7 @@
   ("private" .
    [0 0 0 1 0 0 0])
   ("require" .
-   [2 0 0 0 0 0 1])
+   [2 0 0 0 0 0 2])
   ("yasnippet" .
    [0 0 0 0 1 0 0 0 1])
   ("yas-global-mode" .
@@ -179,4 +189,22 @@
   ("LEN" .
    [4 0 0])
   ("m1" .
-   [1 0])))
+   [1 0])
+  ("x" .
+   [1])
+  ("powerline-default-theme" .
+   [0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0])
+  ("sanityinc-solarized-dark-theme" .
+   [0 0 0 0 2 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0])
+  ("sanitize-coding-system-list" .
+   [0 0 0 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0])
+  ("wombat" .
+   [1 0 0 0 0 0])
+  ("~/dotfiles/." .
+   [0 0 0 0 0 0 0 0 0 0 0 1])
+  ("spawn" .
+   [1 0 0 0 0])
+  ("modMas" .
+   [0 0 0 0 0 1])
+  ("shiftMask" .
+   [0 0 0 0 0 0 0 0 1])))
