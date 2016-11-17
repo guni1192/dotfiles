@@ -10,12 +10,16 @@
 ;; 初期化
 (package-initialize)
 
+;; multi-term
+(require 'multi-term)
+
 ;; color-theme
-(when(require 'color-theme)
-  (color-theme-initialize)
-  (when(require 'color-theme-solarized)
-    (color-theme-solarized-dark)))
-(set-frame-parameter nil 'alpha 70)
+;;(when(require 'color-theme)
+;;  (color-theme-initialize)
+;;  (when(require 'color-theme-solarized)
+;;    (color-theme-solarized-dark)))
+(load-theme 'wombat)
+(set-frame-parameter nil 'alpha 90)
 
 ;; 括弧補完
 (require 'smartparens-config)
@@ -26,21 +30,32 @@
 (require 'auto-complete-config)
 (ac-config-default)
 ;; yasnippet
-(require 'yasnippet) 
-(yas-global-mode 1) 
-;; auto-complete-c-headers 
-(defun my:ac-c-header-init() 
+(require 'yasnippet)
+(yas-global-mode 1)
+;; auto-complete-c-headers
+(defun my:ac-c-header-init()
   (require 'auto-complete-c-headers)
   ;; Macのインクルードパス
   (add-to-list 'ac-sources 'ac-source-c-headers)
-  (add-to-list
-   'achead:include-directories \
-   '"/usr/local/Cellar/gcc6/6.2.0/include/c++/6.2.0")
-  (add-to-list 'achead:include-directories '"/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include")
+  (add-to-list 'achead:include-directories
+               '"/usr/local/Cellar/gcc6/6.2.0/include/c++/6.2.0")
+  (add-to-list 'achead:include-directories
+               '"/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include")
   ;; Linuxのインクルードパス
   (add-to-list 'achead:include-directories '"/usr/local/include/boost/")
   (add-to-list 'achead:include-directories '"/usr/include")
   (add-to-list 'achead:include-directories '"/usr/include/c++/6.2.1"))
+
+;; google-c-style.el
+(defun my-c-c++-mode-init ()
+  (require 'google-c-style)
+  (google-set-c-style)
+  ;; (google-make-newline-indent)
+  )
+(add-hook 'c-mode-hook 'my-c-c++-mode-init)
+(add-hook 'c++-mode-hook 'my-c-c++-mode-init)
+
+
 
 ;; c/c++ hooks
 (add-hook 'c++-mode-hook 'my:ac-c-header-init)
@@ -53,14 +68,34 @@
 (add-hook 'c-mode-hook 'my-c-c++-mode-init)
 (add-hook 'c++-mode-hook 'my-c-c++-mode-init)
 
+;; C++ refactaring for mac
+(define-key global-map (kbd "C-c ;") 'iedit-mode)
 
+
+;; C/C++ tab key setting
+(setq c-tab-always-indent nil)
+;;; Python
 ;; elpy
 (elpy-enable)
 ;; key-binding
 (define-key yas-minor-mode-map (kbd "C-c k") 'yas-expand)
 (define-key global-map (kbd "C-c o") 'iedit-mode)
 
+;;; Ruby
+;; (require 'rbenv)
+;;(global-rbenv-mode)
+;;(setq rbenv-installation-dir "/usr/local/var/rbenv")
+;; ruby-block
+(require 'ruby-block)
+(setq ruby-block-highlight-toggle t)
+(require 'ruby-end)
 
+;; smart compile
+(require 'smart-compile)
+  (define-key ruby-mode-map (kbd "C-c c") 'smart-compile)
+  (define-key ruby-mode-map (kbd "C-c C-c") (kbd "C-c c C-m"))
+
+;; Basic Setting
 ;; 環境を日本語、UTF-8にする
 (set-locale-environment nil)
 (set-language-environment "Japanese")
@@ -117,13 +152,6 @@
 (set-face-background 'show-paren-match-face "grey")
 (set-face-foreground 'show-paren-match-face "black")
 
-;;括弧の補完
-;(global-set-key (kbd "(") 'skeleton-pair-insert-maybe)
-;(global-set-key (kbd "{") 'skeleton-pair-insert-maybe)
-;(global-set-key (kbd "[") 'skeleton-pair-insert-maybe)
-;(global-set-key (kbd "\"") 'skeleton-pair-insert-maybe)
-;(setq skeleton-pair 1)
-
 ;; スペース、タブなどを可視化する
 (global-whitespace-mode 1)
 
@@ -152,3 +180,18 @@
 ;; Macのoptionをメタキーにする
 (setq mac-option-modifier 'meta)
 
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(package-selected-packages
+   (quote
+    (google-c-style multi-term iedit smart-compile ruby-end ruby-block rbenv smartparens epc elpy color-theme-solarized color-theme-monokai color-theme-molokai auto-complete-c-headers ac-python))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
+(put 'set-goal-column 'disabled nil)

@@ -3,11 +3,6 @@ export ZSH=$HOME/.oh-my-zsh
 
 export TERM="xterm-256color"
 
-alias tmux="tmux -2"
-alias e='emacs -nw'
-alias emacs='emacs -nw'
-alias ei='e ~/.emacs.d/init.el'
-alias vim='echo "Use emacs"'
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
@@ -89,3 +84,14 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+alias tmux="tmux -2"
+alias e='emacs -nw'
+alias emacs='emacs -nw'
+alias ei='e ~/.emacs.d/init.el'
+alias vim='echo "Use emacs"'
+unalias ls
+unalias la
+unalias ll
+alias ls='/bin/ls -h'
+alias la='/bin/ls -Ah'
+alias ll='/bin/ls -Ahl'
