@@ -1,63 +1,50 @@
+#!/usr/bin/zsh
 # Default Settiing
 alias e='emacs -nw'
 alias emacs='emacs -nw'
 alias ei='e ~/.emacs.d/init.el'
 alias la='ls -a'
 alias ll='ls -al'
-# ArchLinux's alias of packeage manager 
-alias ps='sudo pacman -S'
-alias pr='sudo pacman -R'
-alias prs='sudo pacman -Rs'
-alias psyu='sudo pacman -Syu'
+# ArchLinux's alias of packeage manager
+alias search='sudo pacman -Ss'
+alias install='sudo pacman -S'
+alias remove='sudo pacman -R'
+alias update='sudo pacman -Syu'
 alias ys='yaourt -S'
 alias yr='yarout -R'
 alias yrs='yaourt -Rs'
-alias vim='echo "Use Emacs"'
 
 # pyenv
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
 
+# powerline
+export PYTHONPATH=/usr/lib/python3.5/site-packages
+
 # emacsを256色で使うための設定
 export TERM="xterm-256color"
 
 
-#PS1="[@${HOST%%.*} %1~]%(!.#.$) "
-PS1="[${USER}@${HOST%%.*} %1~]%(!.#.$) " # Linux bashと同じ形式
-RPROMPT="%T" # 右側に時間表示
-setopt transient_rprompt # 右側まで入力がきたら時間表示を消す
-setopt prompt_subst # 変数展開など便利なプロント
 bindkey -e # emacsライクなキーバインド
 
-# VCSの情報を取得するzsh関数
-autoload -Uz vcs_info
-autoload -Uz colors # black red green yellow blue magenta cyan white
-colors
-
-# PROMPT変数内で変数参照
-setopt prompt_subst
-
-zstyle ':vcs_info:git:*' check-for-changes true #formats 設定項目で %c,%u が使用可
-zstyle ':vcs_info:git:*' stagedstr "%F{green}!" #commit されていないファイルがある
-zstyle ':vcs_info:git:*' unstagedstr "%F{magenta}+" #add されていないファイルがある
-zstyle ':vcs_info:*' formats "%F{cyan}%c%u(%b)%f" #通常
-#rebase 途中,merge コンフリクト等 formats 外の表示
-zstyle ':vcs_info:*' actionformats '[%b|%a]'
-
-# %b ブランチ情報
-# %a アクション名(mergeなど)
-# %c changes
-# %u uncommit
-
-# プロンプト表示直前に vcs_info 呼び出し
-precmd () { vcs_info }
-
-# プロンプト（左）
-PROMPT='%{$fg[red]%}[%n@%m]%{$reset_color%}'
-PROMPT=$PROMPT'${vcs_info_msg_0_} %{${fg[red]}%}%}$%{${reset_color}%} '
-
-# プロンプト（右）
-RPROMPT='%{${fg[red]}%}[%~]%{${reset_color}%}'
-
+# capsをctrlに
 setxkbmap -option "ctrl:nocaps"
+
+if [[ -r $PYTHONPATH/powerline/bindings/zsh/powerline.zsh ]]; then
+    source $PYTHONPATH/powerline/bindings/zsh/powerline.zsh
+fi
+
+source ~/.zplug/init.zsh
+
+# ---- ここにプラグインを記述
+
+
+## 256色使用可能にする
+zplug "chrissicool/zsh-256color"
+
+
+# プラグインを読み込み、コマンドにパスを通す
+zplug load --verbose
+
+screenfetch
