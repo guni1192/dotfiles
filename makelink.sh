@@ -12,3 +12,4 @@ else
 fi
 
 ln -s ~/dotfiles/.emacs.d ~/.emacs.d
+ln -s ~/dotfiles/.tmux.conf ~/.tmux.conf
