@@ -11,5 +11,6 @@ else
     exit 1
 fi
 
-ln -s ~/dotfiles/.emacs.d ~/.emacs.d
+mkdir ~/.emacs.d
+ln -s ~/dotfiles/.init.el ~/.emacs.d/init.el
 ln -s ~/dotfiles/.tmux.conf ~/.tmux.conf
