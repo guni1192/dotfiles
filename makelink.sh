@@ -1,6 +1,6 @@
 # macの場合
 if [ "$(uname)" == 'Darwin' ]; then
-    ln -s ~/dotfiles/.zshrc_mac ~/zshrc
+ ppnp   ln -s ~/dotfiles/.zshrc_mac ~/zshrc
 # linuxの場合
 elif [ "$(expr substr $(uname -s) 1 5)" == 'Linux' ]; then
     ln -s ~/dotfiles/.Xdefaults ~/.Xdefaults
