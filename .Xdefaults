@@ -6,7 +6,7 @@ Xft.hintstyle:              hintslight
 
 ! URXVT FONTS
 !------------------------------------------------
-URxvt*font: xft:DejaVu\ Sans\ Mono\ for\ Powerline-10
+URxvt*font: xft:Ubuntu\ Mono\ derivative\ Powerline-12
 URxvt*letterSpace: -1
 URxvt*allow_bold: true
  
