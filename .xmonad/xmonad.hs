@@ -138,7 +138,7 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
         
  -- Launch dmenu for launching applicatiton
   , ((modMask, xK_p),
-    spawn "exe=`dmenu_run -l 10 -fn 'Migu 1M:size=15'` && exec $exe")
+    spawn "exe=`dmenu_run -l 10 -fn 'Ricty 1M:size=15'` && exec $exe")
 
   -- Mute volume.
   , ((modMask .|. controlMask, xK_m),
@@ -160,7 +160,7 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
   , ((0, 0x1008FF14),
      spawn "")
 
-  -- Audio next.
+  -- Audio next.qq
   , ((0, 0x1008FF17),
      spawn "")
 

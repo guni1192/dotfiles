@@ -12,6 +12,12 @@ else
 fi
 
 mkdir ~/.emacs.d
+<<<<<<< HEAD
 git clone https://github.com/dimitri/el-get.git ~/.emacs.d/el-get
 ln -s ~/dotfiles/.init.el ~/.emacs.d/init.el
+=======
+git clone https://github.com/dimitri/el-get.git ~/.emacs.d/el-get/
+ln -s ~/dotfiles/.emacs.d ~/.emacs.d
+ln -s ~/dotfiles/init.el ~/.emacs.d/init.el
+>>>>>>> 5366806bf7fe4f918dc8a44ce4f4a0fcb439149d
 ln -s ~/dotfiles/.tmux.conf ~/.tmux.conf
