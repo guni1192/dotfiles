@@ -5,29 +5,34 @@
 (add-to-list 'package-archives '("melpa-stable" . "http://stable.melpa.org/packages/") t)
 ;; Marmaladeを追加
 (add-to-list 'package-archives  '("marmalade" . "http://marmalade-repo.org/packages/") t)
-
+(add-to-list 'package-archives  '("gnu" , "http://orgmode.org/elpa/") t)
 ;; 初期化
 (package-initialize)
 
 ;; multi-term
-;;(require 'multi-term)
-
-;; color-theme
-;;(when(require 'color-theme)
-;;  (color-theme-initialize)
-;;  (when(require 'color-theme-solarized)
-;;    (color-theme-solarized-dark)))
-(load-theme 'wombat)
+(require 'multi-term)
 
 (require 'powerline)
 (powerline-default-theme)
 
-(load-theme 'wombat t)
-(enable-theme 'wombat)
+(load-theme 'badger t)
 
+;; Color
+(if window-system (progn
+    (set-background-color "Black")
+    (set-foreground-color "LightGray")
+    (set-cursor-color "Gray")
+    (set-frame-parameter nil 'alpha 70) ;透明度
+    ))
+;; 透明度を変更するコマンド M-x set-alpha
+;; http://qiita.com/marcy@github/items/ba0d018a03381a964f24
+(defun set-alpha (alpha-num)
+  "set frame parameter 'alpha"
+  (interactive "nAlpha: ")
+  (set-frame-parameter nil 'alpha (cons alpha-num '(90))))
 ;; 括弧補完
-;;(require 'smartparens-config)
-;;(smartparens-global-mode t)
+;(require 'smartparens-config)
+;(smartparens-global-mode t)
 
 ;; auto-complete
 (require 'auto-complete)
@@ -179,7 +184,11 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (haskell-mode smartparens smart-compile ruby-end ruby-block powerline elpy auto-complete-c-headers))))
+    (powerline-evil ## badger-theme asn1-mode\
+                       \
+                       \
+                       \
+                       -mode solarized-theme haskell-mode smartparens smart-compile ruby-end ruby-block powerline elpy auto-complete-c-headers))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
