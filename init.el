@@ -1,6 +1,14 @@
+
 ;;
 ;; el-get
 ;;
+
+;; Added by Package.el.  This must come before configurations of
+;; installed packages.  Don't delete this line.  If you don't want it,
+;; just comment it out by adding a semicolon to the start of the line.
+;; You may delete these explanatory comments.
+(package-initialize)
+
 (when load-file-name
   (setq user-emacs-directory (file-name-directory load-file-name)))
 
@@ -15,28 +23,34 @@
 ;;
 ;; パッケージリスト
 ;; {{{
+;; General
 (el-get-bundle auto-complete)
 (el-get-bundle yasnippet)
 (el-get-bundle multi-term)
 (el-get-bundle powerline)
-(el-get-bundle auto-complete-c-headers)
-(el-get-bundle google-c-style)
-(el-get-bundle elpy)
-(el-get-bundle ruby-block)
-(el-get-bundle ruby-end)
 (el-get-bundle smart-compile)
 (el-get-bundle smartparens)
 (el-get-bundle ccann/badger-theme)
 (el-get-bundle haskell-mode)
 (el-get-bundle bliss-theme)
 (el-get-bundle evil)
+;; C/C++
+(el-get-bundle auto-complete-c-headers)
+(el-get-bundle google-c-style)
+;; Ruby
+(el-get-bundle ruby-block)
+(el-get-bundle ruby-end)
+;; Python
+;;(el-get-bundle python-mode)
+(el-get-bundle elpy)
+(el-get-bundle py-autopep8)
 ;;; }}}
 
 ;; multi-term
 (require 'multi-term)
 
 ;; emacs theme
-(load-theme 'bliss t)
+(load-theme 'wombat t)
 
 ;; powerline
 (require 'powerline)
@@ -95,13 +109,23 @@
 
 ;; C/C++ tab key setting
 (setq c-tab-always-indent nil)
+
+
 ;;; Python
 ;; elpy
 (elpy-enable)
+;; autopep8
+(require 'py-autopep8)
+(setq py-autopep8-options '("--max-line-length=200"))
+(setq flycheck-flake8-maximum-line-length 200)
+(py-autopep8-enable-on-save)
+;; flycheck
+(el-get 'sync 'flycheck)
+(require 'python)
 
-;; key-binding
-(define-key yas-minor-mode-map (kbd "C-c k") 'yas-expand)
-(define-key global-map (kbd "C-c o") 'iedit-mode)
+(defun tnoda/turn-on-flycheck-mode ()
+  (flycheck-mode 1))
+(add-hook 'python-mode-hook 'tnoda/turn-on-flycheck-mode)
 
 ;;; Ruby
 (require 'ruby-block)

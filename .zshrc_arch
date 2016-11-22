@@ -19,18 +19,19 @@ export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
 
-# powerline
-export PYTHONPATH=/usr/lib/python3.5/site-packages
+
 
 # emacsを256色で使うための設定
 export TERM="xterm-256color"
 
 
-bindkey -e # emacsライクなキーバインド
+bindkey -e # emacsのキーバインド
 
 # capsをctrlに
 setxkbmap -option "ctrl:nocaps"
 
+# powerline
+export PYTHONPATH=/usr/lib/python3.5/site-packages
 if [[ -r $PYTHONPATH/powerline/bindings/zsh/powerline.zsh ]]; then
     source $PYTHONPATH/powerline/bindings/zsh/powerline.zsh
 fi
@@ -38,7 +39,6 @@ fi
 source ~/.zplug/init.zsh
 
 # ---- ここにプラグインを記述
-
 
 ## 256色使用可能にする
 zplug "chrissicool/zsh-256color"
