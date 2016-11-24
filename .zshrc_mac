@@ -85,10 +85,9 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias tmux="tmux -2"
-alias e='emacs -nw'
-alias emacs='emacs -nw'
+alias emacs="/usr/local/Cellar/emacs/25.1//Emacs.app/Contents/MacOS/Emacs -nw"
+alias e="/usr/local/Cellar/emacs/25.1//Emacs.app/Contents/MacOS/Emacs -nw"
 alias ei='e ~/.emacs.d/init.el'
-alias vim='echo "Use emacs"'
 unalias ls
 unalias la
 unalias ll
