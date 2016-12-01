@@ -41,6 +41,8 @@
 ;;(el-get-bundle python-mode)
 (el-get-bundle elpy)
 (el-get-bundle py-autopep8)
+;; web
+(el-get-bundle web-mode)
 ;;; }}}
 
 
