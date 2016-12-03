@@ -1,18 +1,28 @@
 #!/usr/bin/zsh
+
 # Default Settiing
 alias e='emacs -nw'
 alias emacs='emacs -nw'
 alias ei='e ~/.emacs.d/init.el'
 alias la='ls -a'
 alias ll='ls -al'
+alias grep='grep --color'
+alias df='df -h'
+cdls ()
+{
+    \cd "$@" && ls
+}
+alias cd="cdls"
+
 # ArchLinux's alias of packeage manager
 alias search='sudo pacman -Ss'
 alias install='sudo pacman -S'
 alias remove='sudo pacman -R'
 alias update='sudo pacman -Syu'
-alias ys='yaourt -S'
-alias yr='yarout -R'
-alias yrs='yaourt -Rs'
+alias yinstall='yaourt -S'
+alias yremove='yarout -R'
+alias yremoves='yaourt -Rs'
+alias yupdate='yaourt -Syua'
 
 # emacsを256色で使うための設定
 export TERM="xterm-256color"
