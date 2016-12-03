@@ -94,3 +94,10 @@ unalias ll
 alias ls='/bin/ls -h'
 alias la='/bin/ls -Ah'
 alias ll='/bin/ls -Ahl'
+cdls ()
+{
+    \cd "$@" && ls
+}
+alias cd='cdls'
+alias grep='grep --color'
+alias df='df -h'

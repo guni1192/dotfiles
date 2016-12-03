@@ -4,6 +4,7 @@
 alias e='emacs -nw'
 alias emacs='emacs -nw'
 alias ei='e ~/.emacs.d/init.el'
+alias tmux='tmux -2'
 alias la='ls -a'
 alias ll='ls -al'
 alias grep='grep --color'
