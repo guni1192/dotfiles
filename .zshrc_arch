@@ -19,16 +19,25 @@ alias search='sudo pacman -Ss'
 alias install='sudo pacman -S'
 alias remove='sudo pacman -R'
 alias update='sudo pacman -Syu'
+alias ysearch='yaourt -Ss'
 alias yinstall='yaourt -S'
 alias yremove='yarout -R'
 alias yremoves='yaourt -Rs'
 alias yupdate='yaourt -Syua'
 
+
+### 環境変数
+
+export PATH=$PATH:/usr/lib/jvm/default/bin
+
 # emacsを256色で使うための設定
 export TERM="xterm-256color"
 
+# Java develop environment
+export JAVA_HOME=/usr/lib/jvm/java-8-jdk
 
 bindkey -e # emacsのキーバインド
+
 
 # capsをctrlに
 setxkbmap -option "ctrl:nocaps"
