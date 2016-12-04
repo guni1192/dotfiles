@@ -125,7 +125,7 @@ call neobundle#end()
 "------------colorscheme--------------------------------
 "///////////////////////////////////////////////////////
 syntax on
-colorscheme solarized
+"colorscheme solarized
 highlight Normal ctermbg=none
 
 "///////////////////////////////////////////////////////////////////////////
