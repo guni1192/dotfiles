@@ -57,6 +57,8 @@
 ;; emacs theme
 (load-theme 'wombat t)
 
+(require 'powerline)
+(powerline-default-theme)
 
 ;; 括弧補完
 (require 'smartparens-config)
