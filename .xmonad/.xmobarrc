@@ -1,21 +1,50 @@
-Config { font = "xft:inconsolatalgc:pixelsize=12:antialias=true"
-  , bgColor = "#002b36"
-  , fgColor = "#657b83"
-  , border = NoBorder
-  , borderColor = "black"
-  , hideOnStart = False
-  , persistent = True
-  , position = Top
-  , lowerOnStart = True
-  , commands = [ Run Weather "UUEE" ["-t"," <tempC>C","-L","64","-H","77","--normal","#657b83","--high","#657b83","--low","#657b83"] 36000
-  , Run Network "enp5s0" ["-L","0","-H","32","--normal","#657b83","--high","#657b83"] 10
-  , Run Cpu ["-L","3","-H","50","--normal","#657b83","--high","#657b83"] 10
-  , Run Memory ["-t","Mem: <usedratio>%"] 10
-  , Run Com "~/.scripts/volume.sh" [] "vol" 1
-  , Run Date "<fc=#93a1a1>%a %b %_d %Y %H:%M</fc>" "date" 10
-  , Run StdinReader
-]
-  , sepChar = "%"
-  , alignSep = "}{"
-  , template = " %StdinReader% }{ %cpu% | %memory% | %enp4s0% | %vol% | %date% "
-}
+-- vim: ft=haskell
+Config { font = "xft:Migu 1M:size=13"
+       , bgColor = "#1c1c1c"
+       , fgColor = "#404040"
+       , position = TopSize C 100 35
+       -- , position = Static { xpos = 37 , ypos = 0, width = 1845, height = 18 }
+       , lowerOnStart = False
+       , overrideRedirect = False
+       , border = BottomBM 0
+       , borderColor = "#4e4e4e"
+       , commands = [ Run Network "wlan0" [ "-t"       , "⇩<rx>  ⇧<tx>  "
+                                          , "-L"       , "40"
+                                          , "-H"       , "200"
+                                          , "-m"       , "3"
+                                          , "--normal" , "#b0bdbd"
+                                          , "--high"   , "#a5d6a7"
+                                          ] 10
+                    , Run MultiCpu        [ "-t"       , "■ <total0>.<total1>.<total2>.<total3>  "
+                                          , "-L"       , "40"
+                                          , "-H"       , "85"
+                                          , "-m"       , "2"
+                                          , "--normal" , "#b0bdbd"
+                                          , "--high"   , "#ef9a9a"
+                                          ] 10
+
+                    , Run Memory          [ "-t"       , "□ <usedratio>%  "
+                                          , "-L"       , "40"
+                                          , "-H"       , "90"
+                                          , "-m"       , "2"
+                                          , "--normal" , "#b0bdbd"
+                                          , "--high"   , "#ef9a9a"
+                                          ] 10
+                    , Run BatteryP        ["CMB1"]
+                                          [ "-t"       , "⌇ <acstatus>  "
+                                          , "-L"       , "20"
+                                          , "-H"       , "80"
+                                          , "--low"    , "#ef9a9a"
+                                          , "--normal" , "#b0bdbd"
+                                          , "--"
+                                                , "-o" , "<left>% (<timeleft>)"
+                                                , "-O" , "Charging <left>%"
+                                                , "-i" , "<left>%"
+                                          ] 50
+                    , Run Date "%a %m/%d %H:%M" "date" 10
+                    , Run StdinReader
+                    ]
+       , sepChar = "%"
+       , alignSep = "}{"
+       , template = " %StdinReader% }{ %multicpu%%memory%%wlan0%%battery%<fc=#ece391>%date%</fc> "
+       }
