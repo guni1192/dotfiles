@@ -38,6 +38,7 @@
 (el-get-bundle ccann/badger-theme)
 (el-get-bundle haskell-mode)
 (el-get-bundle bliss-theme)
+(el-get-bundle badwolf-theme)
 ;;(el-get-bundle evil)
 ;; C/C++
 (el-get-bundle auto-complete-c-headers)
@@ -55,10 +56,10 @@
 
 
 ;; emacs theme
-(load-theme 'wombat t)
+(load-theme 'badwolf t)
 
 (require 'powerline)
-(powerline-default-theme)
+(powerline-center-theme)
 
 ;; 括弧補完
 (require 'smartparens-config)
@@ -220,6 +221,9 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(custom-safe-themes
+   (quote
+    ("604648621aebec024d47c352b8e3411e63bdb384367c3dd2e8db39df81b475f5" default)))
  '(package-selected-packages (quote (bliss-theme))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.

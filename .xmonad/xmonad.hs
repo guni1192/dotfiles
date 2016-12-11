@@ -110,9 +110,10 @@ main = do
                                             $ myLayout
                                             )
         -- xmobar setting
-       -- , logHook            = myLogHook wsbar
-                              -- >> updatePointer (Relative 0.5 0.5)(0, 0)
-       , logHook = dynamicLog
+       -- , logHook            = wsbar
+       , logHook            = myLogHook wsbar
+                               >> updatePointer (Relative 0.5 0.5)(0, 0)
+       -- , logHook = dynamicLog
        , handleEventHook    = fullscreenEventHook
        , workspaces         = myWorkspaces
        , modMask            = modm
@@ -275,9 +276,9 @@ myLayout = spacing gapwidth $ gaps [(U, gwU),(D, gwD),(L, gwL),(R, gwR)]
 myStartupHook = do
         spawnOnce "gnome-settings-daemon"
         spawnOnce "nm-applet"
-        spawnOnce "xscreensaver -no-splash"
+        -- spawnOnce "xscreensaver -no-splash"
         spawnOnce "$HOME/.dropbox-dist/dropboxd"
-        spawnOnce "bash $HOME/.fehbg"
+        spawnOnce "nitrogen --restore"
         -- spawnOnce "compton -b --config $HOME/.config/compton/compton.conf"
 
 --------------------------------------------------------------------------- }}}
@@ -299,7 +300,7 @@ myManageHookFloat = composeAll
     , className =? "Tk"               --> doFloat
     , className =? "mplayer2"         --> doCenterFloat
     , className =? "mpv"              --> doCenterFloat
-    , className =? "feh"              --> doCenterFloat
+    , className =? "nitrogen"              --> doCenterFloat
     , className =? "Display.im6"      --> doCenterFloat
     , className =? "Shutter"          --> doCenterFloat
     , className =? "Thunar"           --> doCenterFloat
