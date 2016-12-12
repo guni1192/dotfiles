@@ -46,17 +46,19 @@
 (el-get-bundle ruby-block)
 (el-get-bundle ruby-end)
 ;; Python
-;;(el-get-bundle python-mode)
 (el-get-bundle elpy)
 (el-get-bundle py-autopep8)
+(el-get-bundle ac-python)
+(el-get-bundle jedi)
+
 ;; web
 (el-get-bundle web-mode)
 ;;; }}}
 
 
 ;; emacs theme
-(load-theme 'wombat t)
-
+;;(load-theme 'wombat t)
+(load-theme 'badwolf t)
 
 ;; 括弧補完
 (require 'smartparens-config)
@@ -116,6 +118,8 @@
 ;;; Python
 ;; elpy
 (elpy-enable)
+(add-hook 'python-mode-hook 'jedi:setup)
+(setq jedi:complete-on-dot t)                 ; optional
 ;; autopep8
 ;; $ pip install autopep8 pylint
 (require 'py-autopep8)
@@ -218,7 +222,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(package-selected-packages (quote (bliss-theme))))
+ '(package-selected-packages (quote (badwolf-theme molokai-theme php-mode bliss-theme))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

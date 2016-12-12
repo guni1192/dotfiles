@@ -34,6 +34,11 @@ export PATH=$PATH:/usr/lib/jvm/default/bin
 # emacsを256色で使うための設定
 export TERM="xterm-256color"
 
+export NVIM=$HOME/.config/nvim
+alias n='nvim'
+alias ni='nvim $NVIM/init.vim'
+alias nd='nvim $NVIM/dein.toml'
+
 # Java develop environment
 export JAVA_HOME=/usr/lib/jvm/java-8-jdk
 
