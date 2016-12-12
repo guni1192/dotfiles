@@ -4,7 +4,7 @@ Config { font = "xft:Migu 1M:size=13"
        , fgColor = "#404040"
        , position = TopSize C 100 35
        -- , position = Static { xpos = 37 , ypos = 0, width = 1845, height = 18 }
-       , lowerOnStart = False
+       , lowerOnStart = True
        , overrideRedirect = False
        , border = BottomBM 0
        , borderColor = "#4e4e4e"

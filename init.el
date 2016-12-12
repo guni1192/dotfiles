@@ -1,20 +1,14 @@
 ;;
-;; package.el
-;;
-(require 'package)
-;; MELPAを追加
-(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
-;; MELPA-stableを追加
-(add-to-list 'package-archives '("melpa-stable" . "https://stable.melpa.org/packages/") t)
-;; Marmaladeを追加
-(add-to-list 'package-archives  '("marmalade" . "http://marmalade-repo.org/packages/") t)
-;; Orgを追加
-(add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/") t)
-;; 初期化
-(package-initialize)
-;;
 ;; el-get 
 ;;
+
+
+;; Added by Package.el.  This must come before configurations of
+;; installed packages.  Don't delete this line.  If you don't want it,
+;; just comment it out by adding a semicolon to the start of the line.
+;; You may delete these explanatory comments.
+(package-initialize)
+
 (when load-file-name 
   (setq user-emacs-directory (file-name-directory load-file-name))) 
  
@@ -24,7 +18,7 @@
       (url-retrieve-synchronously 
        "https://raw.githubusercontent.com/dimitri/el-get/master/el-get-install.el") 
     (goto-char (point-max)) 
-    (eval-print-last-sexp))) 
+    (eval-print-last-sexp)))
 ;;
 ;; パッケージリスト
 ;; {{{
@@ -38,6 +32,7 @@
 (el-get-bundle ccann/badger-theme)
 (el-get-bundle haskell-mode)
 (el-get-bundle bliss-theme)
+(el-get-bundle badwolf-theme)
 ;;(el-get-bundle evil)
 ;; C/C++
 (el-get-bundle auto-complete-c-headers)
@@ -57,8 +52,10 @@
 
 
 ;; emacs theme
-;;(load-theme 'wombat t)
 (load-theme 'badwolf t)
+
+(require 'powerline)
+(powerline-center-theme)
 
 ;; 括弧補完
 (require 'smartparens-config)
@@ -117,7 +114,11 @@
 
 ;;; Python
 ;; elpy
-(elpy-enable)
+(require 'epc)
+(require 'auto-complete-config)
+(require 'python)
+(setenv "PYTHONPATH" "/usr/local/lib/python3.5/site-packages")
+(require 'jedi)
 (add-hook 'python-mode-hook 'jedi:setup)
 (setq jedi:complete-on-dot t)                 ; optional
 ;; autopep8
@@ -216,13 +217,12 @@
               backward-char forward-char))
     (ding)))
 (setq ring-bell-function 'my-bell-function)
-(put 'set-goal-column 'disabled nil)
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(package-selected-packages (quote (badwolf-theme molokai-theme php-mode bliss-theme))))
+ '(package-selected-packages (quote (badwolf-theme bliss-theme))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
