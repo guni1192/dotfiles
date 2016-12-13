@@ -1,7 +1,4 @@
-;;
-;; el-get 
-;;
-
+;; el-get
 
 ;; Added by Package.el.  This must come before configurations of
 ;; installed packages.  Don't delete this line.  If you don't want it,
@@ -32,19 +29,24 @@
 (el-get-bundle ccann/badger-theme)
 (el-get-bundle haskell-mode)
 (el-get-bundle bliss-theme)
-(el-get-bundle badwolf-theme)
+(el-get-bundle monokai-theme)
+
 ;;(el-get-bundle evil)
 ;; C/C++
 (el-get-bundle auto-complete-c-headers)
 (el-get-bundle google-c-style)
 ;; Ruby
-(el-get-bundle ruby-block)
-(el-get-bundle ruby-end)
+;;(el-get-bundle ruby-block)
+;;(el-get-bundle ruby-end)
 ;; Python
 (el-get-bundle elpy)
 (el-get-bundle py-autopep8)
 (el-get-bundle ac-python)
+(el-get-bundle epc)
+(el-get-bundle deferred)
+(el-get-bundle python-environment)
 (el-get-bundle jedi)
+(el-get-bundle django-mode)
 
 ;; web
 (el-get-bundle web-mode)
@@ -52,7 +54,7 @@
 
 
 ;; emacs theme
-(load-theme 'badwolf t)
+(load-theme 'monokai t)
 
 (require 'powerline)
 (powerline-center-theme)
@@ -116,8 +118,9 @@
 ;; elpy
 (require 'epc)
 (require 'auto-complete-config)
+(require 'ac-python)
 (require 'python)
-(setenv "PYTHONPATH" "/usr/local/lib/python3.5/site-packages")
+(setenv "PYTHONPATH" "/usr/lib/python3.5/site-packages")
 (require 'jedi)
 (add-hook 'python-mode-hook 'jedi:setup)
 (setq jedi:complete-on-dot t)                 ; optional
@@ -136,14 +139,9 @@
 (add-hook 'python-mode-hook 'tnoda/turn-on-flycheck-mode)
 
 ;;; Ruby
-(require 'ruby-block)
-(setq ruby-block-highlight-toggle t)
-(require 'ruby-end)
-
-;; smart compile
-(require 'smart-compile)
-  (define-key ruby-mode-map (kbd "C-c c") 'smart-compile)
-  (define-key ruby-mode-map (kbd "C-c C-c") (kbd "C-c c C-m"))
+;;(require 'ruby-block)
+;;(setq ruby-block-highlight-toggle t)
+;;(require 'ruby-end)
 
 
 ;; 環境を日本語、UTF-8にする
@@ -222,6 +220,14 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(custom-safe-themes
+   (quote
+    ("604648621aebec024d47c352b8e3411e63bdb384367c3dd2e8db39df81b475f5" "a8245b7cc985a0610d71f9852e9f2767ad1b852c2bdea6f4aadc12cce9c4d6d0" "8aebf25556399b58091e533e455dd50a6a9cba958cc4ebb0aab175863c25b9a4" default)))
+ '(notmuch-search-line-faces
+   (quote
+    (("unread" :foreground "#aeee00")
+     ("flagged" :foreground "#0a9dff")
+     ("deleted" :foreground "#ff2c4b" :bold t))))
  '(package-selected-packages (quote (badwolf-theme bliss-theme))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
