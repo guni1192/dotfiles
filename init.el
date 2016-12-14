@@ -117,7 +117,6 @@
 ;;; Python
 ;; elpy
 (require 'epc)
-(require 'auto-complete-config)
 (require 'ac-python)
 (require 'python)
 (setenv "PYTHONPATH" "/usr/lib/python3.5/site-packages")
@@ -165,6 +164,18 @@
 
 ;; タブにスペースを使用する
 (setq-default tab-width 4 indent-tabs-mode nil)
+
+
+;; タブの可視化
+(global-whitespace-mode 1)
+(setq whitespace-space-regexp "\\(\u3000\\)")
+(setq whitespace-style '(face tabs tab-mark spaces space-mark))
+(setq whitespace-display-mappings ())
+(set-face-foreground 'whitespace-tab "yellow")
+(set-face-underline  'whitespace-tab t)
+(set-face-foreground 'whitespace-space "yellow")
+(set-face-background 'whitespace-space "red")
+(set-face-underline  'whitespace-space t)
 
 ;; 改行コードを表示する
 (setq eol-mnemonic-dos "(CRLF)")
