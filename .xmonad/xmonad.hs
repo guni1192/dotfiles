@@ -279,6 +279,7 @@ myStartupHook = do
         -- spawnOnce "xscreensaver -no-splash"
         spawnOnce "$HOME/.dropbox-dist/dropboxd"
         spawnOnce "nitrogen --restore"
+        setWMName "LG3D"
         -- spawnOnce "compton -b --config $HOME/.config/compton/compton.conf"
 
 --------------------------------------------------------------------------- }}}

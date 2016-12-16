@@ -1,4 +1,6 @@
 vim: set ft=xdefaults:
+
+
 !------------------------------------------------------------------------------
 ! Xft settings                                                              {{{
 !------------------------------------------------------------------------------
@@ -33,6 +35,9 @@ URxvt.intensityStyles: true
 URxvt.perl-ext-common: default,selection
 URxvt.url-launcher:    /usr/bin/xdg-open
 URxvt.mathcer.button:  1
+! 日本語インライン入力
+URxvt.inputMethod: fcitx
+URxvt.preeditType: OnTheSpot
 
 ! Fonts
 URxvt.allow_bold:      false
@@ -58,44 +63,6 @@ URxvt*iso14755:        false
 !---------------------------------------------------------------------------}}}
 ! Color                                                                     {{{
 !------------------------------------------------------------------------------
-
-!! ver 1.0 {{{
-!*.foreground:  #c6c6c6
-!*.background:  #1c1c1c
-!*.cursorColor: #00d700
-!
-!! black
-!*.color0:      #353535
-!*.color8:      #404040
-!
-!! red
-!*.color1:      #ef9a9a
-!*.color9:      #f489ad
-!
-!! green
-!*.color2:      #a5d6a7
-!*.color10:     #b9e18b
-!
-!! yellow
-!*.color3:      #ece391
-!*.color11:     #e8cc76
-!
-!! blue
-!*.color4:      #9fc7e8
-!*.color12:     #81badc
-!
-!! magenta
-!*.color5:      #e0b1e8
-!*.color13:     #bb97db
-!
-!! cyan
-!*.color6:      #a2e2ea
-!*.color14:     #75d7cd
-!
-!! white
-!*.color7:      #90a2a0
-!*.color15:     #bdbdbd
-!}}}
 
 ! ver 2.0 {{{
 *.foreground:  #A8B6B8

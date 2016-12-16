@@ -2,3 +2,6 @@
 xmonad.hs:115:50: error:
     Data constructor not in scope:
       Relative :: Double -> Double -> (Rational, Rational)
+
+xmonad.hs:282:9: error:
+    Variable not in scope: setWMName :: [Char] -> X b

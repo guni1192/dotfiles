@@ -1,11 +1,10 @@
-;; el-get
-
 ;; Added by Package.el.  This must come before configurations of
 ;; installed packages.  Don't delete this line.  If you don't want it,
 ;; just comment it out by adding a semicolon to the start of the line.
 ;; You may delete these explanatory comments.
 (package-initialize)
 
+;; el-get
 (when load-file-name 
   (setq user-emacs-directory (file-name-directory load-file-name))) 
  
@@ -46,7 +45,6 @@
 (el-get-bundle deferred)
 (el-get-bundle python-environment)
 (el-get-bundle jedi)
-(el-get-bundle django-mode)
 
 ;; web
 (el-get-bundle web-mode)
@@ -153,6 +151,10 @@
 (set-default-coding-systems 'utf-8)
 (prefer-coding-system 'utf-8)
 
+;; mozc
+;;(when (require 'mozc nil t) 
+;;  (setq default-input-method "japanese-mozc")
+  
 ;; スタートアップメッセージを表示させない
 (setq inhibit-startup-message t)
 
@@ -205,9 +207,6 @@
 ;; 対応する括弧を光らせる
 (show-paren-mode 1)
 
-;; スペース、タブなどを可視化する
-;(global-whitespace-mode 1)
-
 ;; スクロールは１行ごとに
 (setq scroll-conservatively 1)
 
@@ -225,24 +224,5 @@
               backward-char forward-char))
     (ding)))
 (setq ring-bell-function 'my-bell-function)
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(custom-safe-themes
-   (quote
-    ("604648621aebec024d47c352b8e3411e63bdb384367c3dd2e8db39df81b475f5" "a8245b7cc985a0610d71f9852e9f2767ad1b852c2bdea6f4aadc12cce9c4d6d0" "8aebf25556399b58091e533e455dd50a6a9cba958cc4ebb0aab175863c25b9a4" default)))
- '(notmuch-search-line-faces
-   (quote
-    (("unread" :foreground "#aeee00")
-     ("flagged" :foreground "#0a9dff")
-     ("deleted" :foreground "#ff2c4b" :bold t))))
- '(package-selected-packages (quote (badwolf-theme bliss-theme))))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
-(put 'set-goal-column 'disabled nil)
+
+
