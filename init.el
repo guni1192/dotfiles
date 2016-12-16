@@ -38,6 +38,7 @@
 ;;(el-get-bundle ruby-block)
 ;;(el-get-bundle ruby-end)
 ;; Python
+(el-get-bundle python)
 (el-get-bundle elpy)
 (el-get-bundle py-autopep8)
 (el-get-bundle ac-python)
@@ -65,7 +66,7 @@
 (require 'auto-complete)
 (require 'auto-complete-config)
 (ac-config-default)
-
+(ac-set-trigger-key "TAB")
 ;; yasnippet
 (require 'yasnippet)
 (yas-global-mode 1)
@@ -117,10 +118,20 @@
 (require 'epc)
 (require 'ac-python)
 (require 'python)
+;; linux
 (setenv "PYTHONPATH" "/usr/lib/python3.5/site-packages")
 (require 'jedi)
 (add-hook 'python-mode-hook 'jedi:setup)
-(setq jedi:complete-on-dot t)                 ; optional
+(jedi:setup)
+  (define-key jedi-mode-map (kbd "<C-tab>") nil) ;;C-tabはウィンドウの移動に用いる
+  (setq jedi:complete-on-dot t)
+  (setq ac-sources
+    (delete 'ac-source-words-in-same-mode-buffers ac-sources)) ;;jediの補完候補だけでいい
+  (add-to-list 'ac-sources 'ac-source-filename)
+  (add-to-list 'ac-sources 'ac-source-jedi-direct)
+  (define-key python-mode-map "\C-ct" 'jedi:goto-definition)
+  (define-key python-mode-map "\C-cb" 'jedi:goto-definition-pop-marker)
+  (define-key python-mode-map "\C-cr" 'helm-jedi-related-names)
 ;; autopep8
 ;; $ pip install autopep8 pylint
 (require 'py-autopep8)
