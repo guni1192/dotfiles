@@ -165,7 +165,6 @@
 ;; タブにスペースを使用する
 (setq-default tab-width 4 indent-tabs-mode nil)
 
-
 ;; タブの可視化
 (global-whitespace-mode 1)
 (setq whitespace-space-regexp "\\(\u3000\\)")
@@ -246,3 +245,4 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
+(put 'set-goal-column 'disabled nil)

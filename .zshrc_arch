@@ -1,8 +1,8 @@
 #!/usr/bin/zsh
 
 # Default Settiing
-alias e='emacs -nw'
 alias emacs='emacs -nw'
+alias e='emacs'
 alias ei='e ~/.emacs.d/init.el'
 alias tmux='tmux -2'
 alias ls='ls --color'
@@ -61,6 +61,7 @@ source ~/.zplug/init.zsh
 
 ## 256色使用可能にする
 zplug "chrissicool/zsh-256color"
+
 zplug "zsh-users/zsh-syntax-hightlighting", nice:10
 
 
