@@ -1,5 +1,5 @@
 -- vim: ft=haskell
-Config { font = "xft:Migu 1M:size=13"
+Config { font = "xft:Ricty 1M:size=13"
        , bgColor = "#1c1c1c"
        , fgColor = "#404040"
        , position = TopSize C 100 35
@@ -15,7 +15,7 @@ Config { font = "xft:Migu 1M:size=13"
                                           , "--normal" , "#b0bdbd"
                                           , "--high"   , "#a5d6a7"
                                           ] 10
-                    , Run MultiCpu        [ "-t"       , "■ <total0>.<total1>.<total2>.<total3>  "
+                    , Run MultiCpu        [ "-t"       , "■ <total0>.<total>  "
                                           , "-L"       , "40"
                                           , "-H"       , "85"
                                           , "-m"       , "2"

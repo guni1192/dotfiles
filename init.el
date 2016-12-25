@@ -1,11 +1,10 @@
-;; el-get
-
 ;; Added by Package.el.  This must come before configurations of
 ;; installed packages.  Don't delete this line.  If you don't want it,
 ;; just comment it out by adding a semicolon to the start of the line.
 ;; You may delete these explanatory comments.
 (package-initialize)
 
+;; el-get
 (when load-file-name 
   (setq user-emacs-directory (file-name-directory load-file-name))) 
  
@@ -39,6 +38,7 @@
 ;;(el-get-bundle ruby-block)
 ;;(el-get-bundle ruby-end)
 ;; Python
+(el-get-bundle python)
 (el-get-bundle elpy)
 (el-get-bundle py-autopep8)
 (el-get-bundle ac-python)
@@ -46,7 +46,6 @@
 (el-get-bundle deferred)
 (el-get-bundle python-environment)
 (el-get-bundle jedi)
-(el-get-bundle django-mode)
 
 ;; web
 (el-get-bundle web-mode)
@@ -67,7 +66,7 @@
 (require 'auto-complete)
 (require 'auto-complete-config)
 (ac-config-default)
-
+(ac-set-trigger-key "TAB")
 ;; yasnippet
 (require 'yasnippet)
 (yas-global-mode 1)
@@ -119,10 +118,20 @@
 (require 'epc)
 (require 'ac-python)
 (require 'python)
+;; linux
 (setenv "PYTHONPATH" "/usr/lib/python3.5/site-packages")
 (require 'jedi)
 (add-hook 'python-mode-hook 'jedi:setup)
-(setq jedi:complete-on-dot t)                 ; optional
+(jedi:setup)
+  (define-key jedi-mode-map (kbd "<C-tab>") nil) ;;C-tabはウィンドウの移動に用いる
+  (setq jedi:complete-on-dot t)
+  (setq ac-sources
+    (delete 'ac-source-words-in-same-mode-buffers ac-sources)) ;;jediの補完候補だけでいい
+  (add-to-list 'ac-sources 'ac-source-filename)
+  (add-to-list 'ac-sources 'ac-source-jedi-direct)
+  (define-key python-mode-map "\C-ct" 'jedi:goto-definition)
+  (define-key python-mode-map "\C-cb" 'jedi:goto-definition-pop-marker)
+  (define-key python-mode-map "\C-cr" 'helm-jedi-related-names)
 ;; autopep8
 ;; $ pip install autopep8 pylint
 (require 'py-autopep8)
@@ -153,6 +162,10 @@
 (set-default-coding-systems 'utf-8)
 (prefer-coding-system 'utf-8)
 
+;; mozc
+;;(when (require 'mozc nil t) 
+;;  (setq default-input-method "japanese-mozc")
+  
 ;; スタートアップメッセージを表示させない
 (setq inhibit-startup-message t)
 
@@ -164,7 +177,6 @@
 
 ;; タブにスペースを使用する
 (setq-default tab-width 4 indent-tabs-mode nil)
-
 
 ;; タブの可視化
 (global-whitespace-mode 1)
@@ -206,9 +218,6 @@
 ;; 対応する括弧を光らせる
 (show-paren-mode 1)
 
-;; スペース、タブなどを可視化する
-;(global-whitespace-mode 1)
-
 ;; スクロールは１行ごとに
 (setq scroll-conservatively 1)
 
@@ -226,23 +235,18 @@
               backward-char forward-char))
     (ding)))
 (setq ring-bell-function 'my-bell-function)
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(custom-safe-themes
-   (quote
-    ("604648621aebec024d47c352b8e3411e63bdb384367c3dd2e8db39df81b475f5" "a8245b7cc985a0610d71f9852e9f2767ad1b852c2bdea6f4aadc12cce9c4d6d0" "8aebf25556399b58091e533e455dd50a6a9cba958cc4ebb0aab175863c25b9a4" default)))
- '(notmuch-search-line-faces
-   (quote
-    (("unread" :foreground "#aeee00")
-     ("flagged" :foreground "#0a9dff")
-     ("deleted" :foreground "#ff2c4b" :bold t))))
- '(package-selected-packages (quote (badwolf-theme bliss-theme))))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
+
+;; Color
+(if window-system (progn
+    (set-background-color "Black")
+    (set-foreground-color "LightGray")
+    (set-cursor-color "Gray")
+    (set-frame-parameter nil 'alpha 70) ;透明度
+    ))
+
+;; 透明度を変更するコマンド M-x set-alpha
+;; http://qiita.com/marcy@github/items/ba0d018a03381a964f24
+(defun set-alpha (alpha-num)
+  "set frame parameter 'alpha"
+  (interactive "nAlpha: ")
+  (set-frame-parameter nil 'alpha (cons alpha-num '(90))))

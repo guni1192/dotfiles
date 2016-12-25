@@ -1,4 +1,12 @@
 
-xmonad.hs:115:50: error:
-    Data constructor not in scope:
-      Relative :: Double -> Double -> (Rational, Rational)
+xmonad.hs:99:19: warning: [-Wdeprecations]
+    In the use of ‘defaultConfig’ (imported from XMonad.Config):
+    Deprecated: "Use def (from Data.Default, and re-exported by XMonad and XMonad.Config) instead."
+
+xmonad.hs:347:14: warning: [-Wdeprecations]
+    In the use of ‘defaultXPConfig’ (imported from XMonad.Prompt):
+    Deprecated: "Use def (from Data.Default, and re-exported from XMonad.Prompt) instead."
+
+xmonad.hs:365:37: warning: [-Wdeprecations]
+    In the use of ‘defaultConfig’ (imported from XMonad.Config):
+    Deprecated: "Use def (from Data.Default, and re-exported by XMonad and XMonad.Config) instead."

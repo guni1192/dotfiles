@@ -16,6 +16,7 @@ import Data.Monoid
 import System.IO                       -- for xmobar
 
 import XMonad
+import XMonad.Config
 import qualified XMonad.StackSet as W  -- myManageHookShift
 
 import XMonad.Actions.CopyWindow
@@ -109,11 +110,12 @@ main = do
                                             $ onWorkspace "3" simplestFloat
                                             $ myLayout
                                             )
-        -- xmobar setting
+       -- xmobar setting
        -- , logHook            = wsbar
-       , logHook            = myLogHook wsbar
-                               >> updatePointer (Relative 0.5 0.5)(0, 0)
+       -- , logHook            = myLogHook wsbar
+       --                         >> updatePointer (Relative 0.5 0.5)(0, 0)
        -- , logHook = dynamicLog
+       , logHook = dynamicLogWithPP $ sjanssenPP { ppOrder = reverse }
        , handleEventHook    = fullscreenEventHook
        , workspaces         = myWorkspaces
        , modMask            = modm
@@ -276,10 +278,8 @@ myLayout = spacing gapwidth $ gaps [(U, gwU),(D, gwD),(L, gwL),(R, gwR)]
 myStartupHook = do
         spawnOnce "gnome-settings-daemon"
         spawnOnce "nm-applet"
-        -- spawnOnce "xscreensaver -no-splash"
         spawnOnce "$HOME/.dropbox-dist/dropboxd"
         spawnOnce "nitrogen --restore"
-        -- spawnOnce "compton -b --config $HOME/.config/compton/compton.conf"
 
 --------------------------------------------------------------------------- }}}
 -- myManageHookShift: some window must created there                        {{{
@@ -300,7 +300,7 @@ myManageHookFloat = composeAll
     , className =? "Tk"               --> doFloat
     , className =? "mplayer2"         --> doCenterFloat
     , className =? "mpv"              --> doCenterFloat
-    , className =? "nitrogen"              --> doCenterFloat
+    , className =? "nitrogen"         --> doCenterFloat
     , className =? "Display.im6"      --> doCenterFloat
     , className =? "Shutter"          --> doCenterFloat
     , className =? "Thunar"           --> doCenterFloat
@@ -308,7 +308,6 @@ myManageHookFloat = composeAll
     , className =? "Plugin-container" --> doCenterFloat
     , className =? "Screenkey"        --> (doRectFloat $ W.RationalRect 0.7 0.9 0.3 0.1)
     , className =? "Websearch"        --> doCenterFloat
-    , className =? "XClock"           --> doSideFloat NE
     , title     =? "Speedbar"         --> doCenterFloat
     , title     =? "urxvt_float"      --> doSideFloat SC
     , isFullscreen                    --> doFullFloat
@@ -316,7 +315,6 @@ myManageHookFloat = composeAll
     , stringProperty "WM_NAME" =? "LINE" --> (doRectFloat $ W.RationalRect 0.60 0.1 0.39 0.82)
     , stringProperty "WM_NAME" =? "Google Keep" --> (doRectFloat $ W.RationalRect 0.3 0.1 0.4 0.82)
     , stringProperty "WM_NAME" =? "tmptex.pdf - 1/1 (96 dpi)" --> (doRectFloat $ W.RationalRect 0.29 0.25 0.42 0.5)
-    , stringProperty "WM_NAME" =? "Figure 1" --> doCenterFloat
     ]
 
 --------------------------------------------------------------------------- }}}
@@ -347,7 +345,7 @@ wsPP = xmobarPP { ppOrder           = \(ws:l:t:_)  -> [ws,t]
 -- myXPConfig:        XPConfig                                            {{{
 
 myXPConfig = defaultXPConfig
-                { font              = "xft:Migu 1M:size=20:antialias=true"
+                { font              = "xft:Ricty 1M:size=20:antialias=true"
                 , fgColor           = colorfg
                 , bgColor           = colorNormalbg
                 , borderColor       = colorNormalbg
