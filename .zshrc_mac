@@ -8,11 +8,12 @@ export TERM="xterm-256color"
 
 
 export PATH="/Users/IIGUNI/.rbenv/shims:/Users/IIGUNI/.rbenv/bin:/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/texlive/2016/bin/x86_64-darwin/tlmgr"
+export PATH="/usr/local/sbin:$PATH"
 
-export PYTHONPATH=/usr/local/lib/python3.5/site-packages
-if [[ -r $PYTHONPATH/powerline/bindings/zsh/powerline.zsh ]]; then
+export PYTHON3PATH=/usr/local/lib/python3.5/site-packages
+if [[ -r $PYTHON3PATH/powerline/bindings/zsh/powerline.zsh ]]; then
     powerline-daemon -q
-    source $PYTHONPATH/powerline/bindings/zsh/powerline.zsh
+    source $PYTHON3PATH/powerline/bindings/zsh/powerline.zsh
 fi
 #source $ZSH/oh-my-zsh.sh
 
