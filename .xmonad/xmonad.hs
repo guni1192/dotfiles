@@ -1,15 +1,3 @@
-------------------------------------------------------------------------------
---                  __  ____  __                       _                     --
---                  \ \/ /  \/  | ___  _ __   __ _  __| |                    --
---                   \  /| |\/| |/ _ \| '_ \ / _` |/ _` |                    --
---                   /  \| |  | | (_) | | | | (_| | (_| |                    --
---                  /_/\_\_|  |_|\___/|_| |_|\__,_|\__,_|                    --
---                                                                           --
--------------------------------------------------------------------------------
---          written by Shotaro Fujimoto (https://github.com/ssh0)            --
--------------------------------------------------------------------------------
--- Import modules                                                           {{{
--------------------------------------------------------------------------------
 import qualified Data.Map as M
 import Control.Monad (liftM2)          -- myManageHookShift
 import Data.Monoid
@@ -345,7 +333,7 @@ wsPP = xmobarPP { ppOrder           = \(ws:l:t:_)  -> [ws,t]
 -- myXPConfig:        XPConfig                                            {{{
 
 myXPConfig = defaultXPConfig
-                { font              = "xft:Ricty 1M:size=20:antialias=true"
+                { font              = "xft:TakaoPGothic-9:Bold"
                 , fgColor           = colorfg
                 , bgColor           = colorNormalbg
                 , borderColor       = colorNormalbg
