@@ -39,13 +39,12 @@
 ;;(el-get-bundle ruby-end)
 ;; Python
 (el-get-bundle python)
-(el-get-bundle elpy)
+(el-get-bundle jedi)
 (el-get-bundle py-autopep8)
 (el-get-bundle ac-python)
 (el-get-bundle epc)
 (el-get-bundle deferred)
 (el-get-bundle python-environment)
-(el-get-bundle jedi)
 
 ;; web
 (el-get-bundle web-mode)
@@ -108,13 +107,11 @@
 ;; C++ refactaring for mac
 (define-key global-map (kbd "C-c ;") 'iedit-mode)
 
-
 ;; C/C++ tab key setting
 (setq c-tab-always-indent nil)
 
-
 ;;; Python
-;; elpy
+;; jedi
 (require 'epc)
 (require 'ac-python)
 (require 'python)
@@ -250,3 +247,17 @@
   "set frame parameter 'alpha"
   (interactive "nAlpha: ")
   (set-frame-parameter nil 'alpha (cons alpha-num '(90))))
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(custom-safe-themes
+   (quote
+    ("604648621aebec024d47c352b8e3411e63bdb384367c3dd2e8db39df81b475f5" default))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
