@@ -5,6 +5,7 @@ import System.IO                       -- for xmobar
 
 import XMonad
 import XMonad.Config
+import XMonad.Config.Xfce
 import qualified XMonad.StackSet as W  -- myManageHookShift
 
 import XMonad.Actions.CopyWindow
@@ -84,7 +85,7 @@ main :: IO ()
 
 main = do
     wsbar <- spawnPipe myWsBar
-    xmonad $ ewmh defaultConfig
+    xmonad $ ewmh defaultConfig 
        { borderWidth        = borderwidth
        , terminal           = myTerminal
        , focusFollowsMouse  = True
@@ -102,7 +103,6 @@ main = do
        -- , logHook            = wsbar
        -- , logHook            = myLogHook wsbar
        --                         >> updatePointer (Relative 0.5 0.5)(0, 0)
-       -- , logHook = dynamicLog
        , logHook = dynamicLogWithPP $ sjanssenPP { ppOrder = reverse }
        , handleEventHook    = fullscreenEventHook
        , workspaces         = myWorkspaces
@@ -117,10 +117,11 @@ main = do
        `removeKeysP`
        [
        -- Unused gmrun binding
-       "M-S-p",
+       -- "M-S-p",
        -- Unused close window binding
        -- "M-S-c",
-       "M-S-<Return>"
+         "M-S-<Return>",
+         "M-S-q"
        ]
 
        -------------------------------------------------------------------- }}}
