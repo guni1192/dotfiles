@@ -42,9 +42,25 @@ on_i  = 1
 on_ft = ['snippet']
 depends = ['neosnippet-snippets']
 
+[[plugins]]
+repo = 'zchee/deoplete-jedi'
 
 [[plugins]]
 repo = 'MaxMEllon/vim-tmng'
 
 [[plugins]]
 repo = 'flazz/vim-colorschemes'
+
+[[plugins]]
+repo = 'scrooloose/nerdtree'
+
+[[plugins]]
+repo = 'Lokaltog/vim-powerline'
+
+[[plugins]]
+repo = 'vim-airline/vim-airline'
+
+[[plugins]]
+repo = 'vim-airline/vim-airline-themes'
+
+
