@@ -150,7 +150,8 @@
 ;;(require 'ruby-block)
 ;;(setq ruby-block-highlight-toggle t)
 ;;(require 'ruby-end)
-
+;; markdown
+(setq markdown-command "pandoc")
 
 ;; 環境を日本語、UTF-8にする
 (set-locale-environment nil)
