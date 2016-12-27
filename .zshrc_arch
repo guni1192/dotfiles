@@ -4,6 +4,7 @@
 alias emacs='emacs -nw'
 alias e='emacs'
 alias ei='e ~/.emacs.d/init.el'
+
 alias tmux='tmux -2'
 alias ls='ls --color'
 alias la='ls -a'
@@ -36,7 +37,8 @@ export PATH=$PATH:/usr/lib/jvm/default/bin
 export TERM="xterm-256color"
 
 export NVIM=$HOME/.config/nvim
-alias n='nvim'
+alias vim='nvim'
+alias n='vim'
 alias ni='nvim $NVIM/init.vim'
 alias nd='nvim $NVIM/dein.toml'
 

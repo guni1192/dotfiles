@@ -45,6 +45,7 @@
 (el-get-bundle epc)
 (el-get-bundle deferred)
 (el-get-bundle python-environment)
+(el-get-bundle jinja2-mode)
 
 ;; web
 (el-get-bundle web-mode)

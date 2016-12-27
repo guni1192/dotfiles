@@ -37,8 +37,15 @@ set showmode
 set wildmenu wildmode=list:full
 set softtabstop=4
 set listchars=tab:»-,trail:-,eol:↲,extends:»,precedes:«,nbsp:$
+set statusline=2
 "ノーマルモードのキーバインド"
 inoremap jj <ESC>
+inoremap ( ()<LEFT>
+inoremap [ []<LEFT>
+inoremap { {}<LEFT>
+inoremap {<Enter> {}<Left><CR><ESC><S-o>
+inoremap [<Enter> []<Left><CR><ESC><S-o>
+inoremap (<Enter> ()<Left><CR><ESC><S-o>
 " NERDTreeをctrl+eで開く
 nnoremap <silent><C-e> :NERDTreeToggle<CR>
 " ファイルタイプ別のプラグイン/インデントを有効にする
@@ -89,12 +96,20 @@ if dein#check_install()
   call dein#install()
 endif
 
-" tmng conf
-let g:tmng#student_id = 's16t202'
-
 " カラー表示
 syntax on
-colorscheme molokai
+colorscheme badwolf
+autocmd VimEnter,ColorScheme * highlight Normal ctermbg=none
+autocmd VimEnter,ColorScheme * highlight LineNr ctermbg=none
+autocmd VimEnter,ColorScheme * highlight SignColumn ctermbg=none
+autocmd VimEnter,ColorScheme * highlight VertSplit ctermbg=none
+autocmd VimEnter,ColorScheme * highlight NonText ctermbg=none
 
-set guifont=Inconsolata_for_Powerline:h11:cANSI
-let g:Powerline_symbols='fancy'
+let g:airline_powerline_fonts = 1
+let g:airline_theme = 'badwolf'
+"let g:Powerline_symbols='fancy'
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#left_sep = ' '
+let g:airline#extensions#tabline#left_alt_sep = '|'
+
+"let g:deoplete#enable_at_startup = 1
