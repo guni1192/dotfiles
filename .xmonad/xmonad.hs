@@ -1,15 +1,3 @@
-------------------------------------------------------------------------------
---                  __  ____  __                       _                     --
---                  \ \/ /  \/  | ___  _ __   __ _  __| |                    --
---                   \  /| |\/| |/ _ \| '_ \ / _` |/ _` |                    --
---                   /  \| |  | | (_) | | | | (_| | (_| |                    --
---                  /_/\_\_|  |_|\___/|_| |_|\__,_|\__,_|                    --
---                                                                           --
--------------------------------------------------------------------------------
---          written by Shotaro Fujimoto (https://github.com/ssh0)            --
--------------------------------------------------------------------------------
--- Import modules                                                           {{{
--------------------------------------------------------------------------------
 import qualified Data.Map as M
 import Control.Monad (liftM2)          -- myManageHookShift
 import Data.Monoid
@@ -17,6 +5,7 @@ import System.IO                       -- for xmobar
 
 import XMonad
 import XMonad.Config
+import XMonad.Config.Xfce
 import qualified XMonad.StackSet as W  -- myManageHookShift
 
 import XMonad.Actions.CopyWindow
@@ -96,7 +85,7 @@ main :: IO ()
 
 main = do
     wsbar <- spawnPipe myWsBar
-    xmonad $ ewmh defaultConfig
+    xmonad $ ewmh defaultConfig 
        { borderWidth        = borderwidth
        , terminal           = myTerminal
        , focusFollowsMouse  = True
@@ -114,7 +103,6 @@ main = do
        -- , logHook            = wsbar
        -- , logHook            = myLogHook wsbar
        --                         >> updatePointer (Relative 0.5 0.5)(0, 0)
-       -- , logHook = dynamicLog
        , logHook = dynamicLogWithPP $ sjanssenPP { ppOrder = reverse }
        , handleEventHook    = fullscreenEventHook
        , workspaces         = myWorkspaces
@@ -129,10 +117,11 @@ main = do
        `removeKeysP`
        [
        -- Unused gmrun binding
-       "M-S-p",
+       -- "M-S-p",
        -- Unused close window binding
        -- "M-S-c",
-       "M-S-<Return>"
+         "M-S-<Return>",
+         "M-S-q"
        ]
 
        -------------------------------------------------------------------- }}}
@@ -345,7 +334,7 @@ wsPP = xmobarPP { ppOrder           = \(ws:l:t:_)  -> [ws,t]
 -- myXPConfig:        XPConfig                                            {{{
 
 myXPConfig = defaultXPConfig
-                { font              = "xft:Ricty 1M:size=20:antialias=true"
+                { font              = "xft:TakaoPGothic-9:Bold"
                 , fgColor           = colorfg
                 , bgColor           = colorNormalbg
                 , borderColor       = colorNormalbg
