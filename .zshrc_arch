@@ -1,21 +1,10 @@
 #!/usr/bin/zsh
 
+source $HOME/dotfiles/.zshrc_base
 # Default Settiing
 alias emacs='emacs -nw'
 alias e='emacs'
 alias ei='e ~/.emacs.d/init.el'
-
-alias tmux='tmux -2'
-alias ls='ls --color'
-alias la='ls -a'
-alias ll='ls -al'
-alias grep='grep --color'
-alias df='df -h'
-cdls ()
-{
-    \cd "$@" && ls
-}
-alias cd="cdls"
 
 # ArchLinux's alias of packeage manager
 alias search='sudo pacman -Ss'
@@ -29,24 +18,13 @@ alias yremoves='yaourt -Rs'
 alias yupdate='yaourt -Syua'
 
 
-### 環境変数
-
 export PATH=$PATH:/usr/lib/jvm/default/bin
 
-# emacsを256色で使うための設定
+# 256色で使うための設定
 export TERM="xterm-256color"
-
-export NVIM=$HOME/.config/nvim
-alias vim='nvim'
-alias n='vim'
-alias ni='nvim $NVIM/init.vim'
-alias nd='nvim $NVIM/dein.toml'
 
 # Java develop environment
 export JAVA_HOME=/usr/lib/jvm/java-8-jdk
-
-bindkey -e # emacsのキーバインド
-
 
 # capsをctrlに
 setxkbmap -option "ctrl:nocaps"
@@ -69,5 +47,3 @@ zplug "zsh-users/zsh-syntax-hightlighting", nice:10
 
 # プラグインを読み込み、コマンドにパスを通す
 zplug load --verbose
-
-screenfetch
