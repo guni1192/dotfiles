@@ -28,7 +28,7 @@ set whichwrap=b,s,h,l,<,>,[,]
 "バックスペースを制限無しにする"
 set backspace=indent,eol,start
 set wildmenu
-"set clipboard+=unnamed,autoselect
+set clipboard+=unnamedplus
 "単語補完の入力候補の最大数"
 set pumheight=10
 set showmatch
@@ -84,7 +84,6 @@ if dein#load_state(s:dein_dir)
   " TOML を読み込み、キャッシュしておく
   call dein#load_toml(s:toml,      {'lazy': 0})
   call dein#load_toml(s:lazy_toml, {'lazy': 1})
-  "+++++plugins+++++++++++++++++++++++++++
 
   " 設定終了
   call dein#end()
@@ -103,8 +102,7 @@ autocmd VimEnter,ColorScheme * highlight Normal ctermbg=none
 autocmd VimEnter,ColorScheme * highlight LineNr ctermbg=none
 autocmd VimEnter,ColorScheme * highlight SignColumn ctermbg=none
 autocmd VimEnter,ColorScheme * highlight VertSplit ctermbg=none
-autocmd VimEnter,ColorScheme * highlight NonText ctermbg=none
-
+autocmd VimEnter,ColorScheme * highlight NonText ctermbg=none 
 let g:airline_powerline_fonts = 1
 let g:airline_theme = 'badwolf'
 "let g:Powerline_symbols='fancy'
