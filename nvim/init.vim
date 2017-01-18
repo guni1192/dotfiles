@@ -48,6 +48,8 @@ inoremap [<Enter> []<Left><CR><ESC><S-o>
 inoremap (<Enter> ()<Left><CR><ESC><S-o>
 " NERDTreeをctrl+eで開く
 nnoremap <silent><C-e> :NERDTreeToggle<CR>
+let NERDTreeShowHidden = 1
+
 " ファイルタイプ別のプラグイン/インデントを有効にする
 filetype plugin indent on
 autocmd FileType c set cindent

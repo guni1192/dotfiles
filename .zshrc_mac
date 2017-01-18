@@ -1,4 +1,12 @@
 #!/usr/bin/zsh
+
+# powerline
+export PYTHONPATH=/usr/local/lib/python3.6/site-packages
+# if [[ -r $PYTHONPATH/powerline/bindings/zsh/powerline.zsh ]]; then
+#    source $PYTHONPATH/powerline/bindings/zsh/powerline.zsh
+# fi
+
+
 source $HOME/dotfiles/.zshrc_base
 
 export TERM="xterm-256color"
@@ -31,26 +39,31 @@ alias n='vim'
 alias ni='nvim $NVIM/init.vim'
 alias nd='nvim $NVIM/dein.toml'
 
-if [[ ! -d ~/.zplug ]];then
-  git clone https://github.com/zplug/zplug ~/.zplug
-fi
+# if [[ ! -d ~/.zplug ]];then
+#  git clone https://github.com/zplug/zplug ~/.zplug
+# fi
 
 source ~/.zplug/init.zsh
 
-zplug 'zsh-users/zsh-autosuggestions'
-zplug 'zsh-users/zsh-completions'
-zplug 'zsh-users/zsh-syntax-highlighting'
+# zplug 'zsh-users/zsh-autosuggestions'
+# zplug 'zsh-users/zsh-completions'
+# zplug 'zsh-users/zsh-syntax-highlighting'
 # zplug 'mollifier/anyframe'
 # zplug 'dracula/zsh', as:theme
-zplug 'tylerreckart/hyperzsh'
+# zplug 'tylerreckart/hyperzsh', as:theme
+# zplug mafredri/zsh-async, from:github
+zplug sindresorhus/pure, use:pure.zsh, from:github, as:theme
 
 # Install plugins if there are plugins that have not been installed
 if ! zplug check --verbose; then
-    printf "Install? [y/N]: "
-    if read -q; then
-        echo; zplug install
-    fi
+   printf "Install? [y/N]: "
+   if read -q; then
+       echo; zplug install
+   fi
 fi
 
 zplug load --verbose
 
+# if type zprof > /dev/null 2>&1; then
+#  zprof | less
+# fi
