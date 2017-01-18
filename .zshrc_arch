@@ -35,6 +35,8 @@ if [[ -r $PYTHONPATH/powerline/bindings/zsh/powerline.zsh ]]; then
     source $PYTHONPATH/powerline/bindings/zsh/powerline.zsh
 fi
 
+
+
 source ~/.zplug/init.zsh
 
 # ---- ここにプラグインを記述

@@ -28,8 +28,7 @@ set whichwrap=b,s,h,l,<,>,[,]
 "バックスペースを制限無しにする"
 set backspace=indent,eol,start
 set wildmenu
-"set clipboard+=unnamed,autoselect
-
+set clipboard+=unnamedplus
 "単語補完の入力候補の最大数"
 set pumheight=10
 set showmatch
@@ -49,6 +48,8 @@ inoremap [<Enter> []<Left><CR><ESC><S-o>
 inoremap (<Enter> ()<Left><CR><ESC><S-o>
 " NERDTreeをctrl+eで開く
 nnoremap <silent><C-e> :NERDTreeToggle<CR>
+let NERDTreeShowHidden = 1
+
 " ファイルタイプ別のプラグイン/インデントを有効にする
 filetype plugin indent on
 autocmd FileType c set cindent
@@ -103,8 +104,7 @@ autocmd VimEnter,ColorScheme * highlight Normal ctermbg=none
 autocmd VimEnter,ColorScheme * highlight LineNr ctermbg=none
 autocmd VimEnter,ColorScheme * highlight SignColumn ctermbg=none
 autocmd VimEnter,ColorScheme * highlight VertSplit ctermbg=none
-autocmd VimEnter,ColorScheme * highlight NonText ctermbg=none
-
+autocmd VimEnter,ColorScheme * highlight NonText ctermbg=none 
 let g:airline_powerline_fonts = 1
 let g:airline_theme = 'badwolf'
 "let g:Powerline_symbols='fancy'
