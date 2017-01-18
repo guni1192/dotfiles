@@ -30,7 +30,7 @@ export JAVA_HOME=/usr/lib/jvm/java-8-jdk
 setxkbmap -option "ctrl:nocaps"
 
 # powerline
-export PYTHONPATH=/usr/lib/python3.5/site-packages
+export PYTHONPATH=/usr/lib/python3.6/site-packages
 if [[ -r $PYTHONPATH/powerline/bindings/zsh/powerline.zsh ]]; then
     source $PYTHONPATH/powerline/bindings/zsh/powerline.zsh
 fi

@@ -49,6 +49,9 @@ repo = 'scrooloose/nerdtree'
 repo = 'Lokaltog/vim-powerline'
 
 [[plugins]]
+repo = 'powerline/powerline'
+
+[[plugins]]
 repo = 'vim-airline/vim-airline'
 
 [[plugins]]

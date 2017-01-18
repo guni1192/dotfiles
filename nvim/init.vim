@@ -29,6 +29,7 @@ set whichwrap=b,s,h,l,<,>,[,]
 set backspace=indent,eol,start
 set wildmenu
 "set clipboard+=unnamed,autoselect
+
 "単語補完の入力候補の最大数"
 set pumheight=10
 set showmatch
@@ -84,7 +85,6 @@ if dein#load_state(s:dein_dir)
   " TOML を読み込み、キャッシュしておく
   call dein#load_toml(s:toml,      {'lazy': 0})
   call dein#load_toml(s:lazy_toml, {'lazy': 1})
-  "+++++plugins+++++++++++++++++++++++++++
 
   " 設定終了
   call dein#end()
