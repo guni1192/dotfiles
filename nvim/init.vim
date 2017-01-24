@@ -32,12 +32,13 @@ set clipboard+=unnamedplus
 "単語補完の入力候補の最大数"
 set pumheight=10
 set showmatch
-set matchtime=1
+"set matchtime=1
 set showmode
 set wildmenu wildmode=list:full
 set softtabstop=4
 set listchars=tab:»-,trail:-,eol:↲,extends:»,precedes:«,nbsp:$
-set statusline=2
+"set laststatus=2
+"set statusline=2
 "ノーマルモードのキーバインド"
 inoremap jj <ESC>
 inoremap ( ()<LEFT>
@@ -105,11 +106,11 @@ autocmd VimEnter,ColorScheme * highlight LineNr ctermbg=none
 autocmd VimEnter,ColorScheme * highlight SignColumn ctermbg=none
 autocmd VimEnter,ColorScheme * highlight VertSplit ctermbg=none
 autocmd VimEnter,ColorScheme * highlight NonText ctermbg=none 
-let g:airline_powerline_fonts = 1
-let g:airline_theme = 'badwolf'
+"let g:airline_powerline_fonts = 1
+"let g:airline_theme = 'badwolf'
 "let g:Powerline_symbols='fancy'
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#left_sep = ' '
-let g:airline#extensions#tabline#left_alt_sep = '|'
+"let g:airline#extensions#tabline#enabled = 1
+"let g:airline#extensions#tabline#left_sep = ' '
+"let g:airline#extensions#tabline#left_alt_sep = '|'
 
 let g:deoplete#enable_at_startup = 1
