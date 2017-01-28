@@ -88,9 +88,6 @@ main = do
     xmonad $ ewmh defaultConfig 
        { borderWidth        = borderwidth
        , terminal           = myTerminal
-       , focusFollowsMouse  = True
-       , normalBorderColor  = mynormalBorderColor
-       , focusedBorderColor = myfocusedBorderColor
        , startupHook        = myStartupHook
        , manageHook         = myManageHookShift <+>
                               myManageHookFloat <+>
