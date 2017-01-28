@@ -94,6 +94,10 @@ main = do
         , terminal          = myTerminal
         , workspaces        = myWorkspaces
         , modMask           = modm
+        , startupHook       = myStartupHook
+        , layoutHook        = avoidStruts $ ( toggleLayouts (noBorders Full)
+                                          $ myLayout
+                                          )
         }
 
         `additionalKeysP`
@@ -136,7 +140,15 @@ main = do
         `additionalKeysP`
         [ ("M-<Return>", spawn "urxvt")
         , ("M-p", spawn "exe=`dmenu_run -l 10 -fn 'Migu 1M:size=20'` && exec $exe")
+        -- Launch file manager
+        , ("M-e", spawn "thunar")
         ]
+
+myStartupHook = do
+        spawnOnce "gnome-settings-daemon"
+        spawnOnce "nm-applet"
+        spawnOnce "$HOME/.dropbox-dist/dropboxd"
+        spawnOnce "nitrogen --restore"
  
 myLayout = spacing gapwidth $ gaps [(U, gwU),(D, gwD),(L, gwL),(R, gwR)]
             $ (ResizableTall 1 (1/204) (119/204) [])

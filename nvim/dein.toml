@@ -16,14 +16,9 @@ hook_post_update = '''
   let g:dein#plugin.build = cmd
 '''
 
-[[plugins]]
-repo = 'Shougo/neosnippet'
 
 [[plugins]]
 repo = 'zchee/deoplete-jedi'
-
-[[plugins]]
-repo = 'MaxMEllon/vim-tmng'
 
 [[plugins]]
 repo = 'flazz/vim-colorschemes'

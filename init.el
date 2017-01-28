@@ -235,31 +235,3 @@
     (ding)))
 (setq ring-bell-function 'my-bell-function)
 
-;; Color
-(if window-system (progn
-    (set-background-color "Black")
-    (set-foreground-color "LightGray")
-    (set-cursor-color "Gray")
-    (set-frame-parameter nil 'alpha 70) ;透明度
-    ))
-
-;; 透明度を変更するコマンド M-x set-alpha
-;; http://qiita.com/marcy@github/items/ba0d018a03381a964f24
-(defun set-alpha (alpha-num)
-  "set frame parameter 'alpha"
-  (interactive "nAlpha: ")
-  (set-frame-parameter nil 'alpha (cons alpha-num '(90))))
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(custom-safe-themes
-   (quote
-    ("604648621aebec024d47c352b8e3411e63bdb384367c3dd2e8db39df81b475f5" default))))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
