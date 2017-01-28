@@ -1,21 +1,15 @@
 -- vim: ft=haskell
-Config { font = "xft:Migu 1M:size=13"
-       , bgColor = "#1c1c1c"
-       , fgColor = "#404040"
-       , position = TopSize C 100 33
-       -- , position = Static { xpos = 37 , ypos = 0, width = 1845, height = 18 }
-       , lowerOnStart = False
-       , overrideRedirect = False
-       , border = BottomBM 0
-       , borderColor = "#4e4e4e"
-       , commands = [ Run Network "enp6s0" [ "-t"       , "⇩<rx>  ⇧<tx>  "
-                                          , "-L"       , "40"
-                                          , "-H"       , "200"
-                                          , "-m"       , "3"
-                                          , "--normal" , "#b0bdbd"
-                                          , "--high"   , "#a5d6a7"
-                                          ] 10
-                    , Run CoreTemp        [ "--template" , "Temp: <core0>°C|<core1>°C"
+Config { font               = "xft:Migu 1M:size=13"
+       , bgColor            = "#1c1c1c"
+       , fgColor            = "#404040"
+       , position           = TopSize C 100 33
+       -- , position             = Static { xpos = 37 , ypos = 0, width = 1845, height = 18 }
+       , lowerOnStart       = False
+       -- , pickBroadest       = True
+       , overrideRedirect   = False
+       , border             = BottomBM 0
+       , borderColor        = "#4e4e4e"
+       , commands = [ Run CoreTemp        [ "--template" , "Temp: <core0>°C|<core1>°C"
                                           , "--Low"      , "70"        -- units: °C
                                           , "--High"     , "80"        -- units: °C
                                           , "--low"      , "darkgreen"
@@ -49,10 +43,20 @@ Config { font = "xft:Migu 1M:size=13"
                                                 , "-i" , "<left>%"
                                           ] 50
                     , Run Date "%a %m/%d %H:%M" "date" 10
+                    , Run DynNetwork     [ "--template" , "<dev>: <tx>kB/s|<rx>kB/s"
+                                         , "--Low"      , "1000"       -- units: kB/s
+                                         , "--High"     , "5000"       -- units: kB/s
+                                         , "--low"      , "darkgreen"
+                                         , "--normal"   , "darkorange"
+                                         , "--high"     , "darkred"
+                                         ] 10
+                    , Run Weather "RJTT" [ "--template"
+                                         , "<skyCondition> | <fc=#4682B4><tempC></fc>°C | <fc=#4682B4><rh></fc>% | <fc=#4682B4><pressure></fc>hPa"
+                                         ] 36000
                     , Run StdinReader
                     ]
        , sepChar = "%"
        , alignSep = "}{"
-       , template = " %StdinReader% }{|%coretemp%|%multicpu%|%memory%|%wlan0%|%battery%|<fc=#ece391>%date%</fc> "
+       -- , template = " %StdinReader% }{| %coretemp% | %multicpu% | %memory% | %dynnetwork% | %battery% |<fc=#ece391> %date %</fc> "
+       , template = " }{| %coretemp% | %multicpu% | %memory% | %dynnetwork% | %battery% |<fc=#ece391> %date %</fc> "
        }
-
