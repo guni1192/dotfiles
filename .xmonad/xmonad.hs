@@ -25,6 +25,7 @@ import XMonad.Hooks.ManageDocks        -- avoid xmobar area
 import XMonad.Hooks.ManageHelpers
 
 import XMonad.Layout
+import XMonad.Layout.Circle
 import XMonad.Layout.DragPane          -- see only two window
 import XMonad.Layout.Gaps
 import XMonad.Layout.LayoutScreens
@@ -157,7 +158,8 @@ myLayout = spacing gapwidth $ gaps [(U, gwU),(D, gwD),(L, gwL),(R, gwR)]
             $ (ResizableTall 1 (1/204) (119/204) [])
               ||| (TwoPane (1/204) (119/204))
               ||| Simplest
-              ||| (dragPane Horizontal (1/10) (1/2)) ||| (dragPane Vertical   (1/10) (1/2))
- 
+              ||| (dragPane Horizontal (1/10) (1/2))
+              ||| (dragPane Vertical   (1/10) (1/2))
+              ||| Circle
 
 
