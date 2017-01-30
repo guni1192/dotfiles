@@ -144,7 +144,9 @@ main = do
         `additionalKeysP`
         [ ("M-<Return>", spawn "urxvt")
         , ("M-g"       , spawn "google-chrome-stable")
-        , ("M-S-g"       , spawn "google-chrome-stable --incognito")
+        , ("M-S-g"     , spawn "google-chrome-stable --incognito")
+        , ("M-n"       , spawn "nocturn")
+        
         , ("M-p", spawn "exe=`dmenu_run -l 10 -fn 'Migu 1M:size=20'` && exec $exe")
         -- Launch file manager
         , ("M-e", spawn "thunar")
