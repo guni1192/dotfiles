@@ -1,0 +1,58 @@
+#!/usr/bin/zsh
+
+# Default Settiing
+alias emacs='emacs -nw'
+alias e='emacs'
+alias ei='e ~/.emacs.d/init.el'
+
+# ArchLinux's alias of packeage manager
+alias search='sudo pacman -Ss'
+alias install='sudo pacman -S'
+alias remove='sudo pacman -R'
+alias update='sudo pacman -Syu'
+alias ysearch='yaourt -Ss'
+alias yinstall='yaourt -S'
+alias yremove='yarout -R'
+alias yremoves='yaourt -Rs'
+alias yupdate='yaourt -Syua'
+
+
+export PATH=$PATH:/usr/lib/jvm/default/bin
+
+# 256色で使うための設定
+export TERM="xterm-256color"
+
+# powerline
+export PYTHONPATH=/usr/lib/python3.6/site-packages
+if [[ -r $PYTHONPATH/powerline/bindings/zsh/powerline.zsh ]]; then
+    source $PYTHONPATH/powerline/bindings/zsh/powerline.zsh
+fi
+
+
+source ~/.zplug/init.zsh
+
+
+# ---- ここにプラグインを記述
+
+## 256色使用可能にする
+zplug chrissicool/zsh-256color
+zplug zsh-users/zsh-autosuggestions
+zplug zsh-users/zsh-syntax-highlighting
+zplug zsh-users/zsh-completions
+# プラグインを読み込み、コマンドにパスを通す
+
+if [ -e "${HOME}/.zplug" ]; then
+    # Install plugins if there are plugins that have not been installed
+    if ! zplug check --verbose; then
+        printf "Install? [y/N]: "
+        if read -q; then
+            echo; zplug install
+        fi
+    fi
+
+else
+    git clone https://github.com/b4b4r07/zplug ~/.zplug
+fi
+
+
+zplug load --verbose
