@@ -143,9 +143,19 @@ main = do
  
         `additionalKeysP`
         [ ("M-<Return>", spawn "urxvt")
+        , ("M-g"       , spawn "google-chrome-stable")
+        , ("M-S-g"       , spawn "google-chrome-stable --incognito")
         , ("M-p", spawn "exe=`dmenu_run -l 10 -fn 'Migu 1M:size=20'` && exec $exe")
         -- Launch file manager
         , ("M-e", spawn "thunar")
+        -- Volume setting media keys
+        , ("<XF86AudioRaiseVolume>", spawn "sound_volume_change_wrapper.sh +")
+        , ("<XF86AudioLowerVolume>", spawn "sound_volume_change_wrapper.sh -")
+        , ("<XF86AudioMute>", spawn "sound_volume_change_wrapper.sh m")
+        -- Brightness Keys
+        , ("<XF86MonBrightnessUp>", spawn "xbacklight + 5 -time 100 -steps 1")
+        , ("<XF86MonBrightnessDown>", spawn "xbacklight - 5 -time 100 -steps 1")
+
         ]
 
 myStartupHook = do
@@ -153,6 +163,8 @@ myStartupHook = do
         spawnOnce "nm-applet"
         spawnOnce "$HOME/.dropbox-dist/dropboxd"
         spawnOnce "nitrogen --restore"
+        spawnOnce "stalonetray"
+        spawnOnce "fcitx"
  
 myLayout = spacing gapwidth $ gaps [(U, gwU),(D, gwD),(L, gwL),(R, gwR)]
             $ (ResizableTall 1 (1/204) (119/204) [])
