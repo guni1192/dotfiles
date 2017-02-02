@@ -147,7 +147,7 @@ main = do
         , ("M-S-g"     , spawn "google-chrome-stable --incognito")
         , ("M-n"       , spawn "nocturn")
         
-        , ("M-p", spawn "exe=`dmenu_run -l 10 -fn 'Migu 1M:size=20'` && exec $exe")
+        , ("M-p", spawn "exe=`dmenu_run -fn 'Migu 1M:size=20'` && exec $exe")
         -- Launch file manager
         , ("M-e", spawn "thunar")
         -- Volume setting media keys
@@ -171,6 +171,7 @@ myStartupHook = do
 myLayout = spacing gapwidth $ gaps [(U, gwU),(D, gwD),(L, gwL),(R, gwR)]
             $ (ResizableTall 1 (1/204) (119/204) [])
               ||| (TwoPane (1/204) (119/204))
+              ||| (TwoPane (1/204) (149/204))
               ||| Simplest
               ||| (dragPane Horizontal (1/10) (1/2))
               ||| (dragPane Vertical   (1/10) (1/2))

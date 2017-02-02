@@ -2,7 +2,7 @@
 Config { font               = "xft:Migu 1M:size=13"
        , bgColor            = "#202020"
        , fgColor            = "#9cabc1"
-       , position           = TopSize C 100 33
+       , position           = Bottom
        -- , position             = Static { xpos = 37 , ypos = 0, width = 1845, height = 18 }
        , lowerOnStart       = False
        -- , pickBroadest       = True
@@ -39,8 +39,9 @@ Config { font               = "xft:Migu 1M:size=13"
                                          , "--normal"   , "darkorange"
                                          , "--high"     , "darkred"
                                          ] 10
+                    , Run StdinReader
                     ]
        , sepChar    = "%"
        , alignSep   = "}{"
-       , template   = " }{| %coretemp% | %multicpu% | %memory% | %dynnetwork% | %battery% |<fc=#4286f4> %date%</fc> "
+       , template   = " %StdinReader% }{| %coretemp% | %multicpu% | %memory% | %dynnetwork% | %battery% |<fc=#4286f4> %date%</fc> "
        }

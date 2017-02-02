@@ -42,8 +42,8 @@ URxvt.preeditType: OnTheSpot
 
 ! Fonts
 URxvt.allow_bold:      false
-! URxvt*font:            xft:Inconsolata\ for\ Powerline:size=13,xft:Migu 1M:size=13
-URxvt*font:            xft:Inconsolata\ for\ Powerline:size=13,xft:Ricty 1M:size=13
+URxvt*font:           xft:DejaVu Sans Mono for Powerline:size=13:antialias=true,xft:Ricty:size=13:antialias=true
+
 ! Fix font space
 URxvt*letterSpace:     0
 
