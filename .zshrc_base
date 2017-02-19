@@ -149,5 +149,5 @@ alias vim='nvim'
 alias n='vim'
 alias ni='nvim $NVIM/init.vim'
 alias nd='nvim $NVIM/dein.toml'
-
+alias ndl='nvim $NVIM/dein_lazy.toml'
 

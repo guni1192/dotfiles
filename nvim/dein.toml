@@ -16,6 +16,8 @@ hook_post_update = '''
   let g:dein#plugin.build = cmd
 '''
 
+[[plugins]]
+repo = 'Shougo/vimshell.vim'
 
 [[plugins]]
 repo = 'zchee/deoplete-jedi'
@@ -27,14 +29,14 @@ repo = 'flazz/vim-colorschemes'
 repo = 'scrooloose/nerdtree'
 
 [[plugins]]
-repo = 'Lokaltog/vim-powerline'
-
-[[plugins]]
-repo = 'powerline/powerline'
-
-[[plugins]]
 repo = 'vim-airline/vim-airline'
+hook_add = '''
+let g:airline_powerline_fonts = 1
+let g:airline_theme = 'badwolf'
+let g:airline#extensions#tabline#enabled = 1
+'''
 
 [[plugins]]
 repo = 'vim-airline/vim-airline-themes'
+
 
