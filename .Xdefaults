@@ -1,9 +1,7 @@
 vim: set ft=xdefaults:
 
-
-!------------------------------------------------------------------------------
-! Xft settings                                                              {{{
-!------------------------------------------------------------------------------
+x
+! Xft settings
 
 Xft.dpi:       96
 Xft.antialias: true
@@ -11,14 +9,12 @@ Xft.rgba:      rgb
 Xft.hinting:   true
 Xft.hintstyle: hintslight
 
-!---------------------------------------------------------------------------}}}
-! URxvt settings                                                            {{{
-!------------------------------------------------------------------------------
+! URxvt settings
 
 ! For showing img in ranger with w3mimgdisplay, disable this
 ! URxvt*.depth:          32
 URxvt.geometry:        90x35
-URxvt*.shading:        80
+URxvt*.shading:        100
 URxvt*inheritPixmap: true
 URxvt*.transparent:    false
 ! URxvt*.transparent:    true
@@ -42,7 +38,7 @@ URxvt.preeditType: OnTheSpot
 
 ! Fonts
 URxvt.allow_bold:      false
-URxvt*font:           xft:DejaVu Sans Mono for Powerline:size=13:antialias=true,xft:Ricty:size=13:antialias=true
+URxvt*font:           xft:DejaVu Sans Mono for Powerline:size=11:antialias=true,xft:Ricty:size=11:antialias=true
 
 ! Fix font space
 URxvt*letterSpace:     0
