@@ -34,6 +34,9 @@ set pumheight=10
 set showmode
 set wildmenu wildmode=list:full
 set softtabstop=4
+set listchars=tab:»-,trail:-,eol:↲,extends:»,precedes:«,nbsp:$
+set laststatus=2
+set statusline=2
 "ノーマルモードのキーバインド"
 inoremap jj <ESC>
 inoremap ( ()<LEFT>
@@ -95,7 +98,7 @@ endif
 
 " カラー表示
 syntax on
-colorscheme badwolf
+colorscheme molokai
 autocmd VimEnter,ColorScheme * highlight Normal ctermbg=none
 autocmd VimEnter,ColorScheme * highlight LineNr ctermbg=none
 autocmd VimEnter,ColorScheme * highlight SignColumn ctermbg=none

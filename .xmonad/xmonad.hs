@@ -18,6 +18,7 @@ import qualified XMonad.Actions.FlexibleResize as Flex -- flexible resize
 import XMonad.Actions.FloatKeys
 import XMonad.Actions.UpdatePointer
 import XMonad.Actions.WindowGo
+-- import XMonad.Actions.Volume
 
 import XMonad.Hooks.DynamicLog         -- for xmobar
 import XMonad.Hooks.EwmhDesktops
@@ -44,6 +45,8 @@ import XMonad.Util.EZConfig            -- removeKeys, additionalKeys
 import XMonad.Util.Run
 import XMonad.Util.Run(spawnPipe)      -- spawnPipe, hPutStrLn
 import XMonad.Util.SpawnOnce
+-- import Xmonad.Util.Dzen
+
 
 import Graphics.X11.ExtraTypes.XF86
 
@@ -135,6 +138,9 @@ main = do
         -- Now we have more than one screen by dividing a single screen
         , ("M-C-<Space>", layoutScreens 2 (TwoPane 0.5 0.5))
         , ("M-C-S-<Space>", rescreen)
+
+        -- , ("F11", lowerVolume 4 >> alert)
+        -- , ("F12", raiseVolume 4 >> alert)
         ]
  
         -------------------------------------------------------------------- }}}
@@ -144,17 +150,17 @@ main = do
         `additionalKeysP`
         [ ("M-<Return>", spawn "urxvt")
         , ("M-g"       , spawn "google-chrome-stable")
+        -- Seacret Mode
         , ("M-S-g"     , spawn "google-chrome-stable --incognito")
+        -- TweetDeck
+        , ("M-d"       , spawn "google-chrome-stable --app-id=hbdpomandigafcibbmofojjchbcdagbl")
+        , ("M-v"       , spawn "vivaldi-stable")
+        , ("M-S-v"     , spawn "vivaldi-stable --incognito")
         , ("M-n"       , spawn "nocturn")
-        
         , ("M-p", spawn "exe=`dmenu_run -fn 'Migu 1M:size=20'` && exec $exe")
-        -- Launch file manager
-        , ("M-e", spawn "thunar")
         -- Volume setting media keys
-        , ("<XF86AudioRaiseVolume>", spawn "sound_volume_change_wrapper.sh +")
-        , ("<XF86AudioLowerVolume>", spawn "sound_volume_change_wrapper.sh -")
-        , ("<XF86AudioMute>", spawn "sound_volume_change_wrapper.sh m")
-        -- Brightness Keys
+        , ("<XF86AudioRaiseVolume>", spawn "amixer -c 0 set Master 2dB+")
+        , ("<XF86AudioLowerVolume>", spawn "amixer -c 0 set Master 2dB-")
         , ("<XF86MonBrightnessUp>", spawn "xbacklight + 5 -time 100 -steps 1")
         , ("<XF86MonBrightnessDown>", spawn "xbacklight - 5 -time 100 -steps 1")
 
