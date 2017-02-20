@@ -1,6 +1,8 @@
 if [ "$(expr substr $(uname -s) 1 5)" == 'Linux' ]; then
     ln -s ~/dotfiles/.Xdefaults ~/.Xdefaults
     ln -s ~/dotfiles/.zshrc ~/.zshrc
+    ln -s ~/dotfiles/.zshrc_base ~/.zshrc_base
+    ln -s ~/dotfiles/.zshrc_linux ~/.zshrc_os
     ln -s ~/dotfiles/.xmonad ~/.xmonad
     mkdir ~/.emacs.d
     git clone https://github.com/dimitri/el-get.git ~/.emacs.d/el-get/

@@ -1,2 +1,2 @@
-source ~/dotfiles/.zshrc_base
-source ~/dotfiles/.zshrc_linux
+source ~/.zshrc_base
+source ~/.zshrc_os
