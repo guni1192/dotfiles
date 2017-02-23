@@ -34,7 +34,6 @@ set pumheight=10
 set showmode
 set wildmenu wildmode=list:full
 set softtabstop=4
-set listchars=tab:»-,trail:-,eol:↲,extends:»,precedes:«,nbsp:$
 set laststatus=2
 set statusline=2
 "ノーマルモードのキーバインド"
