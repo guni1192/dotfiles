@@ -146,7 +146,7 @@ alias cd="cdls"
 
 export NVIM=$HOME/.config/nvim
 alias vim='nvim'
-alias n='vim'
+alias n='nvim'
 alias ni='nvim $NVIM/init.vim'
 alias nd='nvim $NVIM/dein.toml'
 alias ndl='nvim $NVIM/dein_lazy.toml'

@@ -140,6 +140,9 @@ main = do
         , ("M-d"                    , spawn "chromium --app-id=hbdpomandigafcibbmofojjchbcdagbl")
         , ("M-n"                    , spawn "nocturn")
         , ("M-p"                    , spawn "exe=`dmenu_run -fn 'Migu 1M:size=20'` && exec $exe")
+        -- Take a screenshot
+        , ("M-S-p"                  , spawn "deepin-screenshot")
+        
         -- Volumekey Setting
         , ("<XF86AudioRaiseVolume>" , spawn "amixer -c 0 set Master 2dB+")
         , ("<XF86AudioLowerVolume>" , spawn "amixer -c 0 set Master 2dB-")

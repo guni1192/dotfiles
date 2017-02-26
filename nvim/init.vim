@@ -23,8 +23,9 @@ set hidden
 set history=50
 "文字のないところにカーソル移動できるようにする"
 set virtualedit=block
-"hjklの折り返し設定"
+"hjklの折り返し設定
 set whichwrap=b,s,h,l,<,>,[,]
+
 "バックスペースを制限無しにする"
 set backspace=indent,eol,start
 set wildmenu
@@ -97,7 +98,7 @@ endif
 
 " カラー表示
 syntax on
-colorscheme molokai
+colorscheme badwolf
 autocmd VimEnter,ColorScheme * highlight Normal ctermbg=none
 autocmd VimEnter,ColorScheme * highlight LineNr ctermbg=none
 autocmd VimEnter,ColorScheme * highlight SignColumn ctermbg=none
