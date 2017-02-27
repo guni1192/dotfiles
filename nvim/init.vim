@@ -98,11 +98,11 @@ endif
 
 " カラー表示
 syntax on
-colorscheme badwolf
+colorscheme molokai
 autocmd VimEnter,ColorScheme * highlight Normal ctermbg=none
 autocmd VimEnter,ColorScheme * highlight LineNr ctermbg=none
 autocmd VimEnter,ColorScheme * highlight SignColumn ctermbg=none
 autocmd VimEnter,ColorScheme * highlight VertSplit ctermbg=none
 autocmd VimEnter,ColorScheme * highlight NonText ctermbg=none 
 
-
+let python_highlight_all = 1

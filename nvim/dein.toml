@@ -34,7 +34,7 @@ hook_add = '''
 
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
-let g:airline_theme = 'badwolf'
+let g:airline_theme = 'murmur'
 
 '''
 
@@ -64,3 +64,7 @@ let g:clang_cpp_options = '-std=c++11 -stdlib=libc++'
 
 [[plugins]]
 repo = 'dag/vim2hs'
+
+# python syntax
+[[plugins]]
+repo = 'hdima/python-syntax'
