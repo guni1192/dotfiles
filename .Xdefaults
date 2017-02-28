@@ -1,6 +1,3 @@
-vim: set ft=xdefaults:
-
-x
 ! Xft settings
 
 Xft.dpi:       96
@@ -11,7 +8,6 @@ Xft.hintstyle: hintslight
 
 ! URxvt settings
 
-! For showing img in ranger with w3mimgdisplay, disable this
 ! URxvt*.depth:          32
 URxvt.geometry:        90x35
 URxvt*.shading:        100
@@ -32,7 +28,7 @@ URxvt.intensityStyles: true
 URxvt.perl-ext-common: default,selection
 URxvt.url-launcher:    /usr/bin/xdg-open
 URxvt.mathcer.button:  1
-! 日本語インライン入力
+! input method
 URxvt.inputMethod: fcitx
 URxvt.preeditType: OnTheSpot
 
@@ -58,46 +54,41 @@ URxvt.pointerBlank:    true
 ! iso 14755 disable
 URxvt*iso14755:        false
 
-!---------------------------------------------------------------------------}}}
-! Color                                                                     {{{
-!------------------------------------------------------------------------------
+! Color
 
-! ver 2.0 {{{
-*.foreground:  #A8B6B8
-*.background:  #1C1C1C
-*.cursorColor: #FF005F
+*.foreground:  #D3D3D3
+*.background:  #3E3E3E
+*.cursorColor: #00B2FF
 
 ! black
-*.color0:      #353535
+*.color0:      #464646
 *.color8:      #9E9E9E
 
 ! red
-*.color1:      #EF9A9A
-*.color9:      #F489AD
+*.color1:      #FF5B5B
+*.color9:      #FF5CCD
 
 ! green
-*.color2:      #A5D6A7
-*.color10:     #B9E18B
+*.color2:      #51C955
+*.color10:     #8ECB44
 
 ! yellow
-*.color3:      #ECE391
-*.color11:     #E8CC76
+*.color3:      #E7E968
+*.color11:     #FFCB53
 
 ! blue
-*.color4:      #9FC7E8
-*.color12:     #71BADC
+*.color4:      #80C5FF
+*.color12:     #24AEEE
 
 ! magenta
-*.color5:      #E0B1E8
-*.color13:     #AB90DB
+*.color5:      #D987E6
+*.color13:     #8D57F1
 
 ! cyan
-*.color6:      #A2E2EA
-*.color14:     #71D7CD
+*.color6:      #00B3CC
+*.color14:     #27EED5
 
 ! white
-*.color7:      #BDBDBD
+*.color7:      #D2D2D2
 *.color15:     #AAAAAA
-!}}}
 
-!---------------------------------------------------------------------------}}}
