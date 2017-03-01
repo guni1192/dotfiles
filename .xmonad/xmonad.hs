@@ -38,6 +38,7 @@ import XMonad.Layout.SimplestFloat
 import XMonad.Layout.Spacing
 import XMonad.Layout.ToggleLayouts
 import XMonad.Layout.TwoPane
+import XMonad.Layout.ThreeColumns
 
 import XMonad.Prompt
 import XMonad.Prompt.Window
@@ -163,10 +164,10 @@ myStartupHook = do
  
 myLayout = spacing gapwidth $ gaps [(U, gwU),(D, gwD),(L, gwL),(R, gwR)]
             $ (ResizableTall 1 (1/204) (119/204) [])
-              ||| (TwoPane (1/204) (119/204))
-              ||| (TwoPane (1/204) (149/204))
-              ||| Simplest
-              ||| (dragPane Horizontal (1/10) (1/2))
-              ||| (dragPane Vertical   (1/10) (1/2))
-              ||| Circle
+                ||| (TwoPane (1/204) (119/204))
+                ||| (TwoPane (1/204) (149/204))
+                ||| Simplest
+                ||| (dragPane Horizontal (1/10) (1/2))
+                ||| (dragPane Vertical   (1/10) (1/2))
+                ||| Circle
 
