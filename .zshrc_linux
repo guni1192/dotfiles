@@ -31,10 +31,12 @@ fi
 
 source ~/.zplug/init.zsh
 
+if [[ -r ~/.Xmodmap ]]; then
+    xmodmap ~/.Xmodmap
+fi
 
-# ---- ここにプラグインを記述
 
-## 256色使用可能にする
+# zplug plugins
 zplug chrissicool/zsh-256color
 zplug zsh-users/zsh-autosuggestions
 zplug zsh-users/zsh-syntax-highlighting
