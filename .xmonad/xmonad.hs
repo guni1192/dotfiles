@@ -19,7 +19,6 @@ import XMonad.Actions.FloatKeys
 import XMonad.Actions.UpdatePointer
 import XMonad.Actions.WindowGo
 -- import XMonad.Actions.Volume
-
 import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.EwmhDesktops
 import XMonad.Hooks.ManageDocks
@@ -48,8 +47,8 @@ import XMonad.Util.Run(spawnPipe)
 import XMonad.Util.SpawnOnce
 -- import Xmonad.Util.Dzen
 
-
 import Graphics.X11.ExtraTypes.XF86
+
 
 myWorkspaces = ["1", "2", "3", "4", "5"]
 modm = mod4Mask
@@ -63,21 +62,6 @@ colorWhite     = "#bdbdbd"
 colorNormalbg  = "#1c1c1c"
 colorfg        = "#a8b6b8"
 
--- Border width
-borderwidth = 3
-
-mynormalBorderColor  = "#262626"
-myfocusedBorderColor = "#585858"
-
-moveWD = borderwidth
-resizeWD = 2*borderwidth
-
-gapwidth  = 6
-gwU = 1
-gwD = 0
-gwL = 42
-gwR = 42
-
 
 desktop "gnome"         = gnomeConfig
 desktop "kde"           = kde4Config
@@ -88,6 +72,7 @@ desktop _               = desktopConfig
 main :: IO()
 main = do
     session <- getEnv "DESKTOP_SESSION"
+    wsbar <- spawnPipe myWsBar 
     let config = maybe desktopConfig desktop session
     xmonad $ config
         { borderWidth       = borderwidth
@@ -126,7 +111,6 @@ main = do
         , ("M-<Tab>"        , nextScreen)
         , ("M-C-<Space>"    , layoutScreens 2 (TwoPane 0.5 0.5))
         , ("M-C-S-<Space>"  , rescreen)
-
         ]
  
         `additionalKeysP`
@@ -143,7 +127,6 @@ main = do
         , ("M-p"                    , spawn "exe=`dmenu_run -fn 'Migu 1M:size=20'` && exec $exe")
         -- Take a screenshot
         , ("M-S-p"                  , spawn "deepin-screenshot")
-        
         -- Volumekey Setting
         , ("<XF86AudioRaiseVolume>" , spawn "amixer -c 0 set Master 2dB+")
         , ("<XF86AudioLowerVolume>" , spawn "amixer -c 0 set Master 2dB-")
@@ -154,20 +137,35 @@ main = do
         ]
 
 myStartupHook = do
-        spawn "gnome-settings-daemon"
-        spawn "nm-applet"
-        spawn "$HOME/.dropbox-dist/dropboxd"
-        spawn "nitrogen --restore"
-        spawn "stalonetray"
-        spawn "fcitx"
-        spawn "xmobar ~/.xmonad/.xmobarrc"
- 
+        spawn "gnome-settings-daemon &"
+        spawn "nm-applet &"
+        spawn "$HOME/.dropbox-dist/dropboxd &"
+        spawn "nitrogen --restore &"
+        spawn "stalonetray &"
+        spawn "fcitx &"
+        spawn "$HOME/shscripts/display_layout_T.sh"
+
+borderwidth = 1
+
+mynormalBorderColor  = "#262626"
+myfocusedBorderColor = "#585858"
+
+moveWD = 0
+resizeWD = 0
+
+gapwidth  = 0
+gwU = 0
+gwD = 0
+gwL = 0
+gwR = 0
+
 myLayout = spacing gapwidth $ gaps [(U, gwU),(D, gwD),(L, gwL),(R, gwR)]
-            $ (ResizableTall 1 (1/204) (119/204) [])
-                ||| (TwoPane (1/204) (119/204))
-                ||| (TwoPane (1/204) (149/204))
+            $ (ResizableTall 1 (1/201) (116/201) [])
+                ||| (TwoPane (1/201) (116/201))
+                ||| (TwoPane (1/201) (150/201))
+                ||| (TwoPane (1/2) (1/2))
+                ||| (dragPane Horizontal 0.1 0.5)
                 ||| Simplest
-                ||| (dragPane Horizontal (1/10) (1/2))
-                ||| (dragPane Vertical   (1/10) (1/2))
-                ||| Circle
+
+myWsBar = "xmobar $HOME/.xmonad/.xmobarrc"
 

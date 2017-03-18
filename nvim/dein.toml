@@ -2,6 +2,9 @@
 repo = 'Shougo/dein.vim'
 
 [[plugins]]
+repo = 'Shougo/denite.nvim'
+
+[[plugins]]
 repo = 'Shougo/vimproc.vim'
 hook_post_update = '''
   if dein#util#_is_windows()
@@ -18,9 +21,6 @@ hook_post_update = '''
 
 [[plugins]]
 repo = 'Shougo/vimshell.vim'
-
-[[plugins]]
-repo = 'zchee/deoplete-jedi'
 
 [[plugins]]
 repo = 'flazz/vim-colorschemes'
