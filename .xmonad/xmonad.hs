@@ -109,7 +109,6 @@ main = do
         , ("M-S-j"          , windows W.swapDown)
         , ("M-S-k"          , windows W.swapUp)
         , ("M-<Tab>"        , nextScreen)
-        , ("M-C-<Space>"    , layoutScreens 2 (TwoPane 0.5 0.5))
         , ("M-C-S-<Space>"  , rescreen)
         ]
  
@@ -138,31 +137,31 @@ main = do
 
 myStartupHook = do
         spawn "gnome-settings-daemon &"
-        spawn "nm-applet &"
+        spawn "nm-applet"
         spawn "$HOME/.dropbox-dist/dropboxd &"
         spawn "nitrogen --restore &"
         spawn "stalonetray &"
-        spawn "fcitx &"
+        spawn "fcitx"
         spawn "$HOME/shscripts/display_layout_T.sh"
+        -- spawn "$HOME/shscripts/display_layout_basic.sh"
 
 borderwidth = 1
 
 mynormalBorderColor  = "#262626"
 myfocusedBorderColor = "#585858"
 
-moveWD = 0
-resizeWD = 0
+moveWD = borderwidth
+resizeWD = borderwidth * 2
 
-gapwidth  = 0
-gwU = 0
-gwD = 0
-gwL = 0
-gwR = 0
+gapwidth  = 4
+gwU = 10
+gwD = 10
+gwL = 30
+gwR = 30
 
 myLayout = spacing gapwidth $ gaps [(U, gwU),(D, gwD),(L, gwL),(R, gwR)]
             $ (ResizableTall 1 (1/201) (116/201) [])
                 ||| (TwoPane (1/201) (116/201))
-                ||| (TwoPane (1/201) (150/201))
                 ||| (TwoPane (1/2) (1/2))
                 ||| (dragPane Horizontal 0.1 0.5)
                 ||| Simplest
