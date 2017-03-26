@@ -39,12 +39,7 @@ set laststatus=2
 set statusline=2
 "ノーマルモードのキーバインド"
 inoremap jj <ESC>
-inoremap ( ()<LEFT>
-inoremap [ []<LEFT>
-inoremap { {}<LEFT>
-inoremap {<Enter> {}<Left><CR><ESC><S-o>
-inoremap [<Enter> []<Left><CR><ESC><S-o>
-inoremap (<Enter> ()<Left><CR><ESC><S-o>
+
 " NERDTreeをctrl+eで開く
 nnoremap <silent><C-e> :NERDTreeToggle<CR>
 let NERDTreeShowHidden = 1
@@ -94,8 +89,7 @@ endif
  "もし、未インストールものものがあったらインストール
 if dein#check_install()
   call dein#install()
-endif
-
+endif 
 " カラー表示
 syntax on
 colorscheme molokai

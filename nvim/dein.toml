@@ -29,6 +29,9 @@ repo = 'Shougo/neosnippet-snippets'
 repo = 'flazz/vim-colorschemes'
 
 [[plugins]]
+repo = 'cohama/lexima.vim'
+
+[[plugins]]
 repo = 'scrooloose/nerdtree'
 
 [[plugins]]
@@ -73,3 +76,14 @@ repo = 'hdima/python-syntax'
 [[plugins]]
 repo = 'cespare/vim-toml'
 on_ft = 'toml'
+
+[[plugins]]
+repo = 'othree/html5.vim'
+
+[[plugins]]
+repo = 'hail2u/vim-css3-syntax'
+
+[[plugins]]
+repo = 'jelera/vim-javascript-syntax'
+
+
