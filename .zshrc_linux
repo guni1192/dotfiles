@@ -31,10 +31,6 @@ fi
 
 source ~/.zplug/init.zsh
 
-if [[ -r ~/.Xmodmap ]]; then
-    xmodmap ~/.Xmodmap
-fi
-
 
 # zplug plugins
 zplug chrissicool/zsh-256color

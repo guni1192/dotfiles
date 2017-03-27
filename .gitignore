@@ -1,5 +1,12 @@
-xmonad.errors
-xmonad.hi
-xmonad.o
-xmonad.state
-xmonad-x86_64-linux
+.xmonad/xmonad.errors
+.xmonad/xmonad.hi
+.xmonad/xmonad.o
+.xmonad/xmonad.state
+.xmonad/xmonad-x86_64-linux
+
+.xmonad-thinkpad/xmonad.errors
+.xmonad-thinkpad/xmonad.hi
+.xmonad-thinkpad/xmonad.o
+.xmonad-thinkpad/xmonad.state
+.xmonad-thinkpad/xmonad-x86_64-linux
+
