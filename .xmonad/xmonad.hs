@@ -51,7 +51,7 @@ import Graphics.X11.ExtraTypes.XF86
 
 
 myWorkspaces = ["1", "2", "3", "4", "5"]
-modm = mod4Mask
+modm = mod1Mask
 myTerminal = "urxvt"
 
 colorBlue      = "#4271f4"
@@ -161,7 +161,8 @@ gwR = 30
 
 myLayout = spacing gapwidth $ gaps [(U, gwU),(D, gwD),(L, gwL),(R, gwR)]
             $ (ResizableTall 1 (1/201) (116/201) [])
-                ||| (TwoPane (1/201) (116/201))
+                ||| (TwoPane (1/201) (90/201))
+                ||| (TwoPane (1/201) (140/201))
                 ||| (TwoPane (1/2) (1/2))
                 ||| (dragPane Horizontal 0.1 0.5)
                 ||| Simplest
