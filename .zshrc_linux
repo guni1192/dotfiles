@@ -7,8 +7,7 @@ alias ei='e ~/.emacs.d/init.el'
 
 # ArchLinux's alias of packeage manager
 alias search='sudo pacman -Ss'
-alias install='sudo pacman -S'
-alias remove='sudo pacman -R'
+alias install='sudo pacman -S' alias remove='sudo pacman -R'
 alias update='sudo pacman -Syu'
 alias ysearch='yaourt -Ss'
 alias yinstall='yaourt -S'

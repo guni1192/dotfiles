@@ -4,6 +4,7 @@ set number
 "set ambiwidth=double
 "tabはスペース4つ分"
 set tabstop=4
+set softtabstop=4
 "tabで半角スペースで挿入する"
 set expandtab
 "Vimが自動で生成するtabをスペース4つ分にする"
@@ -33,12 +34,11 @@ set clipboard+=unnamedplus
 "単語補完の入力候補の最大数"
 set pumheight=10
 set showmode
-set wildmenu wildmode=list:full
-set softtabstop=4
+set wildmode=list:full
 set laststatus=2
-set statusline=2
+set cursorline
 "ノーマルモードのキーバインド"
-inoremap jj <ESC>
+inoremap jj <ESC>`^
 
 " NERDTreeをctrl+eで開く
 nnoremap <silent><C-e> :NERDTreeToggle<CR>
@@ -46,8 +46,10 @@ let NERDTreeShowHidden = 1
 
 " ファイルタイプ別のプラグイン/インデントを有効にする
 filetype plugin indent on
-autocmd FileType c set cindent
-autocmd FileType cpp set cindent
+augroup FlleIndent
+    autocmd FileType c set cindent
+    autocmd FileType cpp set cindent
+augroup END
 
 if has('nvim')
   let $NVIM_TUI_ENABLE_TRUE_COLOR=1
@@ -64,7 +66,7 @@ if &runtimepath !~# '/dein.vim'
   if !isdirectory(s:dein_repo_dir)
     execute '!git clone https://github.com/Shougo/dein.vim' s:dein_repo_dir
   endif
-  execute 'set runtimepath^=' . fnamemodify(s:dein_repo_dir, ':p')
+  execute 'set runtimepath+=' . fnamemodify(s:dein_repo_dir, ':p')
 endif
 
 " 設定開始
@@ -93,10 +95,12 @@ endif
 " カラー表示
 syntax on
 colorscheme molokai
-autocmd VimEnter,ColorScheme * highlight Normal ctermbg=none
-autocmd VimEnter,ColorScheme * highlight LineNr ctermbg=none
-autocmd VimEnter,ColorScheme * highlight SignColumn ctermbg=none
-autocmd VimEnter,ColorScheme * highlight VertSplit ctermbg=none
-autocmd VimEnter,ColorScheme * highlight NonText ctermbg=none 
+augroup Myhighlight
+    autocmd VimEnter,ColorScheme * highlight Normal ctermbg=none
+    autocmd VimEnter,ColorScheme * highlight LineNr ctermbg=none
+    autocmd VimEnter,ColorScheme * highlight SignColumn ctermbg=none
+    autocmd VimEnter,ColorScheme * highlight VertSplit ctermbg=none
+    autocmd VimEnter,ColorScheme * highlight NonText ctermbg=none 
+augroup END
 
 let python_highlight_all = 1
