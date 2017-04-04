@@ -1,14 +1,12 @@
 "行番号の表示"
 set number
-"全角文字の幅を2に固定"
-"set ambiwidth=double
 "tabはスペース4つ分"
-set tabstop=4
-set softtabstop=4
+set tabstop=2
+set softtabstop=2
 "tabで半角スペースで挿入する"
 set expandtab
 "Vimが自動で生成するtabをスペース4つ分にする"
-set shiftwidth=4
+set shiftwidth=2
 "改行時、自動でインデント"
 set smartindent
 "オートインデントをオン
@@ -16,9 +14,7 @@ set autoindent
 "空白文字の可視化"
 set list
 "可視化した空白文字の表示形式"
-set listchars=tab:»-,trail:-,eol:↲,extends:»,precedes:«,nbsp:%
-"0から始まる数値を8進数として扱わないようにする"
-set nrformats-=octal
+set listchars=tab:--,trail:-,eol:↲,extends:»,precedes:«,nbsp:%
 "ファイルの保存をしていなくても別のファイルを開けるようにする"
 set hidden
 set history=50
@@ -37,8 +33,13 @@ set showmode
 set wildmode=list:full
 set laststatus=2
 set cursorline
+
+set mouse=a
+
+
 "ノーマルモードのキーバインド"
 inoremap jj <ESC>`^
+"
 
 " NERDTreeをctrl+eで開く
 nnoremap <silent><C-e> :NERDTreeToggle<CR>
@@ -47,15 +48,14 @@ let NERDTreeShowHidden = 1
 " ファイルタイプ別のプラグイン/インデントを有効にする
 filetype plugin indent on
 augroup FlleIndent
-    autocmd FileType c set cindent
-    autocmd FileType cpp set cindent
+  autocmd FileType c set cindent
+  autocmd FileType cpp set cindent
 augroup END
 
 if has('nvim')
   let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 endif
 
-set mouse=a
 
 let s:dein_dir = expand('~/.cache/dein')
 " dein.vim 本体
@@ -66,7 +66,7 @@ if &runtimepath !~# '/dein.vim'
   if !isdirectory(s:dein_repo_dir)
     execute '!git clone https://github.com/Shougo/dein.vim' s:dein_repo_dir
   endif
-  execute 'set runtimepath+=' . fnamemodify(s:dein_repo_dir, ':p')
+    execute 'set runtimepath+=' . fnamemodify(s:dein_repo_dir, ':p')
 endif
 
 " 設定開始
@@ -79,7 +79,7 @@ if dein#load_state(s:dein_dir)
   let s:toml      = g:rc_dir . '/dein.toml'
   let s:lazy_toml = g:rc_dir . '/dein_lazy.toml'
 
-  " TOML を読み込み、キャッシュしておく
+  " toml を読み込み、キャッシュしておく
   call dein#load_toml(s:toml,      {'lazy': 0})
   call dein#load_toml(s:lazy_toml, {'lazy': 1})
 
@@ -92,15 +92,16 @@ endif
 if dein#check_install()
   call dein#install()
 endif 
-" カラー表示
-syntax on
-colorscheme molokai
+
 augroup Myhighlight
-    autocmd VimEnter,ColorScheme * highlight Normal ctermbg=none
-    autocmd VimEnter,ColorScheme * highlight LineNr ctermbg=none
-    autocmd VimEnter,ColorScheme * highlight SignColumn ctermbg=none
-    autocmd VimEnter,ColorScheme * highlight VertSplit ctermbg=none
-    autocmd VimEnter,ColorScheme * highlight NonText ctermbg=none 
+  autocmd VimEnter,ColorScheme * highlight Normal ctermbg=none
+  autocmd VimEnter,ColorScheme * highlight LineNr ctermbg=none
+  autocmd VimEnter,ColorScheme * highlight SignColumn ctermbg=none
+  autocmd VimEnter,ColorScheme * highlight VertSplit ctermbg=none
+  autocmd VimEnter,ColorScheme * highlight NonText ctermbg=none 
 augroup END
 
+
+syntax on
+colorscheme molokai
 let python_highlight_all = 1
