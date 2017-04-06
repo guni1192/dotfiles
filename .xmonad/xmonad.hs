@@ -52,7 +52,7 @@ import Graphics.X11.ExtraTypes.XF86
 
 myWorkspaces = ["1", "2", "3", "4", "5"]
 modm = mod1Mask
-myTerminal = "urxvt"
+myTerminal = "terminator"
 
 colorBlue      = "#4271f4"
 colorGreen     = "#3bdb45"
