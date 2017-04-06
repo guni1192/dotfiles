@@ -113,7 +113,7 @@ main = do
         ]
  
         `additionalKeysP`
-        [ ("M-<Return>"             , spawn "urxvt")
+        [ ("M-<Return>"             , spawn "terminator")
         -- Browser Start-up
         , ("M-g"                    , spawn "google-chrome-stable")
         , ("M-v"                    , spawn "vivaldi-stable")

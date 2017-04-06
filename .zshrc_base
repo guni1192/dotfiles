@@ -138,11 +138,10 @@ alias la='ls -a'
 alias ll='ls -al'
 alias grep='grep --color'
 alias df='df -h'
-cdls ()
-{
-    \cd "$@" && ls
-}
-alias cd="cdls"
+
+# cd  && ls
+setopt auto_cd
+function chpwd() { ls }
 
 export NVIM=$HOME/.config/nvim
 alias vim='nvim'

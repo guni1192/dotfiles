@@ -13,8 +13,6 @@ set smartindent
 set autoindent
 "空白文字の可視化"
 set list
-"可視化した空白文字の表示形式"
-set listchars=tab:--,trail:-,eol:↲,extends:»,precedes:«,nbsp:%
 "ファイルの保存をしていなくても別のファイルを開けるようにする"
 set hidden
 set history=50
@@ -32,14 +30,17 @@ set pumheight=10
 set showmode
 set wildmode=list:full
 set laststatus=2
+
 set cursorline
 
 set mouse=a
 
-
 "ノーマルモードのキーバインド"
 inoremap jj <ESC>`^
-"
+" neovim terminal emulator
+set sh=zsh
+tnoremap <silent> <ESC> <C-\><C-n>
+tnoremap <silent> jj`^ <C-\><C-n>
 
 " NERDTreeをctrl+eで開く
 nnoremap <silent><C-e> :NERDTreeToggle<CR>
@@ -55,7 +56,6 @@ augroup END
 if has('nvim')
   let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 endif
-
 
 let s:dein_dir = expand('~/.cache/dein')
 " dein.vim 本体
@@ -104,4 +104,3 @@ augroup END
 
 syntax on
 colorscheme molokai
-let python_highlight_all = 1
