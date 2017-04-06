@@ -1,5 +1,5 @@
 "行番号の表示"
-"set number
+set number
 "tabはスペース4つ分
 set tabstop=2
 set softtabstop=2
@@ -29,15 +29,16 @@ set pumheight=10
 set showmode
 set wildmode=list:full
 set laststatus=2
+
 set cursorline
 set mouse=a
 
 inoremap jj <ESC>`^
 
-" Terminal Emulator Setting
+" neovim terminal emulator
 set sh=zsh
 tnoremap <silent> <ESC> <C-\><C-n>
-tnoremap <silent> jj <C-\><C-n>
+tnoremap <silent> jj`^ <C-\><C-n>
 
 nnoremap <silent><C-e> :NERDTreeToggle<CR>
 let NERDTreeShowHidden = 1

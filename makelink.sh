@@ -8,6 +8,8 @@ if [ "$(expr substr $(uname -s) 1 5)" == 'Linux' ]; then
     ln -s ~/dotfiles/.xmonad ~/.xmonad
     # NeoVim
     ln -s ~/dotfiles/nvim ~/.config/nvim
+    # ideavim
+    ln -s ~/dotfiles/.ideavimrc ~/.ideavimrc
     # Emacs
     mkdir ~/.emacs.d
     git clone https://github.com/dimitri/el-get.git ~/.emacs.d/el-get/
