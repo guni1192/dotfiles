@@ -6,14 +6,16 @@ alias e='emacs'
 alias ei='e ~/.emacs.d/init.el'
 
 # ArchLinux's alias of packeage manager
-alias search='sudo pacman -Ss'
-alias install='sudo pacman -S' alias remove='sudo pacman -R'
-alias update='sudo pacman -Syu'
-alias ysearch='yaourt -Ss'
-alias yinstall='yaourt -S'
-alias yremove='yarout -R'
-alias yremoves='yaourt -Rs'
-alias yupdate='yaourt -Syua'
+alias pss='sudo pacman -Ss'
+alias ps='sudo pacman -S'
+alias pr='sudo pacman -R'
+alias prs='sudo pacman -Rs'
+alias psyu='sudo pacman -Syu'
+alias yss='yaourt -Ss'
+alias ys='yaourt -S'
+alias yr='yarout -R'
+alias yrs='yaourt -Rs'
+alias ysyua='yaourt -Syua'
 
 
 export PATH=$PATH:/usr/lib/jvm/default/bin
