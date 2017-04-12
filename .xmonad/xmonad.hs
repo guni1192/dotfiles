@@ -142,7 +142,7 @@ myStartupHook = do
         spawn "nitrogen --restore &"
         spawn "stalonetray &"
         spawn "fcitx"
-        spawn "$HOME/shscripts/display_layout_T.sh"
+        spawn "$HOME/shscripts/default.sh"
         -- spawn "$HOME/shscripts/display_layout_basic.sh"
 
 borderwidth = 1
