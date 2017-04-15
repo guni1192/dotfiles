@@ -1,0 +1,9 @@
+open_withjj
+open_with w3m
+open_with 
+mkdir Programing2
+mkdir statistical analysis
+delete statistical analysis/
+delete -r statistical analysis/
+xa
+
