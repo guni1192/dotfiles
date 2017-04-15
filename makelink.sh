@@ -14,8 +14,10 @@ if [ "$(expr substr $(uname -s) 1 5)" == 'Linux' ]; then
     mkdir ~/.emacs.d
     git clone https://github.com/dimitri/el-get.git ~/.emacs.d/el-get/
     ln -s ~/dotfiles/init.el ~/.emacs.d/init.el
-    # Tmux
+    # tmux
     ln -s ~/dotfiles/.tmux.conf ~/.tmux.conf
+    # ranger
+    ln -s ~/dotfiles/ranger ~/.config/ranger
 else
     echo "Your platform ($(uname -a)) is not supported."
     exit 1

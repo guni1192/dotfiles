@@ -30,6 +30,9 @@ set showmode
 set wildmode=list:full
 set laststatus=2
 
+"Help Language
+set helplang=ja,en
+
 set cursorline
 set mouse=a
 

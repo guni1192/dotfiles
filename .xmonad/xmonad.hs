@@ -51,8 +51,8 @@ import Graphics.X11.ExtraTypes.XF86
 
 
 myWorkspaces = ["1", "2", "3", "4", "5"]
-modm = mod1Mask
-myTerminal = "terminator"
+modm = mod4Mask
+myTerminal = "urxvt"
 
 colorBlue      = "#4271f4"
 colorGreen     = "#3bdb45"
@@ -113,16 +113,13 @@ main = do
         ]
  
         `additionalKeysP`
-        [ ("M-<Return>"             , spawn "terminator")
+        [ ("M-<Return>"             , spawn "urxvt")
         -- Browser Start-up
         , ("M-g"                    , spawn "google-chrome-stable")
-        , ("M-v"                    , spawn "vivaldi-stable")
         -- Browser Seacret Mode
         , ("M-S-g"                  , spawn "google-chrome-stable --incognito")
-        , ("M-S-v"                  , spawn "vivaldi-stable --incognito")
         -- Start-up TweetDeck only
-        , ("M-d"                    , spawn "chromium --app-id=hbdpomandigafcibbmofojjchbcdagbl")
-        , ("M-n"                    , spawn "nocturn")
+        , ("M-s"                    , spawn "slack")
         , ("M-p"                    , spawn "exe=`dmenu_run -fn 'Migu 1M:size=20'` && exec $exe")
         -- Take a screenshot
         , ("M-S-p"                  , spawn "deepin-screenshot")
@@ -142,7 +139,7 @@ myStartupHook = do
         spawn "nitrogen --restore &"
         spawn "stalonetray &"
         spawn "fcitx"
-        spawn "$HOME/shscripts/default.sh"
+        -- spawn "$HOME/shscript/default.sh"
         -- spawn "$HOME/shscripts/display_layout_basic.sh"
 
 borderwidth = 1
