@@ -4,9 +4,4 @@
 .xmonad/xmonad.state
 .xmonad/xmonad-x86_64-linux
 
-.xmonad-thinkpad/xmonad.errors
-.xmonad-thinkpad/xmonad.hi
-.xmonad-thinkpad/xmonad.o
-.xmonad-thinkpad/xmonad.state
-.xmonad-thinkpad/xmonad-x86_64-linux
-
+ranger/history

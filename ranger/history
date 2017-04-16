@@ -5,5 +5,13 @@ mkdir Programing2
 mkdir statistical analysis
 delete statistical analysis/
 delete -r statistical analysis/
-xa
+mkdir ComputerIntroducton2
+mkdir LinearAlgebra
+TechnicalPresentation
+mkdir TechnicalPresentation
+mkdir InfomationMath
+mkdir FourierAnalysis
+mkdir ContentEditing
 
+delete englishclass.txt
+xa
