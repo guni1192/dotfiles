@@ -125,8 +125,8 @@ main = do
         -- Take a screenshot
         , ("M-S-p"                  , spawn "deepin-screenshot")
         -- Volumekey Setting
-        , ("<XF86AudioRaiseVolume>" , spawn "amixer -c 0 set Master 2dB+")
-        , ("<XF86AudioLowerVolume>" , spawn "amixer -c 0 set Master 2dB-")
+        , ("<XF86AudioRaiseVolume>" , spawn "amixer set Master 5%+")
+        , ("<XF86AudioLowerVolume>" , spawn "amixer set Master 5%-")
         -- Display Bright Key Setting
         , ("<XF86MonBrightnessUp>"  , spawn "xbacklight + 5 -time 100 -steps 1")
         , ("<XF86MonBrightnessDown>", spawn "xbacklight - 5 -time 100 -steps 1")

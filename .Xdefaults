@@ -56,7 +56,7 @@ URxvt*iso14755:        false
 ! Color
 
 *.foreground:  #D3D3D3
-*.background:  #3E3E3E
+*.background:  #212121
 *.cursorColor: #00B2FF
 
 ! black
