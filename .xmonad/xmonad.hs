@@ -75,6 +75,7 @@ main = do
     wsbar <- spawnPipe myWsBar 
     let config = maybe desktopConfig desktop session
     xmonad $ config
+    -- xmonad gnomeConfig
         { borderWidth       = borderwidth
         , terminal          = myTerminal
         , workspaces        = myWorkspaces
@@ -165,4 +166,3 @@ myLayout = spacing gapwidth $ gaps [(U, gwU),(D, gwD),(L, gwL),(R, gwR)]
                 ||| Simplest
 
 myWsBar = "xmobar $HOME/.xmonad/.xmobarrc"
-

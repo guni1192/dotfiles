@@ -18,6 +18,8 @@ if [ "$(expr substr $(uname -s) 1 5)" == 'Linux' ]; then
     ln -s ~/dotfiles/.tmux.conf ~/.tmux.conf
     # ranger
     ln -s ~/dotfiles/ranger ~/.config/ranger
+    # stalonetray
+    ln -s ~/dotfiles/.stalonetrayrc ~/.stalonetrayrc
 else
     echo "Your platform ($(uname -a)) is not supported."
     exit 1

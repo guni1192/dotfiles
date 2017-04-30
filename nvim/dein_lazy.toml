@@ -21,11 +21,18 @@ hook_source = '''
 
 [[plugins]]
 repo = 'zchee/deoplete-jedi'
-on_ft = 'python'
+on_ft = ['python']
 on_i = 1
 depends = ['deoplete.nvim']
 hook_source = '''
 '''
+
+# [[plugins]]
+# repo = 'HerringtonDarkholme/deoplete-typescript'
+# on_ft = ['typescript']
+# on_i = 1
+# depends = ['deoplete.nvim']
+
 
 [[plugins]]
 repo = 'Shougo/neosnippet'

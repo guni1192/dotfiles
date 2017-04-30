@@ -53,6 +53,9 @@ repo = 'vim-airline/vim-airline-themes'
 repo = 'sjl/badwolf'
 
 [[plugins]]
+repo = 'tomsik68/vim-crystallite'
+
+[[plugins]]
 repo = 'justmao945/vim-clang'
 hook_source = '''
 
@@ -104,3 +107,14 @@ hook_source = '''
 
 [[plugins]]
 repo = 'PotatoesMaster/i3-vim-syntax'
+
+
+[[plugins]]
+repo = 'jalvesaq/Nvim-R'
+on_ft = ['r']
+
+[[plugins]]
+repo = 'jacoborus/tender.vim'
+
+[[plugins]]
+repo = 'Quramy/vim-js-pretty-template'

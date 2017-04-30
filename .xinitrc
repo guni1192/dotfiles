@@ -8,3 +8,4 @@ xsetroot -cursor_name left_ptr
     # xmodmap ~/.Xmodmap
 # fi
 # exec xmonad
+# exec gnome-session --session xmonad-gnome-nopanel "$@"

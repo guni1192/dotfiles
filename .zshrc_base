@@ -150,3 +150,6 @@ alias ni='nvim $NVIM/init.vim'
 alias nd='nvim $NVIM/dein.toml'
 alias ndl='nvim $NVIM/dein_lazy.toml'
 
+function gi(){
+  curl -L -s https://www.gitignore.io/api/$@;
+}

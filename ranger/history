@@ -1,6 +1,5 @@
 open_withjj
 open_with w3m
-open_with 
 mkdir Programing2
 mkdir statistical analysis
 delete statistical analysis/
@@ -15,3 +14,5 @@ mkdir ContentEditing
 
 delete englishclass.txt
 xa
+open_with google-chrome-stable
+open_with 

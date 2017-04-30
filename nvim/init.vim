@@ -41,7 +41,7 @@ inoremap jj <ESC>`^
 " neovim terminal emulator
 set sh=zsh
 tnoremap <silent> <ESC> <C-\><C-n>
-tnoremap <silent> jj`^ <C-\><C-n>
+tnoremap <silent> jj <C-\><C-n>
 
 nnoremap <silent><C-e> :NERDTreeToggle<CR>
 let NERDTreeShowHidden = 1
@@ -74,6 +74,7 @@ if dein#load_state(s:dein_dir)
   let s:toml      = g:rc_dir . '/dein.toml'
   let s:lazy_toml = g:rc_dir . '/dein_lazy.toml'
 
+
   " toml を読み込み、キャッシュしておく
   call dein#load_toml(s:toml,      {'lazy': 0})
   call dein#load_toml(s:lazy_toml, {'lazy': 1})
@@ -84,7 +85,17 @@ endif
 
 if dein#check_install()
   call dein#install()
-endif 
+endif
+
+augroup FileTypeIndent
+  autocmd BufNewFile,BufRead *.py setlocal  tabstop=4 softtabstop=4 shiftwidth=4 expandtab=4 
+  autocmd BufNewFile,BufRead *.c setlocal   tabstop=4 softtabstop=4 shiftwidth=4 expandtab=4
+  autocmd BufNewFile,BufRead *.cpp setlocal tabstop=4 softtabstop=4 shiftwidth=4 expandtab=4
+  autocmd BufNewFile,BufRead *.rb setlocal  tabstop=2 softtabstop=2 shiftwidth=2 expandtab=2
+  autocmd BufNewFile,BufRead *.ts setlocal  tabstop=2 softtabstop=2 shiftwidth=2 expandtab=2
+  autocmd BufNewFile,BufRead *.js setlocal  tabstop=2 softtabstop=2 shiftwidth=2 expandtab=2
+  autocmd BufNewFile,BufRead *.hs setlocal  tabstop=2 softtabstop=2 shiftwidth=2 expandtab=2
+augroup END
 
 " background clear
 augroup Myhighlight
@@ -97,5 +108,15 @@ augroup END
 
 " syntax color setting
 syntax on
-colorscheme molokai
+colorscheme badwolf
 
+" javascript setting
+augroup MyJavaScriptSetting
+  autocmd FileType javascript JsPreTmpl html
+augroup END
+
+" typescript setting
+augroup MyTypeScriptSetting
+  autocmd FileType typescript JsPreTmpl html
+  autocmd FileType typescript syn clear foldBraces
+augroup END
