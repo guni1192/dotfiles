@@ -118,3 +118,6 @@ repo = 'jacoborus/tender.vim'
 
 [[plugins]]
 repo = 'Quramy/vim-js-pretty-template'
+
+[[plugins]]
+repo = 'xuhdev/syntax-dosini.vim'

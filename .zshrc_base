@@ -138,6 +138,8 @@ alias la='ls -a'
 alias ll='ls -al'
 alias grep='grep --color'
 alias df='df -h'
+alias cstart='~/shscript/cstart.sh'
+alias cexe='~/shscript/format.sh'
 
 # cd  && ls
 setopt auto_cd

@@ -51,13 +51,14 @@ depends = ['neosnippet-snippets']
 [[plugins]]
 repo = 'rhysd/vim-clang-format'
 hook_source  = '''
-    let g:clang_format#style_options = {
-            \ 'AccessModifierOffset' : -4,
-            \ 'AllowShortIfStatementsOnASingleLine' : 'true',
-            \ 'AlwaysBreakTemplateDeclarations' : 'true',
-            \ 'Standard' : 'C++11',
-            \ 'BreakBeforeBraces' : 'Stroustrup',
-            \ }
+  "BasedOnStyle": "Google",
+  "IndentWidth": 4,
+  "AllowShortIfStatementsOnASingleLine": "true",
+  "AlignAfterOpenBracket": "true",
+  "BinPackArguments": "false"
+  "CommentPragmas": "^",
+  "IndentCaseLabels": "true",
+  "Standard": "Auto"
 '''
 
 [[plugins]]
@@ -66,3 +67,4 @@ on_ft = 'javascript'
 hook_source = '''
     autocmd BufRead,BufNewFile *.es6 setfiletype javascript
 '''
+
