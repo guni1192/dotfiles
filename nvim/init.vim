@@ -108,7 +108,7 @@ augroup END
 
 " syntax color setting
 syntax on
-colorscheme monokai-chris
+colorscheme molokai
 
 " javascript setting
 augroup MyJavaScriptSetting

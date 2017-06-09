@@ -121,3 +121,12 @@ repo = 'Quramy/vim-js-pretty-template'
 
 [[plugins]]
 repo = 'xuhdev/syntax-dosini.vim'
+
+[[plugins]]
+repo = 'scrooloose/syntastic'
+hook_source = '''
+  let g:syntastic_python_checkers = ['pyflakes', 'pep8']
+'''
+
+[[plugins]]
+repo = 'Glench/Vim-Jinja2-Syntax'
