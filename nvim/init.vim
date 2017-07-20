@@ -36,6 +36,8 @@ set helplang=ja,en
 set cursorline
 set mouse=a
 
+set guifont=Fira\ Code:h12
+
 inoremap jj <ESC>`^
 
 " neovim terminal emulator
@@ -95,7 +97,7 @@ augroup FileTypeIndent
   autocmd BufNewFile,BufRead *.js   setlocal  tabstop=2 softtabstop=2 shiftwidth=2
   autocmd BufNewFile,BufRead *.html setlocal  tabstop=2 softtabstop=2 shiftwidth=2
   autocmd BufNewFile,BufRead *.css  setlocal  tabstop=2 softtabstop=2 shiftwidth=2
-augroup END
+augroup ED
 
 " background clear
 augroup Myhighlight
@@ -108,7 +110,7 @@ augroup END
 
 " syntax color setting
 syntax on
-colorscheme molokai
+colorscheme solarized
 
 " javascript setting
 augroup MyJavaScriptSetting
@@ -121,3 +123,14 @@ augroup MyTypeScriptSetting
   autocmd FileType typescript JsPreTmpl html
   autocmd FileType typescript syn clear foldBraces
 augroup END
+
+
+command! -nargs=? Jq call s:Jq(<f-args>)
+function! s:Jq(...)
+    if 0 == a:0
+        let l:arg = "."
+    else
+        let l:arg = a:1
+    endif
+    execute "%! jq \"" . l:arg . "\""
+endfunction

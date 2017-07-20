@@ -34,8 +34,8 @@ repo = 'cohama/lexima.vim'
 [[plugins]]
 repo = 'scrooloose/nerdtree'
 
-[[plugins]]
-repo = 'vim-jp/vimdoc-ja'
+# [[plugins]]
+# repo = 'vim-jp/vimdoc-ja'
 
 [[plugins]]
 repo = 'vim-airline/vim-airline'
@@ -43,7 +43,7 @@ depends = ['vim-airline-themes']
 hook_add = '''
     let g:airline_powerline_fonts = 1
     let g:airline#extensions#tabline#enabled = 1
-    let g:airline_theme = 'badwolf'
+    let g:airline_theme = 'solarized'
 '''
 
 [[plugins]]
@@ -75,6 +75,7 @@ let g:clang_cpp_options = '-std=c++11 -stdlib=libc++'
 
 [[plugins]]
 repo = 'dag/vim2hs'
+on_ft = ['haskell']
 
 [[plugins]]
 repo = 'hdima/python-syntax'
@@ -130,3 +131,16 @@ hook_source = '''
 
 [[plugins]]
 repo = 'Glench/Vim-Jinja2-Syntax'
+
+[[plugins]]
+repo = 'mattn/emmet-vim'
+
+[[plugins]]
+repo = 'Vimjas/vim-python-pep8-indent'
+
+
+[[plugins]]
+repo = 'tmux-plugins/vim-tmux'
+
+[[plugins]]
+repo = 'vim-jp/vim-cpp'

@@ -1,69 +1,71 @@
 #!/usr/bin/zsh
 
-# powerline
-export PYTHONPATH=/usr/local/lib/python3.6/site-packages
-# if [[ -r $PYTHONPATH/powerline/bindings/zsh/powerline.zsh ]]; then
-#    source $PYTHONPATH/powerline/bindings/zsh/powerline.zsh
-# fi
+# Default Settiing
+alias emacs='emacs -nw'
+alias e='emacs'
+alias ei='e ~/.emacs.d/init.el'
+
+# ArchLinux's alias of packeage manager
+alias pss='sudo pacman -Ss'
+alias ps='sudo pacman -S'
+alias pr='sudo pacman -R'
+alias prs='sudo pacman -Rs'
+alias psyu='sudo pacman -Syu'
+alias yss='yaourt -Ss'
+alias ys='yaourt -S'
+alias yr='yarout -R'
+alias yrs='yaourt -Rs'
+alias ysyua='yaourt -Syua'
 
 
-source $HOME/dotfiles/.zshrc_base
+export PATH=$PATH:/usr/lib/jvm/default/bin
 
+# 256色で使うための設定
 export TERM="xterm-256color"
 
-export PATH="/usr/local/sbin:/Users/IIGUNI/.rbenv/shims:/Users/IIGUNI/.rbenv/bin:/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/texlive/2016/bin/x86_64-darwin/tlmgr:$PATH"
+export LC_ALL=$LANG
 
-
-alias tmux="tmux -2"
-alias emacs="/usr/local/Cellar/emacs/25.1//Emacs.app/Contents/MacOS/Emacs -nw"
-alias e="/usr/local/Cellar/emacs/25.1//Emacs.app/Contents/MacOS/Emacs -nw"
-
-alias ei='e ~/.emacs.d/init.el'
-alias python='python3'
-alias pip2='pip'
-alias pip='pip3'
-alias ls='/bin/ls -hG'
-alias la='/bin/ls -AGh'
-alias ll='/bin/ls -AhlG'
-cdls ()
-{
-    \cd "$@" && ls
-}
-alias cd='cdls'
-alias grep='grep --color'
-alias df='df -h'
-
-export NVIM=$HOME/.config/nvim
-alias vim='nvim'
-alias n='vim'
-alias ni='nvim $NVIM/init.vim'
-alias nd='nvim $NVIM/dein.toml'
-
-# if [[ ! -d ~/.zplug ]];then
-#  git clone https://github.com/zplug/zplug ~/.zplug
-# fi
+powerline-daemon -q
+# powerline
+export POWERLINEPATH=/usr/local/lib/python2.7/site-packages/powerline
+if [[ -r $POWERLINEPATH/bindings/zsh/powerline.zsh ]]; then
+    source $POWERLINEPATH/bindings/zsh/powerline.zsh
+fi
 
 source ~/.zplug/init.zsh
+# zplug plugins
+zplug "chrissicool/zsh-256color"
+zplug "zsh-users/zsh-autosuggestions"
+zplug "zsh-users/zsh-syntax-highlighting"
+zplug "zsh-users/zsh-completions"
 
-# zplug 'zsh-users/zsh-autosuggestions'
-# zplug 'zsh-users/zsh-completions'
-# zplug 'zsh-users/zsh-syntax-highlighting'
-# zplug 'mollifier/anyframe'
-# zplug 'dracula/zsh', as:theme
-# zplug 'tylerreckart/hyperzsh', as:theme
-# zplug mafredri/zsh-async, from:github
-zplug sindresorhus/pure, use:pure.zsh, from:github, as:theme
+zplug "zsh-users/zsh-history-substring-search"
+bindkey -M emacs '^P' history-substring-search-up
+bindkey -M emacs '^N' history-substring-search-down
 
-# Install plugins if there are plugins that have not been installed
-if ! zplug check --verbose; then
-   printf "Install? [y/N]: "
-   if read -q; then
-       echo; zplug install
-   fi
+# プラグインを読み込み、コマンドにパスを通す
+
+if [ -e "${HOME}/.zplug" ]; then
+    # Install plugins if there are plugins that have not been installed
+    if ! zplug check --verbose; then
+        printf "Install? [y/N]: "
+        if read -q; then
+            echo; zplug install
+        fi
+    fi
+
+else
+    git clone https://github.com/b4b4r07/zplug ~/.zplug
 fi
+
 
 zplug load --verbose
 
-# if type zprof > /dev/null 2>&1; then
-#  zprof | less
-# fi
+export PATH="$HOME/.rbenv/bin:$PATH"
+eval "$(rbenv init -)"
+export PATH="$HOME/.cabal/bin:$PATH"
+
+export PATH="/usr/local/opt/llvm/bin:$PATH"
+
+export PGDATA=/usr/local/var/postgres
+

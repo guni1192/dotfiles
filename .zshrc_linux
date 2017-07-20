@@ -23,21 +23,26 @@ export PATH=$PATH:/usr/lib/jvm/default/bin
 # 256色で使うための設定
 export TERM="xterm-256color"
 
+export LC_ALL=$LANG
+
+powerline-daemon -q
 # powerline
-export POWERLINEPATH=/usr/lib/python3.6/site-packages/powerline
+export POWERLINEPATH=/usr/local/lib/python2.7/site-packages/powerline
 if [[ -r $POWERLINEPATH/bindings/zsh/powerline.zsh ]]; then
     source $POWERLINEPATH/bindings/zsh/powerline.zsh
 fi
 
-
 source ~/.zplug/init.zsh
-
-
 # zplug plugins
-zplug chrissicool/zsh-256color
-zplug zsh-users/zsh-autosuggestions
-zplug zsh-users/zsh-syntax-highlighting
-zplug zsh-users/zsh-completions
+zplug "chrissicool/zsh-256color"
+zplug "zsh-users/zsh-autosuggestions"
+zplug "zsh-users/zsh-syntax-highlighting"
+zplug "zsh-users/zsh-completions"
+
+zplug "zsh-users/zsh-history-substring-search"
+bindkey -M emacs '^P' history-substring-search-up
+bindkey -M emacs '^N' history-substring-search-down
+
 # プラグインを読み込み、コマンドにパスを通す
 
 if [ -e "${HOME}/.zplug" ]; then
@@ -58,4 +63,9 @@ zplug load --verbose
 
 export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"
-export PATH=$PATH:$HOME/.cabal/bin/
+export PATH="$HOME/.cabal/bin:$PATH"
+
+export PATH="/usr/local/opt/llvm/bin:$PATH"
+
+export PGDATA=/usr/local/var/postgres
+

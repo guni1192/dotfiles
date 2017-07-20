@@ -15,7 +15,7 @@ on_ft = ['c', 'cpp', 'cmake']
 on_i = 1
 depends = ['deoplete.nvim']
 hook_source = '''
-    let g:deoplete#sources#clang#libclang_path = '/usr/lib/libclang.so'
+    let g:deoplete#sources#clang#libclang_path = '/usr/local/Cellar/llvm/4.0.0_1/lib/libclang.dylib'
     let g:deoplete#sources#clang#clang_header = '/usr/include/'
 '''
 

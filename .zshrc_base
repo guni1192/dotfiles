@@ -133,7 +133,7 @@ bindkey -M menuselect 'l' vi-forward-char
 unsetopt AUTOREMOVESLASH
 
 alias tmux='tmux -2'
-alias ls='ls --color'
+alias ls='ls -G'
 alias la='ls -a'
 alias ll='ls -al'
 alias grep='grep --color'
@@ -144,7 +144,7 @@ alias cexe='~/shscript/format.sh'
 # cd  && ls
 setopt auto_cd
 function chpwd() { ls }
-
+export LANG='en_US.UTF-8'
 export NVIM=$HOME/.config/nvim
 alias vim='nvim'
 alias n='nvim'
