@@ -34,8 +34,8 @@ repo = 'cohama/lexima.vim'
 [[plugins]]
 repo = 'scrooloose/nerdtree'
 
-# [[plugins]]
-# repo = 'vim-jp/vimdoc-ja'
+[[plugins]]
+repo = 'vim-jp/vimdoc-ja'
 
 [[plugins]]
 repo = 'vim-airline/vim-airline'
@@ -144,3 +144,15 @@ repo = 'tmux-plugins/vim-tmux'
 
 [[plugins]]
 repo = 'vim-jp/vim-cpp'
+
+[[plugins]]
+repo = 'fishbullet/deoplete-ruby'
+
+[[plugins]]
+repo = 'vim-ruby/vim-ruby'
+
+[[plugins]]
+repo = 'rust-lang/rust.vim'
+
+[[plugins]]
+repo = 'sebastianmarkow/deoplete-rust'

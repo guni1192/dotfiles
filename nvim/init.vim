@@ -94,7 +94,7 @@ augroup FileTypeIndent
   autocmd BufNewFile,BufRead *.c    setlocal  tabstop=4 softtabstop=4 shiftwidth=4
   autocmd BufNewFile,BufRead *.cpp  setlocal  tabstop=4 softtabstop=4 shiftwidth=4
   autocmd BufNewFile,BufRead *.rb   setlocal  tabstop=2 softtabstop=2 shiftwidth=2
-  autocmd BufNewFile,BufRead *.js   setlocal  tabstop=2 softtabstop=2 shiftwidth=2
+  autocmd BufNewFile,BufRead *.js   setlocal  tabstop=4 softtabstop=4 shiftwidth=4
   autocmd BufNewFile,BufRead *.html setlocal  tabstop=2 softtabstop=2 shiftwidth=2
   autocmd BufNewFile,BufRead *.css  setlocal  tabstop=2 softtabstop=2 shiftwidth=2
 augroup ED
@@ -134,3 +134,10 @@ function! s:Jq(...)
     endif
     execute "%! jq \"" . l:arg . "\""
 endfunction
+
+" Denite
+nnoremap <silent> <C-k><C-f> :<C-u>Denite file_rec<CR>
+nnoremap <silent> <C-k><C-g> :<C-u>Denite grep<CR>
+nnoremap <silent> <C-k><C-l> :<C-u>Denite line<CR>
+nnoremap <silent> <C-k><C-u> :<C-u>Denite file_mru<CR>
+nnoremap <silent> <C-k><C-y> :<C-u>Denite neoyank<CR>
