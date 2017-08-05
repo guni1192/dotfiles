@@ -117,10 +117,8 @@ setopt COMPLETE_IN_WORD
 # バックグラウンドジョブが終了したらすぐに知らせる。
 setopt NO_TIFY
 
-
 # ライン操作はEmacsスタイルで行う
 bindkey -e
-
 
 # 補完候補のメニュー選択で、矢印キーの代わりにhjklで移動出来るようにする。
 zmodload zsh/complist
@@ -132,48 +130,3 @@ bindkey -M menuselect 'l' vi-forward-char
 # ディレクトリの最後のスラッシュを自動で削除
 unsetopt AUTOREMOVESLASH
 
-alias tmux='tmux -2'
-alias ls='ls -G'
-alias la='ls -a'
-alias ll='ls -al'
-alias grep='grep --color'
-alias df='df -h'
-alias cstart='~/shscript/cstart.sh'
-alias cexe='~/shscript/format.sh'
-
-# cd  && ls
-setopt auto_cd
-function chpwd() { ls }
-export LANG='en_US.UTF-8'
-export NVIM=$HOME/.config/nvim
-alias vim='nvim'
-alias n='nvim'
-alias ni='nvim $NVIM/init.vim'
-alias nd='nvim $NVIM/dein.toml'
-alias ndl='nvim $NVIM/dein_lazy.toml'
-alias ez='exec zsh'
-alias ve='source venv/bin/activate'
-
-function gi(){
-  curl -L -s https://www.gitignore.io/api/$@;
-}
-
-bindkey -v
-
-function peco-z-search
-{
-  which peco z > /dev/null
-  if [ $? -ne 0 ]; then
-    echo "Please install peco and z"
-    return 1
-  fi
-  local res=$(z | sort -rn | cut -c 12- | peco)
-  if [ -n "$res" ]; then
-    BUFFER+="cd $res"
-    zle accept-line
-  else
-    return 1
-  fi
-}
-zle -N peco-z-search
-bindkey '^f' peco-z-search

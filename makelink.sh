@@ -1,9 +1,9 @@
 if [ "$(expr substr $(uname -s) 1 5)" == 'Linux' ]; then
+    ln -s ~/dotfiles/.Xresources ~/.Xresources
     # Zsh
-    ln -s ~/dotfiles/.Xdefaults ~/.Xdefaults
-    ln -s ~/dotfiles/.zshrc ~/.zshrc
-    ln -s ~/dotfiles/.zshrc_base ~/.zshrc_base
-    ln -s ~/dotfiles/.zshrc_linux ~/.zshrc_os
+    ln -s ~/dotfiles/.zsh ~/.zsh
+    ln -s ~/.zsh/.zshrc ~/.zshrc
+    ln -s ~/.zsh/.zshenv ~/.zshenv
     # Xmonad
     ln -s ~/dotfiles/.xmonad ~/.xmonad
     if [ ! -e $HOME/.config ]; then
@@ -29,7 +29,7 @@ if [ "$(expr substr $(uname -s) 1 5)" == 'Linux' ]; then
     ln -s ~/dotfiles/.tmux.conf ~/.tmux.conf
     # stalonetray
     ln -s ~/dotfiles/.stalonetrayrc ~/.stalonetrayrc
-if [ "$(expr substr $(uname -s) 1 5)" == 'Darwin' ]; then
+elif [ "$(expr substr $(uname -s) 1 5)" == 'Darwin' ]; then
     # Zsh
     ln -s ~/dotfiles/.zshrc ~/.zshrc
     ln -s ~/dotfiles/.zshrc_base ~/.zshrc_base

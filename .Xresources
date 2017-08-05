@@ -1,0 +1,92 @@
+! Xft settings
+
+Xft.dpi:       144
+Xft.antialias: true
+Xft.rgba:      rgb
+Xft.hinting:   true
+Xft.hintstyle: hintslight
+
+! URxvt settings
+
+! URxvt*.depth:          32
+URxvt.geometry:        90x35
+! 透過
+URxvt*.shading:        100
+URxvt*inheritPixmap: true
+URxvt*.transparent:    false
+! URxvt*.transparent:    true
+URxvt.tintColor:       #303030
+URxvt*fading:          0
+! URxvt.urgentOnBell:    true
+URxvt*visualBell:      false
+URxvt*loginShell:      true
+URxvt.saveLines:       2000
+URxvt.internalBorder:  0
+URxvt.lineSpace:       0
+URxvt.intensityStyles: true
+URxvt.perl-ext-common: default,selection
+URxvt.url-launcher:    /usr/bin/xdg-open
+URxvt.mathcer.button:  1
+! input method
+URxvt.inputMethod: fcitx
+URxvt.preeditType: OnTheSpot
+
+! Fonts
+URxvt.allow_bold:      false
+
+URxvt*font:            xft:Fira Code:regular:size=10:antialias=true, xft:Ricty:size=10:antialias=true
+! Fix font space
+URxvt*letterSpace:     0
+
+! Scrollbar
+URxvt.scrollBar:       false
+URxvt.scrollStyle:     rxvt
+URxvt.scrollBar_right: true
+
+! Cursor
+URxvt.cursorBlink:     true
+URxvt.cursorUnderline: false
+
+! Pointer
+URxvt.pointerBlank:    true
+
+! iso 14755 disable
+URxvt*iso14755:        false
+
+!! Color
+
+*.foreground:  #D3D3D3
+*.background:  #212121
+*.cursorColor: #00B2FF
+
+! black
+*.color0:      #464646
+*.color8:      #9E9E9E
+
+! red
+*.color1:      #FF5B5B
+*.color9:      #FF5CCD
+
+! green
+*.color2:      #37d628
+*.color10:     #009933
+
+! yellow
+*.color3:      #ffb200
+*.color11:     #FFCB53
+
+! blue
+*.color4:      #008cff
+*.color12:     #076eff
+
+! magenta
+*.color5:      #D987E6
+*.color13:     #8D57F1
+
+! cyan
+*.color6:      #00ffc7
+*.color14:     #27EED5
+
+! white
+*.color7:      #FFFFFF
+*.color15:     #AAAAAA

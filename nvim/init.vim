@@ -38,12 +38,12 @@ set mouse=a
 
 set guifont=Fira\ Code:h12
 
-inoremap jj <ESC>`^
+"inoremap jj <ESC>`^
 
 " neovim terminal emulator
 set sh=zsh
 tnoremap <silent> <ESC> <C-\><C-n>
-tnoremap <silent> jj <C-\><C-n>
+"tnoremap <silent> jj <C-\><C-n>
 
 nnoremap <silent><C-e> :NERDTreeToggle<CR>
 let NERDTreeShowHidden = 1
@@ -110,7 +110,7 @@ augroup END
 
 " syntax color setting
 syntax on
-colorscheme solarized
+colorscheme badwolf
 
 " javascript setting
 augroup MyJavaScriptSetting

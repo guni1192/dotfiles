@@ -1,14 +1,19 @@
-include "/usr/share/themes/Breeze/gtk-2.0/gtkrc"
-style "user-font"
-{
-    font_name="Noto Sans Regular"
+# -- THEME AUTO-WRITTEN DO NOT EDIT
+include "/usr/share/themes/Numix/gtk-2.0/gtkrc"
+
+style "user-font" {
+	font_name = "Migu"
 }
+
 widget_class "*" style "user-font"
-gtk-font-name="Noto Sans Regular 10"
-# gtk-theme-name="Breeze"
-gtk-theme-name="Numix-ArchBlue"
-gtk-icon-theme-name="Numix"
-gtk-fallback-icon-theme="Numix"
-gtk-toolbar-style=GTK_TOOLBAR_ICONS
-gtk-menu-images=1
-gtk-button-images=1
+
+gtk-font-name="Migu"
+
+include "/home/guni/.gtkrc.mine"
+
+# -- THEME AUTO-WRITTEN DO NOT EDIT
+
+gtk-icon-theme-name="Obsidian"
+gtk-theme-name="Numix"
+gtk-application-prefer-dark-theme = true
+gtk-key-theme-name = "Emacs"
