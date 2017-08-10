@@ -9,24 +9,23 @@ Xft.hintstyle: hintslight
 ! URxvt settings
 
 ! URxvt*.depth:          32
-URxvt.geometry:        90x35
+URxvt.geometry:         90x35
 ! 透過
-URxvt*.shading:        100
-URxvt*inheritPixmap: true
-URxvt*.transparent:    false
-! URxvt*.transparent:    true
-URxvt.tintColor:       #303030
-URxvt*fading:          0
+URxvt*.shading:         100
+URxvt*inheritPixmap:    true
+URxvt*.transparent:     false
+URxvt.tintColor:        #303030
+URxvt*fading:           0
 ! URxvt.urgentOnBell:    true
-URxvt*visualBell:      false
-URxvt*loginShell:      true
-URxvt.saveLines:       2000
-URxvt.internalBorder:  0
-URxvt.lineSpace:       0
-URxvt.intensityStyles: true
-URxvt.perl-ext-common: default,selection
-URxvt.url-launcher:    /usr/bin/xdg-open
-URxvt.mathcer.button:  1
+URxvt*visualBell:       false
+URxvt*loginShell:       true
+URxvt.saveLines:        2000
+URxvt.internalBorder:   0
+URxvt.lineSpace:        0
+URxvt.intensityStyles:  true
+URxvt.perl-ext-common:  default,selection
+URxvt.url-launcher:     /usr/bin/xdg-open
+URxvt.mathcer.button:   1
 ! input method
 URxvt.inputMethod: fcitx
 URxvt.preeditType: OnTheSpot
@@ -34,7 +33,10 @@ URxvt.preeditType: OnTheSpot
 ! Fonts
 URxvt.allow_bold:      false
 
-URxvt*font:            xft:Fira Code:regular:size=10:antialias=true, xft:Ricty:size=10:antialias=true
+URxvt*font:            xft:Fira Code:regular:size=10:antialias=true, \
+                       xft:Noto Sans CJK JP:size=10:antialias=true,  \
+                       xft:Ricty:size=10:antialias=true
+
 ! Fix font space
 URxvt*letterSpace:     0
 
@@ -65,7 +67,7 @@ URxvt*iso14755:        false
 
 ! red
 *.color1:      #FF5B5B
-*.color9:      #FF5CCD
+*.color9:      #DD002C
 
 ! green
 *.color2:      #37d628

@@ -1,7 +1,12 @@
 alias tmux='tmux -2'
-alias ls='ls --color'
-alias la='ls -a --color'
-alias ll='ls -al'
+# alias ls='ls --color'
+# alias la='ls -a --color'
+# alias ll='ls -al'
+alias ls="exa"
+alias la="exa -a"
+alias ll="exa -al"
+alias tree="exa -T"
+
 alias grep='grep --color'
 alias df='df -h'
 

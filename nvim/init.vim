@@ -38,12 +38,12 @@ set mouse=a
 
 set guifont=Fira\ Code:h12
 
-"inoremap jj <ESC>`^
+inoremap jj <ESC>`^
 
 " neovim terminal emulator
 set sh=zsh
 tnoremap <silent> <ESC> <C-\><C-n>
-"tnoremap <silent> jj <C-\><C-n>
+tnoremap <silent> jj <C-\><C-n>
 
 nnoremap <silent><C-e> :NERDTreeToggle<CR>
 let NERDTreeShowHidden = 1
@@ -141,3 +141,4 @@ nnoremap <silent> <C-k><C-g> :<C-u>Denite grep<CR>
 nnoremap <silent> <C-k><C-l> :<C-u>Denite line<CR>
 nnoremap <silent> <C-k><C-u> :<C-u>Denite file_mru<CR>
 nnoremap <silent> <C-k><C-y> :<C-u>Denite neoyank<CR>
+

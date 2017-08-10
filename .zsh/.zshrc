@@ -1,6 +1,7 @@
-source ~/.zsh/.zsh_plugin
-source ~/.zsh/.zsh_options
-source ~/.zsh/.zsh_prompt
-source ~/.zsh/.zsh_alias
+source ~/.zsh/plugins.zsh
+source ~/.zsh/options.zsh
+source ~/.zsh/prompt.zsh
+source ~/.zsh/zsh_alias
+source ~/.zsh/develop_env.zsh
 source ~/Projects/shscripts/tokens.sh
 clear

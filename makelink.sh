@@ -13,7 +13,7 @@ if [ "$(expr substr $(uname -s) 1 5)" == 'Linux' ]; then
     ln -s ~/dotfiles/i3 ~/.config/i3
     # polybar
     ln -s ~/dotfiles/polybar ~/.config/polybar
-     # ranger
+    # ranger
     ln -s ~/dotfiles/ranger ~/.config/ranger
     # NeoVim
     ln -s ~/dotfiles/nvim ~/.config/nvim
@@ -29,11 +29,13 @@ if [ "$(expr substr $(uname -s) 1 5)" == 'Linux' ]; then
     ln -s ~/dotfiles/.tmux.conf ~/.tmux.conf
     # stalonetray
     ln -s ~/dotfiles/.stalonetrayrc ~/.stalonetrayrc
+    # asdf-vm
+    git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.3.0
 elif [ "$(expr substr $(uname -s) 1 5)" == 'Darwin' ]; then
     # Zsh
-    ln -s ~/dotfiles/.zshrc ~/.zshrc
-    ln -s ~/dotfiles/.zshrc_base ~/.zshrc_base
-    ln -s ~/dotfiles/.zshrc_linux ~/.zshrc_os
+    ln -s ~/dotfiles/.zsh ~/.zsh
+    ln -s ~/.zsh/.zshrc ~/.zshrc
+    ln -s ~/.zsh/.zshenv ~/.zshenv
     # ranger
     ln -s ~/dotfiles/ranger ~/.config/ranger
     # NeoVim
