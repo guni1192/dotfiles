@@ -16,6 +16,9 @@ export LC_ALL=$LANG
 export NVIM=$HOME/.config/nvim
 
 export ASDF_PYTHON_VERSION=3.6.2
-export ASDF_NODEJS_VERSION=6.11.1
+export ASDF_NODEJS_VERSION=8.3.0
+export ASDF_HASKELL_VERSION=8.0.2
+export ASDF_Ruby_VERSION=2.4.1
+
 # venvのプロンプト表示
 export VIRTUAL_ENV_DISABLE_PROMPT=1

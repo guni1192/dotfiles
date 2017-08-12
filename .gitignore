@@ -9,3 +9,4 @@ ranger/history
 .DS_Store
 
 .zsh/.zcompcache
+.zsh/.zcompdump
