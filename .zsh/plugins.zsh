@@ -19,5 +19,3 @@ else
 fi
 
 zplug load --verbose
-
-

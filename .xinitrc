@@ -9,3 +9,4 @@ xsetroot -cursor_name left_ptr
 # fi
 # exec xmonad
 # exec gnome-session --session xmonad-gnome-nopanel "$@"
+# export DE="xfce"

@@ -154,5 +154,17 @@ repo = 'vim-ruby/vim-ruby'
 [[plugins]]
 repo = 'rust-lang/rust.vim'
 
+# Rails and Sinatra {{{
 [[plugins]]
 repo = 'sebastianmarkow/deoplete-rust'
+
+[[plugins]]
+repo = 'slim-template/vim-slim'
+
+[[plugins]]
+repo = 'tpope/vim-rails'
+
+[[plugins]]
+repo = 'tpope/vim-surround'
+
+# }}}
