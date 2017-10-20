@@ -97,7 +97,7 @@ URxvt*iso14755:        false
 
 
 rofi.color-enabled: true
-rofi.color-window: #3a4c54, #2a373e, #c3c6c8
-rofi.color-normal: #455a64, #fafbfc, #455a64, #00bcd4, #fafbfc
-rofi.color-active: #455a64, #00bcd4, #455a64, #009688, #fdf6e3
-rofi.color-urgent: #455a64, #ff5252, #455a64, #ff5252, #fdf6e3
+rofi.color-window: #212121, #212121, #c3c6c8
+rofi.color-normal: #191919, #fafbfc, #191919, #e00003, #fafbfc
+rofi.color-active: #191919, #00bcd4, #191919, #009688, #fdf6e3
+rofi.color-urgent: #191919, #ff5252, #191919, #ff5252, #fdf6e3
