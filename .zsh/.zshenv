@@ -1,8 +1,5 @@
 export ZDOTDIR="${HOME}/.zsh"
 
-# rbenv
-export PATH="$HOME/.rbenv/bin:$PATH"
-eval "$(rbenv init -)"
 export PATH="$HOME/.cabal/bin:$PATH"
 
 export PATH="/usr/local/opt/llvm/bin:$PATH"

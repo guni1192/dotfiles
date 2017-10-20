@@ -1,6 +1,6 @@
 "行番号の表示"
 set number
-"tabはスペース4つ分
+"tabはスペースつ分
 set tabstop=2
 set softtabstop=2
 "tabで半角スペースで挿入する"
@@ -72,7 +72,7 @@ endif
 if dein#load_state(s:dein_dir)
   call dein#begin(s:dein_dir)
 
-  let g:rc_dir    = expand("~/.config/nvim/")
+  let g:rc_dir    = expand("~/.config/nvim")
   let s:toml      = g:rc_dir . '/dein.toml'
   let s:lazy_toml = g:rc_dir . '/dein_lazy.toml'
 

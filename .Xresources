@@ -1,6 +1,6 @@
 ! Xft settings
 
-Xft.dpi:       120
+Xft.dpi:       92
 Xft.antialias: true
 Xft.rgba:      rgb
 Xft.hinting:   true
@@ -12,7 +12,7 @@ Xft.hintstyle: hintslight
 URxvt.geometry:         90x35
 ! 透過
 URxvt*.shading:         100
-URxvt*inheritPixmap:    false
+URxvt*inheritPixmap:    true
 URxvt*.transparent:     false
 URxvt.tintColor:        #303030
 URxvt*fading:           0
@@ -34,10 +34,10 @@ URxvt.preeditType: OnTheSpot
 ! Fonts
 URxvt.allow_bold:      false
 
-URxvt*font:            xft:Fira Code:regular:size=11:antialias=true, \
-                       xft:Myrica:size=11:antialias=true,  \
-                       xft:Noto Sans CJK JP:size=11:antialias=true,  \
-                       xft:Ricty:size=11:antialias=true
+URxvt*font:            xft:Fira Code:regular:size=10:antialias=true, \
+                       xft:Myrica:size=10:antialias=true,  \
+                       xft:Noto Sans CJK JP:size=10:antialias=true,  \
+                       xft:Ricty:size=10:antialias=true
 
 ! Fix font space
 URxvt*letterSpace:     0
@@ -60,7 +60,7 @@ URxvt*iso14755:        false
 !! Color
 
 *.foreground:  #D3D3D3
-*.background:  #191919
+! *.background:  #191919
 *.cursorColor: #00B2FF
 
 ! black
@@ -68,7 +68,7 @@ URxvt*iso14755:        false
 *.color8:      #9E9E9E
 
 ! red
-*.color1:      #FF5B5B
+*.color1:      #FF1900
 *.color9:      #DD002C
 
 ! green
@@ -94,3 +94,10 @@ URxvt*iso14755:        false
 ! white
 *.color7:      #FFFFFF
 *.color15:     #AAAAAA
+
+
+rofi.color-enabled: true
+rofi.color-window: #3a4c54, #2a373e, #c3c6c8
+rofi.color-normal: #455a64, #fafbfc, #455a64, #00bcd4, #fafbfc
+rofi.color-active: #455a64, #00bcd4, #455a64, #009688, #fdf6e3
+rofi.color-urgent: #455a64, #ff5252, #455a64, #ff5252, #fdf6e3

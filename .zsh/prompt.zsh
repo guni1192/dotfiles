@@ -1,10 +1,10 @@
 autoload -Uz colors
 
-username="%{$bg[blue]%} %m@%n %{$reset_color%}%{$bg[green]%}%{$fg[blue]%}%{$reset_color%}"
-directory="%{$bg[green]%}%{$fg[black]%} %~ %{$reset_color%}%{$reset_color%}%{$bg[yellow]%}%{$fg[green]%}%{$reset_color%}"
-return_code="%{$fg[black]%}%{$bg[yellow]%} %? %{$reset_color%}%{$fg_no_bold[yellow]%}%{$reset_color%}"
-auth="%{$fg[black]%}%{$bg[cyan]%} %# %{$reset_color%}%{$fg[cyan]%} %{$reset_color%}"
-
+username="%{$bg[red]%} %m@%n %{$reset_color%}%{$bg[green]%}%{$fg[red]%}%{$reset_color%}"
+directory="%{$bg[green]%}%{$fg[black]%} %~ %{$reset_color%}%{$reset_color%}%{$bg[black]%}%{$fg[green]%}%{$reset_color%}"
+return_code="%{$fg[black]%}%{$bg[yellow]%}  %?  %{$reset_color%}%{$fg_no_bold[yellow]%}%{$bg[black]%}%{$reset_color%}"
+auth="%{$fg[white]%}%{$bg[black]%}  %#  %{$reset_color%}%{$fg[black]%} %{$reset_color%}"
+date="%{$fg[white]%}%{$bg[black]%} %D %{$reset_color%}%{$fg[black]%} %{$reset_color%}"
 
 autoload -Uz vcs_info
 setopt prompt_subst
@@ -27,7 +27,7 @@ precmd () {
 
 RPROMPT='${vcs_info_msg_0_}'
 
-PROMPT="$username$directory$return_code
-$VENV$auth"
+PROMPT="$username$directory$date
+$VENV$return_code$auth"
 
 

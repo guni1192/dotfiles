@@ -33,23 +33,6 @@
 ;; C/C++
 (el-get-bundle auto-complete-c-headers)
 (el-get-bundle google-c-style)
-;; Ruby
-;;(el-get-bundle ruby-block)
-;;(el-get-bundle ruby-end)
-;; Python
-(el-get-bundle python)
-(el-get-bundle jedi)
-(el-get-bundle py-autopep8)
-(el-get-bundle ac-python)
-(el-get-bundle epc)
-(el-get-bundle deferred)
-(el-get-bundle python-environment)
-(el-get-bundle jinja2-mode)
-
-;; web
-(el-get-bundle web-mode)
-;;; }}}
-
 
 ;; emacs theme
 (load-theme 'monokai t)
@@ -110,43 +93,6 @@
 ;; C/C++ tab key setting
 (setq c-tab-always-indent nil)
 
-;;; Python
-;; jedi
-(require 'epc)
-(require 'ac-python)
-(require 'python)
-;; linux
-(setenv "PYTHONPATH" "/usr/lib/python3.6/site-packages")
-(require 'jedi)
-(add-hook 'python-mode-hook 'jedi:setup)
-(jedi:setup)
-  (define-key jedi-mode-map (kbd "<C-tab>") nil) ;;C-tabはウィンドウの移動に用いる
-  (setq jedi:complete-on-dot t)
-  (setq ac-sources
-    (delete 'ac-source-words-in-same-mode-buffers ac-sources)) ;;jediの補完候補だけでいい
-  (add-to-list 'ac-sources 'ac-source-filename)
-  (add-to-list 'ac-sources 'ac-source-jedi-direct)
-  (define-key python-mode-map "\C-ct" 'jedi:goto-definition)
-  (define-key python-mode-map "\C-cb" 'jedi:goto-definition-pop-marker)
-  (define-key python-mode-map "\C-cr" 'helm-jedi-related-names)
-;; autopep8
-;; $ pip install autopep8 pylint
-(require 'py-autopep8)
-(setq py-autopep8-options '("--max-line-length=200"))
-(setq flycheck-flake8-maximum-line-length 200)
-(py-autopep8-enable-on-save)
-;; flycheck
-(el-get 'sync 'flycheck)
-(require 'python)
-
-(defun tnoda/turn-on-flycheck-mode ()
-  (flycheck-mode 1))
-(add-hook 'python-mode-hook 'tnoda/turn-on-flycheck-mode)
-
-;;; Ruby
-;;(require 'ruby-block)
-;;(setq ruby-block-highlight-toggle t)
-;;(require 'ruby-end)
 ;; markdown
 (setq markdown-command "pandoc")
 
