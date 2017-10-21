@@ -22,3 +22,5 @@ export ASDF_Ruby_VERSION=2.4.1
 
 # venvのプロンプト表示
 export VIRTUAL_ENV_DISABLE_PROMPT=1
+
+export ANDROID_HOME=/opt/android-sdk

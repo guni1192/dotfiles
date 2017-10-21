@@ -12,7 +12,7 @@ Xft.hintstyle: hintslight
 URxvt.geometry:         90x35
 ! 透過
 URxvt*.shading:         100
-URxvt*inheritPixmap:    true
+URxvt*inheritPixmap:    false
 URxvt*.transparent:     false
 URxvt.tintColor:        #303030
 URxvt*fading:           0
@@ -34,9 +34,10 @@ URxvt.preeditType: OnTheSpot
 ! Fonts
 URxvt.allow_bold:      false
 
-URxvt*font:            xft:Fira Code:regular:size=10:antialias=true, \
-                       xft:Noto Sans CJK JP:size=10:antialias=true,  \
-                       xft:Ricty:size=10:antialias=true
+URxvt*font:            xft:Fira Code:regular:size=11:antialias=true, \
+                       xft:Myrica:size=11:antialias=true,  \
+                       xft:Noto Sans CJK JP:size=11:antialias=true,  \
+                       xft:Ricty:size=11:antialias=true
 
 ! Fix font space
 URxvt*letterSpace:     0
@@ -59,7 +60,7 @@ URxvt*iso14755:        false
 !! Color
 
 *.foreground:  #D3D3D3
-*.background:  #212121
+*.background:  #191919
 *.cursorColor: #00B2FF
 
 ! black

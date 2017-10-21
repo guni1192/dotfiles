@@ -156,9 +156,8 @@ bindsym $mod+r mode "resize"
 #        status_command i3status
 #}
 bindsym $mod+Shift+p            exec --no-startup-id deepin-screenshot
-bindsym $mod+g                  exec --no-startup-id chromium
-bindsym $mod+Shift+g                  exec --no-startup-id chromium
-bindsym $mod+Shift+s            exec --no-startup-id slack
+bindsym $mod+b                  exec --no-startup-id vivaldi-snapshot
+bindsym $mod+Shift+b            exec --no-startup-id vivaldi-snapshot --incognito
 bindsym XF86AudioRaiseVolume    exec --no-startup-id amixer set Master 5%+
 bindsym XF86AudioLowerVolume    exec --no-startup-id amixer set Master 5%-
 bindsym XF86AudioMute           exec --no-startup-id amixer set Master toggle
@@ -169,4 +168,12 @@ exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 exec --no-startup-id exec $HOME/.dropbox-dist/dropboxd
 exec --no-startup-id nm-applet &
 exec --no-startup-id fcitx
+exec --no-startup-id dunst
 exec --no-startup-id nitrogen --restore
+
+
+# Startup Application
+# exec --no-startup-id xfce4-panel --disable-wm-check
+# exec --no-startup-id xfce4-power-manager
+# ScreenShot by xfce4-screenshoter
+bindsym --release Print exec --no-startup-id xfce4-screenshooter

@@ -62,10 +62,10 @@ hook_source  = '''
 '''
 
 
-[[plugins]]
-repo = 'othree/yajs.vim'
-on_ft = 'javascript'
-hook_source  = '''
-  autocmd BufNewFile,BufRead *.js set filetype=javascript
-'''
+# [[plugins]]
+# repo = 'othree/yajs.vim'
+# on_ft = 'javascript'
+# hook_source  = '''
+#   autocmd BufNewFile,BufRead *.js set filetype=javascript
+# '''
 

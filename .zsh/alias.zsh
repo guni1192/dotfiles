@@ -7,6 +7,7 @@ alias la="exa -a"
 alias ll="exa -al"
 alias tree="exa -T"
 
+alias cat='ccat'
 alias grep='grep --color'
 alias df='df -h'
 

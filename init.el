@@ -7,7 +7,7 @@
 
 (when load-file-name 
   (setq user-emacs-directory (file-name-directory load-file-name))) 
- 
+
 (add-to-list 'load-path (locate-user-emacs-file "el-get/el-get")) 
 (unless (require 'el-get nil 'noerror) 
   (with-current-buffer 

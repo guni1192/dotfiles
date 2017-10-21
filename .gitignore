@@ -10,3 +10,7 @@ ranger/history
 
 .zsh/.zcompcache
 .zsh/.zcompdump
+
+ranger/*
+!rc.conf
+!bookmarks
