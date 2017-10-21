@@ -20,9 +20,6 @@ hook_post_update = '''
 '''
 
 [[plugins]]
-repo = 'Shougo/vimshell.vim'
-
-[[plugins]]
 repo = 'Shougo/neosnippet-snippets'
 
 [[plugins]]
@@ -55,23 +52,6 @@ repo = 'sjl/badwolf'
 [[plugins]]
 repo = 'tomsik68/vim-crystallite'
 
-[[plugins]]
-repo = 'justmao945/vim-clang'
-hook_source = '''
-
-let g:clang_auto = 1
-let g:clang_complete_auto = 1
-let g:clang_auto_select = 0
-let g:clang_use_library = 1
-
-let g:clang_exec = 'clang'
-
-let g:clang_exec = 'clang-format'
-
-let g:clang_c_options = '-std=c11'
-let g:clang_cpp_options = '-std=c++11 -stdlib=libc++'
-
-'''
 
 [[plugins]]
 repo = 'dag/vim2hs'
@@ -95,24 +75,7 @@ repo = 'othree/html5.vim'
 repo = 'hail2u/vim-css3-syntax'
 
 [[plugins]]
-repo = 'leafgarland/typescript-vim'
-on_ft = ['typescript']
-hook_source = '''
-  autocmd FileType typescript :set makeprg=tsc
-  let g:typescript_compiler_binary = 'tsc'
-  let g:typescript_compiler_options = ''
-  autocmd FileType typescript :set makeprg=tsc
-  autocmd QuickFixCmdPost [^|]* nested cwindow
-  autocmd QuickFixCmdPost |* nested lwindow
-'''
-
-[[plugins]]
 repo = 'PotatoesMaster/i3-vim-syntax'
-
-
-[[plugins]]
-repo = 'jalvesaq/Nvim-R'
-on_ft = ['r']
 
 [[plugins]]
 repo = 'jacoborus/tender.vim'
