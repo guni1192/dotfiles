@@ -4,6 +4,9 @@ export PATH="$HOME/.cabal/bin:$PATH"
 
 export PATH="/usr/local/opt/llvm/bin:$PATH"
 
+export PATH="$HOME/.rbenv/bin:$PATH"
+eval "$(rbenv init -)"
+
 # 256色で使うための設定
 export TERM="xterm-256color"
 
@@ -18,6 +21,6 @@ export ASDF_HASKELL_VERSION=8.0.2
 export ASDF_Ruby_VERSION=2.4.1
 
 # venvのプロンプト表示
-export VIRTUAL_ENV_DISABLE_PROMPT=1
+# export VIRTUAL_ENV_DISABLE_PROMPT=1
 
 export ANDROID_HOME=/opt/android-sdk

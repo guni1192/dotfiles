@@ -142,3 +142,6 @@ nnoremap <silent> <C-k><C-l> :<C-u>Denite line<CR>
 nnoremap <silent> <C-k><C-u> :<C-u>Denite file_mru<CR>
 nnoremap <silent> <C-k><C-y> :<C-u>Denite neoyank<CR>
 
+let g:deoplete#sources#clang#clang_header='/usr/lib/libclang.so'
+
+let g:deoplete#sources#jedi#show_docstring=0

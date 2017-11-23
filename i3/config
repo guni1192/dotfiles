@@ -9,7 +9,7 @@
 #
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
 
-set $mod Mod1
+set $mod Mod4
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
@@ -38,6 +38,8 @@ bindsym $mod+c kill
 
 # start dmenu (a program launcher)
 # bindsym $mod+p exec dmenu_run
+bindsym $mod+p exec rofi -show run
+
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
 # installed.
@@ -170,11 +172,3 @@ exec --no-startup-id nm-applet &
 exec --no-startup-id fcitx
 exec --no-startup-id dunst
 exec --no-startup-id nitrogen --restore
-
-
-# Startup Application
-# exec --no-startup-id xfce4-panel --disable-wm-check
-# exec --no-startup-id xfce4-power-manager
-# ScreenShot by xfce4-screenshoter
-bindsym --release Print exec --no-startup-id xfce4-screenshooter
-bindsym $mod+p exec rofi -show run

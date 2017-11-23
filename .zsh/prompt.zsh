@@ -18,7 +18,7 @@ zstyle ':vcs_info:*'      actionformats '%b|%a'
 precmd () {
   if [ -n "$VIRTUAL_ENV" ]; then
     venv_value=`basename $VIRTUAL_ENV`
-    VENV="%{$fg[black]%}%{$bg[red]%} $venv_value %{$reset_color%}%{$bg[cyan]%}%{$fg[red]%}%{$reset_color%}"
+    VENV="%{$fg[black]%}%{$bg[green]%} $venv_value %{$reset_color%}%{$bg[yellow]%}%{$fg[green]%}%{$reset_color%}"
   else
     VENV=""
   fi
