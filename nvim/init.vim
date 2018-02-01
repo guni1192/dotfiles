@@ -1,12 +1,12 @@
 "行番号の表示"
 set number
 "tabはスペースつ分
-set tabstop=2
-set softtabstop=2
+set tabstop=4
+set softtabstop=4
 "tabで半角スペースで挿入する"
 set expandtab
 "Vimが自動で生成するtabをスペース4つ分にする"
-set shiftwidth=2
+set shiftwidth=4
 "改行時、自動でインデント"
 set smartindent
 "オートインデントをオン
@@ -50,12 +50,12 @@ let NERDTreeShowHidden = 1
 
 filetype plugin indent on
 augroup FlleIndent
-  autocmd FileType c set cindent
-  autocmd FileType cpp set cindent
+    autocmd FileType c set cindent
+    autocmd FileType cpp set cindent
 augroup END
 
 if has('nvim')
-  let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+    let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 endif
 
 let s:dein_dir = expand('~/.cache/dein')
@@ -63,65 +63,71 @@ let s:dein_dir = expand('~/.cache/dein')
 let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
 
 if &runtimepath !~# '/dein.vim'
-  if !isdirectory(s:dein_repo_dir)
-    execute '!git clone https://github.com/Shougo/dein.vim' s:dein_repo_dir
-  endif
+    if !isdirectory(s:dein_repo_dir)
+        execute '!git clone https://github.com/Shougo/dein.vim' s:dein_repo_dir
+    endif
     execute 'set runtimepath+=' . fnamemodify(s:dein_repo_dir, ':p')
 endif
 
 if dein#load_state(s:dein_dir)
-  call dein#begin(s:dein_dir)
+    call dein#begin(s:dein_dir)
 
-  let g:rc_dir    = expand("~/.config/nvim")
-  let s:toml      = g:rc_dir . '/dein.toml'
-  let s:lazy_toml = g:rc_dir . '/dein_lazy.toml'
+    let g:rc_dir    = expand("~/.config/nvim")
+    let s:toml      = g:rc_dir . '/dein.toml'
+    let s:lazy_toml = g:rc_dir . '/dein_lazy.toml'
 
 
-  " toml を読み込み、キャッシュしておく
-  call dein#load_toml(s:toml,      {'lazy': 0})
-  call dein#load_toml(s:lazy_toml, {'lazy': 1})
+    " toml を読み込み、キャッシュしておく
+    call dein#load_toml(s:toml,      {'lazy': 0})
+    call dein#load_toml(s:lazy_toml, {'lazy': 1})
 
-  call dein#end()
-  call dein#save_state()
+    if !has('nvim')
+        call dein#add('roxma/nvim-yarp')
+        call dein#add('roxma/vim-hug-neovim-rpc')
+    endif
+
+    call dein#end()
+    call dein#save_state()
 endif
 
+
 if dein#check_install()
-  call dein#install()
+    call dein#install()
 endif
 
 augroup FileTypeIndent
-  autocmd BufNewFile,BufRead *.py   setlocal  tabstop=4 softtabstop=4 shiftwidth=4
-  autocmd BufNewFile,BufRead *.c    setlocal  tabstop=4 softtabstop=4 shiftwidth=4
-  autocmd BufNewFile,BufRead *.cpp  setlocal  tabstop=4 softtabstop=4 shiftwidth=4
-  autocmd BufNewFile,BufRead *.rb   setlocal  tabstop=2 softtabstop=2 shiftwidth=2
-  autocmd BufNewFile,BufRead *.js   setlocal  tabstop=4 softtabstop=4 shiftwidth=4
-  autocmd BufNewFile,BufRead *.html setlocal  tabstop=2 softtabstop=2 shiftwidth=2
-  autocmd BufNewFile,BufRead *.css  setlocal  tabstop=2 softtabstop=2 shiftwidth=2
-augroup ED
+    autocmd BufNewFile,BufRead *.py   setlocal  tabstop=4 softtabstop=4 shiftwidth=4
+    autocmd BufNewFile,BufRead *.c    setlocal  tabstop=4 softtabstop=4 shiftwidth=4
+    autocmd BufNewFile,BufRead *.cpp  setlocal  tabstop=4 softtabstop=4 shiftwidth=4
+    autocmd BufNewFile,BufRead *.rb   setlocal  tabstop=2 softtabstop=2 shiftwidth=2
+    autocmd BufNewFile,BufRead *.js   setlocal  tabstop=4 softtabstop=4 shiftwidth=4
+    autocmd BufNewFile,BufRead *.html setlocal  tabstop=2 softtabstop=2 shiftwidth=2
+    autocmd BufNewFile,BufRead *.css  setlocal  tabstop=2 softtabstop=2 shiftwidth=2
+augroup END
 
 " background clear
 augroup Myhighlight
-  autocmd VimEnter,ColorScheme * highlight Normal ctermbg=none
-  autocmd VimEnter,ColorScheme * highlight LineNr ctermbg=none
-  autocmd VimEnter,ColorScheme * highlight SignColumn ctermbg=none
-  autocmd VimEnter,ColorScheme * highlight VertSplit ctermbg=none
-  autocmd VimEnter,ColorScheme * highlight NonText ctermbg=none 
+    autocmd VimEnter,ColorScheme * highlight Normal ctermbg=none
+    autocmd VimEnter,ColorScheme * highlight LineNr ctermbg=none
+    autocmd VimEnter,ColorScheme * highlight SignColumn ctermbg=none
+    autocmd VimEnter,ColorScheme * highlight VertSplit ctermbg=none
+    autocmd VimEnter,ColorScheme * highlight NonText ctermbg=none 
 augroup END
 
 " syntax color setting
 syntax on
-colorscheme badwolf
+colorscheme wombat256
 
 " javascript setting
 augroup MyJavaScriptSetting
-  autocmd FileType javascript JsPreTmpl html
+    autocmd FileType javascript JsPreTmpl html
 augroup END
 
 autocmd FileType c,cpp,objc map <buffer><Leader>f <Plug>(operator-clang-format)
 " typescript setting
 augroup MyTypeScriptSetting
-  autocmd FileType typescript JsPreTmpl html
-  autocmd FileType typescript syn clear foldBraces
+    autocmd FileType typescript JsPreTmpl html
+    autocmd FileType typescript syn clear foldBraces
 augroup END
 
 
@@ -145,3 +151,5 @@ nnoremap <silent> <C-k><C-y> :<C-u>Denite neoyank<CR>
 let g:deoplete#sources#clang#clang_header='/usr/lib/libclang.so'
 
 let g:deoplete#sources#jedi#show_docstring=0
+
+let g:deoplete#sources#rust#racer_binary='$HOME/.cargo/bin/racer'

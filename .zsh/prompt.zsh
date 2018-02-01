@@ -1,6 +1,6 @@
 autoload -Uz colors
 
-username="%{$bg[red]%} %m@%n %{$reset_color%}%{$bg[green]%}%{$fg[red]%}%{$reset_color%}"
+username="%{$bg[blue]%} %m@%n %{$reset_color%}%{$bg[green]%}%{$fg[blue]%}%{$reset_color%}"
 directory="%{$bg[green]%}%{$fg[black]%} %~ %{$reset_color%}%{$reset_color%}%{$bg[black]%}%{$fg[green]%}%{$reset_color%}"
 return_code="%{$fg[black]%}%{$bg[yellow]%}  %?  %{$reset_color%}%{$fg_no_bold[yellow]%}%{$bg[black]%}%{$reset_color%}"
 auth="%{$fg[white]%}%{$bg[black]%}  %#  %{$reset_color%}%{$fg[black]%} %{$reset_color%}"
@@ -15,6 +15,7 @@ zstyle ':vcs_info:git:*'  unstagedstr   "%F{red}+"
 zstyle ':vcs_info:*'      formats       "%{${fg[black]}%}%{${fg[red]}${bg[black]}%} %b %{$reset_color%}"
 zstyle ':vcs_info:*'      actionformats '%b|%a'
 
+export VIRTUAL_ENV_DISABLE_PROMPT=1
 precmd () {
   if [ -n "$VIRTUAL_ENV" ]; then
     venv_value=`basename $VIRTUAL_ENV`
@@ -25,9 +26,7 @@ precmd () {
   vcs_info
 }
 
-RPROMPT='${vcs_info_msg_0_}'
-
 PROMPT="$username$directory$date
 $VENV$return_code$auth"
 
-
+RPROMPT='${vcs_info_msg_0_}'

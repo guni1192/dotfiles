@@ -47,3 +47,9 @@ on_i  = 1
 on_ft = ['snippet']
 depends = ['neosnippet-snippets']
 
+[[plugins]]
+repo = 'sebastianmarkow/deoplete-rust'
+hook_source = '''
+    let g:deoplete#sources#rust#racer_binary='$HOME/.cargo/bin/racer'
+'''
+

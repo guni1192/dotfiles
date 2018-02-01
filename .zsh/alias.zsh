@@ -1,11 +1,11 @@
-alias tmux='tmux -2'
-alias ls='ls --color'
-alias la='ls -a --color'
-alias ll='ls -al'
-# alias ls="exa -s=type"
-# alias la="exa -a"
-# alias ll="exa -al"
-# alias tree="exa -T"
+# alias tmux='tmux -2'
+# alias ls='ls --color'
+# alias la='ls -a --color'
+# alias ll='ls -al'
+alias ls="exa -s=type"
+alias la="exa -a"
+alias ll="exa -al --git"
+alias tree="exa -T"
 
 # alias cat='ccat'
 alias grep='grep --color'

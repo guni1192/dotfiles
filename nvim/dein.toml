@@ -26,6 +26,9 @@ repo = 'Shougo/neosnippet-snippets'
 repo = 'flazz/vim-colorschemes'
 
 [[plugins]]
+repo = 'rafi/awesome-vim-colorschemes'
+
+[[plugins]]
 repo = 'cohama/lexima.vim'
 
 [[plugins]]
@@ -40,7 +43,7 @@ depends = ['vim-airline-themes']
 hook_add = '''
     let g:airline_powerline_fonts = 1
     let g:airline#extensions#tabline#enabled = 1
-    let g:airline_theme = 'badwolf'
+    let g:airline_theme = 'deus'
 '''
 
 [[plugins]]
@@ -118,9 +121,6 @@ repo = 'vim-ruby/vim-ruby'
 repo = 'rust-lang/rust.vim'
 
 # Rails and Sinatra {{{
-[[plugins]]
-repo = 'sebastianmarkow/deoplete-rust'
-
 [[plugins]]
 repo = 'slim-template/vim-slim'
 
