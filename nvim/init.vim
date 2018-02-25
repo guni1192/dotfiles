@@ -100,7 +100,8 @@ augroup FileTypeIndent
     autocmd BufNewFile,BufRead *.c    setlocal  tabstop=4 softtabstop=4 shiftwidth=4
     autocmd BufNewFile,BufRead *.cpp  setlocal  tabstop=4 softtabstop=4 shiftwidth=4
     autocmd BufNewFile,BufRead *.rb   setlocal  tabstop=2 softtabstop=2 shiftwidth=2
-    autocmd BufNewFile,BufRead *.js   setlocal  tabstop=4 softtabstop=4 shiftwidth=4
+    autocmd BufNewFile,BufRead *.js   setlocal  tabstop=2 softtabstop=2 shiftwidth=2
+    autocmd BufNewFile,BufRead *.vue  setlocal  tabstop=2 softtabstop=2 shiftwidth=2
     autocmd BufNewFile,BufRead *.html setlocal  tabstop=2 softtabstop=2 shiftwidth=2
     autocmd BufNewFile,BufRead *.css  setlocal  tabstop=2 softtabstop=2 shiftwidth=2
 augroup END
@@ -116,7 +117,7 @@ augroup END
 
 " syntax color setting
 syntax on
-colorscheme wombat256
+colorscheme badwolf
 
 " javascript setting
 augroup MyJavaScriptSetting

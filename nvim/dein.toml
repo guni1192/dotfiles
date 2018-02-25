@@ -83,8 +83,20 @@ repo = 'PotatoesMaster/i3-vim-syntax'
 [[plugins]]
 repo = 'jacoborus/tender.vim'
 
+# Javascript {{{
+
 [[plugins]]
 repo = 'Quramy/vim-js-pretty-template'
+
+# ES6 syntax highlight
+[[plugins]]
+repo = 'othree/yajs.vim'
+
+# .vue syntax highlight
+[[plugins]]
+repo = 'posva/vim-vue'
+
+# }}}
 
 [[plugins]]
 repo = 'xuhdev/syntax-dosini.vim'
@@ -115,12 +127,12 @@ repo = 'vim-jp/vim-cpp'
 repo = 'fishbullet/deoplete-ruby'
 
 [[plugins]]
-repo = 'vim-ruby/vim-ruby'
-
-[[plugins]]
 repo = 'rust-lang/rust.vim'
 
 # Rails and Sinatra {{{
+[[plugins]]
+repo = 'vim-ruby/vim-ruby'
+
 [[plugins]]
 repo = 'slim-template/vim-slim'
 
@@ -131,3 +143,5 @@ repo = 'tpope/vim-rails'
 repo = 'tpope/vim-surround'
 
 # }}}
+
+

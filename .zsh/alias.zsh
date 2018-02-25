@@ -35,3 +35,7 @@ alias be='bundle exec'
 function gi(){
   curl -L -s https://www.gitignore.io/api/$@;
 }
+
+alias repos='ghq list -p | peco'
+alias repo='cd $(repos)'
+
