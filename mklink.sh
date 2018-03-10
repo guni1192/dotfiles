@@ -22,6 +22,12 @@ if [ "$(expr substr $(uname -s) 1 5)" == 'Linux' ]; then
     ln -s ~/dotfiles/polybar ~/.config/polybar
     # ranger
     ln -s ~/dotfiles/ranger ~/.config/ranger
+    # Vim
+    ln -s ~/dotfiles/.vimrc ~/.vimrc
+    if [ ! -e $HOME/.vim ]; then
+        mkdir $HOME/.vim.
+    fi
+    ln -s ~/dotfiles/.vim/config ~/.vim/config
     # NeoVim
     ln -s ~/dotfiles/nvim ~/.config/nvim
     # ideavim
