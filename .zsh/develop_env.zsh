@@ -7,5 +7,6 @@ eval "$(rbenv init -)"
 export NVM_DIR="/home/guni/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
 
-export GOROOT=$HOME/go
-export PATH=$PATH:$GOROOT/bin
+# export GOROOT=$HOME/go
+export GOPATH=$HOME/go
+export PATH=$PATH:$GOPATH/bin

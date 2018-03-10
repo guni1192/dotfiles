@@ -43,7 +43,7 @@ depends = ['vim-airline-themes']
 hook_add = '''
     let g:airline_powerline_fonts = 1
     let g:airline#extensions#tabline#enabled = 1
-    let g:airline_theme = 'deus'
+    let g:airline_theme = 'kalisi'
 '''
 
 [[plugins]]
@@ -144,4 +144,5 @@ repo = 'tpope/vim-surround'
 
 # }}}
 
-
+[[plugins]]
+repo = 'chr4/nginx.vim'

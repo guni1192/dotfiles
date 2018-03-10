@@ -95,15 +95,22 @@ if dein#check_install()
     call dein#install()
 endif
 
+augroup FileTypeSetting
+    autocmd BufNewFile,BufRead Gemfile setlocal filetype=ruby
+    autocmd BufNewFile,BufRead Vagrantfile setlocal filetype=ruby
+augroup END
+
+
 augroup FileTypeIndent
-    autocmd BufNewFile,BufRead *.py   setlocal  tabstop=4 softtabstop=4 shiftwidth=4
-    autocmd BufNewFile,BufRead *.c    setlocal  tabstop=4 softtabstop=4 shiftwidth=4
-    autocmd BufNewFile,BufRead *.cpp  setlocal  tabstop=4 softtabstop=4 shiftwidth=4
-    autocmd BufNewFile,BufRead *.rb   setlocal  tabstop=2 softtabstop=2 shiftwidth=2
-    autocmd BufNewFile,BufRead *.js   setlocal  tabstop=2 softtabstop=2 shiftwidth=2
-    autocmd BufNewFile,BufRead *.vue  setlocal  tabstop=2 softtabstop=2 shiftwidth=2
-    autocmd BufNewFile,BufRead *.html setlocal  tabstop=2 softtabstop=2 shiftwidth=2
-    autocmd BufNewFile,BufRead *.css  setlocal  tabstop=2 softtabstop=2 shiftwidth=2
+    autocmd BufNewFile,BufRead *.py   setlocal tabstop=4 softtabstop=4 shiftwidth=4
+    autocmd BufNewFile,BufRead *.c    setlocal tabstop=4 softtabstop=4 shiftwidth=4
+    autocmd BufNewFile,BufRead *.cpp  setlocal tabstop=4 softtabstop=4 shiftwidth=4
+    autocmd BufNewFile,BufRead *.rb   setlocal tabstop=2 softtabstop=2 shiftwidth=2
+    autocmd BufNewFile,BufRead *.js   setlocal tabstop=2 softtabstop=2 shiftwidth=2
+    autocmd BufNewFile,BufRead *.vue  setlocal tabstop=2 softtabstop=2 shiftwidth=2
+    autocmd BufNewFile,BufRead *.html setlocal tabstop=2 softtabstop=2 shiftwidth=2
+    autocmd BufNewFile,BufRead *.erb  setlocal tabstop=2 softtabstop=2 shiftwidth=2
+    autocmd BufNewFile,BufRead *.css  setlocal tabstop=2 softtabstop=2 shiftwidth=2
 augroup END
 
 " background clear
@@ -117,12 +124,13 @@ augroup END
 
 " syntax color setting
 syntax on
-colorscheme badwolf
+colorscheme kalisi
+set background=dark
 
 " javascript setting
-augroup MyJavaScriptSetting
-    autocmd FileType javascript JsPreTmpl html
-augroup END
+" augroup MyJavaScriptSetting
+"     autocmd FileType javascript JsPreTmpl html
+" augroup END
 
 autocmd FileType c,cpp,objc map <buffer><Leader>f <Plug>(operator-clang-format)
 " typescript setting
