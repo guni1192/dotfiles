@@ -124,7 +124,7 @@ augroup END
 
 " syntax color setting
 syntax on
-colorscheme kalisi
+colorscheme badwolf
 set background=dark
 
 " javascript setting

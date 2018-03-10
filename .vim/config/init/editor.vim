@@ -23,12 +23,12 @@ set whichwrap=b,s,h,l,<,>,[,]
 "バックスペースを制限無しにする"
 set backspace=indent,eol,start
 set wildmenu
-set clipboard+=unnamedplus
+set clipboard=unnamed,autoselect
 "単語補完の入力候補の最大数"
 set pumheight=10
 set showmode
 set wildmode=list:full
-set laststatus=2
+set encoding=utf-8
 
 "Help Language
 set helplang=ja,en

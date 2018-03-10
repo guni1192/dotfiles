@@ -53,10 +53,6 @@ repo = 'vim-airline/vim-airline-themes'
 repo = 'sjl/badwolf'
 
 [[plugins]]
-repo = 'tomsik68/vim-crystallite'
-
-
-[[plugins]]
 repo = 'dag/vim2hs'
 on_ft = ['haskell']
 
@@ -84,9 +80,6 @@ repo = 'PotatoesMaster/i3-vim-syntax'
 repo = 'jacoborus/tender.vim'
 
 # Javascript {{{
-
-[[plugins]]
-repo = 'Quramy/vim-js-pretty-template'
 
 # ES6 syntax highlight
 [[plugins]]
