@@ -51,5 +51,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'roxma/nvim-yarp'
     Plug 'roxma/vim-hug-neovim-rpc'
     " }}}
+    " Markdown Preview
+    Plug 'shime/vim-livedown'
 call plug#end()
 

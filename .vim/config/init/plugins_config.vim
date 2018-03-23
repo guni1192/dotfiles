@@ -13,13 +13,6 @@ function! s:Jq(...)
     execute "%! jq \"" . l:arg . "\""
 endfunction
 
-" Denite
-nnoremap <silent> <C-k><C-f> :<C-u>Denite file_rec<CR>
-nnoremap <silent> <C-k><C-g> :<C-u>Denite grep<CR>
-nnoremap <silent> <C-k><C-l> :<C-u>Denite line<CR>
-nnoremap <silent> <C-k><C-u> :<C-u>Denite file_mru<CR>
-nnoremap <silent> <C-k><C-y> :<C-u>Denite neoyank<CR>
-
 " airline
 set laststatus=2
 let g:airline_powerline_fonts = 1
@@ -39,6 +32,14 @@ inoremap <expr><tab> pumvisible() ? "\<C-n>" :
             \    "\<Plug>(neosnippet_expand_or_jump)" : "\<tab>"
 let g:deoplete#sources#clang#clang_header = '/usr/include/'
 let g:deoplete#sources#clang#libclang_path = '/usr/lib/libclang.so'
+
+" Denite
+nnoremap <silent> <C-k><C-f> :<C-u>Denite file_rec<CR>
+nnoremap <silent> <C-k><C-g> :<C-u>Denite grep<CR>
+nnoremap <silent> <C-k><C-l> :<C-u>Denite line<CR>
+nnoremap <silent> <C-k><C-u> :<C-u>Denite file_mru<CR>
+nnoremap <silent> <C-k><C-y> :<C-u>Denite neoyank<CR>
+call denite#custom#option('default', 'statusline', 0)
 
 " Neosnippet
 imap <C-k> <Plug>(neosnippet_expand_or_jump)
