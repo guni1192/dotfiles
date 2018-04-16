@@ -158,8 +158,8 @@ bindsym $mod+r mode "resize"
 #        status_command i3status
 #}
 bindsym $mod+Shift+p            exec --no-startup-id deepin-screenshot
-bindsym $mod+b                  exec --no-startup-id vivaldi-snapshot
-bindsym $mod+Shift+b            exec --no-startup-id vivaldi-snapshot --incognito
+bindsym $mod+b                  exec --no-startup-id vivaldi-snapshot --force-device-scale-factor=1.3
+bindsym $mod+Shift+b            exec --no-startup-id vivaldi-snapshot --incognito --force-device-scale-factor=1.3
 bindsym XF86AudioRaiseVolume    exec --no-startup-id amixer set Master 5%+
 bindsym XF86AudioLowerVolume    exec --no-startup-id amixer set Master 5%-
 bindsym XF86AudioMute           exec --no-startup-id amixer set Master toggle

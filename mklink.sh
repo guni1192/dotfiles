@@ -42,6 +42,7 @@ if [ "$(expr substr $(uname -s) 1 5)" == 'Linux' ]; then
     # stalonetray
     ln -s ~/dotfiles/.stalonetrayrc ~/.stalonetrayrc
 
+    ln -s ~/dotfiles/bin ~/bin
     read -p "Is this Display HiDPI?[y/n] " yn ;
     case $yn in
         [Yy]* ) {

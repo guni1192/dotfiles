@@ -31,7 +31,6 @@ nmap <C-p> <Plug>AirlineSelectPrevTab
 nmap <C-n> <Plug>AirlineSelectNextTab
 
 " Deoplete
-set pyxversion=3
 let g:deoplete#enable_at_startup = 1
 let g:deoplete#sources#jedi#show_docstring=0
 inoremap <expr><tab> pumvisible() ? "\<C-n>" :
