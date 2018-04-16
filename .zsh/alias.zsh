@@ -39,3 +39,5 @@ function gi(){
 alias repos='ghq list -p | peco'
 alias repo='cd $(repos)'
 
+alias nvim='vim'
+alias bi='bundle install --path=./vendor/bundle'
