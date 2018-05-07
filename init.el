@@ -1,41 +1,61 @@
 
-;; Added by Package.el.  This must come before configurations of
-;; installed packages.  Don't delete this line.  If you don't want it,
-;; just comment it out by adding a semicolon to the start of the line.
-;; You may delete these explanatory comments.
+(require 'package)
+
+;; MELPAを追加
+(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
+
+;; MELPA-stableを追加
+(add-to-list 'package-archives '("melpa-stable" . "https://stable.melpa.org/packages/") t)
+
+;; Marmaladeを追加
+(add-to-list 'package-archives  '("marmalade" . "http://marmalade-repo.org/packages/") t)
+
+;; Orgを追加
+(add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/") t)
+
+;; 初期化
 (package-initialize)
 
-(when load-file-name 
-  (setq user-emacs-directory (file-name-directory load-file-name))) 
+;; パッケージ情報の更新
+;;(package-refresh-contents)
 
-(add-to-list 'load-path (locate-user-emacs-file "el-get/el-get")) 
-(unless (require 'el-get nil 'noerror) 
-  (with-current-buffer 
-      (url-retrieve-synchronously 
-       "https://raw.githubusercontent.com/dimitri/el-get/master/el-get-install.el") 
-    (goto-char (point-max)) 
-    (eval-print-last-sexp)))
-;;
-;; パッケージリスト
-;; {{{
-;; General
-(el-get-bundle auto-complete)
-(el-get-bundle yasnippet)
-(el-get-bundle multi-term)
-(el-get-bundle powerline)
-(el-get-bundle smart-compile)
-(el-get-bundle smartparens)
-(el-get-bundle ccann/badger-theme)
-(el-get-bundle haskell-mode)
-(el-get-bundle monokai-theme)
+;; インストールするパッケージ
+(defvar my/favorite-packages
+  '(
+    ;;;; for auto-complete
+    auto-complete fuzzy popup pos-tip
 
-;;(el-get-bundle evil)
-;; C/C++
-(el-get-bundle auto-complete-c-headers)
-(el-get-bundle google-c-style)
+    ;;;; flymake
+    flycheck flymake-jslint
+
+    ;;;; go
+    go-mode
+
+    ;;;; helm
+    helm
+
+    ;;;; git
+    magit git-gutter
+
+    ;;;; powerline
+    powerline
+
+    multi-term
+
+    yasnippet
+    smartparens
+
+    monokai-theme
+    badwolf-theme
+    ;; moe-theme
+    ))
+;; my/favorite-packagesからインストールしていないパッケージをインストール
+(dolist (package my/favorite-packages)
+  (unless (package-installed-p package)
+    (package-install package)))
 
 ;; emacs theme
-(load-theme 'monokai t)
+(load-theme 'badwolf t)
 
 (require 'powerline)
 (powerline-center-theme)
@@ -44,57 +64,11 @@
 (require 'smartparens-config)
 (smartparens-global-mode t)
 
-;; auto-complete
-(require 'auto-complete)
-(require 'auto-complete-config)
-(ac-config-default)
-(ac-set-trigger-key "TAB")
+;;(ac-set-trigger-key "TAB")
 ;; yasnippet
 (require 'yasnippet)
 (yas-global-mode 1)
 
-;; auto-complete-c-headers
-(defun my:ac-c-header-init()
-  (require 'auto-complete-c-headers)
-  ;; Macのインクルードパス
-  (add-to-list 'ac-sources 'ac-source-c-headers)
-  (add-to-list 'achead:include-directories
-               '"/usr/local/Cellar/gcc6/6.2.0/include/c++/6.2.0")
-  (add-to-list 'achead:include-directories
-               '"/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include")
-  ;; Linuxのインクルードパス
-  (add-to-list 'achead:include-directories '"/usr/local/include/boost/")
-  (add-to-list 'achead:include-directories '"/usr/include")
-  (add-to-list 'achead:include-directories '"/usr/include/c++/6.2.1"))
-
-;; google-c-style.el
-(defun my-c-c++-mode-init ()
-  (require 'google-c-style)
-  (google-set-c-style)
-  ;; (google-make-newline-indent)
-  )
-(add-hook 'c-mode-hook 'my-c-c++-mode-init)
-(add-hook 'c++-mode-hook 'my-c-c++-mode-init)
-
-;; c/c++ hooks
-(add-hook 'c++-mode-hook 'my:ac-c-header-init)
-(add-hook 'c-mode-hook 'my:ac-c-header-init)
-
-;; インデント設定
-(defun my-c-c++-mode-init()
-  (setq c-basic-offset 4)
-  )
-(add-hook 'c-mode-hook 'my-c-c++-mode-init)
-(add-hook 'c++-mode-hook 'my-c-c++-mode-init)
-
-;; C++ refactaring for mac
-(define-key global-map (kbd "C-c ;") 'iedit-mode)
-
-;; C/C++ tab key setting
-(setq c-tab-always-indent nil)
-
-;; markdown
-(setq markdown-command "pandoc")
 
 ;; 環境を日本語、UTF-8にする
 (set-locale-environment nil)
@@ -113,6 +87,13 @@
 ;; スタートアップメッセージを表示させない
 (setq inhibit-startup-message t)
 
+(if (eq window-system 'x)
+    (menu-bar-mode 1) (menu-bar-mode 0))
+(menu-bar-mode nil)
+
+;; scratchの初期メッセージ消去
+(setq initial-scratch-message "")
+
 ;; バックアップファイルを作成させない
 (setq make-backup-files nil)
 
@@ -120,7 +101,7 @@
 (setq delete-auto-save-files t)
 
 ;; タブにスペースを使用する
-(setq-default tab-width 4 indent-tabs-mode nil)
+(setq-default tab-width 2 indent-tabs-mode nil)
 
 ;; タブの可視化
 (global-whitespace-mode 1)
@@ -180,18 +161,4 @@
     (ding)))
 (setq ring-bell-function 'my-bell-function)
 
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(custom-safe-themes
-   (quote
-    ("8aebf25556399b58091e533e455dd50a6a9cba958cc4ebb0aab175863c25b9a4" "a8245b7cc985a0610d71f9852e9f2767ad1b852c2bdea6f4aadc12cce9c4d6d0" default)))
- '(package-selected-packages (quote (bliss-theme smart-compile))))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
+(setq custom-file (locate-user-emacs-file "custom.el"))
