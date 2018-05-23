@@ -1,6 +1,6 @@
 autoload -Uz colors
 
-username="%{$fg[white]%}%{$bg[blue]%} %m@%n %{$reset_color%}%{$bg[white]%}%{$fg[blue]%}%{$reset_color%}"
+username="%{$fg[white]%}%{$bg[green]%} %m@%n %{$reset_color%}%{$bg[white]%}%{$fg[green]%}%{$reset_color%}"
 directory="%{$bg[white]%}%{$fg[black]%} %~ %{$reset_color%}%{$reset_color%}%{$bg[black]%}%{$fg[white]%}%{$reset_color%}"
 date="%{$fg[white]%}%{$bg[black]%} %D %{$reset_color%}%{$fg[black]%} %{$reset_color%}"
 return_code="%{$fg[black]%}%{$bg[white]%}  %?  %{$reset_color%}%{$fg_no_bold[white]%}%{$bg[black]%}%{$reset_color%}"

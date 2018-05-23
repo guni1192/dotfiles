@@ -5,12 +5,12 @@ let NERDTreeShowHidden = 1
 " Jq (JSON Shaper)
 command! -nargs=? Jq call s:Jq(<f-args>)
 function! s:Jq(...)
-    if 0 == a:0
-        let l:arg = "."
-    else
-        let l:arg = a:1
-    endif
-    execute "%! jq \"" . l:arg . "\""
+  if 0 == a:0
+    let l:arg = "."
+  else
+    let l:arg = a:1
+  endif
+  execute "%! jq \"" . l:arg . "\""
 endfunction
 
 " Denite
@@ -34,16 +34,27 @@ nmap <C-n> <Plug>AirlineSelectNextTab
 let g:deoplete#enable_at_startup = 1
 let g:deoplete#sources#jedi#show_docstring=0
 inoremap <expr><tab> pumvisible() ? "\<C-n>" :
-            \ neosnippet#expandable_or_jumpable() ?
-            \    "\<Plug>(neosnippet_expand_or_jump)" : "\<tab>"
+      \ neosnippet#expandable_or_jumpable() ?
+      \    "\<Plug>(neosnippet_expand_or_jump)" : "\<tab>"
 let g:deoplete#sources#clang#clang_header = '/usr/include/'
-let g:deoplete#sources#clang#libclang_path = '/usr/lib/libclang.so'
+if has("mac")
+  let g:deoplete#sources#clang#libclang_path = '/usr/local/Cellar/llvm/6.0.0/lib/libclang.dylib'
+elseif has("unix")
+  let g:deoplete#sources#clang#libclang_path = '/usr/lib/libclang.so'
+endif
 
 " Neosnippet
 imap <C-k> <Plug>(neosnippet_expand_or_jump)
 smap <C-k> <Plug>(neosnippet_expand_or_jump)
 xmap <C-k> <Plug>(neosnippet_expand_target)
 if has('conceal')
-    set conceallevel=2 concealcursor=niv
+  set conceallevel=2 concealcursor=niv
 endif
 
+au BufRead,BufNewFile *.md set filetype=markdown
+
+if has("mac")
+  let g:previm_open_cmd = 'open -a Vivaldi'
+elseif has("unix")
+  let g:previm_open_cmd = 'vivaldi-snapshot'
+endif

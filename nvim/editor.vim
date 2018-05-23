@@ -1,12 +1,12 @@
 "行番号の表示"
 "set number
 "tabはスペースつ分
-set tabstop=4
-set softtabstop=4
+set tabstop=2
+set softtabstop=2
 "tabで半角スペースで挿入する"
 set expandtab
 "Vimが自動で生成するtabをスペース4つ分にする"
-set shiftwidth=4
+set shiftwidth=2
 "改行時、自動でインデント"
 set smartindent
 "オートインデントをオン
