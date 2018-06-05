@@ -1,23 +1,5 @@
-
-(require 'package)
-
-;; MELPAを追加
-(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
-
-;; MELPA-stableを追加
-(add-to-list 'package-archives '("melpa-stable" . "https://stable.melpa.org/packages/") t)
-
-;; Marmaladeを追加
-(add-to-list 'package-archives  '("marmalade" . "http://marmalade-repo.org/packages/") t)
-
-;; Orgを追加
-(add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/") t)
-
-;; 初期化
-(package-initialize)
-
 ;; パッケージ情報の更新
-;;(package-refresh-contents)
+;(package-refresh-contents)
 
 ;; インストールするパッケージ
 (defvar my/favorite-packages
@@ -41,21 +23,40 @@
     powerline
 
     multi-term
-
+    
     yasnippet
     smartparens
 
+    madhat2r-theme
     monokai-theme
     badwolf-theme
     ;; moe-theme
     ))
+
+(require 'package)
+
+;; MELPAを追加
+(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
+
+;; MELPA-stableを追加
+;;(add-to-list 'package-archives '("melpa-stable" . "https://stable.melpa.org/packages/") t)
+
+;; Marmaladeを追加
+;;(add-to-list 'package-archives  '("marmalade" . "http://marmalade-repo.org/packages/") t)
+
+;; Orgを追加
+;;(add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/") t)
+
+;; 初期化
+(package-initialize)
+
 ;; my/favorite-packagesからインストールしていないパッケージをインストール
 (dolist (package my/favorite-packages)
   (unless (package-installed-p package)
     (package-install package)))
 
 ;; emacs theme
-(load-theme 'badwolf t)
+(load-theme 'madhat2r t)
 
 (require 'powerline)
 (powerline-center-theme)
@@ -64,7 +65,6 @@
 (require 'smartparens-config)
 (smartparens-global-mode t)
 
-;;(ac-set-trigger-key "TAB")
 ;; yasnippet
 (require 'yasnippet)
 (yas-global-mode 1)

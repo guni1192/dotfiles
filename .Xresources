@@ -1,6 +1,6 @@
 ! Xft settings
 
-Xft.dpi:       133
+Xft.dpi:       92
 Xft.antialias: true
 Xft.rgba:      rgb
 Xft.hinting:   true
@@ -36,6 +36,7 @@ URxvt.allow_bold:      false
 
 URxvt*font:            xft:Fira Code:regular:size=10:antialias=true, \
                        xft:Myrica:size=10:antialias=true,  \
+                       xft:Font Awesome 5 Free:size=10:antialias=true,  \
                        xft:Noto Sans CJK JP:size=10:antialias=true,  \
                        xft:Ricty:size=10:antialias=true
 
@@ -72,7 +73,8 @@ URxvt*iso14755:        false
 *.color9:      #DD002C
 
 ! green
-*.color2:      #37d628
+!*.color2:      #37d628
+*.color2:      #09a672
 *.color10:     #009933
 
 ! yellow

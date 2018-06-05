@@ -1,0 +1,22 @@
+[global_config]
+  hide_from_taskbar = True
+[keybindings]
+[layouts]
+  [[default]]
+    [[[child1]]]
+      parent = window0
+      type = Terminal
+    [[[window0]]]
+      parent = ""
+      type = Window
+[plugins]
+[profiles]
+  [[default]]
+    background_color = "#191919"
+    cursor_blink = False
+    cursor_color = "#aaaaaa"
+    font = Fira Code weight=453 10
+    foreground_color = "#d3d3d3"
+    palette = "#000000:#cd0000:#09a672:#ffb200:#008cff:#cd00cd:#00cdcd:#ffffff:#7f7f7f:#ff0000:#00ff00:#ffcb53:#076eff:#ff00ff:#00ffff:#ffffff"
+    scrollbar_position = hidden
+    show_titlebar = False

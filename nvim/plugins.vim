@@ -32,6 +32,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'slim-template/vim-slim'
     Plug 'chr4/nginx.vim'
     Plug 'aklt/plantuml-syntax'
+    Plug 'sngn/vim-i3blocks-syntax'
     "   ES6 Syntax
     Plug 'othree/yajs.vim'
     "   .vue Syntax
