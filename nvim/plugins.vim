@@ -56,8 +56,5 @@ call plug#begin('~/.vim/plugged')
     Plug 'roxma/nvim-yarp'
     Plug 'roxma/vim-hug-neovim-rpc'
     " }}}
-    Plug 'plasticboy/vim-markdown'
-    Plug 'kannokanno/previm'
-    Plug 'tyru/open-browser.vim'
 call plug#end()
 
