@@ -21,6 +21,8 @@ call plug#begin('~/.vim/plugged')
     Plug 'vim-airline/vim-airline-themes'
     Plug 'sjl/badwolf'
     " }}}
+    " Rust
+    Plug 'rust-lang/rust.vim'
     " Syntax Highlight {{{
     Plug 'cespare/vim-toml'
     Plug 'hdima/python-syntax'
@@ -49,6 +51,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'zchee/deoplete-jedi'
     Plug 'zchee/deoplete-go'
     Plug 'fishbullet/deoplete-ruby'
+    Plug 'racer-rust/vim-racer'
     Plug 'Shougo/neosnippet'
     Plug 'roxma/nvim-yarp'
     Plug 'roxma/vim-hug-neovim-rpc'

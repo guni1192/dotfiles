@@ -58,3 +58,9 @@ if has("mac")
 elseif has("unix")
   let g:previm_open_cmd = 'vivaldi-snapshot'
 endif
+
+" rust.vim
+let g:rustfmt_autosave = 1
+
+" vim-racer
+let g:racer_cmd = "~/.cargo/bin/racer"
