@@ -56,15 +56,14 @@ Plug 'fishbullet/deoplete-ruby'
 Plug 'Shougo/neosnippet'
 Plug 'roxma/nvim-yarp'
 Plug 'roxma/vim-hug-neovim-rpc'
+Plug 'rust-lang/rust.vim'
 " }}}
 "Plug 'plasticboy/vim-markdown'
 Plug 'kannokanno/previm'
 Plug 'tyru/open-browser.vim'
 Plug 'fatih/vim-go'
-Plug 'nsf/gocode', {'rtp': 'vim/'}  
+Plug 'nsf/gocode', {'rtp': 'vim/'}
 Plug 'nvie/vim-flake8'
 Plug 'prabirshrestha/async.vim'
 Plug 'prabirshrestha/vim-lsp'
-
 call plug#end()
-

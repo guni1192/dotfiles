@@ -41,4 +41,7 @@ function gi(){
 alias repos='ghq list -p | peco'
 alias repo='cd $(repos)'
 
-alias git='hub'
+# alias git='hub'
+alias rb='RUST_BACKTRACE=1'
+alias cb='cargo build'
+alias cr='cargo run'

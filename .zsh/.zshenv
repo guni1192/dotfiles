@@ -20,3 +20,5 @@ export ANDROID_HOME=/opt/android-sdk
 export PATH="$HOME/workspace/soba/bin:$PATH"
 
 export PATH="$HOME/.cargo/bin:$PATH"
+
+export PIPENV_VENV_IN_PROJECT=true

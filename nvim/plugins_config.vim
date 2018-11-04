@@ -60,14 +60,10 @@ elseif has("unix")
   let g:previm_open_cmd = 'vivaldi-snapshot'
 endif
 
-"let g:livepreview_previewer = 'open -a Firefox'
-let g:livepreview_previewer = 'open -a Skim'
-
-au FileType plantuml command! OpenUml :!start chrome %
-
-" TwitVim
-let twitvim_browser_cmd = 'open' " for Mac
-let twitvim_force_ssl = 1
-let twitvim_count = 40
-
 let g:go_fmt_command = "goimports"
+
+" rust.vim
+let g:rustfmt_autosave = 1
+
+" vim-racer
+let g:racer_cmd = "~/.cargo/bin/racer"
