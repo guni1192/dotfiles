@@ -36,10 +36,11 @@ let g:deoplete#sources#jedi#show_docstring=0
 inoremap <expr><tab> pumvisible() ? "\<C-n>" :
       \ neosnippet#expandable_or_jumpable() ?
       \    "\<Plug>(neosnippet_expand_or_jump)" : "\<tab>"
-let g:deoplete#sources#clang#clang_header = '/usr/include/'
 if has("mac")
-  let g:deoplete#sources#clang#libclang_path = '/usr/local/Cellar/llvm/6.0.0/lib/libclang.dylib'
+  let g:deoplete#sources#clang#clang_header = '/usr/local/include/'
+  let g:deoplete#sources#clang#libclang_path = '/usr/local/Cellar/llvm/6.0.1/lib/libclang.dylib'
 elseif has("unix")
+  let g:deoplete#sources#clang#clang_header = '/usr/include/'
   let g:deoplete#sources#clang#libclang_path = '/usr/lib/libclang.so'
 endif
 
@@ -58,3 +59,15 @@ if has("mac")
 elseif has("unix")
   let g:previm_open_cmd = 'vivaldi-snapshot'
 endif
+
+"let g:livepreview_previewer = 'open -a Firefox'
+let g:livepreview_previewer = 'open -a Skim'
+
+au FileType plantuml command! OpenUml :!start chrome %
+
+" TwitVim
+let twitvim_browser_cmd = 'open' " for Mac
+let twitvim_force_ssl = 1
+let twitvim_count = 40
+
+let g:go_fmt_command = "goimports"

@@ -43,3 +43,6 @@ set sh=zsh
 tnoremap <silent> <ESC> <C-\><C-n>
 tnoremap <silent> jj <C-\><C-n>
 
+"折りたたみしない
+set foldmethod=syntax
+set foldlevel=100
