@@ -1,4 +1,4 @@
-# alias tmux='tmux -2'
+alias tmux='tmux -2'
 # alias ls='ls --color'
 # alias la='ls -a --color'
 # alias ll='ls -al'
@@ -32,9 +32,13 @@ alias ei='e ~/.emacs.d/init.el'
 # Ruby Develop tool
 alias be='bundle exec'
 
+alias prun='pipenv run'
+
 function gi(){
   curl -L -s https://www.gitignore.io/api/$@;
 }
 
 alias repos='ghq list -p | peco'
 alias repo='cd $(repos)'
+
+alias git='hub'
