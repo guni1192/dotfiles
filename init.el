@@ -6,6 +6,10 @@
   '(
     ;;;; for auto-complete
     auto-complete fuzzy popup pos-tip
+                  
+    ac-html
+    web-mode
+                  
 
     ;;;; flymake
     flycheck flymake-jslint
@@ -23,8 +27,12 @@
     powerline
 
     multi-term
+
+    ;;;; TeX
+    auctex-latexmk
     
     yasnippet
+    yasnippet-snippets
     smartparens
 
     madhat2r-theme
@@ -61,6 +69,12 @@
 (require 'powerline)
 (powerline-center-theme)
 
+;; auto-complete
+(require 'auto-complete)
+(require 'auto-complete-config)
+(ac-config-default)
+(ac-set-trigger-key "TAB")
+
 ;; 括弧補完
 (require 'smartparens-config)
 (smartparens-global-mode t)
@@ -69,6 +83,10 @@
 (require 'yasnippet)
 (yas-global-mode 1)
 
+(require 'auctex-latexmk)
+(auctex-latexmk-setup)
+
+(setq markdown-preview-stylesheets (list "https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/2.10.0/github-markdown.css"))
 
 ;; 環境を日本語、UTF-8にする
 (set-locale-environment nil)

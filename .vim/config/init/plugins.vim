@@ -52,6 +52,10 @@ call plug#begin('~/.vim/plugged')
     Plug 'roxma/vim-hug-neovim-rpc'
     " }}}
     " Markdown Preview
-    Plug 'shime/vim-livedown'
+    Plug 'plasticboy/vim-markdown'
+    Plug 'kannokanno/previm'
+    Plug 'tyru/open-browser.vim'
+    " Twitter
+    Plug 'twitvim/twitvim'
 call plug#end()
 

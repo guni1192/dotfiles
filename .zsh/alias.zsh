@@ -38,7 +38,8 @@ function gi(){
   curl -L -s https://www.gitignore.io/api/$@;
 }
 
-alias repos='ghq list -p | peco'
+# alias repos='ghq list -p | peco'
+alias repos='ghq list -p | fzf'
 alias repo='cd $(repos)'
 
 # alias git='hub'
