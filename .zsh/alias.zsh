@@ -42,6 +42,13 @@ function gi(){
 alias repos='ghq list -p | fzf'
 alias repo='cd $(repos)'
 
+alias o='$(omit | fzf)'
+function omitation() {
+  $(omit | fzf)
+}
+zle -N omitation
+bindkey '^k' omitation
+
 # alias git='hub'
 alias rb='RUST_BACKTRACE=1'
 alias cb='cargo build'
