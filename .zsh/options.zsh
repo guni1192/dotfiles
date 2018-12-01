@@ -130,24 +130,30 @@ bindkey -M menuselect 'l' vi-forward-char
 # ディレクトリの最後のスラッシュを自動で削除
 unsetopt AUTOREMOVESLASH
 
+export HISTFILE=${HOME}/.zsh_history
+export HISTSIZE=1000
+export SAVEHIST=100000
 
-function peco-history-selection() {
-    BUFFER=`history -n 1 | tail -r  | awk '!a[$0]++' | peco`
+setopt hist_ignore_dups
+setopt EXTENDED_HISTORY
+
+function fzf-history-selection() {
+    BUFFER=`history -n 1 | fzf`
     CURSOR=$#BUFFER
     zle reset-prompt
 }
 
-zle -N peco-history-selection
-bindkey '^R' peco-history-selection
+zle -N fzf-history-selection
+bindkey '^R' fzf-history-selection
 
-function peco-z-search
+function fzf-z-search
 {
-  which peco z > /dev/null
+  which fzf z > /dev/null
   if [ $? -ne 0 ]; then
-    echo "Please install peco and z"
+    echo "Please install fzf and z"
     return 1
   fi
-  local res=$(z | sort -rn | cut -c 12- | peco)
+  local res=$(z | sort -rn | cut -c 12- | fzf)
   if [ -n "$res" ]; then
     BUFFER+="cd $res"
     zle accept-line
@@ -155,5 +161,5 @@ function peco-z-search
     return 1
   fi
 }
-zle -N peco-z-search
-bindkey '^k^f' peco-z-search
+zle -N fzf-z-search
+bindkey '^k^f' fzf-z-search
