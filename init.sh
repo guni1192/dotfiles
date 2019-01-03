@@ -1,94 +1,83 @@
-if [ ! -e $HOME/.emacs.d/el-get/ ]; then
-    rm -r ~/.emacs.d/el-get
-fi
+#!/bin/bash
 
-if [ ! -e $HOME/.config ]; then
-    mkdir $HOME/.config
-fi
+set -eu
 
-# git clone https://github.com/dimitri/el-get.git ~/.emacs.d/el-get/
-# git clone https://github.com/rupa/z.git ~/.zsh.d
+setup_zsh() {
+  if [ -e $HOME/.zsh ]; then
+    rm -rf ~/.zsh
+  fi
+  ln -sv ~/dotfiles/.zsh ~/.zsh
+  ln -sv ~/.zsh/.zshrc ~/.zshrc
+  ln -sv ~/.zsh/.zshenv ~/.zshenv
+}
+
+setup_vim() {
+  # Vim
+  ln -s ~/dotfiles/.vimrc ~/.vimrc
+  if [ -e $HOME/.vim ]; then
+    rm -rf ~/.vim
+  fi
+  mkdir $HOME/.vim
+  ln -s ~/dotfiles/.vim/config ~/.vim/config
+  # NeoVim
+  ln -s ~/dotfiles/nvim ~/.config/nvim
+  # ideavim
+  ln -s ~/dotfiles/.ideavimrc ~/.ideavimrc
+
+}
+
+setup_emacs() {
+  if [ ! -e $HOME/.emacs.d ]; then
+    mkdir ~/.emacs.d
+  fi
+  ln -s ~/dotfiles/init.el ~/.emacs.d/init.el
+}
 
 if [ "$(expr substr $(uname -s) 1 5)" == 'Linux' ]; then
-    # Zsh
-    ln -s ~/dotfiles/.zsh ~/.zsh
-    ln -s ~/.zsh/.zshrc ~/.zshrc
-    ln -s ~/.zsh/.zshenv ~/.zshenv
-    
-    # ranger
-    ln -s ~/dotfiles/ranger ~/.config/ranger
-    # Vim
-    ln -s ~/dotfiles/.vimrc ~/.vimrc
-    if [ ! -e $HOME/.vim ]; then
-        mkdir $HOME/.vim
-    fi
-    ln -s ~/dotfiles/.vim/config ~/.vim/config
-    # NeoVim
-    ln -s ~/dotfiles/nvim ~/.config/nvim
-    # ideavim
-    ln -s ~/dotfiles/.ideavimrc ~/.ideavimrc
-    # Emacs
-    if [ ! -e $HOME/.emacs.d ]; then
-        mkdir ~/.emacs.d
-    fi
-    # ln -s ~/dotfiles/init.el ~/.emacs.d/init.el
+
+  if [ ! -e $HOME/.config ]; then
+    mkdir ~/.config
+  fi
+
+  setup_zsh
+
+  setup_vim
+
+  setup_emacs
+
+  cp ~/dotfiles/.gitconfig ~/.gitconfig
+
     # tmux
     ln -s ~/dotfiles/.tmux.conf ~/.tmux.conf
-    # stalonetray
-    ln -s ~/dotfiles/.stalonetrayrc ~/.stalonetrayrc
 
-    ln -s ~/dotfiles/bin ~/bin
-    read -p "Is this Display HiDPI?[y/n] " yn ;
+    ln -s ~/dotfiles/.Xresources ~/.Xresources
+
+    read -p "Do you use X11?[y/n] " yn ;
     case $yn in
-        [Yy]* ) {
-            ln -s ~/dotfiles/.Xresources ~/.Xresources
-        };;
-    [Nn]* ) {
-        ln -s ~/dotfiles/.Xresources ~/.Xresources
-    };;
-  esac
-
-  read -p "Do you use X11?[y/n] " yn ;
-  case $yn in
       [Yy]* ) {
-
-          # Xmonad
-          echo "Xmonad linking ..."
-          ln -s ~/dotfiles/.xmonad ~/.xmonad
-          if [ ! -e $HOME/.config ]; then
-              mkdir $HOME/.config
-          fi
-          # i3 Window Manager
-          echo "i3wm linking ..."
-          ln -s ~/dotfiles/i3 ~/.config/i3
+        # i3 Window Manager
+        echo "i3wm linking ..."
+        ln -s ~/dotfiles/i3 ~/.config/i3/
 
           # polybar
           echo "polybar linking ..."
-          ln -s ~/dotfiles/polybar ~/.config/polybar
-      };;
+          ln -s ~/dotfiles/polybar ~/.config/polybar/
+        };;
   esac
 
 elif [ "$(expr substr $(uname -s) 1 5)" == 'Darwin' ]; then
-    # Zsh
-    ln -s ~/dotfiles/.zsh ~/.zsh
-    ln -s ~/.zsh/.zshrc ~/.zshrc
-    ln -s ~/.zsh/.zshenv ~/.zshenv
-    # ranger
-    ln -s ~/dotfiles/ranger ~/.config/ranger
-    # NeoVim
-    ln -s ~/dotfiles/nvim ~/.config/nvim
-    # ideavim
-    ln -s ~/dotfiles/.ideavimrc ~/.ideavimrc
-    # Emacs
-    if [ ! -e $HOME/.emacs.d ]; then
-        mkdir ~/.emacs.d
-    fi
-    ln -s ~/dotfiles/init.el ~/.emacs.d/init.el
-    # tmux
-    ln -s ~/dotfiles/.tmux.conf ~/.tmux.conf
+
+  setup_zsh
+
+  setup_vim
+
+  setup_emacs
+
+  # tmux
+  ln -s ~/dotfiles/.tmux.conf ~/.tmux.conf
 
 else
-    echo "Your platform ($(uname -a)) is not supported."
-    exit 1
+  echo "Your platform ($(uname -a)) is not supported."
+  exit 1
 fi
 
