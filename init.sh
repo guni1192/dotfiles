@@ -6,7 +6,7 @@ setup_zsh() {
   if [ -e $HOME/.zsh ]; then
     rm -rf ~/.zsh
   fi
-  ln -sv ~/dotfiles/.zsh ~/.zsh
+  ln -sv ~/dotfiles/zsh ~/.zsh
   ln -sv ~/.zsh/.zshrc ~/.zshrc
   ln -sv ~/.zsh/.zshenv ~/.zshenv
 }
