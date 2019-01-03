@@ -39,7 +39,7 @@ inoremap <expr><tab> pumvisible() ? "\<C-n>" :
       \    "\<Plug>(neosnippet_expand_or_jump)" : "\<tab>"
 if has("mac")
   let g:deoplete#sources#clang#clang_header = '/usr/local/include/'
-  let g:deoplete#sources#clang#libclang_path = '/usr/local/Cellar/llvm/6.0.1/lib/libclang.dylib'
+  let g:deoplete#sources#clang#libclang_path = '/Library/Developer/CommandLineTools/usr/lib/libclang.dylib'
 elseif has("unix")
   let g:deoplete#sources#clang#clang_header = '/usr/include/'
   let g:deoplete#sources#clang#libclang_path = '/usr/lib/libclang.so'
@@ -68,3 +68,10 @@ let g:rustfmt_autosave = 1
 
 " vim-racer
 let g:racer_cmd = "~/.cargo/bin/racer"
+
+" NERDCommenter
+let g:NERDCreateDefaultMappings = 0
+let NERDSpaceDelims = 1
+
+nmap <Leader>/ <Plug>NERDCommenterToggle
+vmap <Leader>/ <Plug>NERDCommenterToggle
