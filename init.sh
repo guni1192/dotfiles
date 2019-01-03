@@ -18,7 +18,7 @@ setup_vim() {
     rm -rf ~/.vim
   fi
   mkdir $HOME/.vim
-  ln -s ~/dotfiles/.vim/config ~/.vim/config
+  ln -s ~/dotfiles/vim/config ~/.vim/config
   # NeoVim
   ln -s ~/dotfiles/nvim ~/.config/nvim
   # ideavim
