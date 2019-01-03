@@ -4,7 +4,7 @@ alias tmux='tmux -2'
 # alias ll='ls -al'
 alias ls="exa -s=type"
 alias la="exa -a"
-alias ll="exa -al --git"
+alias ll="exa -alg --git"
 alias tree="exa -T"
 
 # alias cat='ccat'
@@ -15,13 +15,14 @@ alias df='df -h'
 setopt auto_cd
 function chpwd() { ls }
 
-# alias vim='nvim'
-alias vi='nvim'
+# Neovim
 alias ni='nvim $NVIM/init.vim'
 alias nd='nvim $NVIM/dein.toml'
 alias ndl='nvim $NVIM/dein_lazy.toml'
+
+# shell
 alias ez='exec zsh'
-alias ve='source venv/bin/activate'
+
 alias xr='xrdb ~/.Xresources'
 
 # Emacs Settiing
@@ -29,19 +30,23 @@ alias emacs='emacs -nw'
 alias e='emacs'
 alias ei='e ~/.emacs.d/init.el'
 
-# Ruby Develop tool
+# Ruby
 alias be='bundle exec'
 
+# Python
 alias prun='pipenv run'
+alias ve='source venv/bin/activate'
 
+# gitignore
 function gi(){
   curl -L -s https://www.gitignore.io/api/$@;
 }
 
-# alias repos='ghq list -p | peco'
+# ghq
 alias repos='ghq list -p | fzf'
 alias repo='cd $(repos)'
 
+# omit
 alias o='$(omit | fzf)'
 function omitation() {
   $(omit | fzf)
@@ -50,6 +55,9 @@ zle -N omitation
 bindkey '^k' omitation
 
 # alias git='hub'
-alias rb='RUST_BACKTRACE=1'
+alias rbs="RUST_BACKTRACE=1"
 alias cb='cargo build'
 alias cr='cargo run'
+
+# Man for jp
+alias jan='MANPATH=/usr/share/man/ja_JP.UTF-8/ man'
