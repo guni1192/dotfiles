@@ -45,7 +45,7 @@ if [ "$(expr substr $(uname -s) 1 5)" == 'Linux' ]; then
 
   setup_emacs
 
-  cp ~/dotfiles/.gitconfig ~/.gitconfig
+  cp ~/dotfiles/gitconfig ~/.gitconfig
 
     # tmux
     ln -s ~/dotfiles/.tmux.conf ~/.tmux.conf
@@ -72,6 +72,8 @@ elif [ "$(expr substr $(uname -s) 1 5)" == 'Darwin' ]; then
   setup_vim
 
   setup_emacs
+
+  cp ~/dotfiles/gitconfig ~/.gitconfig
 
   # tmux
   ln -s ~/dotfiles/.tmux.conf ~/.tmux.conf
