@@ -1,15 +1,14 @@
 ;; パッケージ情報の更新
-;(package-refresh-contents)
+
 
 ;; インストールするパッケージ
 (defvar my/favorite-packages
   '(
     ;;;; for auto-complete
     auto-complete fuzzy popup pos-tip
-                  
+
     ac-html
     web-mode
-                  
 
     ;;;; flymake
     flycheck flymake-jslint
@@ -61,7 +60,8 @@
 ;; my/favorite-packagesからインストールしていないパッケージをインストール
 (dolist (package my/favorite-packages)
   (unless (package-installed-p package)
-    (package-install package)))
+    (package-refresh-contents))
+    (package-install package))
 
 ;; emacs theme
 (load-theme 'madhat2r t)
