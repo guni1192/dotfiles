@@ -8,9 +8,9 @@
 ## init
 
 ```bash
-$ git clone git@github.com:guni973/dotfiles.git
+$ git clone git@github.com:guni1192/dotfiles.git
 $ cd dotfiles
-$ init.sh
+$ ./init.sh
 ```
 
 ## Neovim
@@ -46,3 +46,15 @@ $ cargo install racer
 - WM: i3
 - Bar: polybar
 - Terminal: rxvt-unicode
+
+```
+$ yay -S i3 polybar rxvt-unicode
+```
+
+## Other
+
+fzf, ghq
+
+```
+$ yay -S fzf ghq
+```
