@@ -18,4 +18,5 @@ else
     git clone https://github.com/b4b4r07/zplug ~/.zplug
 fi
 
-zplug load --verbose
+# zplug load --verbose
+zplug load

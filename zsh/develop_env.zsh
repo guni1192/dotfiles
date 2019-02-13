@@ -15,3 +15,4 @@ export PATH=$PATH:$GOPATH/bin
 
 export PATH=$PATH:$HOME/bin
 export GO111MODULE=on
+export PATH="/usr/local/opt/curl/bin:$PATH"
