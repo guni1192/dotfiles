@@ -22,7 +22,14 @@ $ ./init.sh
 ### Golang
 
 ```
-$ go get -u golang.org/x/tools/cmd/gopls
+$ go get -u github.com/sourcegraph/go-langserver
+```
+
+### Rust
+
+```
+$ rustup update
+$ rustup component add rls rust-analysis rust-src
 ```
 
 ## Linux Desktop
@@ -32,7 +39,7 @@ $ go get -u golang.org/x/tools/cmd/gopls
 - Terminal: rxvt-unicode
 
 ```
-$ yay -S i3 polybar rxvt-unicode
+$ yay -S i3 polybar rxvt-unicode dmenu
 ```
 
 ## Other
