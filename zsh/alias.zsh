@@ -15,20 +15,10 @@ alias df='df -h'
 setopt auto_cd
 function chpwd() { ls }
 
-# Neovim
-alias ni='nvim $NVIM/init.vim'
-alias nd='nvim $NVIM/dein.toml'
-alias ndl='nvim $NVIM/dein_lazy.toml'
-
 # shell
 alias ez='exec zsh'
 
 alias xr='xrdb ~/.Xresources'
-
-# Emacs Settiing
-alias emacs='emacs -nw'
-alias e='emacs'
-alias ei='e ~/.emacs.d/init.el'
 
 # Ruby
 alias be='bundle exec'
@@ -46,16 +36,9 @@ function gi(){
 alias repos='ghq list -p | fzf'
 alias repo='cd $(repos)'
 
-# omit
-alias o='$(omit | fzf)'
-function omitation() {
-  $(omit | fzf)
-}
-zle -N omitation
-bindkey '^k' omitation
-
 # alias git='hub'
 alias rbs="RUST_BACKTRACE=1"
+alias rbf="RUST_BACKTRACE=full"
 alias cb='cargo build'
 alias cr='cargo run'
 
