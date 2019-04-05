@@ -61,7 +61,7 @@ Plug 'rust-lang/rust.vim'
 "Plug 'plasticboy/vim-markdown'
 Plug 'kannokanno/previm'
 Plug 'tyru/open-browser.vim'
-Plug 'fatih/vim-go'
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'nsf/gocode', {'rtp': 'vim/'}
 Plug 'nvie/vim-flake8'
 Plug 'prabirshrestha/async.vim'
