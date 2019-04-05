@@ -18,10 +18,3 @@ let g:airline#extensions#whitespace#mixed_indent_algo = 1
 let g:airline_theme = 'badwolf'
 nmap <C-p> <Plug>AirlineSelectPrevTab
 nmap <C-n> <Plug>AirlineSelectNextTab
-
-" rust.vim
-let g:rustfmt_autosave = 1
-
-" need :GoInstallBinary
-let g:go_fmt_command = "goimports"
-

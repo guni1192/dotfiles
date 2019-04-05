@@ -17,29 +17,13 @@ $ ./init.sh
 
 - Package Manager: vim-plug
 
-### deoplete.vim
+## LSP
 
-```bash
-$ sudo pacman -S python-neovim python2-neovim
-```
-
-### deoplete-clang
+### Golang
 
 ```
-$ sudo pacman -S clang
+$ go get -u golang.org/x/tools/cmd/gopls
 ```
-
-### vim-racer
-
-```bash
-$ cargo install racer
-```
-
-## Zsh
-
-
-## PlantUML
-
 
 ## Linux Desktop
 
@@ -58,3 +42,4 @@ fzf, ghq
 ```
 $ yay -S fzf ghq
 ```
+

@@ -13,6 +13,7 @@ Plug 'junegunn/vim-plug', {'dir': '~/.vim/plugged/vim-plug/autoload'}
 Plug 'scrooloose/nerdtree', { 'on':  ['NERDTreeToggle'] }
 Plug 'vim-jp/vimdoc-ja'
 Plug 'Shougo/denite.nvim'
+Plug 'cohama/lexima.vim'
 " }}}
 
 " ColorScheme {{{
@@ -33,16 +34,19 @@ Plug 'justinmk/vim-syntax-extra'
 " }}}
 
 " Golang {{{
-Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 " }}}
 
 " Rust {{{
-Plug 'rust-lang/rust.vim'
 "}}}
 
 " LSP {{{
 Plug 'prabirshrestha/vim-lsp'
 Plug 'prabirshrestha/async.vim'
+Plug 'prabirshrestha/async.vim'
+Plug 'prabirshrestha/vim-lsp'
+Plug 'prabirshrestha/asyncomplete.vim'
+Plug 'prabirshrestha/asyncomplete-lsp.vim'
+Plug 'natebosch/vim-lsc'
 " }}}
 
 call plug#end()
