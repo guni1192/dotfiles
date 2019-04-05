@@ -13,7 +13,6 @@ setup_zsh() {
 
 setup_vim() {
   # Vim
-  ln -s ~/dotfiles/.vimrc ~/.vimrc
   if [ -e $HOME/.vim ]; then
     rm -rf ~/.vim
   fi
@@ -26,13 +25,6 @@ setup_vim() {
 
 }
 
-setup_emacs() {
-  if [ ! -e $HOME/.emacs.d ]; then
-    mkdir ~/.emacs.d
-  fi
-  ln -s ~/dotfiles/init.el ~/.emacs.d/init.el
-}
-
 if [ "$(expr substr $(uname -s) 1 5)" == 'Linux' ]; then
 
   if [ ! -e $HOME/.config ]; then
@@ -43,26 +35,24 @@ if [ "$(expr substr $(uname -s) 1 5)" == 'Linux' ]; then
 
   setup_vim
 
-  setup_emacs
-
   cp ~/dotfiles/gitconfig ~/.gitconfig
 
-    # tmux
-    ln -s ~/dotfiles/.tmux.conf ~/.tmux.conf
+  # tmux
+  ln -s ~/dotfiles/.tmux.conf ~/.tmux.conf
 
-    ln -s ~/dotfiles/.Xresources ~/.Xresources
+  read -p "Do you use X11?[y/n] " yn ;
+  case $yn in
+    [Yy]* ) {
+      # i3 Window Manager
+      echo "i3wm linking ..."
+      ln -s ~/dotfiles/i3 ~/.config/i3/
+      echo "Xresources linking ..."
+      ln -s ~/dotfiles/.Xresources ~/.Xresources
 
-    read -p "Do you use X11?[y/n] " yn ;
-    case $yn in
-      [Yy]* ) {
-        # i3 Window Manager
-        echo "i3wm linking ..."
-        ln -s ~/dotfiles/i3 ~/.config/i3/
-
-          # polybar
-          echo "polybar linking ..."
-          ln -s ~/dotfiles/polybar ~/.config/polybar/
-        };;
+      # polybar
+      echo "polybar linking ..."
+      ln -s ~/dotfiles/polybar ~/.config/polybar/
+    };;
   esac
 
 elif [ "$(expr substr $(uname -s) 1 5)" == 'Darwin' ]; then
@@ -70,8 +60,6 @@ elif [ "$(expr substr $(uname -s) 1 5)" == 'Darwin' ]; then
   setup_zsh
 
   setup_vim
-
-  setup_emacs
 
   cp ~/dotfiles/gitconfig ~/.gitconfig
 
