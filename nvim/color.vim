@@ -4,5 +4,5 @@ endif
 
 " syntax color setting
 syntax on
-colorscheme badwolf
+colorscheme kalisi
 set background=dark
