@@ -37,6 +37,7 @@ Plug 'justinmk/vim-syntax-extra'
 " }}}
 
 " Rust {{{
+Plug 'rust-lang/rust.vim'
 "}}}
 
 " LSP {{{
