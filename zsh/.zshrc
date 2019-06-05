@@ -4,3 +4,5 @@ source ~/.zsh/prompt.zsh
 source ~/.zsh/alias.zsh
 source ~/.zsh/develop_env.zsh
 # clear
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

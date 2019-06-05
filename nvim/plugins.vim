@@ -12,8 +12,9 @@ call plug#begin('~/.vim/plugged')
 Plug 'junegunn/vim-plug', {'dir': '~/.vim/plugged/vim-plug/autoload'}
 Plug 'scrooloose/nerdtree', { 'on':  ['NERDTreeToggle'] }
 Plug 'vim-jp/vimdoc-ja'
-Plug 'Shougo/denite.nvim'
 Plug 'cohama/lexima.vim'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
 " }}}
 
 " ColorScheme {{{

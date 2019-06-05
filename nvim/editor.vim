@@ -1,5 +1,5 @@
 "行番号の表示"
-"set number
+set number
 "tabはスペースつ分
 set tabstop=2
 set softtabstop=2
