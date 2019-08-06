@@ -44,3 +44,6 @@ alias cr='cargo run'
 
 # Man for jp
 alias jan='MANPATH=/usr/share/man/ja_JP.UTF-8/ man'
+
+# jq less
+alias jql='jq -C . | less -R'

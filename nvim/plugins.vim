@@ -15,6 +15,7 @@ Plug 'vim-jp/vimdoc-ja'
 Plug 'cohama/lexima.vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
+
 " }}}
 
 " ColorScheme {{{
@@ -32,6 +33,8 @@ Plug 'tmux-plugins/vim-tmux'
 Plug 'chr4/nginx.vim'
 Plug 'sngn/vim-i3blocks-syntax'
 Plug 'justinmk/vim-syntax-extra'
+Plug 'b4b4r07/vim-hcl'
+
 " }}}
 
 " Golang {{{
