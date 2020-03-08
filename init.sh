@@ -12,8 +12,11 @@ setup_zsh() {
 }
 
 setup_vim() {
-  # NeoVim
-  ln -s ~/dotfiles/nvim ~/.config/nvim
+  ln -s ~/dotfiles/vimrc ~/.vimrc
+  if [ ! -e ~/.vim]; then
+mkdir  ~/.vim
+fi
+  ln -s ~/dotfiles/vim ~/.vim/config
 
 }
 

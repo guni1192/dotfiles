@@ -1,22 +1,13 @@
-"行番号の表示"
 set number
-"tabはスペースつ分
-set tabstop=2
-set softtabstop=2
-"tabで半角スペースで挿入する"
+set tabstop=4
+set softtabstop=4
 set expandtab
-"Vimが自動で生成するtabをスペース4つ分にする"
-set shiftwidth=2
-"改行時、自動でインデント"
+set shiftwidth=4
 set smartindent
-"オートインデントをオン
 set autoindent
-"空白文字の可視化"
 set list
-"ファイルの保存をしていなくても別のファイルを開けるようにする"
 set hidden
 set history=50
-"文字のないところにカーソル移動できるようにする"
 set virtualedit=block
 "hjklの折り返し設定
 set whichwrap=b,s,h,l,<,>,[,]
@@ -29,12 +20,9 @@ set pumheight=10
 set showmode
 set wildmode=list:full
 set encoding=utf-8
-
 "Help Language
 set helplang=ja,en
-
 set cursorline
-set mouse=a
 
 inoremap jj <ESC>`^
 
