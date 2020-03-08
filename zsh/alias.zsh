@@ -1,13 +1,8 @@
 alias tmux='tmux -2'
-# alias ls='ls --color'
-# alias la='ls -a --color'
-# alias ll='ls -al'
-alias ls="exa -s=type"
-alias la="exa -a"
-alias ll="exa -alg --git"
-alias tree="exa -T"
+alias ls='ls --color'
+alias la='ls -a --color'
+alias ll='ls -al'
 
-# alias cat='ccat'
 alias grep='grep --color'
 alias df='df -h'
 
@@ -15,17 +10,10 @@ alias df='df -h'
 setopt auto_cd
 function chpwd() { ls }
 
-# shell
-alias ez='exec zsh'
-
 alias xr='xrdb ~/.Xresources'
 
 # Ruby
 alias be='bundle exec'
-
-# Python
-alias prun='pipenv run'
-alias ve='source venv/bin/activate'
 
 # gitignore
 function gi(){
@@ -36,14 +24,10 @@ function gi(){
 alias repos='ghq list -p | fzf'
 alias repo='cd $(repos)'
 
-# alias git='hub'
 alias rbs="RUST_BACKTRACE=1"
 alias rbf="RUST_BACKTRACE=full"
-alias cb='cargo build'
-alias cr='cargo run'
-
-# Man for jp
-alias jan='MANPATH=/usr/share/man/ja_JP.UTF-8/ man'
 
 # jq less
 alias jql='jq -C . | less -R'
+
+alias k='kubectl'
