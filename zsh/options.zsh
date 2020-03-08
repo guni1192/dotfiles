@@ -17,10 +17,6 @@ zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([%0-9]#)*=0=01;31
 # コマンドにsudoを付けても補完
 zstyle ':completion:*:sudo:*' command-path /usr/local/sbin /usr/local/bin /usr/sbin /usr/bin /sbin /bin /usr/X11R6/bin
 
-# zsh内蔵エディタを使う
-autoload -U zcalc
-autoload zed
-
 # 予測入力させる
 autoload predict-on
 
@@ -127,7 +123,6 @@ bindkey -M menuselect 'j' vi-down-line-or-history
 bindkey -M menuselect 'k' vi-up-line-or-history
 bindkey -M menuselect 'l' vi-forward-char
 
-# ディレクトリの最後のスラッシュを自動で削除
 unsetopt AUTOREMOVESLASH
 
 export HISTFILE=${HOME}/.zsh_history
@@ -145,21 +140,3 @@ function fzf-history-selection() {
 
 zle -N fzf-history-selection
 bindkey '^R' fzf-history-selection
-
-function fzf-z-search
-{
-  which fzf z > /dev/null
-  if [ $? -ne 0 ]; then
-    echo "Please install fzf and z"
-    return 1
-  fi
-  local res=$(z | sort -rn | cut -c 12- | fzf)
-  if [ -n "$res" ]; then
-    BUFFER+="cd $res"
-    zle accept-line
-  else
-    return 1
-  fi
-}
-zle -N fzf-z-search
-bindkey '^k^f' fzf-z-search
