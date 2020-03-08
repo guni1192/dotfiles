@@ -5,7 +5,7 @@
 - macOS
 - ArchLinux
 
-## init
+## Getting Started
 
 ```bash
 $ git clone git@github.com:guni1192/dotfiles.git
@@ -18,12 +18,6 @@ $ ./init.sh
 - Package Manager: vim-plug
 
 ## LSP
-
-### Golang
-
-```
-$ go get -u github.com/sourcegraph/go-langserver
-```
 
 ### Rust
 
@@ -42,11 +36,20 @@ $ rustup component add rls rust-analysis rust-src
 $ yay -S i3 polybar rxvt-unicode dmenu
 ```
 
-## Other
+## Develop tools
+
+### macOS
+
+```
+$ brew install fzf ghq
+```
+
+### ArchLinux
 
 fzf, ghq
 
 ```
 $ yay -S fzf ghq
 ```
+
 
