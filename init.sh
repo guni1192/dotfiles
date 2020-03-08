@@ -14,8 +14,6 @@ setup_zsh() {
 setup_vim() {
   # NeoVim
   ln -s ~/dotfiles/nvim ~/.config/nvim
-  # ideavim
-  ln -s ~/dotfiles/.ideavimrc ~/.ideavimrc
 
 }
 
