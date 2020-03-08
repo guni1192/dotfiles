@@ -21,3 +21,4 @@ inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 inoremap <expr> <cr>    pumvisible() ? "\<C-y>" : "\<cr>"
 
 let g:rustfmt_autosave = 1
+let g:clang_format#auto_format = 1

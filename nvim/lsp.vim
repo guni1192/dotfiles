@@ -1,15 +1,12 @@
 let g:lsp_async_completion = 1
 
-if executable('gopls')
-  augroup LspGo
-    au!
-    autocmd User lsp_setup call lsp#register_server({
+if executable('go-langserver')
+    au User lsp_setup call lsp#register_server({
         \ 'name': 'go-langserver',
         \ 'cmd': {server_info->['go-langserver', '-gocodecompletion']},
         \ 'whitelist': ['go'],
         \ })
-    autocmd FileType go setlocal omnifunc=lsp#complete
-  augroup END
+    autocmd BufWritePre *.go LspDocumentFormatSync
 endif
 
 if executable('rls')

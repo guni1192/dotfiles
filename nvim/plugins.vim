@@ -15,7 +15,7 @@ Plug 'vim-jp/vimdoc-ja'
 Plug 'cohama/lexima.vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
-
+Plug 'rhysd/vim-clang-format'
 " }}}
 
 " ColorScheme {{{
