@@ -5,5 +5,8 @@ rm $HOME/.zshrc
 rm $HOME/.zshenv
 
 rm $HOME/.tmux.conf
-rm $HOME/.config/nvim
 
+rm -rf $HOME/.vim/
+rm -rf $HOME/.vimrc
+
+rm $HOME/.gitconfig
