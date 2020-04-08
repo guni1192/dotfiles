@@ -5,9 +5,7 @@ zplug "zsh-users/zsh-autosuggestions"
 zplug "zsh-users/zsh-syntax-highlighting"
 zplug "zsh-users/zsh-completions"
 
-# プラグインを読み込み、コマンドにパスを通す
 if [ -e "${HOME}/.zplug" ]; then
-    # Install plugins if there are plugins that have not been installed
     if ! zplug check --verbose; then
         printf "Install? [y/N]: "
         if read -q; then
