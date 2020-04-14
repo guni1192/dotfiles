@@ -1,5 +1,14 @@
 alias tmux='tmux -2'
-alias ls='ls --color'
+
+case ${OSTYPE} in
+    darwin*)
+        alias ls='ls -G'
+        ;;
+    linux*)
+        alias ls='ls --color'
+        ;;
+esac
+
 alias la='ls -a --color'
 alias ll='ls -al'
 
