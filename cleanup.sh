@@ -10,3 +10,4 @@ rm -rf $HOME/.vim/
 rm -rf $HOME/.vimrc
 
 rm $HOME/.gitconfig
+rm $HOME/.config/alacritty

@@ -34,9 +34,12 @@ if [ "$(expr substr $(uname -s) 1 5)" == 'Linux' ]; then
             echo "Xresources linking ..."
             ln -sv ~/dotfiles/.Xresources ~/.Xresources
 
-        # polybar
-        echo "polybar linking ..."
-        ln -sv ~/dotfiles/polybar ~/.config/polybar/
+            echo "alacritty linking ..."
+            ln -sv ~/dotfiles/alacritty ~/.config/alacritty
+
+            # polybar
+            echo "polybar linking ..."
+            ln -sv ~/dotfiles/polybar ~/.config/polybar/
         };;
     esac
 
