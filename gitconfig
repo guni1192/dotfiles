@@ -1,6 +1,8 @@
+[user]
+  email = iiguni.tks@gmail.com
+  name = Takashi IIGUNI
 [ghq]
   root = ~/.ghq/
-  root = ~/go/src
 [alias]
   s = status
   b = branch
