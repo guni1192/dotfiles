@@ -32,4 +32,7 @@ augroup Myhighlight
     autocmd VimEnter,ColorScheme * highlight NonText ctermbg=none 
 augroup END
 
-
+augroup PythonLspAutoFormatting
+    autocmd!
+    autocmd BufWritePre *.py LspDocumentFormatSync
+augroup END

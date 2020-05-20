@@ -14,4 +14,4 @@ export GOPATH=$HOME/go
 export PATH=$PATH:$GOPATH/bin
 export GO111MODULE=auto
 
-
+export PATH="$HOME/.local/bin:$PATH"
