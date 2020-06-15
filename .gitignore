@@ -11,6 +11,7 @@ ranger/history
 zsh/.zcompcache
 zsh/.zcompdump
 zsh/.zsh_history
+zsh/platform_dependent.zsh
 
 ranger/*
 !rc.conf
