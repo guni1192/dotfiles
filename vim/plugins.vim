@@ -37,6 +37,9 @@ Plug 'b4b4r07/vim-hcl'
 
 " }}}
 
+" Python {{{
+Plug 'ryanolsonx/vim-lsp-python'
+" }}}
 " Golang {{{
 " }}}
 

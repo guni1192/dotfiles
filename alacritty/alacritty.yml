@@ -1,5 +1,5 @@
 env:
-  TERM: xterm-256coloer
+  TERM: xterm-256color
 
 colors:
   primary:
@@ -50,7 +50,8 @@ cursor:
 key_bindings:
   - { key: Paste,                                action: Paste          }
   - { key: Copy,                                 action: Copy           }
-  - { key: L,         mods: Control,             action: ClearLogNotice }
+  # - { key: L,         mods: Control,             action: ClearLogNotice }
+  - { key: L,         mods: Control,             chars: "\x0c" }
   - { key: PageUp,    mods: Shift,   mode: ~Alt, action: ScrollPageUp,  }
   - { key: PageDown,  mods: Shift,   mode: ~Alt, action: ScrollPageDown }
   - { key: Home,      mods: Shift,   mode: ~Alt, action: ScrollToTop,   }
