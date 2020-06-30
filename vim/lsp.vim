@@ -1,9 +1,9 @@
 let g:lsp_async_completion = 1
 
-if executable('go-langserver')
+if executable('gopls')
     au User lsp_setup call lsp#register_server({
-        \ 'name': 'go-langserver',
-        \ 'cmd': {server_info->['go-langserver', '-gocodecompletion']},
+        \ 'name': 'gopls',
+        \ 'cmd': {server_info->['gopls']},
         \ 'whitelist': ['go'],
         \ })
     autocmd BufWritePre *.go LspDocumentFormatSync
