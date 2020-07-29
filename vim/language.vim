@@ -10,7 +10,7 @@ augroup FileTypeSetting
 augroup END
 
 augroup FileTypeIndent
-    autocmd BufNewFile,BufRead *.rs   setlocal tabstop=4 softtabstop=4 shiftwidth=4 noexpandtab
+    autocmd BufNewFile,BufRead *.rs   setlocal tabstop=4 softtabstop=4 shiftwidth=4
     autocmd BufNewFile,BufRead *.py   setlocal tabstop=4 softtabstop=4 shiftwidth=4
     autocmd BufNewFile,BufRead *.go   setlocal tabstop=4 softtabstop=4 shiftwidth=4 noexpandtab
     autocmd BufNewFile,BufRead *.c    setlocal tabstop=4 softtabstop=4 shiftwidth=4
@@ -32,9 +32,4 @@ augroup Myhighlight
     autocmd VimEnter,ColorScheme * highlight SignColumn ctermbg=none
     autocmd VimEnter,ColorScheme * highlight VertSplit ctermbg=none
     autocmd VimEnter,ColorScheme * highlight NonText ctermbg=none 
-augroup END
-
-augroup PythonLspAutoFormatting
-    autocmd!
-    autocmd BufWritePre *.py LspDocumentFormatSync
 augroup END
