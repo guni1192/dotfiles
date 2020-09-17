@@ -21,8 +21,8 @@ Plug 'rhysd/vim-clang-format'
 " ColorScheme {{{
 Plug 'flazz/vim-colorschemes'
 Plug 'rafi/awesome-vim-colorschemes'
-"Plug 'vim-airline/vim-airline'
-"Plug 'vim-airline/vim-airline-themes'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 Plug 'sjl/badwolf'
 " }}}
 
@@ -44,13 +44,12 @@ Plug 'b4b4r07/vim-hcl'
 " }}}
 
 " Rust {{{
-Plug 'rust-lang/rust.vim'
+"Plug 'rust-lang/rust.vim'
 "}}}
 
 " LSP {{{
 Plug 'prabirshrestha/vim-lsp'
 Plug 'mattn/vim-lsp-settings'
-Plug 'prabirshrestha/async.vim'
 Plug 'prabirshrestha/async.vim'
 Plug 'prabirshrestha/asyncomplete.vim'
 Plug 'prabirshrestha/asyncomplete-lsp.vim'

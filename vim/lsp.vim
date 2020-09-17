@@ -12,10 +12,10 @@ function! s:on_lsp_buffer_enabled() abort
     nmap <buffer> K <plug>(lsp-hover)
 endfunction
 
-"augroup lsp_install
-"    au!
-"    autocmd User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
-"augroup END
+augroup lsp_install
+    au!
+    autocmd User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
+augroup END
 
 let g:lsp_async_completion = 1
 
@@ -26,7 +26,6 @@ if executable('gopls')
         \ 'whitelist': ['go'],
         \ })
     autocmd BufWritePre *.go LspDocumentFormatSync
-    autocmd FileType go setlocal omnifunc=lsp#complete
 endif
 
 if executable('rls')
@@ -35,6 +34,7 @@ if executable('rls')
         \ 'cmd': {server_info->['rustup', 'run', 'stable', 'rls']},
         \ 'whitelist': ['rust'],
         \ })
+    autocmd BufWritePre *.rs LspDocumentFormatSync
 endif
 
 if executable('clangd')
