@@ -40,5 +40,10 @@ alias rbf="RUST_BACKTRACE=full"
 alias jql='jq -C . | less -R'
 
 alias k='kubectl'
+alias kgp='kubectl get pods'
+alias kgs='kubectl get service'
+alias kgi='kubectl get ingress'
+
+alias kctx='kubectx'
 
 alias az='docker run --rm -it -v ${HOME}/.kube/:/root/.kube/ -v ${HOME}/.azure/:/root/.azure/ -v ${HOME}/.ssh:/root/.ssh mcr.microsoft.com/azure-cli az'
