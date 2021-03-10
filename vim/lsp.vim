@@ -17,6 +17,8 @@ augroup lsp_install
     autocmd User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
 augroup END
 
+let g:asyncomplete_auto_popup = 1
+
 let g:lsp_async_completion = 1
 
 if executable('gopls')
@@ -28,14 +30,24 @@ if executable('gopls')
     autocmd BufWritePre *.go LspDocumentFormatSync
 endif
 
-if executable('rls')
+"if executable('rls')
+"    au User lsp_setup call lsp#register_server({
+"        \ 'name': 'rls',
+"        \ 'cmd': {server_info->['rustup', 'run', 'stable', 'rls']},
+"        \ 'whitelist': ['rust'],
+"        \ })
+"    autocmd BufWritePre *.rs LspDocumentFormatSync
+"endif
+
+if executable('rust-analyzer')
     au User lsp_setup call lsp#register_server({
-        \ 'name': 'rls',
-        \ 'cmd': {server_info->['rustup', 'run', 'stable', 'rls']},
+        \ 'name': 'rust-analyzer',
+        \ 'cmd': {server_info->['rustup', 'run', 'stable', 'rust-analyzer']},
         \ 'whitelist': ['rust'],
         \ })
     autocmd BufWritePre *.rs LspDocumentFormatSync
 endif
+
 
 if executable('clangd')
     au User lsp_setup call lsp#register_server({
