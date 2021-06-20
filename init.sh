@@ -13,10 +13,14 @@ setup_zsh() {
 
 setup_vim() {
     ln -sv ~/dotfiles/vimrc ~/.vimrc
-    if [ ! -e ~/.vim ]; then
-        mkdir  ~/.vim
-    fi
+    rm -rf ~/.vim/config
+    mkdir -p ~/.vim
     ln -sv ~/dotfiles/vim ~/.vim/config
+}
+
+setup_neovim() {
+    mkdir -p ~/.config/nvim
+    ln -sv ~/dotfiles/vimrc ~/.config/nvim/init.vim
 }
 
 if [ "$(expr substr $(uname -s) 1 5)" == 'Linux' ]; then
@@ -45,7 +49,6 @@ if [ "$(expr substr $(uname -s) 1 5)" == 'Linux' ]; then
 
 elif [ "$(expr substr $(uname -s) 1 5)" == 'Darwin' ]; then
     echo "setup macOS"
-
 else
     echo "Your platform ($(uname -a)) is not supported."
     exit 1
@@ -53,7 +56,7 @@ fi
 
 setup_zsh
 setup_vim
+setup_nvim
 
 ln -sv ~/dotfiles/gitconfig ~/.gitconfig
 ln -sv ~/dotfiles/.tmux.conf ~/.tmux.conf
-
