@@ -4,7 +4,7 @@ if [ -e "${HOME}/.zplug" ]; then
         echo; zplug install
     fi
 else
-    git clone https://github.com/b4b4r07/zplug ~/.zplug
+    git clone https://github.com/zplug/zplug ~/.zplug
 fi
 
 # zplug plugins

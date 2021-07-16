@@ -17,7 +17,7 @@ RUN useradd guni -s /usr/bin/zsh -m -d /home/guni
 
 USER guni
 
-RUN git clone https://github.com/b4b4r07/zplug ~/.zplug
+RUN git clone https://github.com/zplug/zplug ~/.zplug
 
 WORKDIR /home/guni/dotfiles
 
