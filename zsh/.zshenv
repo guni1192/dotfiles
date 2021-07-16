@@ -1,17 +1,15 @@
-## General
-export TERM="xterm-256color"
-export LANG='en_US.UTF-8'
+# General
+export TERM=xterm-256color
+export LANG=en_US.UTF-8
 export LC_ALL=$LANG
+export EDITOR=vim
 
 # Shell
 export ZDOTDIR="${HOME}/.zsh"
 
-# Rust
-export PATH="$HOME/.cargo/bin:$PATH"
-
 # Go
 export GOPATH=$HOME/go
 export PATH=$PATH:$GOPATH/bin
-export GO111MODULE=auto
+# export GO111MODULE=auto
 
-export PATH="$HOME/.local/bin:$PATH"
+export PATH=$HOME/.cargo/bin:/usr/local/go/bin:${KREW_ROOT:-$HOME/.krew}/bin:$PATH
