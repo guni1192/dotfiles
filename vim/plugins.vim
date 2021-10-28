@@ -8,7 +8,8 @@ if has('vim_starting')
 endif
 
 call plug#begin('~/.vim/plugged')
-" General Plugins {{{
+
+" General Plugins
 Plug 'junegunn/vim-plug', {'dir': '~/.vim/plugged/vim-plug/autoload'}
 Plug 'scrooloose/nerdtree', { 'on':  ['NERDTreeToggle'] }
 Plug 'vim-jp/vimdoc-ja'
@@ -16,47 +17,33 @@ Plug 'cohama/lexima.vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'rhysd/vim-clang-format'
-" }}}
 
-" ColorScheme {{{
+" ColorScheme
 Plug 'flazz/vim-colorschemes'
 Plug 'rafi/awesome-vim-colorschemes'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'sjl/badwolf'
-Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-" }}}
 
-" Syntax Highlight {{{
+" Syntax Highlight
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'cespare/vim-toml'
-Plug 'PotatoesMaster/i3-vim-syntax'
 Plug 'tmux-plugins/vim-tmux'
 Plug 'chr4/nginx.vim'
-Plug 'sngn/vim-i3blocks-syntax'
 Plug 'justinmk/vim-syntax-extra'
+
+" i3wm
+Plug 'PotatoesMaster/i3-vim-syntax'
+Plug 'sngn/vim-i3blocks-syntax'
+
+" HCL
 Plug 'b4b4r07/vim-hcl'
+Plug 'hashivim/vim-terraform'
 
-" }}}
-
-" Python {{{
-"Plug 'ryanolsonx/vim-lsp-python'
-" }}}
-" Golang {{{
-" }}}
-
-" Rust {{{
-"Plug 'rust-lang/rust.vim'
-"}}}
-
-" LSP {{{
+" LSP
 Plug 'prabirshrestha/vim-lsp'
 Plug 'mattn/vim-lsp-settings'
 Plug 'prabirshrestha/async.vim'
 Plug 'prabirshrestha/asyncomplete.vim'
 Plug 'prabirshrestha/asyncomplete-lsp.vim'
-
-Plug 'hashivim/vim-terraform'
-
-" }}}
 
 call plug#end()

@@ -30,15 +30,6 @@ if executable('gopls')
     autocmd BufWritePre *.go LspDocumentFormatSync
 endif
 
-"if executable('rls')
-"    au User lsp_setup call lsp#register_server({
-"        \ 'name': 'rls',
-"        \ 'cmd': {server_info->['rustup', 'run', 'stable', 'rls']},
-"        \ 'whitelist': ['rust'],
-"        \ })
-"    autocmd BufWritePre *.rs LspDocumentFormatSync
-"endif
-
 if executable('rust-analyzer')
     au User lsp_setup call lsp#register_server({
         \ 'name': 'rust-analyzer',
