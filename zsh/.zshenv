@@ -2,7 +2,7 @@
 export TERM=xterm-256color
 export LANG=en_US.UTF-8
 export LC_ALL=$LANG
-export EDITOR=vim
+export EDITOR=nvim
 
 # Shell
 export ZDOTDIR="${HOME}/.zsh"
