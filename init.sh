@@ -21,7 +21,7 @@ setup_vim() {
 setup_neovim() {
     mkdir -p ~/.config/nvim
 
-    ln -sv ~/dotfiles/vimrc ~/.config/nvim/init.vim
+    ln -fsv ~/dotfiles/init.vim ~/.config/nvim/init.vim
 }
 
 
