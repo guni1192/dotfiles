@@ -1,13 +1,15 @@
 #!/bin/bash
 
-rm $HOME/.zsh
-rm $HOME/.zshrc
-rm $HOME/.zshenv
+rm -f $HOME/.zsh
+rm -f $HOME/.zshrc
+rm -f $HOME/.zshenv
 
-rm $HOME/.tmux.conf
+rm -f $HOME/.tmux.conf
 
 rm -rf $HOME/.vim/
 rm -rf $HOME/.vimrc
 
-rm $HOME/.gitconfig
-rm $HOME/.config/alacritty
+rm -rf $HOME/.config/nvim
+rm -rf $HOME/.config/alacritty
+
+rm -f $HOME/.gitconfig

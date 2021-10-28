@@ -22,3 +22,6 @@ inoremap <expr> <cr>    pumvisible() ? "\<C-y>" : "\<cr>"
 
 let g:rustfmt_autosave = 1
 let g:clang_format#auto_format = 1
+
+let g:terraform_align=1
+let g:terraform_fmt_on_save=1
