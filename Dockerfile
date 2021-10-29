@@ -3,6 +3,7 @@ FROM ubuntu:20.04
 ENV TZ=Asia/Tokyo
 ENV LANG=en_US.UTF-8
 ENV DEBIAN_FRONTEND=noninteractive
+LABEL org.opencontainers.image.source https://github.com/guni1192/dotfiles
 
 RUN apt-get update -y \
     && apt-get install -y \
