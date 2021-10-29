@@ -45,6 +45,6 @@ WORKDIR /home/guni/dotfiles
 
 COPY . .
 
-RUN ./init.sh
+RUN ./scripts/init.sh
 
 ENTRYPOINT ["/usr/bin/zsh"]
