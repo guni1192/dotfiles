@@ -12,4 +12,4 @@ export GOPATH=$HOME/go
 export PATH=$PATH:$GOPATH/bin
 # export GO111MODULE=auto
 
-export PATH=$HOME/.cargo/bin:/usr/local/go/bin:${KREW_ROOT:-$HOME/.krew}/bin:$PATH
+export PATH=$HOME/.cargo/bin:/usr/local/go/bin:${KREW_ROOT:-$HOME/.krew}/bin:$HOME/.local/bin:$PATH
