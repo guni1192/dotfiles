@@ -39,6 +39,9 @@ Plug 'sngn/vim-i3blocks-syntax'
 Plug 'b4b4r07/vim-hcl'
 Plug 'hashivim/vim-terraform'
 
+" Go
+Plug 'mattn/vim-goimports'
+
 " LSP
 Plug 'prabirshrestha/vim-lsp'
 Plug 'mattn/vim-lsp-settings'
