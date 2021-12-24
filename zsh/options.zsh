@@ -1,6 +1,7 @@
 # 補完機能を使用する
-autoload -U compinit promptinit
+autoload -Uz compinit promptinit
 compinit
+
 zstyle ':completion::complete:*' use-cache true
 zstyle ':completion:*:default' menu select=1
 
