@@ -1,52 +1,30 @@
 #!/bin/bash
-
 set -eu
 
+export XDG_CONFIG_HOME=$HOME/.config
+mkdir -p $XDG_CONFIG_HOME
+
 setup_zsh() {
-    rm -rf ~/.zsh
-
-    ln -fsv ~/dotfiles/zsh ~/.zsh
-    ln -fsv ~/.zsh/.zshrc ~/.zshrc
-    ln -fsv ~/.zsh/.zshenv ~/.zshenv
-}
-
-setup_vim() {
-    rm -rf ~/.vim/config
-    mkdir -p ~/.vim
-
-    ln -fsv ~/dotfiles/vimrc ~/.vimrc
-    ln -fsv ~/dotfiles/vim ~/.vim/config
+    ln -fsv ~/dotfiles/zshenv ~/.zshenv
+    ln -fsv ~/dotfiles/zsh/ $XDG_CONFIG_HOME/zsh
 }
 
 setup_neovim() {
-    mkdir -p ~/.config/nvim
+    ln -fsv ~/dotfiles/nvim/ $XDG_CONFIG_HOME/nvim
+    sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
+        https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 
-    ln -fsv ~/dotfiles/init.vim ~/.config/nvim/init.vim
 }
 
+setup_tmux() {
+    ln -fsv ~/dotfiles/tmux/ $XDG_CONFIG_HOME/tmux
+}
 
-# read -p "Do you use X11?[y/n] " yn ;
-# case $yn in
-#     [Yy]* ) {
-#         # i3 Window Manager
-#         echo "i3wm linking ..."
-#         ln -sv ~/dotfiles/i3 ~/.config/i3/
-#         echo "Xresources linking ..."
-#         ln -sv ~/dotfiles/.Xresources ~/.Xresources
-#         echo "alacritty linking ..."
-#         ln -sv ~/dotfiles/alacritty ~/.config/alacritty
-#         # polybar
-#         echo "polybar linking ..."
-#         ln -sv ~/dotfiles/polybar ~/.config/polybar/
-#     };;
-# esac
-
-
-mkdir -p $HOME/.config
+setup_git() {
+    ln -fsv ~/dotfiles/git/ $XDG_CONFIG_HOME/git
+}
 
 setup_zsh
-setup_vim
 setup_neovim
-
-ln -fsv ~/dotfiles/gitconfig ~/.gitconfig
-ln -fsv ~/dotfiles/.tmux.conf ~/.tmux.conf
+setup_tmux
+setup_git

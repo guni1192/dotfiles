@@ -1,7 +1,7 @@
-source ~/.zsh/plugins.zsh
-source ~/.zsh/options.zsh
-source ~/.zsh/prompt.zsh
-source ~/.zsh/alias.zsh
-source ~/.zsh/kubernetes.zsh
+source $ZDOTDIR/plugins.zsh
+source $ZDOTDIR/options.zsh
+source $ZDOTDIR/prompt.zsh
+source $ZDOTDIR/alias.zsh
+source $ZDOTDIR/kubernetes.zsh
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
