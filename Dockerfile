@@ -44,8 +44,9 @@ RUN git clone https://github.com/zplug/zplug ~/.zplug
 
 WORKDIR /home/guni/dotfiles
 
-COPY . .
+COPY --chown=guni . .
 
+ENV SHELL=/usr/bin/zsh
 RUN ./scripts/init.sh
 
 ENTRYPOINT ["/usr/bin/zsh"]
