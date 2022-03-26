@@ -7,10 +7,10 @@
 "   end
 " endif
 
-call plug#begin(stdpath('data') . 'plugged')
+call plug#begin(stdpath('data') . '/plugged')
 
 " General Plugins
-Plug 'junegunn/vim-plug', {'dir': '~/.vim/plugged/vim-plug/autoload'}
+Plug 'junegunn/vim-plug', {'dir': stdpath('data') . '/plugged/vim-plug/autoload'}
 Plug 'scrooloose/nerdtree', { 'on':  ['NERDTreeToggle'] }
 Plug 'vim-jp/vimdoc-ja'
 Plug 'cohama/lexima.vim'

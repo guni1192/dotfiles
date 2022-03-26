@@ -1,15 +1,13 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
-rm -f $HOME/.zsh
-rm -f $HOME/.zshrc
-rm -f $HOME/.zshenv
+# XDG Base Directory
+export XDG_CONFIG_HOME=$HOME/.config
+export XDG_DATA_HOME=$HOME/.local/share
 
-rm -f $HOME/.tmux.conf
-
-rm -rf $HOME/.vim/
-rm -rf $HOME/.vimrc
-
-rm -rf $HOME/.config/nvim
-rm -rf $HOME/.config/alacritty
-
-rm -f $HOME/.gitconfig
+rm -f ~/.zshenv
+rm -rf $XDG_CONFIG_HOME/zsh
+rm -rf $XDG_CONFIG_HOME/nvim
+rm -rf $XDG_DATA_HOME/nvim/plugged
+rm -rf $XDG_CONFIG_HOME/tmux
+rm -rf $XDG_CONFIG_HOME/git
+rm -rf $XDG_CONFIG_HOME/aquaproj-aqua

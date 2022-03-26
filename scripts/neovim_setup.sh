@@ -18,6 +18,7 @@ sudo apt-get install -y \
     curl \
     doxygen
 
+rm -rf $HOME/neovim-src
 git clone https://github.com/neovim/neovim $HOME/neovim-src
 cd $HOME/neovim-src
 
