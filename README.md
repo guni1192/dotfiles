@@ -2,15 +2,16 @@
 
 ## Environment
 
-- macOS
+- Ubuntu 20.04
 - ArchLinux
+- macOS
 
 ## Getting Started
 
 ```bash
 $ git clone git@github.com:guni1192/dotfiles.git
 $ cd dotfiles
-$ ./init.sh
+$ ./scripts/init.sh
 ```
 
 ## Neovim
@@ -51,5 +52,3 @@ fzf, ghq
 ```
 $ yay -S fzf ghq
 ```
-
-
