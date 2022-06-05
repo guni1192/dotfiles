@@ -1,16 +1,9 @@
-if [ -e "${HOME}/.zplug" ]; then
-    source ~/.zplug/init.zsh
-    if ! zplug check --verbose; then
-        echo; zplug install
-    fi
-else
-    git clone https://github.com/zplug/zplug ~/.zplug
-fi
+ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
+source "${ZINIT_HOME}/zinit.zsh"
 
 # zplug plugins
-zplug "chrissicool/zsh-256color"
-zplug "zsh-users/zsh-autosuggestions"
-zplug "zsh-users/zsh-syntax-highlighting"
-zplug "zsh-users/zsh-completions"
+zinit light chrissicool/zsh-256color
+zinit light zsh-users/zsh-autosuggestions
+zinit light zsh-users/zsh-syntax-highlighting
+zinit light zsh-users/zsh-completions
 
-zplug load
