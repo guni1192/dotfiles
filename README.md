@@ -2,30 +2,34 @@
 
 ## Environment
 
-- Ubuntu 20.04
+- Ubuntu 22.04
 - ArchLinux
 - macOS
 
+## Tools
+
+- zsh
+- tmux
+- neovim
+- aqua
+
 ## Getting Started
 
-```bash
-$ git clone git@github.com:guni1192/dotfiles.git
-$ cd dotfiles
-$ ./scripts/init.sh
+```console
+git clone git@github.com:guni1192/dotfiles.git
+cd dotfiles
+./scripts/init.sh
+```
+
+### Try on docker
+
+```console
+docker run -it ghcr.io/guni1192/dotfiles:latest
 ```
 
 ## Neovim
 
 - Package Manager: vim-plug
-
-## LSP
-
-### Rust
-
-```
-$ rustup update
-$ rustup component add rls rust-analysis rust-src
-```
 
 ## Linux Desktop
 
@@ -33,7 +37,7 @@ $ rustup component add rls rust-analysis rust-src
 - Bar: polybar
 - Terminal: rxvt-unicode
 
-```
+```console
 $ yay -S i3 polybar rxvt-unicode dmenu
 ```
 
@@ -41,14 +45,6 @@ $ yay -S i3 polybar rxvt-unicode dmenu
 
 ### macOS
 
-```
+```console
 $ brew install fzf ghq
-```
-
-### ArchLinux
-
-fzf, ghq
-
-```
-$ yay -S fzf ghq
 ```
