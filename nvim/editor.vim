@@ -35,3 +35,5 @@ if &term =~ '^xterm'
   let &t_SI .= "\<Esc>[4 q"
   let &t_EI .= "\<Esc>[2 q"
 endif
+
+set grepprg=git\ grep\ -I\ --line-number
