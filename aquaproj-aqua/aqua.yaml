@@ -5,7 +5,7 @@ registries:
 - type: standard
   ref: v1.10.0 # renovate: depName=aquaproj/aqua-registry
 packages:
-- name: junegunn/fzf@0.29.0
+- name: junegunn/fzf@0.35.0
 - name: x-motemen/ghq@v1.2.1
 - name: cli/cli@v2.6.0
 - name: kubernetes/kubectl@v1.24.3
