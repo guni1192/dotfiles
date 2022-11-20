@@ -40,3 +40,12 @@ alias rbf="RUST_BACKTRACE=full"
 alias jql='jq -C . | less -R'
 
 alias az='docker run --rm -it -v ${HOME}/.kube/:/root/.kube/ -v ${HOME}/.azure/:/root/.azure/ -v ${HOME}/.ssh:/root/.ssh mcr.microsoft.com/azure-cli az'
+
+alias gcpctx="
+  gcloud config configurations list \
+    | awk '{ print \$1,\$3,\$4 }' \
+    | column -t \
+    | fzf --header-lines=1 \
+    | awk '{ print \$1 }' \
+    | xargs -r gcloud config configurations activate
+"
