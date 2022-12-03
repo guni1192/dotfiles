@@ -13,6 +13,6 @@ packages:
 - name: kubernetes-sigs/kubebuilder@v3.3.0
 - name: kubernetes-sigs/krew@v0.4.3
 - name: kubernetes-sigs/kustomize@kustomize/v4.5.7
-- name: kubernetes/minikube@v1.26.0
+- name: kubernetes/minikube@v1.28.0
 - name: kubernetes-sigs/kind@v0.17.0
 - name: stern/stern@v1.22.0
