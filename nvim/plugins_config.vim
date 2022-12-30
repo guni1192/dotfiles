@@ -3,7 +3,9 @@ nnoremap <silent><C-e> :NERDTreeToggle<CR>
 let NERDTreeShowHidden = 1
 
 " Denite
-nnoremap <silent> <C-f><C-f> :<C-u>GFiles<CR>
+"nnoremap <silent> <C-f><C-f> :<C-u>GFiles<CR>
+nnoremap <silent> <C-f><C-f> :<C-u>Files<CR>
+nnoremap <silent> <C-f><C-g> :<C-u>GFiles<CR>
 nnoremap <silent> <C-f><C-l> :<C-u>Lines<CR>
 nnoremap <silent> <C-f><C-c> :<C-u>Commits<CR>
 nnoremap <silent> <C-f><C-a> :<C-u>Ag<CR>
