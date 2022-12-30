@@ -16,3 +16,4 @@ packages:
 - name: kubernetes/minikube@v1.28.0
 - name: kubernetes-sigs/kind@v0.17.0
 - name: stern/stern@v1.22.0
+- name: containerd/nerdctl@v1.1.0
