@@ -14,5 +14,5 @@
   co = !git branch -a | fzf | xargs git checkout
 [pull]
     ff = only
-[url "ssh://git@github.com/"]
-    insteadOf = https://github.com/
+# [url "ssh://git@github.com/"]
+#     insteadOf = https://github.com/
