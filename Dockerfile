@@ -34,13 +34,11 @@ RUN useradd guni -s /usr/bin/zsh -m -d /home/guni
 
 USER guni
 
-RUN git clone https://github.com/neovim/neovim /home/guni/neovim-src
-WORKDIR /home/guni/neovim-src
-
-RUN make CMAKE_INSTALL_PREFIX=/home/guni/.local
-RUN make install
-
-RUN git clone https://github.com/zplug/zplug ~/.zplug
+RUN git clone https://github.com/neovim/neovim /home/guni/neovim-src && \
+    cd /home/guni/neovim-src && \
+    make CMAKE_INSTALL_PREFIX=/home/guni/.local && \
+    make install && \
+    rm -rf /home/guni/neovim-src
 
 WORKDIR /home/guni/dotfiles
 
