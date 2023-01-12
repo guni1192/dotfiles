@@ -1,7 +1,7 @@
 [user]
     email = takashi.iiguni@guni.dev
     name = Takashi IIGUNI
-    signingkey = 2A5205597C58DE1E
+	signingkey = 2A5205597C58DE1E
 [ghq]
   root = ~/.ghq/
 [alias]
@@ -17,3 +17,5 @@
     ff = only
 # [url "ssh://git@github.com/"]
 #     insteadOf = https://github.com/
+[commit]
+	gpgsign = true
