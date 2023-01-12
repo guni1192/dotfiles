@@ -1,6 +1,7 @@
 [user]
-  email = iiguni.tks@gmail.com
-  name = Takashi IIGUNI
+    email = takashi.iiguni@guni.dev
+    name = Takashi IIGUNI
+    signingkey = 2A5205597C58DE1E
 [ghq]
   root = ~/.ghq/
 [alias]
