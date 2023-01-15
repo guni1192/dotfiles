@@ -1,21 +1,21 @@
 [user]
-    email = takashi.iiguni@guni.dev
     name = Takashi IIGUNI
-	signingkey = 2A5205597C58DE1E
+    email = takashi.iiguni@guni.dev
+    signingkey = 2A5205597C58DE1E
 [ghq]
-  root = ~/.ghq/
+    root = ~/.ghq/
 [alias]
-  s = status
-  b = branch
-  c = commit
-  a = add
-  d = diff
-  diffs = diff --cached
-  graph = log --graph --date=short --decorate=short --pretty=format:'%Cgreen%h %Creset%cd %Cblue%cn %Cred%d %Creset%s'
-  co = !git branch -a | fzf | xargs git checkout
+    s = status
+    b = branch
+    c = commit
+    a = add
+    d = diff
+    diffs = diff --cached
+    graph = log --graph --date=short --decorate=short --pretty=format:'%Cgreen%h %Creset%cd %Cblue%cn %Cred%d %Creset%s'
+    co = !git branch -a | fzf | xargs git checkout
 [pull]
     ff = only
 # [url "ssh://git@github.com/"]
 #     insteadOf = https://github.com/
 [commit]
-	gpgsign = true
+    gpgsign = true
