@@ -16,7 +16,7 @@
 ## Getting Started
 
 ```console
-git clone git@github.com:guni1192/dotfiles.git
+git clone https://github.com/guni1192/dotfiles.git
 cd dotfiles
 ./scripts/init.sh
 ```
@@ -39,12 +39,4 @@ docker run -it ghcr.io/guni1192/dotfiles:latest
 
 ```console
 $ yay -S i3 polybar rxvt-unicode dmenu
-```
-
-## Develop tools
-
-### macOS
-
-```console
-$ brew install fzf ghq
 ```
