@@ -23,7 +23,7 @@ vim.opt.cursorline = true
 
 -- inoremap jj <ESC>`^
 
-vim.opt.sh=zsh
+-- vim.opt.sh=zsh
 -- tnoremap <silent> <ESC> <C-\><C-n>
 -- tnoremap <silent> jj <C-\><C-n>
 
