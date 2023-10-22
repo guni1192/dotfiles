@@ -31,14 +31,23 @@ if executable('gopls')
 endif
 
 if executable('rust-analyzer')
-    au User lsp_setup call lsp#register_server({
-        \ 'name': 'rust-analyzer',
-        \ 'cmd': {server_info->['rustup', 'run', 'stable', 'rust-analyzer']},
-        \ 'whitelist': ['rust'],
+  au User lsp_setup call lsp#register_server({
+        \   'name': 'Rust Language Server',
+        \ 'cmd': {server_info->['rust-analyzer']},
+        \   'whitelist': ['rust'],
+        \   'initialization_options': {
+        \     'cargo': {
+        \       'buildScripts': {
+        \         'enable': v:true,
+        \       },
+        \     },
+        \     'procMacro': {
+        \       'enable': v:true,
+        \     },
+        \   },
         \ })
     autocmd BufWritePre *.rs LspDocumentFormatSync
 endif
-
 
 if executable('clangd')
     au User lsp_setup call lsp#register_server({
