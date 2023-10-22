@@ -13,38 +13,54 @@ vim.opt.rtp:prepend(lazypath)
 
 local lazy = require('lazy')
 
-lazy.setup({{
-  "nvim-tree/nvim-tree.lua",
-  version = "*",
-  lazy = false,
-  dependencies = {
-    "nvim-tree/nvim-web-devicons",
-  },
-  config = function()
-    local function my_on_attach(bufnr)
-      local api = require "nvim-tree.api"
+lazy.setup({
+  {
+    "nvim-tree/nvim-tree.lua",
+    version = "*",
+    lazy = false,
+    dependencies = {
+      "nvim-tree/nvim-web-devicons",
+    },
+    config = function()
+      local function my_on_attach(bufnr)
+        local api = require "nvim-tree.api"
 
-      local function opts(desc)
-        return { desc = "nvim-tree: " .. desc, buffer = bufnr, noremap = true, silent = true, nowait = true }
+        local function opts(desc)
+          return { desc = "nvim-tree: " .. desc, buffer = bufnr, noremap = true, silent = true, nowait = true }
+        end
+
+        -- default mappings
+        api.config.mappings.default_on_attach(bufnr)
+
+        -- custom mappings
+        vim.keymap.set('n', '<C-t>', api.tree.change_root_to_parent,        opts('Up'))
+        vim.keymap.set('n', '?',     api.tree.toggle_help,                  opts('Help'))
+        vim.keymap.set('n', '<C-e>', api.tree.toggle,                       opts('Toggle'))
       end
-
-      -- default mappings
-      api.config.mappings.default_on_attach(bufnr)
-
-      -- custom mappings
-      vim.keymap.set('n', '<C-t>', api.tree.change_root_to_parent,        opts('Up'))
-      vim.keymap.set('n', '?',     api.tree.toggle_help,                  opts('Help'))
-      vim.keymap.set('n', '<C-e>', api.tree.toggle,                       opts('Toggle'))
+      require("nvim-tree").setup {
+          on_attach = my_on_attach,
+      }
+    end,
+  },
+  {"freeo/vim-kalisi"},
+  {
+    "ibhagwan/fzf-lua",
+    dependencies = { "nvim-tree/nvim-web-devicons" },
+    config = function()
+      require("fzf-lua").setup({})
     end
-    require("nvim-tree").setup {
-        on_attach = my_on_attach,
-    }
-  end,
-},
-{"freeo/vim-kalisi"},
+  }
 })
 
 
 -- nvim-tree global keymap
 local api = require "nvim-tree.api"
 vim.keymap.set('n', '<C-e>', api.tree.toggle)
+
+-- fzf-lua
+vim.keymap.set("n", "<c-f><c-f>",
+  "<cmd>lua require('fzf-lua').files()<CR>", { silent = true })
+vim.keymap.set("n", "<c-f><c-g>",
+  "<cmd>lua require('fzf-lua').git_files()<CR>", { silent = true })
+vim.keymap.set("n", "<c-f><c-s>",
+  "<cmd>lua require('fzf-lua').live_grep()<CR>", { silent = true })
