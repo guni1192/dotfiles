@@ -38,7 +38,7 @@ lazy.setup({
         vim.keymap.set('n', '<C-e>', api.tree.toggle,                       opts('Toggle'))
       end
       require("nvim-tree").setup {
-          on_attach = my_on_attach,
+        on_attach = my_on_attach,
       }
     end,
   },
