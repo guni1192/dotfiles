@@ -56,8 +56,8 @@ cmp.setup({
 })
 
 
-capabilities = require("cmp_nvim_lsp").default_capabilities()
-lspconfig = require('lspconfig')
+local capabilities = require("cmp_nvim_lsp").default_capabilities()
+local lspconfig = require('lspconfig')
 
 lspconfig.rust_analyzer.setup {
   capabilities = capabilities,
@@ -83,4 +83,26 @@ lspconfig.rust_analyzer.setup {
   }
 }
 
+lspconfig.gopls.setup {
+  capabilities = capabilities,
+  cmd = {"gopls", "serve", "-rpc.trace"},
+  filetypes = {'go'},
+  settings = {
+    gopls = {
+      analyses = {
+        unusedparams = true,
+      },
+      staticcheck = true,
+      gofumpt = true,
+    },
+  },
+}
 
+
+vim.cmd [[autocmd BufWritePre *.go lua vim.lsp.buf.format({ async = true })]]
+vim.api.nvim_create_autocmd('BufWritePre', {
+  pattern = '*.go',
+  callback = function()
+    vim.lsp.buf.code_action({ context = { only = { 'source.organizeImports' } }, apply = true })
+  end
+})
