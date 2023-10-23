@@ -31,6 +31,11 @@ vim.api.nvim_create_autocmd('LspAttach', {
 
 local cmp = require ("cmp")
 cmp.setup({
+  snippet = {
+    expand = function(args)
+      vim.fn["vsnip#anonymous"](args.body)
+    end,
+  },
   window = {
     completion = {
       autocomplete = true,
@@ -40,13 +45,13 @@ cmp.setup({
     { name = 'nvim_lsp' },
   }),
   mapping = cmp.mapping.preset.insert({
-    ["<Tab>"] = cmp.mapping.select_prev_item(),
-    ["<Tab>"] = cmp.mapping.select_next_item(),
+    ["k"] = cmp.mapping.select_prev_item(),
+    ["j"] = cmp.mapping.select_next_item(),
     ["<C-d>"] = cmp.mapping.scroll_docs(-4),
     ["<C-f>"] = cmp.mapping.scroll_docs(4),
     ["<Tab>"] = cmp.mapping.complete(),
     ["<C-e>"] = cmp.mapping.close(),
-    ["<CR>"] = cmp.mapping.confirm({ select = true }),
+    ["<Tab>"] = cmp.mapping.confirm({ select = true }),
   }),
 })
 

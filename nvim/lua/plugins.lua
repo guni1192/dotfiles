@@ -50,6 +50,7 @@ lazy.setup({
       require("fzf-lua").setup({})
     end
   },
+  -- completion and snippet
   {"neovim/nvim-lspconfig"},
   {"hrsh7th/nvim-cmp"},
   {"hrsh7th/cmp-path"},
@@ -57,6 +58,13 @@ lazy.setup({
   {"hrsh7th/cmp-cmdline"},
   {"hrsh7th/cmp-nvim-lsp"},
   {"hrsh7th/vim-vsnip"},
+  -- lualine
+  {'nvim-lualine/lualine.nvim'},
+  {
+    'akinsho/bufferline.nvim',
+    version = "*",
+    dependencies = 'nvim-tree/nvim-web-devicons',
+  },
 })
 
 
