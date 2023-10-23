@@ -65,6 +65,11 @@ lazy.setup({
     version = "*",
     dependencies = 'nvim-tree/nvim-web-devicons',
   },
+  {
+    'windwp/nvim-autopairs',
+    event = "InsertEnter",
+    opts = {}
+  },
 })
 
 
