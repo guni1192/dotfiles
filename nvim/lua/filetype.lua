@@ -14,3 +14,10 @@ vim.api.nvim_create_autocmd({'BufNewFile', 'BufRead'}, {
   group = 'FileTypeIndent',
   command = 'setlocal tabstop=4 softtabstop=4 shiftwidth=4 noexpandtab'
 })
+
+vim.api.nvim_create_autocmd({'BufNewFile', 'BufRead'}, {
+  pattern = {'*.md',},
+  group = 'FileTypeIndent',
+  command = 'setlocal tabstop=2 softtabstop=2 shiftwidth=2'
+})
+
