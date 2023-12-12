@@ -37,21 +37,21 @@ cmp.setup({
     end,
   },
   window = {
-    completion = {
-      autocomplete = true,
-    },
+    -- completion = {
+    --   autocomplete = true,
+    -- },
   },
   sources = cmp.config.sources({
     { name = 'nvim_lsp' },
   }),
   mapping = cmp.mapping.preset.insert({
-    ["k"] = cmp.mapping.select_prev_item(),
-    ["j"] = cmp.mapping.select_next_item(),
+    ["<C-p>"] = cmp.mapping.select_prev_item(),
+    ["<C-n>"] = cmp.mapping.select_next_item(),
     ["<C-d>"] = cmp.mapping.scroll_docs(-4),
     ["<C-f>"] = cmp.mapping.scroll_docs(4),
-    ["<Tab>"] = cmp.mapping.complete(),
+    ["<C-c>"] = cmp.mapping.complete(),
     ["<C-e>"] = cmp.mapping.close(),
-    ["<Tab>"] = cmp.mapping.confirm({ select = true }),
+    ["<Enter>"] = cmp.mapping.confirm({ select = true }),
   }),
 })
 
@@ -113,8 +113,8 @@ lspconfig.clangd.setup{
 }
 
 -- GitHub Copilot
-vim.keymap.set('i', '<C-J>', 'copilot#Accept("<CR>")', {
-  expr = true,
-  replace_keycodes = false
-})
-vim.g.copilot_no_tab_map = true
+-- vim.keymap.set('i', '<C-g>', 'copilot#Accept("<CR>")', {
+--   expr = true,
+--   replace_keycodes = false
+-- })
+-- vim.g.copilot_no_tab_map = true
