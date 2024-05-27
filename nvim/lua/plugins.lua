@@ -77,9 +77,58 @@ lazy.setup({
     build = function() vim.fn["mkdp#util#install"]() end,
   },
   -- copilot
-  { 'github/copilot.vim' }
+  { 'github/copilot.vim' },
+  -- nvim-treeesitter
+  {
+    "nvim-treesitter/nvim-treesitter",
+    build = ":TSUpdate",
+    lazy = vim.fn.argc(-1) == 0,
+    cmd = { "TSUpdateSync", "TSUpdate", "TSInstall" },
+    opts = {
+      highlight = { enable = true },
+      indent = { enable = true },
+      ensure_installed = {
+        "bash",
+        "c",
+        "diff",
+        "go",
+        "html",
+        "javascript",
+        "jsdoc",
+        "json",
+        "jsonc",
+        "lua",
+        "luadoc",
+        "luap",
+        "markdown",
+        "markdown_inline",
+        "python",
+        "query",
+        "regex",
+        "rust",
+        "toml",
+        "tsx",
+        "typescript",
+        "vim",
+        "vimdoc",
+        "xml",
+        "yaml",
+      },
+      incremental_selection = {
+        enable = true,
+      },
+      textobjects = {
+        move = {
+          enable = true,
+          goto_next_start = { ["]f"] = "@function.outer", ["]c"] = "@class.outer" },
+          goto_next_end = { ["]F"] = "@function.outer", ["]C"] = "@class.outer" },
+          goto_previous_start = { ["[f"] = "@function.outer", ["[c"] = "@class.outer" },
+          goto_previous_end = { ["[F"] = "@function.outer", ["[C"] = "@class.outer" },
+        },
+      },
+    },
+  },
 })
-
 
 -- nvim-tree global keymap
 local api = require "nvim-tree.api"

@@ -27,7 +27,7 @@ vim.api.nvim_create_autocmd({'VimEnter', 'ColorScheme'}, {
 })
 
 
-vim.cmd("colorscheme kalisi")
+vim.cmd("colorscheme default")
 vim.opt.background = "dark"
 
 require('lualine').setup {
