@@ -5,12 +5,12 @@ setopt prompt_subst
 zstyle ':vcs_info:git:*'  check-for-changes true
 zstyle ':vcs_info:git:*'  stagedstr     "%F{yellow}!"
 zstyle ':vcs_info:git:*'  unstagedstr   "%F{red}+"
-zstyle ':vcs_info:*'      formats       "%F{black}%K{green} > %b %k"
+zstyle ':vcs_info:*'      formats       "%F{green} %b%k"
 zstyle ':vcs_info:*'      actionformats '%b|%a'
 
-username="%F{white}%K{blue} %n@%m %b%k"
-directory="%F{black}%K{cyan} %~ %b%k"
-return_code="%F{black}%K{white} %? %b%k"
+username="%F{blue}%K{black}%n@%m%b%k"
+directory="%F{cyan}%K{black} %~%b%k"
+return_code="%F{white}%K{black} %? %b%k"
 auth="%F{white}%K{black}%# %b%k"
 
 precmd () {
