@@ -21,3 +21,9 @@ vim.api.nvim_create_autocmd({'BufNewFile', 'BufRead'}, {
   command = 'setlocal tabstop=2 softtabstop=2 shiftwidth=2'
 })
 
+vim.api.nvim_create_autocmd({'BufNewFile', 'BufRead'}, {
+  pattern = {'*.tf',},
+  group = 'FileTypeIndent',
+  command = 'setlocal tabstop=2 softtabstop=2 shiftwidth=2'
+})
+
