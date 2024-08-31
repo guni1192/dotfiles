@@ -27,7 +27,7 @@ vim.api.nvim_create_autocmd({'VimEnter', 'ColorScheme'}, {
 })
 
 
-vim.cmd("colorscheme default")
+vim.cmd("colorscheme carbonfox")
 vim.opt.background = "dark"
 
 require('lualine').setup {

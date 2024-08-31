@@ -76,6 +76,7 @@ lazy.setup({
     ft = { "markdown" },
     build = function() vim.fn["mkdp#util#install"]() end,
   },
+  { "EdenEast/nightfox.nvim" },
   -- copilot
   { 'github/copilot.vim' },
   -- nvim-treeesitter

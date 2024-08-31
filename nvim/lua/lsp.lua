@@ -118,3 +118,13 @@ vim.keymap.set('i', '<C-g>', 'copilot#Accept("<CR>")', {
   replace_keycodes = false
 })
 -- vim.g.copilot_no_tab_map = true
+
+lspconfig.terraformls.setup{
+  capabilities = capabilities,
+}
+vim.api.nvim_create_autocmd({"BufWritePre"}, {
+  pattern = {"*.tf", "*.tfvars"},
+  callback = function()
+    vim.lsp.buf.format()
+  end,
+})

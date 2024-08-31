@@ -26,4 +26,9 @@ vim.api.nvim_create_autocmd({'BufNewFile', 'BufRead'}, {
   group = 'FileTypeIndent',
   command = 'setlocal tabstop=2 softtabstop=2 shiftwidth=2'
 })
+vim.api.nvim_create_autocmd({'BufNewFile', 'BufRead'}, {
+  pattern = {'*.cue', },
+  group = 'FileTypeIndent',
+  command = 'setlocal tabstop=2 softtabstop=2 shiftwidth=2'
+})
 
