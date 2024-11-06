@@ -15,9 +15,16 @@ auth="%F{white}%K{black}%# %b%k"
 
 precmd () {
   vcs_info
+  export kube_current_context=""
+  context=$(kubectl config current-context)
+  if [[ "$context" =~ .*"prd".* ]] || [[ "$context" =~ .*"production".* ]]; then
+      export kube_current_context="%F{red}%K{black} $context %b%k"
+  else
+      export kube_current_context="%F{yellow}%K{black} $context %b%k"
+  fi
 }
 
 # RPROMPT='${vcs_info_msg_0_}'
 
-PROMPT='$username$directory${vcs_info_msg_0_}$return_code
+PROMPT='$username$directory${vcs_info_msg_0_}${kube_current_context}$return_code
 $auth'
