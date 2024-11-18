@@ -14,6 +14,6 @@ packages:
 - name: kubernetes-sigs/krew@v0.4.3
 - name: kubernetes-sigs/kustomize@kustomize/v5.0.3
 - name: kubernetes/minikube@v1.28.0
-- name: kubernetes-sigs/kind@v0.20.0
+- name: kubernetes-sigs/kind@v0.25.0
 - name: stern/stern@v1.27.0
 - name: containerd/nerdctl@v2.0.0
