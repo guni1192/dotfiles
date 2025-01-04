@@ -16,7 +16,6 @@ alias df='df -h'
 alias tmux='tmux -2'
 
 # cd && ls
-setopt auto_cd
 function chpwd() { ls }
 
 alias xr='xrdb ~/.Xresources'

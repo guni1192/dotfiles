@@ -26,6 +26,7 @@ setopt AUTO_MENU
 setopt AUTO_LIST
 setopt AUTO_PARAM_KEYS
 setopt AUTO_RESUME
+unsetopt AUTO_CD
 
 setopt EXTENDED_HISTORY
 setopt HIST_IGNORE_DUPS
