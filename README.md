@@ -27,10 +27,6 @@ cd dotfiles
 docker run -it ghcr.io/guni1192/dotfiles:latest
 ```
 
-## Neovim
-
-- Package Manager: vim-plug
-
 ## Linux Desktop
 
 - WM: i3
@@ -39,4 +35,13 @@ docker run -it ghcr.io/guni1192/dotfiles:latest
 
 ```console
 $ yay -S i3 polybar rxvt-unicode dmenu
+```
+
+
+## Neovim
+
+### Protobuf
+
+```
+brew install clang-format protobuf
 ```
