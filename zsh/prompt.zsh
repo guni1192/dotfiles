@@ -16,11 +16,15 @@ auth="%F{white}%# %b%k"
 precmd () {
   vcs_info
   export kube_current_context=""
-  context=$(kubectl config current-context)
-  if [[ "$context" =~ .*"prd".* ]] || [[ "$context" =~ .*"production".* ]]; then
-      export kube_current_context="%F{red} $context %b%k"
-  else
-      export kube_current_context="%F{yellow} $context %b%k"
+  if command -v kubectl >/dev/null 2>&1; then
+    context=$(kubectl config current-context 2>/dev/null)
+    if [[ -n "$context" ]]; then
+      if [[ "$context" =~ .*"prd".* ]] || [[ "$context" =~ .*"production".* ]]; then
+        export kube_current_context="%F{red} $context %b%k"
+      else
+        export kube_current_context="%F{yellow} $context %b%k"
+      fi
+    fi
   fi
 }
 
