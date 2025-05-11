@@ -65,10 +65,15 @@ setup_rust() {
 #     create_symlink ~/dotfiles/nix $XDG_CONFIG_HOME/nix
 # }
 
+setup_ghostty() {
+    ln -fsv ~/dotfiles/ghostty/ $XDG_CONFIG_HOME/ghostty
+}
+
 setup_zsh
 setup_neovim
 setup_tmux
 setup_git
 setup_aqua
+setup_ghostty
 # setup_rust
 # setup_nix
