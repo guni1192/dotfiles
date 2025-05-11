@@ -78,7 +78,7 @@ lazy.setup({
   },
   { "EdenEast/nightfox.nvim" },
   -- copilot
-  { 'github/copilot.vim' },
+  -- { 'github/copilot.vim' },
   -- nvim-treeesitter
   {
     "nvim-treesitter/nvim-treesitter",
