@@ -57,9 +57,8 @@ cmp.setup({
 
 
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
--- local lspconfig = require('lspconfig')
 
-vim.lsp.config('rust-analyzer', {
+vim.lsp.enable('rust-analyzer', {
   capabilities = capabilities,
   flags = {
     exit_timeout = 0,
@@ -83,7 +82,7 @@ vim.lsp.config('rust-analyzer', {
   }
 })
 
-vim.lsp.config('gopls', {
+vim.lsp.enable('gopls', {
   capabilities = capabilities,
   cmd = {"gopls", "serve", "-rpc.trace"},
   filetypes = {'go'},
@@ -98,17 +97,19 @@ vim.lsp.config('gopls', {
   },
 })
 
-
-vim.cmd [[autocmd BufWritePre *.go lua vim.lsp.buf.format({ async = true })]]
+-- Go: Auto-format and organize imports on save
 vim.api.nvim_create_autocmd('BufWritePre', {
   pattern = '*.go',
   callback = function()
+    -- First organize imports
     vim.lsp.buf.code_action({ context = { only = { 'source.organizeImports' } }, apply = true })
+    -- Then format
+    vim.lsp.buf.format({ async = false })
   end
 })
 
--- probobuf
-vim.lsp.config('clangd', {
+-- Protobuf
+vim.lsp.enable('clangd', {
   capabilities = capabilities,
   filetypes = {'proto'},
 })
@@ -121,7 +122,7 @@ vim.keymap.set('i', '<C-g>', 'copilot#Accept("<CR>")', {
 -- vim.g.copilot_no_tab_map = true
 
 -- Terraform
-vim.lsp.config('terraformls', {
+vim.lsp.enable('terraformls', {
   capabilities = capabilities,
   filetypes = {'tf', 'tfvars'},
 })
