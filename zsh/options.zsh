@@ -50,7 +50,7 @@ bindkey -M menuselect 'l' vi-forward-char
 unsetopt AUTOREMOVESLASH
 
 export HISTFILE=$XDG_DATA_HOME/zsh/history
-export HISTSIZE=1000
+export HISTSIZE=100000
 export SAVEHIST=100000
 
 function fzf-history-selection() {
