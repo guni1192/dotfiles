@@ -57,9 +57,9 @@ cmp.setup({
 
 
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
-local lspconfig = require('lspconfig')
+-- local lspconfig = require('lspconfig')
 
-lspconfig.rust_analyzer.setup {
+vim.lsp.config('rust-analyzer', {
   capabilities = capabilities,
   flags = {
     exit_timeout = 0,
@@ -81,9 +81,9 @@ lspconfig.rust_analyzer.setup {
       },
     },
   }
-}
+})
 
-lspconfig.gopls.setup {
+vim.lsp.config('gopls', {
   capabilities = capabilities,
   cmd = {"gopls", "serve", "-rpc.trace"},
   filetypes = {'go'},
@@ -96,7 +96,7 @@ lspconfig.gopls.setup {
       gofumpt = true,
     },
   },
-}
+})
 
 
 vim.cmd [[autocmd BufWritePre *.go lua vim.lsp.buf.format({ async = true })]]
@@ -108,20 +108,24 @@ vim.api.nvim_create_autocmd('BufWritePre', {
 })
 
 -- probobuf
-lspconfig.clangd.setup{
+vim.lsp.config('clangd', {
   capabilities = capabilities,
-}
+  filetypes = {'proto'},
+})
 
 -- GitHub Copilot
--- vim.keymap.set('i', '<C-g>', 'copilot#Accept("<CR>")', {
---   expr = true,
---   replace_keycodes = false
--- })
+vim.keymap.set('i', '<C-g>', 'copilot#Accept("<CR>")', {
+  expr = true,
+  replace_keycodes = false
+})
 -- vim.g.copilot_no_tab_map = true
 
-lspconfig.terraformls.setup{
+-- Terraform
+vim.lsp.config('terraformls', {
   capabilities = capabilities,
-}
+  filetypes = {'tf', 'tfvars'},
+})
+
 vim.api.nvim_create_autocmd({"BufWritePre"}, {
   pattern = {"*.tf", "*.tfvars"},
   callback = function()
