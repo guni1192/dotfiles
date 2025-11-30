@@ -1,4 +1,0 @@
-set cursorline
-inoremap jj <ESC>`^
-
-
