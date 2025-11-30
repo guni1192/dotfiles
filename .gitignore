@@ -13,34 +13,14 @@ zsh/.zcompdump
 zsh/.zsh_history
 zsh/.zsh_sessions
 zsh/platform_dependent.zsh
+zsh/.zcompdump.*
 
 ranger/*
 !rc.conf
 !bookmarks
 
-# Created by https://www.gitignore.io/api/vim
-# Edit at https://www.gitignore.io/?templates=vim
-
-### Vim ###
-# Swap
-[._]*.s[a-v][a-z]
-[._]*.sw[a-p]
-[._]s[a-rt-v][a-z]
-[._]ss[a-gi-z]
-[._]sw[a-p]
-
-# Session
-Session.vim
-
-# Temporary
-.netrwhist
-*~
-# Auto-generated tag files
-tags
-# Persistent undo
-[._]*.un~
-
-# End of https://www.gitignore.io/api/vim
+# Git user-specific configuration
+git/config.local
 
 # Created by https://www.gitignore.io/api/vim
 # Edit at https://www.gitignore.io/?templates=vim
@@ -65,4 +45,4 @@ tags
 [._]*.un~
 
 # End of https://www.gitignore.io/api/vim
-zsh/.zcompdump.*
+
