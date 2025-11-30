@@ -82,7 +82,7 @@ lazy.setup({
   -- nvim-treeesitter
   {
     "nvim-treesitter/nvim-treesitter",
-    run = ":TSUpdate",
+    build = ":TSUpdate",
     -- lazy = vim.fn.argc(-1) == 0,
     -- cmd = { "TSUpdateSync", "TSUpdate", "TSInstall" },
     config = function ()
