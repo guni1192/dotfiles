@@ -1,0 +1,18 @@
+# User-specific Git configuration
+# Copy this file to ~/.config/git/config.local and customize with your information
+# This file should NOT be committed to version control
+
+[user]
+    name = Your Name
+    email = your.email@example.com
+    # For SSH signing (optional)
+    signingkey = ssh-ed25519 AAAA...your-public-key-here
+
+# GPG/SSH signing configuration (optional)
+[gpg "ssh"]
+    # For 1Password users:
+    program = /Applications/1Password.app/Contents/MacOS/op-ssh-sign
+    # For standard SSH agent:
+    # program = /usr/bin/ssh-keygen
+
+# Additional personal settings can go here
