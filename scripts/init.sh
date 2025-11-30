@@ -1,5 +1,5 @@
 #!/bin/bash
-set -eu
+set -euo pipefail
 
 # XDG Base Directory
 export XDG_CONFIG_HOME=$HOME/.config
