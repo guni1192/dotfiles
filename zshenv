@@ -19,7 +19,7 @@ export PATH=$PATH:$GOPATH/bin
 # export GO111MODULE=auto
 
 # Rust
-. "$HOME/.cargo/env"
+[ -f "$HOME/.cargo/env" ] && . "$HOME/.cargo/env"
 
 export PATH=$HOME/.cargo/bin:/usr/local/go/bin:${KREW_ROOT:-$HOME/.krew}/bin:$HOME/.local/bin:$PATH
 
@@ -35,3 +35,6 @@ case ${OSTYPE} in
         ;;
 esac
 
+
+export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
+export PATH="$PATH:$HOME/.antigravity/antigravity/bin"
