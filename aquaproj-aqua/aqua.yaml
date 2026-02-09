@@ -11,7 +11,7 @@ packages:
 - name: kubernetes/kubectl@v1.34.2
 - name: helm/helm@v4.0.1
 - name: kubernetes-sigs/krew@v0.4.5
-- name: kubernetes-sigs/kustomize@kustomize/v5.8.0
+- name: kubernetes-sigs/kustomize@kustomize/v5.8.1
 - name: kubernetes-sigs/kind@v0.30.0
 - name: stern/stern@v1.33.1
 - name: containerd/nerdctl@v2.2.0
