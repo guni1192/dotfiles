@@ -4,4 +4,5 @@ shell-integration-features = no-cursor,sudo,no-title
 
 font-feature = -dlig
 
-font-family = Hiragino Sans
+font-family = JetBrains Mono
+# font-family = Hiragino Sans
