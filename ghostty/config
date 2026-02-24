@@ -1,3 +1,7 @@
 theme = "Nocturnal Winter"
 cursor-style = "block"
 shell-integration-features = no-cursor,sudo,no-title
+
+font-feature = -dlig
+
+font-family = Hiragino Sans
