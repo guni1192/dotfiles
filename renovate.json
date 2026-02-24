@@ -9,5 +9,16 @@
   "branchConcurrentLimit": 0,
   "enabledManagers": [
     "custom.regex"
+  ],
+  "customManagers": [
+    {
+      "customType": "regex",
+      "fileMatch": ["^scripts/install-mise\\.sh$"],
+      "matchStrings": [
+        "MISE_VERSION=\"(?<currentValue>v[^\"]+)\"\\s*#\\s*renovate:\\s*datasource=(?<datasource>[^\\s]+)\\s+depName=(?<depName>[^\\s]+)"
+      ],
+      "extractVersionTemplate": "^v(?<version>.+)$",
+      "versioningTemplate": "semver"
+    }
   ]
 }
