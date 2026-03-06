@@ -1,0 +1,11 @@
+[tools]
+fzf = "0.67.0"
+ghq = "1.8.0"
+"github-cli" = "2.83.1"
+kubectl = "1.34.2"
+helm = "4.0.1"
+krew = "0.4.5"
+kustomize = "5.8.0"
+kind = "0.30.0"
+stern = "1.33.1"
+"ubi:containerd/nerdctl" = "2.2.0"

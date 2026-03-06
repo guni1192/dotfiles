@@ -50,17 +50,17 @@ setup_git() {
     create_symlink ~/dotfiles/git/ $XDG_CONFIG_HOME/git
 }
 
-setup_aqua() {
-    curl -sSfL https://raw.githubusercontent.com/aquaproj/aqua-installer/v0.6.0/aqua-installer | bash -s -- -i ~/.local/bin/aqua
-    ln -fsv ~/dotfiles/aquaproj-aqua/ $XDG_CONFIG_HOME/aquaproj-aqua
-    aqua --config $XDG_CONFIG_HOME/aquaproj-aqua/aqua.yaml i
+setup_mise() {
+    ./scripts/install-mise.sh
+    ln -fsv ~/dotfiles/mise/ $XDG_CONFIG_HOME/mise
+    ~/.local/bin/mise install --yes
 }
 
 setup_rust() {
     curl https://sh.rustup.rs -sSf | sh -s -- -y --default-toolchain stable
 }
 
-# TODO: use nix instead of aqua
+# TODO: use nix instead of mise
 # setup_nix() {
 #     create_symlink ~/dotfiles/nix $XDG_CONFIG_HOME/nix
 # }
@@ -73,7 +73,7 @@ setup_zsh
 setup_neovim
 setup_tmux
 setup_git
-setup_aqua
+setup_mise
 setup_ghostty
 # setup_rust
 # setup_nix

@@ -1,8 +1,7 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
-    "config:recommended",
-    "github>aquaproj/aqua-renovate-config:file#1.2.6(aqua/.*\\.ya?ml)"
+    "config:recommended"
   ],
   "prHourlyLimit": 0,
   "prConcurrentLimit": 0,
