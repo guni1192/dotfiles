@@ -56,10 +56,10 @@ main() {
     echo "Verifying checksum..."
     (
         cd "${tmpdir}"
-        if command -v sha256sum &>/dev/null; then
-            grep "${tarball}" "${checksum_file}" | sha256sum -c --quiet
-        elif command -v shasum &>/dev/null; then
+        if command -v shasum &>/dev/null; then
             grep "${tarball}" "${checksum_file}" | shasum -a 256 -c --quiet
+        elif command -v sha256sum &>/dev/null; then
+            grep "${tarball}" "${checksum_file}" | sha256sum -c --quiet
         else
             echo "Error: No SHA256 tool found (need sha256sum or shasum)" >&2
             exit 1
