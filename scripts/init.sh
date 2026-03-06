@@ -60,11 +60,6 @@ setup_rust() {
     curl https://sh.rustup.rs -sSf | sh -s -- -y --default-toolchain stable
 }
 
-# TODO: use nix instead of mise
-# setup_nix() {
-#     create_symlink ~/dotfiles/nix $XDG_CONFIG_HOME/nix
-# }
-
 setup_ghostty() {
     ln -fsv ~/dotfiles/ghostty/ $XDG_CONFIG_HOME/ghostty
 }
@@ -76,4 +71,3 @@ setup_git
 setup_mise
 setup_ghostty
 # setup_rust
-# setup_nix
