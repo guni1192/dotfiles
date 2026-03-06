@@ -12,7 +12,9 @@
   "customManagers": [
     {
       "customType": "regex",
-      "fileMatch": ["^scripts/install-mise\\.sh$"],
+      "managerFilePatterns": [
+        "/^scripts/install-mise\\.sh$/"
+      ],
       "matchStrings": [
         "MISE_VERSION=\"(?<currentValue>v[^\"]+)\"\\s*#\\s*renovate:\\s*datasource=(?<datasource>[^\\s]+)\\s+depName=(?<depName>[^\\s]+)"
       ],
