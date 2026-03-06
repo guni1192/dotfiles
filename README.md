@@ -36,8 +36,6 @@ mise self-update
 ./scripts/install-mise.sh
 ```
 
-mise のバージョンは [Renovate](https://docs.renovatebot.com/) により自動で更新 PR が作成されます。
-
 ### Try on docker
 
 ```console
