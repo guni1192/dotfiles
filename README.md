@@ -11,7 +11,6 @@
 - tmux
 - neovim
 - [mise](https://mise.jdx.dev/)
-- aqua
 
 ## Getting Started
 
