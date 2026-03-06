@@ -32,11 +32,11 @@ detect_arch() {
     esac
 }
 
+TMPDIR_CLEANUP=""
+trap 'rm -rf "${TMPDIR_CLEANUP}"' EXIT
+
 main() {
     local os arch base_url tarball checksum_file
-    local tmpdir=""
-
-    trap 'rm -rf "${tmpdir}"' EXIT
 
     os="$(detect_os)"
     arch="$(detect_arch)"
@@ -47,7 +47,9 @@ main() {
     tarball="mise-${MISE_VERSION}-${os}-${arch}.tar.gz"
     checksum_file="SHASUMS256.txt"
 
+    local tmpdir
     tmpdir="$(mktemp -d)"
+    TMPDIR_CLEANUP="${tmpdir}"
 
     echo "Downloading ${tarball}..."
     curl -fsSL "${base_url}/${tarball}" -o "${tmpdir}/${tarball}"
