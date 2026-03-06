@@ -33,7 +33,10 @@ detect_arch() {
 }
 
 main() {
-    local os arch base_url tarball checksum_file tmpdir
+    local os arch base_url tarball checksum_file
+    local tmpdir=""
+
+    trap 'rm -rf "${tmpdir}"' EXIT
 
     os="$(detect_os)"
     arch="$(detect_arch)"
@@ -45,7 +48,6 @@ main() {
     checksum_file="SHASUMS256.txt"
 
     tmpdir="$(mktemp -d)"
-    trap 'rm -rf "${tmpdir}"' EXIT
 
     echo "Downloading ${tarball}..."
     curl -fsSL "${base_url}/${tarball}" -o "${tmpdir}/${tarball}"
