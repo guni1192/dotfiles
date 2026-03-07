@@ -40,6 +40,9 @@ alias jql='jq -C . | less -R'
 
 alias az='docker run --rm -it -v ${HOME}/.kube/:/root/.kube/ -v ${HOME}/.azure/:/root/.azure/ -v ${HOME}/.ssh:/root/.ssh mcr.microsoft.com/azure-cli az'
 
+# git worktree
+alias gwt='cd $(git worktree list | fzf | awk "{ print \$1 }")'
+
 alias gcpctx="
   gcloud config configurations list \
     | awk '{ print \$1,\$3,\$4 }' \
