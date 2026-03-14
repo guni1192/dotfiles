@@ -1,6 +1,6 @@
 [tools]
 fzf = "0.67.0" # renovate: datasource=github-releases depName=junegunn/fzf
-ghq = "1.8.0" # renovate: datasource=github-releases depName=x-motemen/ghq
+ghq = "1.9.4" # renovate: datasource=github-releases depName=x-motemen/ghq
 "github-cli" = "2.83.1" # renovate: datasource=github-releases depName=cli/cli
 kubectl = "1.34.2" # renovate: datasource=github-tags depName=kubernetes/kubernetes
 helm = "4.0.1" # renovate: datasource=github-releases depName=helm/helm
