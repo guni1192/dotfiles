@@ -24,7 +24,7 @@ export PATH=$PATH:$GOPATH/bin
 export PATH=$HOME/.cargo/bin:/usr/local/go/bin:${KREW_ROOT:-$HOME/.krew}/bin:$HOME/.local/bin:$PATH
 
 # mise
-eval "$(~/.local/bin/mise activate zsh 2>/dev/null || true)"
+export PATH="$HOME/.local/share/mise/shims:$PATH"
 
 case ${OSTYPE} in
     darwin*)
