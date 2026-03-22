@@ -15,16 +15,9 @@ export ZDOTDIR=$XDG_CONFIG_HOME/zsh
 
 # Go
 export GOPATH=$HOME/go
-export PATH=$PATH:$GOPATH/bin
-# export GO111MODULE=auto
 
 # Rust
 [ -f "$HOME/.cargo/env" ] && . "$HOME/.cargo/env"
-
-export PATH=$HOME/.cargo/bin:/usr/local/go/bin:${KREW_ROOT:-$HOME/.krew}/bin:$HOME/.local/bin:$PATH
-
-# mise
-eval "$(~/.local/bin/mise activate zsh 2>/dev/null || true)"
 
 case ${OSTYPE} in
     darwin*)
@@ -34,6 +27,19 @@ case ${OSTYPE} in
         ;;
 esac
 
+# PATH
+path_dirs=(
+    /opt/homebrew/opt/llvm/bin
+    /usr/local/go/bin
+    $GOPATH/bin
+    $HOME/.cargo/bin
+    ${KREW_ROOT:-$HOME/.krew}/bin
+    $HOME/.local/bin
+    $HOME/.local/share/mise/shims
+    $HOME/.antigravity/antigravity/bin
+)
 
-export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
-export PATH="$PATH:$HOME/.antigravity/antigravity/bin"
+for dir in "${path_dirs[@]}"; do
+    [[ -d "$dir" ]] && PATH="$dir:$PATH"
+done
+export PATH
