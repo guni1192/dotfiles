@@ -28,7 +28,5 @@ precmd () {
   fi
 }
 
-# RPROMPT='${vcs_info_msg_0_}'
-
 PROMPT='$username$directory${vcs_info_msg_0_}${kube_current_context}$return_code
 $auth'

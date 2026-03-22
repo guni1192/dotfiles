@@ -15,14 +15,6 @@ alias df='df -h'
 
 alias tmux='tmux -2'
 
-# cd && ls
-function chpwd() { ls }
-
-alias xr='xrdb ~/.Xresources'
-
-# Ruby
-alias be='bundle exec'
-
 # gitignore
 function gi(){
   curl -L -s https://www.gitignore.io/api/$@;
@@ -32,13 +24,8 @@ function gi(){
 alias repos='ghq list -p | fzf'
 alias repo='cd $(repos)'
 
-alias rbs="RUST_BACKTRACE=1"
-alias rbf="RUST_BACKTRACE=full"
-
 # jq less
 alias jql='jq -C . | less -R'
-
-alias az='docker run --rm -it -v ${HOME}/.kube/:/root/.kube/ -v ${HOME}/.azure/:/root/.azure/ -v ${HOME}/.ssh:/root/.ssh mcr.microsoft.com/azure-cli az'
 
 # git worktree
 alias gwt='cd $(git worktree list | fzf | awk "{ print \$1 }")'
