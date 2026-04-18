@@ -1,11 +1,11 @@
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-if not vim.loop.fs_stat(lazypath) then
+if not vim.uv.fs_stat(lazypath) then
   vim.fn.system({
     "git",
     "clone",
     "--filter=blob:none",
     "https://github.com/folke/lazy.nvim.git",
-    "--branch=stable", -- latest stable release
+    "--branch=stable",
     lazypath,
   })
 end
@@ -29,10 +29,8 @@ lazy.setup({
           return { desc = "nvim-tree: " .. desc, buffer = bufnr, noremap = true, silent = true, nowait = true }
         end
 
-        -- default mappings
         api.config.mappings.default_on_attach(bufnr)
 
-        -- custom mappings
         vim.keymap.set('n', '<C-t>', api.tree.change_root_to_parent,        opts('Up'))
         vim.keymap.set('n', '?',     api.tree.toggle_help,                  opts('Help'))
         vim.keymap.set('n', '<C-e>', api.tree.toggle,                       opts('Toggle'))
@@ -50,15 +48,9 @@ lazy.setup({
       require("fzf-lua").setup({})
     end
   },
-  -- completion and snippet
+  -- LSP
   {"neovim/nvim-lspconfig"},
-  {"hrsh7th/nvim-cmp"},
-  {"hrsh7th/cmp-path"},
-  {"hrsh7th/cmp-buffer"},
-  {"hrsh7th/cmp-cmdline"},
-  {"hrsh7th/cmp-nvim-lsp"},
-  {"hrsh7th/vim-vsnip"},
-  -- lualine
+  -- statusline / tabline
   {'nvim-lualine/lualine.nvim'},
   {
     'akinsho/bufferline.nvim',
@@ -77,66 +69,56 @@ lazy.setup({
     build = function() vim.fn["mkdp#util#install"]() end,
   },
   { "EdenEast/nightfox.nvim" },
-  -- copilot
-  { 'github/copilot.vim' },
-  -- nvim-treeesitter
+  -- treesitter (main branch, Neovim 0.12+ API)
   {
     "nvim-treesitter/nvim-treesitter",
+    branch = "main",
+    lazy = false,
     build = ":TSUpdate",
-    -- lazy = vim.fn.argc(-1) == 0,
-    -- cmd = { "TSUpdateSync", "TSUpdate", "TSInstall" },
-    config = function ()
-      require('nvim-treesitter.configs').setup {
-        auto_install = true,
-        sync_install = true,
-        highlight = { 
-          enable = true,
-          additional_vim_regex_highlighting = false,
-        },
-        indent = { enable = true },
-        ensure_installed = {
-          "bash",
-          "c",
-          "diff",
-          "go",
-          "hcl",
-          "html",
-          "javascript",
-          "jsdoc",
-          "json",
-          "jsonc",
-          "lua",
-          "luadoc",
-          "luap",
-          "markdown",
-          "markdown_inline",
-          "python",
-          "query",
-          "regex",
-          "rust",
-          "terraform",
-          "toml",
-          "tsx",
-          "typescript",
-          "vim",
-          "vimdoc",
-          "xml",
-          "yaml",
-        },
-        incremental_selection = {
-          enable = true,
-        },
-        textobjects = {
-          move = {
-            enable = true,
-            goto_next_start = { ["]f"] = "@function.outer", ["]c"] = "@class.outer" },
-            goto_next_end = { ["]F"] = "@function.outer", ["]C"] = "@class.outer" },
-            goto_previous_start = { ["[f"] = "@function.outer", ["[c"] = "@class.outer" },
-            goto_previous_end = { ["[F"] = "@function.outer", ["[C"] = "@class.outer" },
-          },
-        },
+    config = function()
+      local ensure = {
+        "bash", "c", "diff", "go", "hcl", "html",
+        "javascript", "jsdoc", "json", "jsonc",
+        "lua", "luadoc", "luap",
+        "markdown", "markdown_inline",
+        "python", "query", "regex", "rust",
+        "terraform", "toml", "tsx", "typescript",
+        "vim", "vimdoc", "xml", "yaml",
       }
-    end
+      require('nvim-treesitter').install(ensure)
+
+      vim.api.nvim_create_autocmd("FileType", {
+        pattern = ensure,
+        callback = function()
+          vim.treesitter.start()
+          vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+        end,
+      })
+    end,
+  },
+  {
+    "nvim-treesitter/nvim-treesitter-textobjects",
+    branch = "main",
+    dependencies = { "nvim-treesitter/nvim-treesitter" },
+    config = function()
+      require("nvim-treesitter-textobjects").setup({
+        move = { set_jumps = true },
+        select = { lookahead = true },
+      })
+
+      local move = require("nvim-treesitter-textobjects.move")
+      local function map(lhs, fn, desc)
+        vim.keymap.set({ "n", "x", "o" }, lhs, fn, { desc = desc })
+      end
+      map("]f", function() move.goto_next_start("@function.outer", "textobjects") end, "Next function start")
+      map("]c", function() move.goto_next_start("@class.outer", "textobjects") end, "Next class start")
+      map("]F", function() move.goto_next_end("@function.outer", "textobjects") end, "Next function end")
+      map("]C", function() move.goto_next_end("@class.outer", "textobjects") end, "Next class end")
+      map("[f", function() move.goto_previous_start("@function.outer", "textobjects") end, "Prev function start")
+      map("[c", function() move.goto_previous_start("@class.outer", "textobjects") end, "Prev class start")
+      map("[F", function() move.goto_previous_end("@function.outer", "textobjects") end, "Prev function end")
+      map("[C", function() move.goto_previous_end("@class.outer", "textobjects") end, "Prev class end")
+    end,
   },
 })
 

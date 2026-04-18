@@ -27,7 +27,7 @@
         "/^mise/config\\.toml$/"
       ],
       "matchStrings": [
-        "[\"']?(?:[\\w-]+)[\"']?\\s*=\\s*\"(?<currentValue>[^\"]+)\"\\s*#\\s*renovate:\\s*datasource=(?<datasource>[^\\s]+)\\s+depName=(?<depName>[^\\s]+)"
+        "[\"']?(?:[\\w\\-@/:.]+)[\"']?\\s*=\\s*\"(?<currentValue>[^\"]+)\"\\s*#\\s*renovate:\\s*datasource=(?<datasource>[^\\s]+)\\s+depName=(?<depName>[^\\s]+)"
       ],
       "versioningTemplate": "semver"
     }
