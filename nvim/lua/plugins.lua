@@ -83,7 +83,7 @@ lazy.setup({
         "markdown", "markdown_inline",
         "python", "query", "regex", "rust",
         "terraform", "toml", "tsx", "typescript",
-        "vim", "vimdoc", "xml", "yaml",
+        "vim", "vimdoc", "xml", "yaml", "jsonnet"
       }
       require('nvim-treesitter').install(ensure)
 
