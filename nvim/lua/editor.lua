@@ -22,3 +22,7 @@ vim.opt.helplang = "en"
 vim.opt.cursorline = true
 vim.opt.foldmethod = "syntax"
 vim.opt.foldlevel = 100
+
+-- Native insert-mode autocomplete (Neovim 0.12+). LSP sources via omnifunc
+-- are wired automatically on LspAttach.
+vim.o.autocomplete = true

@@ -1,27 +1,18 @@
-
 vim.api.nvim_create_autocmd('LspAttach', {
   group = vim.api.nvim_create_augroup('UserLspConfig', {}),
   callback = function(ev)
-    -- Enable completion triggered by <c-x><c-o>
-    vim.bo[ev.buf].omnifunc = 'v:lua.vim.lsp.omnifunc'
-
-    -- Buffer local mappings.
-    -- See `:help vim.lsp.*` for documentation on any of the below functions
+    -- Neovim 0.11+ provides default LSP mappings:
+    --   K (hover), grn (rename), gra (code action), grr (references),
+    --   gri (implementation), gO (document symbol), <C-s> (signature help, insert)
+    -- Only bind what's not already covered.
     local opts = { buffer = ev.buf }
-    vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
     vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
-    vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
-    vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
-    vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, opts)
     vim.keymap.set('n', '<space>wa', vim.lsp.buf.add_workspace_folder, opts)
     vim.keymap.set('n', '<space>wr', vim.lsp.buf.remove_workspace_folder, opts)
     vim.keymap.set('n', '<space>wl', function()
       print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
     end, opts)
     vim.keymap.set('n', '<space>D', vim.lsp.buf.type_definition, opts)
-    vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, opts)
-    vim.keymap.set({ 'n', 'v' }, '<space>ca', vim.lsp.buf.code_action, opts)
-    vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)
     vim.keymap.set('n', '<space>f', function()
       vim.lsp.buf.format { async = true }
     end, opts)
@@ -29,37 +20,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
 })
 
 
-local cmp = require ("cmp")
-cmp.setup({
-  snippet = {
-    expand = function(args)
-      vim.fn["vsnip#anonymous"](args.body)
-    end,
-  },
-  window = {
-    -- completion = {
-    --   autocomplete = true,
-    -- },
-  },
-  sources = cmp.config.sources({
-    { name = 'nvim_lsp' },
-  }),
-  mapping = cmp.mapping.preset.insert({
-    ["<C-p>"] = cmp.mapping.select_prev_item(),
-    ["<C-n>"] = cmp.mapping.select_next_item(),
-    ["<C-d>"] = cmp.mapping.scroll_docs(-4),
-    ["<C-f>"] = cmp.mapping.scroll_docs(4),
-    ["<C-c>"] = cmp.mapping.complete(),
-    ["<C-e>"] = cmp.mapping.close(),
-    ["<Enter>"] = cmp.mapping.confirm({ select = true }),
-  }),
-})
-
-
-local capabilities = require("cmp_nvim_lsp").default_capabilities()
-
 vim.lsp.enable('rust-analyzer', {
-  capabilities = capabilities,
   flags = {
     exit_timeout = 0,
   },
@@ -83,7 +44,6 @@ vim.lsp.enable('rust-analyzer', {
 })
 
 vim.lsp.enable('gopls', {
-  capabilities = capabilities,
   cmd = {"gopls", "serve", "-rpc.trace"},
   filetypes = {'go'},
   settings = {
@@ -101,29 +61,18 @@ vim.lsp.enable('gopls', {
 vim.api.nvim_create_autocmd('BufWritePre', {
   pattern = '*.go',
   callback = function()
-    -- First organize imports
     vim.lsp.buf.code_action({ context = { only = { 'source.organizeImports' } }, apply = true })
-    -- Then format
     vim.lsp.buf.format({ async = false })
   end
 })
 
 -- Protobuf
 vim.lsp.enable('clangd', {
-  capabilities = capabilities,
   filetypes = {'proto'},
 })
 
--- GitHub Copilot
-vim.keymap.set('i', '<C-g>', 'copilot#Accept("<CR>")', {
-  expr = true,
-  replace_keycodes = false
-})
--- vim.g.copilot_no_tab_map = true
-
 -- Terraform
 vim.lsp.enable('terraformls', {
-  capabilities = capabilities,
   filetypes = {'tf', 'tfvars'},
 })
 
@@ -133,3 +82,68 @@ vim.api.nvim_create_autocmd({"BufWritePre"}, {
     vim.lsp.buf.format()
   end,
 })
+
+-- GitHub Copilot via official LSP (@github/copilot-language-server).
+-- Install: `npm install -g @github/copilot-language-server`
+-- Sign in: `:CopilotSignIn` (device-code flow)
+vim.lsp.config('copilot', {
+  cmd = { 'copilot-language-server', '--stdio' },
+  filetypes = {
+    'lua', 'go', 'rust', 'python',
+    'javascript', 'typescript', 'javascriptreact', 'typescriptreact',
+    'sh', 'bash', 'zsh',
+    'terraform', 'hcl', 'proto',
+    'markdown', 'yaml', 'json', 'jsonc',
+    'html', 'css',
+    'c', 'cpp',
+  },
+  root_markers = { '.git' },
+  init_options = {
+    editorInfo       = { name = 'Neovim', version = tostring(vim.version()) },
+    editorPluginInfo = { name = 'copilot-lsp', version = '1.0.0' },
+  },
+  settings = {
+    telemetry = { telemetryLevel = 'off' },
+  },
+  on_attach = function(_, bufnr)
+    vim.lsp.inline_completion.enable(true, { bufnr = bufnr })
+    vim.keymap.set('i', '<C-g>', function()
+      if not vim.lsp.inline_completion.get() then
+        return '<CR>'
+      end
+    end, { expr = true, buffer = bufnr, desc = 'Copilot: accept inline completion' })
+    vim.keymap.set('i', '<M-]>', function()
+      vim.lsp.inline_completion.select({ count = 1 })
+    end, { buffer = bufnr, desc = 'Copilot: next suggestion' })
+    vim.keymap.set('i', '<M-[>', function()
+      vim.lsp.inline_completion.select({ count = -1 })
+    end, { buffer = bufnr, desc = 'Copilot: previous suggestion' })
+  end,
+})
+vim.lsp.enable('copilot')
+
+vim.api.nvim_create_user_command('CopilotSignIn', function()
+  local client = vim.lsp.get_clients({ name = 'copilot' })[1]
+  if not client then
+    return vim.notify('copilot LSP not running', vim.log.levels.ERROR)
+  end
+  client:request('signIn', vim.empty_dict(), function(err, res)
+    if err or not res then
+      return vim.notify('signIn failed: ' .. vim.inspect(err), vim.log.levels.ERROR)
+    end
+    vim.fn.setreg('+', res.userCode)
+    vim.notify(('Copilot code: %s (copied to +). Open https://github.com/login/device'):format(res.userCode))
+    if res.command then
+      client:exec_cmd(res.command)
+    end
+  end)
+end, {})
+
+vim.api.nvim_create_user_command('CopilotSignOut', function()
+  local client = vim.lsp.get_clients({ name = 'copilot' })[1]
+  if client then
+    client:request('signOut', vim.empty_dict(), function()
+      vim.notify('Copilot: signed out')
+    end)
+  end
+end, {})
