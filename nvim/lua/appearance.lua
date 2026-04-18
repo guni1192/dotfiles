@@ -1,3 +1,5 @@
+require('vim._core.ui2').enable()
+
 vim.cmd("syntax on")
 vim.api.nvim_create_augroup('BgColor', {})
 vim.api.nvim_create_autocmd({'VimEnter', 'ColorScheme'}, {
