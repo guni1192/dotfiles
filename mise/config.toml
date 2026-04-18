@@ -19,6 +19,7 @@ tree-sitter = "0.26.8" # renovate: datasource=github-releases depName=tree-sitte
 # LSP servers (consumed by nvim/lua/lsp.lua)
 "go:golang.org/x/tools/gopls" = "0.21.1" # renovate: datasource=go depName=golang.org/x/tools/gopls
 terraform-ls = "0.38.6" # renovate: datasource=github-releases depName=hashicorp/terraform-ls
+lua-language-server = "3.18.2" # renovate: datasource=github-releases depName=LuaLS/lua-language-server
 "npm:@github/copilot-language-server" = "1.472.0" # renovate: datasource=npm depName=@github/copilot-language-server
 # rust-analyzer uses date-based releases (YYYY-MM-DD); bump manually.
 rust-analyzer = "2026-04-13"

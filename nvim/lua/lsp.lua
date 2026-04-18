@@ -83,6 +83,29 @@ vim.api.nvim_create_autocmd({"BufWritePre"}, {
   end,
 })
 
+-- Lua (lua-language-server / LuaLS)
+vim.lsp.enable('lua_ls', {
+  cmd = { 'lua-language-server' },
+  filetypes = { 'lua' },
+  root_markers = {
+    '.luarc.json', '.luarc.jsonc',
+    '.stylua.toml', 'stylua.toml',
+    'selene.toml', 'selene.yml',
+    '.git',
+  },
+  settings = {
+    Lua = {
+      runtime = { version = 'LuaJIT' },
+      workspace = {
+        checkThirdParty = false,
+        library = vim.api.nvim_get_runtime_file('', true),
+      },
+      diagnostics = { globals = { 'vim' } },
+      telemetry = { enable = false },
+    },
+  },
+})
+
 -- GitHub Copilot via official LSP (@github/copilot-language-server).
 -- Install: `npm install -g @github/copilot-language-server`
 -- Sign in: `:CopilotSignIn` (device-code flow)
