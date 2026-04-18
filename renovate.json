@@ -16,9 +16,8 @@
         "/^scripts/install-mise\\.sh$/"
       ],
       "matchStrings": [
-        "MISE_VERSION=\"(?<currentValue>v[^\"]+)\"\\s*#\\s*renovate:\\s*datasource=(?<datasource>[^\\s]+)\\s+depName=(?<depName>[^\\s]+)"
+        "MISE_VERSION=\"v(?<currentValue>[^\"]+)\"\\s*#\\s*renovate:\\s*datasource=(?<datasource>[^\\s]+)\\s+depName=(?<depName>[^\\s]+)"
       ],
-      "extractVersionTemplate": "^v(?<version>.+)$",
       "versioningTemplate": "semver"
     },
     {
