@@ -5,7 +5,7 @@ ghq = "1.9.4" # renovate: datasource=github-releases depName=x-motemen/ghq
 "github-cli" = "2.88.1" # renovate: datasource=github-releases depName=cli/cli
 
 # Kubernetes ecosystem
-kubectl = "1.35.2" # renovate: datasource=github-tags depName=kubernetes/kubernetes
+kubectl = "1.36.0" # renovate: datasource=github-tags depName=kubernetes/kubernetes
 helm = "4.1.3" # renovate: datasource=github-releases depName=helm/helm
 krew = "0.5.0" # renovate: datasource=github-releases depName=kubernetes-sigs/krew
 kustomize = "5.8.0" # renovate: datasource=github-releases depName=kubernetes-sigs/kustomize
