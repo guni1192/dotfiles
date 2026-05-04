@@ -23,3 +23,4 @@ lua-language-server = "3.18.2" # renovate: datasource=github-releases depName=Lu
 "npm:@github/copilot-language-server" = "1.472.0" # renovate: datasource=npm depName=@github/copilot-language-server
 # rust-analyzer uses date-based releases (YYYY-MM-DD); bump manually.
 rust-analyzer = "2026-04-13"
+yq = "4.53.2"
