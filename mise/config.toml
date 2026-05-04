@@ -1,4 +1,5 @@
 [tools]
+neovim = "0.12.2"
 # CLI tools
 fzf = "0.72.0" # renovate: datasource=github-releases depName=junegunn/fzf
 ghq = "1.9.4" # renovate: datasource=github-releases depName=x-motemen/ghq
