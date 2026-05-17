@@ -79,8 +79,6 @@ completes. To force a reinstall:
 npm install -g @github/copilot-language-server@latest
 ```
 
-### Try on docker
+## Dev Container
 
-```console
-docker run -it ghcr.io/guni1192/dotfiles:latest
-```
+See [.devcontainer/README.md](./.devcontainer/README.md) for trying this repo in a Dev Container.
