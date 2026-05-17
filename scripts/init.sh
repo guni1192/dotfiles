@@ -115,14 +115,28 @@ setup_devbox() {
     fi
 
     # Apply the dotfiles devbox.json as the user's global profile.
+    # Symlink the source files individually (not the whole directory) so that
+    # devbox's per-environment state under .devbox/ — which contains absolute
+    # /nix/store paths — stays local to each host/container instead of leaking
+    # through the bind mount.
     local global_dir="$XDG_DATA_HOME/devbox/global/default"
-    mkdir -p "$(dirname "$global_dir")"
-    create_symlink ~/dotfiles/devbox "$global_dir"
+    if [[ -L "$global_dir" ]]; then
+        rm "$global_dir"
+    fi
+    mkdir -p "$global_dir"
+    create_symlink ~/dotfiles/devbox/devbox.json "$global_dir/devbox.json"
+    create_symlink ~/dotfiles/devbox/devbox.lock "$global_dir/devbox.lock"
 
     # Materialize the packages defined in devbox/devbox.json.
     # `devbox global install` is itself idempotent: it skips packages already
     # present in the global profile.
     devbox global install
+
+    # Run the devbox init_hook once (covers `npm install -g
+    # @github/copilot-language-server`). Interactive shells then activate the
+    # profile with plain `devbox global shellenv` and don't depend on the
+    # generated .hooks.sh.
+    eval "$(devbox global shellenv --init-hook)" >/dev/null 2>&1 || true
 }
 
 setup_rust() {

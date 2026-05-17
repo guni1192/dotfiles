@@ -8,6 +8,4 @@ if [ -S "$SSH_AUTH_SOCK" ]; then
     esac
 elif [ -S $agent ]; then
     export SSH_AUTH_SOCK=$agent
-else
-    echo "ssh-agent not fonud"
 fi
