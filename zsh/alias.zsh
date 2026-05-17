@@ -38,3 +38,5 @@ alias gcpctx="
     | awk '{ print \$1 }' \
     | xargs -r gcloud config configurations activate
 "
+
+alias d='devbox'
