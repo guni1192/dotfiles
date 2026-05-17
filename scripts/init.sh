@@ -62,6 +62,27 @@ load_nix_env() {
     fi
 }
 
+install_nix_determinate() {
+    # Determinate installer running upstream Nix CE — we deliberately skip
+    # `--determinate` so the installer uses nixbld gid 30000 (upstream default)
+    # rather than 350, which collides with groups left behind by previous
+    # upstream installs.
+    curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix \
+        | sh -s -- install --no-confirm
+}
+
+install_nix_single_user() {
+    # No-systemd / container path: upstream installer in single-user mode, no
+    # daemon, profile lives under ~/.nix-profile.
+    mkdir -p "$HOME/.config/nix"
+    grep -q '^experimental-features' "$HOME/.config/nix/nix.conf" 2>/dev/null \
+        || echo 'experimental-features = nix-command flakes' \
+            >> "$HOME/.config/nix/nix.conf"
+    curl -fsSL https://nixos.org/nix/install -o /tmp/nix-install.sh
+    sh /tmp/nix-install.sh --no-daemon --yes
+    rm -f /tmp/nix-install.sh
+}
+
 setup_nix() {
     load_nix_env
     if command -v nix >/dev/null 2>&1; then
@@ -69,32 +90,13 @@ setup_nix() {
         return
     fi
 
-    # We use Determinate's installer (better install/uninstall UX) but install
-    # upstream Nix CE (no `--determinate` flag). Determinate Nix would otherwise
-    # require nixbld gid 350, which conflicts with the upstream default gid
-    # 30000 left behind by previous installs.
     case "$(uname -s)" in
-        Darwin)
-            echo "Installing Nix (upstream, macOS multi-user)..."
-            curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix \
-                | sh -s -- install --no-confirm
-            ;;
+        Darwin) install_nix_determinate ;;
         Linux)
             if [[ -d /run/systemd/system ]]; then
-                echo "Installing Nix (upstream, Linux multi-user)..."
-                curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix \
-                    | sh -s -- install --no-confirm
+                install_nix_determinate
             else
-                # Container / no-systemd: fall back to upstream single-user installer.
-                # No daemon is required and the install lives under ~/.nix-profile.
-                echo "Installing Nix (upstream single-user, no systemd)..."
-                mkdir -p "$HOME/.config/nix"
-                grep -q '^experimental-features' "$HOME/.config/nix/nix.conf" 2>/dev/null \
-                    || echo 'experimental-features = nix-command flakes' \
-                        >> "$HOME/.config/nix/nix.conf"
-                curl -fsSL https://nixos.org/nix/install -o /tmp/nix-install.sh
-                sh /tmp/nix-install.sh --no-daemon --yes
-                rm -f /tmp/nix-install.sh
+                install_nix_single_user
             fi
             ;;
         *)
@@ -114,28 +116,19 @@ setup_devbox() {
         curl -fsSL https://get.jetify.com/devbox | bash -s -- -f
     fi
 
-    # Apply the dotfiles devbox.json as the user's global profile.
-    # Symlink the source files individually (not the whole directory) so that
-    # devbox's per-environment state under .devbox/ — which contains absolute
-    # /nix/store paths — stays local to each host/container instead of leaking
-    # through the bind mount.
+    # Symlink devbox.json/devbox.lock individually instead of the whole
+    # directory so per-environment .devbox/ state (absolute /nix/store paths)
+    # stays local to each host/container and doesn't leak via bind mounts.
     local global_dir="$XDG_DATA_HOME/devbox/global/default"
-    if [[ -L "$global_dir" ]]; then
-        rm "$global_dir"
-    fi
+    rm -rf "$global_dir"
     mkdir -p "$global_dir"
     create_symlink ~/dotfiles/devbox/devbox.json "$global_dir/devbox.json"
     create_symlink ~/dotfiles/devbox/devbox.lock "$global_dir/devbox.lock"
 
-    # Materialize the packages defined in devbox/devbox.json.
-    # `devbox global install` is itself idempotent: it skips packages already
-    # present in the global profile.
     devbox global install
 
-    # Run the devbox init_hook once (covers `npm install -g
-    # @github/copilot-language-server`). Interactive shells then activate the
-    # profile with plain `devbox global shellenv` and don't depend on the
-    # generated .hooks.sh.
+    # Evaluate the init_hook once so the npm copilot-language-server install
+    # runs here, not on every interactive shell start.
     eval "$(devbox global shellenv --init-hook)" >/dev/null 2>&1 || true
 }
 
@@ -144,7 +137,7 @@ setup_rust() {
 }
 
 setup_ghostty() {
-    ln -fsv ~/dotfiles/ghostty/ $XDG_CONFIG_HOME/ghostty
+    create_symlink ~/dotfiles/ghostty/ $XDG_CONFIG_HOME/ghostty
 }
 
 setup_all() {
@@ -155,7 +148,6 @@ setup_all() {
     setup_nix
     setup_devbox
     setup_ghostty
-    # setup_rust  # opt-in; run `init.sh setup-rust` explicitly
 }
 
 usage() {
@@ -185,25 +177,24 @@ main() {
     fi
 
     case "$1" in
-        setup-all)     setup_all ;;
-        setup-zsh)     setup_zsh ;;
-        setup-neovim)  setup_neovim ;;
-        setup-tmux)    setup_tmux ;;
-        setup-git)     setup_git ;;
-        setup-nix)     setup_nix ;;
-        setup-devbox)  setup_devbox ;;
-        setup-ghostty) setup_ghostty ;;
-        setup-rust)    setup_rust ;;
         -h|--help|help)
             usage
-            ;;
-        *)
-            echo "Unknown subcommand: $1" >&2
-            echo >&2
-            usage >&2
-            exit 1
+            return
             ;;
     esac
+
+    # setup-foo → setup_foo, dispatched only if defined as a function. This
+    # keeps the subcommand list and the function names in lockstep — no
+    # separate case arms to drift from the usage text.
+    local fn="${1//-/_}"
+    if [[ "$1" == setup-* ]] && declare -F "$fn" >/dev/null; then
+        "$fn"
+    else
+        echo "Unknown subcommand: $1" >&2
+        echo >&2
+        usage >&2
+        exit 1
+    fi
 }
 
 main "$@"
