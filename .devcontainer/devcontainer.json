@@ -1,0 +1,15 @@
+{
+  "name": "dotfiles",
+  "image": "mcr.microsoft.com/devcontainers/base:ubuntu-22.04",
+  "remoteUser": "vscode",
+  "workspaceFolder": "/home/vscode/dotfiles",
+  "workspaceMount": "source=${localWorkspaceFolder},target=/home/vscode/dotfiles,type=bind,consistency=cached",
+  "postCreateCommand": "bash ./scripts/init.sh setup-all",
+  "customizations": {
+    "vscode": {
+      "settings": {
+        "terminal.integrated.defaultProfile.linux": "zsh"
+      }
+    }
+  }
+}

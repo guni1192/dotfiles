@@ -35,7 +35,7 @@ path_dirs=(
     $HOME/.cargo/bin
     ${KREW_ROOT:-$HOME/.krew}/bin
     $HOME/.local/bin
-    $HOME/.local/share/mise/shims
+    $HOME/.local/npm-global/bin
     $HOME/.antigravity/antigravity/bin
 )
 
@@ -43,3 +43,13 @@ for dir in "${path_dirs[@]}"; do
     [[ -d "$dir" ]] && PATH="$dir:$PATH"
 done
 export PATH
+
+# Nix (multi-user via Determinate, or single-user via upstream installer).
+# Sourced here so non-interactive shells (e.g. nvim's LSP children) see `nix`.
+# Devbox activation lives in zsh/devbox.zsh because devbox auto-detects only
+# the rcfile, not zshenv.
+if [[ -f /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh ]]; then
+    . /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
+elif [[ -f $HOME/.nix-profile/etc/profile.d/nix.sh ]]; then
+    . $HOME/.nix-profile/etc/profile.d/nix.sh
+fi

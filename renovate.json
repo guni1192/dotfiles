@@ -7,28 +7,6 @@
   "prConcurrentLimit": 0,
   "branchConcurrentLimit": 0,
   "enabledManagers": [
-    "custom.regex"
-  ],
-  "customManagers": [
-    {
-      "customType": "regex",
-      "managerFilePatterns": [
-        "/^scripts/install-mise\\.sh$/"
-      ],
-      "matchStrings": [
-        "MISE_VERSION=\"v(?<currentValue>[^\"]+)\"\\s*#\\s*renovate:\\s*datasource=(?<datasource>[^\\s]+)\\s+depName=(?<depName>[^\\s]+)"
-      ],
-      "versioningTemplate": "semver"
-    },
-    {
-      "customType": "regex",
-      "managerFilePatterns": [
-        "/^mise/config\\.toml$/"
-      ],
-      "matchStrings": [
-        "[\"']?(?:[\\w\\-@/:.]+)[\"']?\\s*=\\s*\"(?<currentValue>[^\"]+)\"\\s*#\\s*renovate:\\s*datasource=(?<datasource>[^\\s]+)\\s+depName=(?<depName>[^\\s]+)"
-      ],
-      "versioningTemplate": "semver"
-    }
+    "devbox"
   ]
 }
