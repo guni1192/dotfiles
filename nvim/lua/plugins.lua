@@ -63,10 +63,15 @@ lazy.setup({
     opts = {}
   },
   {
-    "iamcco/markdown-preview.nvim",
-    cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
-    ft = { "markdown" },
-    build = function() vim.fn["mkdp#util#install"]() end,
+    "brianhuster/live-preview.nvim",
+    dependencies = { "ibhagwan/fzf-lua" },
+    cmd = { "LivePreview" },
+    ft = { "markdown", "html", "asciidoc", "svg" },
+    config = function()
+      require("livepreview.config").set({
+        picker = "fzf-lua",
+      })
+    end,
   },
   { "EdenEast/nightfox.nvim" },
   -- treesitter (main branch, Neovim 0.12+ API)
