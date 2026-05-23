@@ -1,6 +1,70 @@
 {
   "lockfile_version": "1",
   "packages": {
+    "awscli2@latest": {
+      "last_modified": "2026-04-23T13:07:47Z",
+      "resolved": "github:NixOS/nixpkgs/01fbdeef22b76df85ea168fbfe1bfd9e63681b30#awscli2",
+      "source": "devbox-search",
+      "version": "2.34.24",
+      "systems": {
+        "aarch64-darwin": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/6rjb80bzlnq2aiyn7y44bxf98ms8jiv8-awscli2-2.34.24",
+              "default": true
+            },
+            {
+              "name": "dist",
+              "path": "/nix/store/0nrql1b3pq91qydg6bbkm5igb0klczyk-awscli2-2.34.24-dist"
+            }
+          ],
+          "store_path": "/nix/store/6rjb80bzlnq2aiyn7y44bxf98ms8jiv8-awscli2-2.34.24"
+        },
+        "aarch64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/y48ygqd28j468i7abfh9v5yy1rvj6qc2-awscli2-2.34.24",
+              "default": true
+            },
+            {
+              "name": "dist",
+              "path": "/nix/store/d979xiddsvgbwnlsmpy557dv1bix365z-awscli2-2.34.24-dist"
+            }
+          ],
+          "store_path": "/nix/store/y48ygqd28j468i7abfh9v5yy1rvj6qc2-awscli2-2.34.24"
+        },
+        "x86_64-darwin": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/8jfgy4rp00vdvbr344w6bcp9s7hl6kkx-awscli2-2.34.24",
+              "default": true
+            },
+            {
+              "name": "dist",
+              "path": "/nix/store/3qvvimmyvmcxrjncxyk1ihp3f5wi9pdn-awscli2-2.34.24-dist"
+            }
+          ],
+          "store_path": "/nix/store/8jfgy4rp00vdvbr344w6bcp9s7hl6kkx-awscli2-2.34.24"
+        },
+        "x86_64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/yfcx11pxh5ax692vvhpxmqc12dpq56f5-awscli2-2.34.24",
+              "default": true
+            },
+            {
+              "name": "dist",
+              "path": "/nix/store/97src0rsmbl5wfp9jnb4bdrjbcic6dbp-awscli2-2.34.24-dist"
+            }
+          ],
+          "store_path": "/nix/store/yfcx11pxh5ax692vvhpxmqc12dpq56f5-awscli2-2.34.24"
+        }
+      }
+    },
     "devcontainer@0.86.0": {
       "last_modified": "2026-05-06T12:40:13Z",
       "resolved": "github:NixOS/nixpkgs/07800bee2b362f6c73fe17cb1593a260c5e183c6#devcontainer",
@@ -46,6 +110,54 @@
             }
           ],
           "store_path": "/nix/store/r7xch3vin1q8awvig1la7c9chhgxgc04-devcontainer-0.86.0"
+        }
+      }
+    },
+    "flarectl@latest": {
+      "last_modified": "2026-04-23T13:07:47Z",
+      "resolved": "github:NixOS/nixpkgs/01fbdeef22b76df85ea168fbfe1bfd9e63681b30#flarectl",
+      "source": "devbox-search",
+      "version": "0.116.0",
+      "systems": {
+        "aarch64-darwin": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/i9wbphcnazclp656mlzxqnchh49dikrs-flarectl-0.116.0",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/i9wbphcnazclp656mlzxqnchh49dikrs-flarectl-0.116.0"
+        },
+        "aarch64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/y3nryfnzk4c0rf2ml19198kp58b1zrbf-flarectl-0.116.0",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/y3nryfnzk4c0rf2ml19198kp58b1zrbf-flarectl-0.116.0"
+        },
+        "x86_64-darwin": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/lk83lyss0g1k6zc37s9kglzxli1n0mv2-flarectl-0.116.0",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/lk83lyss0g1k6zc37s9kglzxli1n0mv2-flarectl-0.116.0"
+        },
+        "x86_64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/md2ljdjvfny781r0d867p24qxcnmjfww-flarectl-0.116.0",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/md2ljdjvfny781r0d867p24qxcnmjfww-flarectl-0.116.0"
         }
       }
     },
@@ -262,6 +374,54 @@
             }
           ],
           "store_path": "/nix/store/h7zzkg5vh5v03wv9c7gdac064lm0s68p-gitleaks-8.30.1"
+        }
+      }
+    },
+    "google-cloud-sdk@latest": {
+      "last_modified": "2026-04-27T06:11:55Z",
+      "resolved": "github:NixOS/nixpkgs/6368eda62c9775c38ef7f714b2555a741c20c72d#google-cloud-sdk",
+      "source": "devbox-search",
+      "version": "565.0.0",
+      "systems": {
+        "aarch64-darwin": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/pz510zby42pv75xx8q3jdrvadshyb4ic-google-cloud-sdk-565.0.0",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/pz510zby42pv75xx8q3jdrvadshyb4ic-google-cloud-sdk-565.0.0"
+        },
+        "aarch64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/3gdg56g0p2z5wc4i5xxp1m881pd7i5m5-google-cloud-sdk-565.0.0",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/3gdg56g0p2z5wc4i5xxp1m881pd7i5m5-google-cloud-sdk-565.0.0"
+        },
+        "x86_64-darwin": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/is595ix2k5xl3qcfc77jppfjp24bxzla-google-cloud-sdk-565.0.0",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/is595ix2k5xl3qcfc77jppfjp24bxzla-google-cloud-sdk-565.0.0"
+        },
+        "x86_64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/khvnvj3as6isr2pl5azyhx33h4njrr5i-google-cloud-sdk-565.0.0",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/khvnvj3as6isr2pl5azyhx33h4njrr5i-google-cloud-sdk-565.0.0"
         }
       }
     },
