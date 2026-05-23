@@ -20,7 +20,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
 })
 
 
-vim.lsp.enable('rust-analyzer', {
+vim.lsp.config('rust-analyzer', {
   flags = {
     exit_timeout = 0,
   },
@@ -42,10 +42,10 @@ vim.lsp.enable('rust-analyzer', {
     },
   }
 })
+vim.lsp.enable('rust-analyzer')
 
-vim.lsp.enable('gopls', {
-  cmd = {"gopls", "serve", "-rpc.trace"},
-  filetypes = {'go'},
+vim.lsp.config('gopls', {
+  filetypes = {'go', 'gomod', 'gowork', 'gotmpl'},
   settings = {
     gopls = {
       analyses = {
@@ -56,6 +56,7 @@ vim.lsp.enable('gopls', {
     },
   },
 })
+vim.lsp.enable('gopls')
 
 -- Go: Auto-format and organize imports on save
 vim.api.nvim_create_autocmd('BufWritePre', {
@@ -67,14 +68,16 @@ vim.api.nvim_create_autocmd('BufWritePre', {
 })
 
 -- Protobuf
-vim.lsp.enable('clangd', {
+vim.lsp.config('clangd', {
   filetypes = {'proto'},
 })
+vim.lsp.enable('clangd')
 
 -- Terraform
-vim.lsp.enable('terraformls', {
+vim.lsp.config('terraformls', {
   filetypes = {'tf', 'tfvars'},
 })
+vim.lsp.enable('terraformls')
 
 vim.api.nvim_create_autocmd({"BufWritePre"}, {
   pattern = {"*.tf", "*.tfvars"},
@@ -84,7 +87,7 @@ vim.api.nvim_create_autocmd({"BufWritePre"}, {
 })
 
 -- Lua (lua-language-server / LuaLS)
-vim.lsp.enable('lua_ls', {
+vim.lsp.config('lua_ls', {
   cmd = { 'lua-language-server' },
   filetypes = { 'lua' },
   root_markers = {
@@ -105,6 +108,7 @@ vim.lsp.enable('lua_ls', {
     },
   },
 })
+vim.lsp.enable('lua_ls')
 
 -- GitHub Copilot via official LSP (@github/copilot-language-server).
 -- Install: `npm install -g @github/copilot-language-server`

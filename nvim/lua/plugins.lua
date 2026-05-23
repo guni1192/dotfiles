@@ -120,6 +120,8 @@ lazy.setup({
       map("[C", function() move.goto_previous_end("@class.outer", "textobjects") end, "Prev class end")
     end,
   },
+}, {
+  rocks = { enabled = false },
 })
 
 -- nvim-tree global keymap
