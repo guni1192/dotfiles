@@ -8,5 +8,12 @@
   "branchConcurrentLimit": 0,
   "enabledManagers": [
     "devbox"
+  ],
+  "packageRules": [
+    {
+      "matchManagers": ["devbox"],
+      "matchPackageNames": ["google-cloud-sdk", "awscli2", "flarectl"],
+      "enabled": false
+    }
   ]
 }
