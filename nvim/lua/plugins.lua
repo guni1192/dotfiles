@@ -40,7 +40,6 @@ lazy.setup({
       }
     end,
   },
-  {"freeo/vim-kalisi"},
   {
     "ibhagwan/fzf-lua",
     dependencies = { "nvim-tree/nvim-web-devicons" },
