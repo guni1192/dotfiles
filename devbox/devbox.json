@@ -23,7 +23,9 @@
     "gitleaks@8.30.1",
     "google-cloud-sdk@latest",
     "awscli2@latest",
-    "flarectl@latest"
+    "flarectl@latest",
+    "claude-code@latest",
+    "codex@latest"
   ],
   "env": {
     "NPM_CONFIG_PREFIX": "$HOME/.local/npm-global",
