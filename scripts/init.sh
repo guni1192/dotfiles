@@ -140,6 +140,13 @@ setup_ghostty() {
     create_symlink ~/dotfiles/ghostty/ $XDG_CONFIG_HOME/ghostty
 }
 
+setup_pnpm() {
+    # Symlink just `rc` rather than the whole directory — pnpm also stores
+    # state (store-v3, etc.) under $XDG_CONFIG_HOME/pnpm on some setups.
+    mkdir -p "$XDG_CONFIG_HOME/pnpm"
+    create_symlink ~/dotfiles/pnpm/rc "$XDG_CONFIG_HOME/pnpm/rc"
+}
+
 setup_all() {
     setup_zsh
     setup_neovim
@@ -148,6 +155,7 @@ setup_all() {
     setup_nix
     setup_devbox
     setup_ghostty
+    setup_pnpm
 }
 
 usage() {
@@ -164,6 +172,7 @@ Subcommands:
                   upstream single-user on no-systemd Linux).
   setup-devbox    Install Devbox and apply the dotfiles global profile.
   setup-ghostty   Symlink ghostty config.
+  setup-pnpm      Symlink pnpm global rc config.
   setup-rust      Install rustup + stable toolchain (not part of setup-all).
 
 All steps are idempotent.
