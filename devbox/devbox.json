@@ -25,15 +25,17 @@
     "awscli2@latest",
     "flarectl@latest",
     "claude-code@latest",
-    "codex@latest"
+    "codex@latest",
+    "copilot-language-server@1.477.0",
+    "pnpm@latest"
   ],
   "env": {
     "NPM_CONFIG_PREFIX": "$HOME/.local/npm-global",
     "PATH": "$HOME/.local/npm-global/bin:$PATH"
   },
   "shell": {
-    "init_hook": [
-      "command -v copilot-language-server >/dev/null 2>&1 || npm install -g @github/copilot-language-server@1.472.0"
-    ]
+    "scripts": {
+      "setup-git-local": "$HOME/dotfiles/scripts/setup-git-local.sh"
+    }
   }
 }
