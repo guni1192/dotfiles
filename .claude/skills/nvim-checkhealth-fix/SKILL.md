@@ -23,13 +23,14 @@ nvim/
 
 ### 1. Capture a fresh checkhealth report
 
-Headless capture is the most reliable. The repo convention is to drop the report at `nvim-checkhealth.txt` at the repo root (gitignored / untracked — never commit it):
+Headless capture is the most reliable. **Never write the report anywhere inside the dotfiles repo** (root, `nvim/`, etc.) — it pollutes the working tree and risks being committed. Always use `/tmp`:
 
 ```bash
-nvim --headless +"checkhealth" +"write! nvim-checkhealth.txt" +"qa"
+REPORT=$(mktemp /tmp/nvim-checkhealth.XXXXXX)
+nvim --headless +"checkhealth" +"write! $REPORT" +"qa"
 ```
 
-If a recent `nvim-checkhealth.txt` already exists at the repo root, ask the user whether it reflects the current state or should be regenerated. After fixes, always regenerate before declaring success.
+Hold onto `$REPORT` for steps 2 and 4. Do not copy it back into the repo. After fixes, always regenerate before declaring success.
 
 ### 2. Triage the report
 
@@ -39,7 +40,7 @@ Sections are delimited by `=========` headers (one per checked component). The i
 - `⚠️ WARNING` — sometimes actionable, sometimes "missing optional dep the user doesn't want".
 - `✅ OK` — ignore.
 
-`grep -nE "^==|❌|WARNING" nvim-checkhealth.txt` gives a quick index. Read the surrounding lines for each hit; the suggestion below the warning often names the exact opt to flip.
+`grep -nE "^==|❌|WARNING" "$REPORT"` gives a quick index. Read the surrounding lines for each hit; the suggestion below the warning often names the exact opt to flip.
 
 Classify each finding into one of three buckets and present them to the user:
 
@@ -61,7 +62,7 @@ Note: `:checkhealth vim.lsp` only lists configs for LSPs whose attached buffer w
 
 ### 5. Commit
 
-One focused commit per coherent fix is the repo's style (see `830b474` for an example commit message). Keep the body explaining **why** — the Neovim version, the API change, the symptom that motivated the fix. Do not commit `nvim-checkhealth.txt`.
+One focused commit per coherent fix is the repo's style (see `830b474` for an example commit message). Keep the body explaining **why** — the Neovim version, the API change, the symptom that motivated the fix. The report lives only in `/tmp`, so there is nothing checkhealth-related to exclude from the commit.
 
 ## Communicating with the user
 
