@@ -27,11 +27,12 @@
     "claude-code@latest",
     "codex@latest",
     "copilot-language-server@1.477.0",
-    "pnpm@latest"
+    "pnpm@latest",
+    "tmux@latest"
   ],
   "env": {
     "NPM_CONFIG_PREFIX": "$HOME/.local/npm-global",
-    "PATH": "$HOME/.local/npm-global/bin:$PATH"
+    "PATH":              "$HOME/.local/npm-global/bin:$PATH"
   },
   "shell": {
     "scripts": {
