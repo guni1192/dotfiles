@@ -14,7 +14,11 @@ mkdir -p $XDG_DATA_HOME
 create_symlink() {
     source_file=$1
     link_name=$2
+    local replace_existing=${3:-}
     if [[ -L "$link_name" ]]; then
+        rm "$link_name"
+        ln -sv "$source_file" "$link_name"
+    elif [[ -f "$link_name" && -n "$replace_existing" ]]; then
         rm "$link_name"
         ln -sv "$source_file" "$link_name"
     elif [[ -e "$link_name" ]]; then
@@ -147,6 +151,14 @@ setup_pnpm() {
     create_symlink ~/dotfiles/pnpm/rc "$XDG_CONFIG_HOME/pnpm/rc"
 }
 
+setup_cursor() {
+    mkdir -p "$XDG_CONFIG_HOME/cursor" "$HOME/.cursor"
+    create_symlink ~/dotfiles/cursor/permissions.json "$XDG_CONFIG_HOME/cursor/permissions.json"
+    create_symlink ~/dotfiles/cursor/cli-config.json "$XDG_CONFIG_HOME/cursor/cli-config.json" replace
+    create_symlink ~/dotfiles/cursor/hooks.json "$HOME/.cursor/hooks.json"
+    create_symlink ~/dotfiles/cursor/hooks "$HOME/.cursor/hooks"
+}
+
 setup_all() {
     setup_zsh
     setup_neovim
@@ -156,6 +168,7 @@ setup_all() {
     setup_devbox
     setup_ghostty
     setup_pnpm
+    setup_cursor
 }
 
 usage() {
@@ -173,6 +186,7 @@ Subcommands:
   setup-devbox    Install Devbox and apply the dotfiles global profile.
   setup-ghostty   Symlink ghostty config.
   setup-pnpm      Symlink pnpm global rc config.
+  setup-cursor    Symlink Cursor IDE/CLI permission configs.
   setup-rust      Install rustup + stable toolchain (not part of setup-all).
 
 All steps are idempotent.
