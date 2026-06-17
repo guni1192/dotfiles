@@ -14,7 +14,11 @@ mkdir -p $XDG_DATA_HOME
 create_symlink() {
     source_file=$1
     link_name=$2
+    local replace_existing=${3:-}
     if [[ -L "$link_name" ]]; then
+        rm "$link_name"
+        ln -sv "$source_file" "$link_name"
+    elif [[ -f "$link_name" && -n "$replace_existing" ]]; then
         rm "$link_name"
         ln -sv "$source_file" "$link_name"
     elif [[ -e "$link_name" ]]; then
@@ -148,9 +152,11 @@ setup_pnpm() {
 }
 
 setup_cursor() {
-    mkdir -p "$XDG_CONFIG_HOME/cursor"
+    mkdir -p "$XDG_CONFIG_HOME/cursor" "$HOME/.cursor"
     create_symlink ~/dotfiles/cursor/permissions.json "$XDG_CONFIG_HOME/cursor/permissions.json"
-    cp ~/dotfiles/cursor/cli-config.json "$XDG_CONFIG_HOME/cursor/cli-config.json"
+    create_symlink ~/dotfiles/cursor/cli-config.json "$XDG_CONFIG_HOME/cursor/cli-config.json" replace
+    create_symlink ~/dotfiles/cursor/hooks.json "$HOME/.cursor/hooks.json"
+    create_symlink ~/dotfiles/cursor/hooks "$HOME/.cursor/hooks"
 }
 
 setup_all() {
