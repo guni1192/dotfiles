@@ -52,6 +52,12 @@ devbox `init_hook` installs it globally into `~/.local/npm-global/bin`; it is
 evaluated once by `scripts/init.sh setup-devbox` after `devbox global install`
 completes.
 
+## Cursor agent permissions
+
+`scripts/init.sh setup-cursor` symlinks `cursor/permissions.json` and copies
+`cursor/cli-config.json` into `$XDG_CONFIG_HOME/cursor/`. See [cursor/README.md](./cursor/README.md)
+for the IDE vs CLI permission models and how to customize allow/deny rules.
+
 ## Dev Container
 
 See [.devcontainer/README.md](./.devcontainer/README.md) for trying this repo in a Dev Container.
