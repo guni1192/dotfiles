@@ -2,6 +2,11 @@
   // IDE agent: terminal/MCP allowlists + Auto-review classifier hints.
   // See cursor/README.md. Overrides the in-app allowlist for any key defined here.
 
+  "mcpAllowlist": [
+    "linear:*",
+    "plugin-linear-linear:*"
+  ],
+
   "terminalAllowlist": [
     "git",
     "gh",

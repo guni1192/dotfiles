@@ -49,7 +49,9 @@
       "Read(**/*)",
       "WebFetch(*.github.com)",
       "WebFetch(docs.*)",
-      "WebFetch(developer.mozilla.org)"
+      "WebFetch(developer.mozilla.org)",
+      "Mcp(linear:*)",
+      "Mcp(plugin-linear-linear:*)"
     ],
     "deny": [
       "Shell(rm)",
