@@ -29,7 +29,9 @@
     "copilot-language-server@1.477.0",
     "pnpm@latest",
     "tmux@latest",
-    "cursor-cli@latest"
+    "cursor-cli@latest",
+    "go@latest",
+    "bazel@latest"
   ],
   "env": {
     "NPM_CONFIG_PREFIX": "$HOME/.local/npm-global",
