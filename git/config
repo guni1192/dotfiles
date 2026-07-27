@@ -14,11 +14,11 @@
 [pull]
     ff = only
 
+[include]
+    path = ~/.config/git/config.local
+
 [gpg]
     format = ssh
 
 [commit]
     gpgsign = true
-
-[include]
-    path = ~/.config/git/config.local

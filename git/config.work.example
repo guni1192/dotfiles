@@ -1,0 +1,7 @@
+# Work Git identity overrides.
+# Copy to config.work and customize. Do NOT commit config.work.
+# Loaded only via includeIf in config.local for matching gitdirs.
+
+[user]
+    email = you@work.example
+    signingkey = ssh-ed25519 AAAA...your-work-public-key-here
