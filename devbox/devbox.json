@@ -31,7 +31,8 @@
     "tmux@latest",
     "cursor-cli@latest",
     "go@latest",
-    "bazel@latest"
+    "bazel@latest",
+    "bazelisk@latest"
   ],
   "env": {
     "NPM_CONFIG_PREFIX": "$HOME/.local/npm-global",

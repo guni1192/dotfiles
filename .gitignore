@@ -19,8 +19,9 @@ ranger/*
 !rc.conf
 !bookmarks
 
-# Git user-specific configuration
+# Git user-specific configuration (identity; never commit)
 git/config.local
+git/config.work
 
 # Created by https://www.gitignore.io/api/vim
 # Edit at https://www.gitignore.io/?templates=vim

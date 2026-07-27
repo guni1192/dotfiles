@@ -113,6 +113,54 @@
         }
       }
     },
+    "bazelisk@latest": {
+      "last_modified": "2026-07-04T17:57:37Z",
+      "resolved": "github:NixOS/nixpkgs/19a8a1e6d8b7315b6fd84e5a51977ce6f69d5a5b#bazelisk",
+      "source": "devbox-search",
+      "version": "1.29.0",
+      "systems": {
+        "aarch64-darwin": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/gqq1rc8ginxdanh7nj04d1ky6smw0h2f-bazelisk-1.29.0",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/gqq1rc8ginxdanh7nj04d1ky6smw0h2f-bazelisk-1.29.0"
+        },
+        "aarch64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/sbvg46s61y5jysk8qs75kay285b9c948-bazelisk-1.29.0",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/sbvg46s61y5jysk8qs75kay285b9c948-bazelisk-1.29.0"
+        },
+        "x86_64-darwin": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/4hsm33labyqqzj72r7vw3vi498wrw3ji-bazelisk-1.29.0",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/4hsm33labyqqzj72r7vw3vi498wrw3ji-bazelisk-1.29.0"
+        },
+        "x86_64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/8plmmbas89nij8km4c6m6byjwqxrr5kr-bazelisk-1.29.0",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/8plmmbas89nij8km4c6m6byjwqxrr5kr-bazelisk-1.29.0"
+        }
+      }
+    },
     "claude-code@latest": {
       "last_modified": "2026-05-27T10:28:13Z",
       "resolved": "github:NixOS/nixpkgs/4100e830e085863741bc69b156ec4ccd53ab5be0#claude-code",

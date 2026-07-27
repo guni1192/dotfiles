@@ -151,6 +151,11 @@ setup_pnpm() {
     create_symlink ~/dotfiles/pnpm/rc "$XDG_CONFIG_HOME/pnpm/rc"
 }
 
+setup_bin() {
+    mkdir -p "$HOME/.local/bin"
+    create_symlink ~/dotfiles/bin/nvim-tmux "$HOME/.local/bin/nvim-tmux"
+}
+
 setup_cursor() {
     mkdir -p "$XDG_CONFIG_HOME/cursor" "$HOME/.cursor"
     create_symlink ~/dotfiles/cursor/permissions.json "$XDG_CONFIG_HOME/cursor/permissions.json"
@@ -168,6 +173,7 @@ setup_all() {
     setup_devbox
     setup_ghostty
     setup_pnpm
+    setup_bin
     setup_cursor
 }
 
@@ -186,6 +192,7 @@ Subcommands:
   setup-devbox    Install Devbox and apply the dotfiles global profile.
   setup-ghostty   Symlink ghostty config.
   setup-pnpm      Symlink pnpm global rc config.
+  setup-bin       Symlink nvim-tmux into ~/.local/bin/.
   setup-cursor    Symlink Cursor IDE/CLI permission configs.
   setup-rust      Install rustup + stable toolchain (not part of setup-all).
 

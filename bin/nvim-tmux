@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+if [ -z "${TMUX:-}" ]; then
+  exec nvim "$@"
+fi
+
+sig="nvim-editor-$$"
+
+cmd=$(printf '%q ' nvim "$@")
+cmd+="; tmux wait-for -S $sig"
+
+tmux split-window "$cmd"
+tmux wait-for "$sig"
