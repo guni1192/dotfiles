@@ -136,6 +136,27 @@ setup_devbox() {
     eval "$(devbox global shellenv --init-hook)" >/dev/null 2>&1 || true
 }
 
+setup_aqua() {
+    # Alternative to setup_nix + setup_devbox. Installs CLI tools from
+    # aquaproj-aqua/aqua.yaml (mirrors the global Devbox package set).
+    local aqua_bin_dir="${AQUA_ROOT_DIR:-${XDG_DATA_HOME:-$HOME/.local/share}/aquaproj-aqua}/bin"
+    export PATH="$aqua_bin_dir:$PATH"
+
+    if command -v aqua >/dev/null 2>&1; then
+        echo "aqua already installed: $(aqua -v)"
+    else
+        echo "Installing aqua..."
+        # aqua-installer v4 installs into $aqua_bin_dir (not customizable).
+        curl -sSfL https://raw.githubusercontent.com/aquaproj/aqua-installer/v4.0.2/aqua-installer | bash
+    fi
+
+    create_symlink ~/dotfiles/aquaproj-aqua/ "$XDG_CONFIG_HOME/aquaproj-aqua"
+
+    export AQUA_GLOBAL_CONFIG="${AQUA_GLOBAL_CONFIG:-}:${XDG_CONFIG_HOME}/aquaproj-aqua/aqua.yaml"
+    # -a installs packages from AQUA_GLOBAL_CONFIG (ignored by default).
+    aqua install -a
+}
+
 setup_rust() {
     curl https://sh.rustup.rs -sSf | sh -s -- -y --default-toolchain stable
 }
@@ -164,25 +185,44 @@ setup_cursor() {
     create_symlink ~/dotfiles/cursor/hooks "$HOME/.cursor/hooks"
 }
 
-setup_all() {
+setup_dotfiles() {
+    # Shared config symlinks / local helpers used by both tool-manager paths.
     setup_zsh
     setup_neovim
     setup_tmux
     setup_git
-    setup_nix
-    setup_devbox
     setup_ghostty
     setup_pnpm
     setup_bin
     setup_cursor
 }
 
+setup_all_with_devbox() {
+    setup_dotfiles
+    setup_nix
+    setup_devbox
+}
+
+setup_all_with_aqua() {
+    setup_dotfiles
+    setup_aqua
+}
+
+# Backward-compatible alias: same as setup-all-with-devbox.
+setup_all() {
+    setup_all_with_devbox
+}
+
 usage() {
     cat <<'EOF'
 Usage: scripts/init.sh <subcommand>
 
-Subcommands:
-  setup-all       Run every step below (default order, excludes setup-rust).
+Pick one for a full initial setup (leading -- is optional):
+  setup-all-with-devbox   Dotfiles + Nix + Devbox global profile.
+  setup-all-with-aqua     Dotfiles + aqua global profile (no Nix).
+  setup-all               Alias for setup-all-with-devbox.
+
+Individual steps:
   setup-zsh       Symlink zshenv + zsh config and clone zinit.
   setup-neovim    Symlink neovim config.
   setup-tmux      Symlink tmux config.
@@ -190,11 +230,12 @@ Subcommands:
   setup-nix       Install Nix (Determinate on macOS / systemd-Linux,
                   upstream single-user on no-systemd Linux).
   setup-devbox    Install Devbox and apply the dotfiles global profile.
+  setup-aqua      Install aqua and apply aquaproj-aqua/aqua.yaml.
   setup-ghostty   Symlink ghostty config.
   setup-pnpm      Symlink pnpm global rc config.
   setup-bin       Symlink nvim-tmux into ~/.local/bin/.
   setup-cursor    Symlink Cursor IDE/CLI permission configs.
-  setup-rust      Install rustup + stable toolchain (not part of setup-all).
+  setup-rust      Install rustup + stable toolchain (not part of setup-all*).
 
 All steps are idempotent.
 EOF
@@ -213,11 +254,14 @@ main() {
             ;;
     esac
 
+    # Allow `--setup-foo` as well as `setup-foo`.
+    local cmd="${1#--}"
+
     # setup-foo → setup_foo, dispatched only if defined as a function. This
     # keeps the subcommand list and the function names in lockstep — no
     # separate case arms to drift from the usage text.
-    local fn="${1//-/_}"
-    if [[ "$1" == setup-* ]] && declare -F "$fn" >/dev/null; then
+    local fn="${cmd//-/_}"
+    if [[ "$cmd" == setup-* ]] && declare -F "$fn" >/dev/null; then
         "$fn"
     else
         echo "Unknown subcommand: $1" >&2

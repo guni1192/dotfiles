@@ -27,6 +27,9 @@ case ${OSTYPE} in
         ;;
 esac
 
+# aqua (optional alternative to Nix + Devbox; see scripts/init.sh setup-aqua)
+export AQUA_GLOBAL_CONFIG=${AQUA_GLOBAL_CONFIG:-}:${XDG_CONFIG_HOME:-$HOME/.config}/aquaproj-aqua/aqua.yaml
+
 # PATH
 path_dirs=(
     /opt/homebrew/opt/llvm/bin
@@ -34,6 +37,7 @@ path_dirs=(
     $GOPATH/bin
     $HOME/.cargo/bin
     ${KREW_ROOT:-$HOME/.krew}/bin
+    ${AQUA_ROOT_DIR:-${XDG_DATA_HOME:-$HOME/.local/share}/aquaproj-aqua}/bin
     $HOME/.local/bin
     $HOME/.local/npm-global/bin
     $HOME/.antigravity/antigravity/bin
@@ -47,7 +51,7 @@ export PATH
 # Nix (multi-user via Determinate, or single-user via upstream installer).
 # Sourced here so non-interactive shells (e.g. nvim's LSP children) see `nix`.
 # Devbox activation lives in zsh/devbox.zsh because devbox auto-detects only
-# the rcfile, not zshenv.
+# the rcfile, not zshenv. Aqua needs no shell hook beyond PATH above.
 if [[ -f /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh ]]; then
     . /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
 elif [[ -f $HOME/.nix-profile/etc/profile.d/nix.sh ]]; then

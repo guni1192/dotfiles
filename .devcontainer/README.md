@@ -42,7 +42,10 @@ store under `/nix`.
 you can re-run it inside the container after editing configs:
 
 ```console
-./scripts/init.sh setup-all       # everything
-./scripts/init.sh setup-devbox    # just refresh the devbox global profile
-./scripts/init.sh                 # no args → print the subcommand list
+./scripts/init.sh setup-all-with-devbox   # everything via Nix + Devbox
+./scripts/init.sh setup-all-with-aqua     # everything via aqua (no Nix)
+./scripts/init.sh setup-devbox            # just refresh the devbox global profile
+./scripts/init.sh                         # no args → print the subcommand list
 ```
+
+`setup-all` is an alias for `setup-all-with-devbox` (used by `postCreateCommand`).

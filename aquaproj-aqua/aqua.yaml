@@ -1,0 +1,43 @@
+---
+# aqua - Declarative CLI Version Manager
+# https://aquaproj.github.io/
+# Alternative to the Nix + Devbox global profile in devbox/devbox.json.
+# Prefer `./scripts/init.sh setup-all-with-aqua` when you don't want Nix.
+registries:
+- type: standard
+  ref: v4.547.0 # renovate: depName=aquaproj/aqua-registry
+packages:
+# --- pinned (mirrors devbox/devbox.json) ---
+- name: neovim/neovim@v0.12.2
+- name: junegunn/fzf@v0.72.0
+- name: x-motemen/ghq@v1.9.4
+- name: cli/cli@v2.88.1
+- name: BurntSushi/ripgrep@15.1.0
+- name: kubernetes/kubernetes/kubectl@v1.36.0
+- name: helm/helm@v3.20.2
+- name: kubernetes-sigs/krew@v0.5.0
+- name: kubernetes-sigs/kustomize@kustomize/v5.8.0
+- name: kubernetes-sigs/kind@v0.31.0
+- name: stern/stern@v1.33.1
+- name: nodejs/node@v24.12.0
+- name: tree-sitter/tree-sitter@v0.26.8
+- name: hashicorp/terraform-ls@v0.38.6
+- name: LuaLS/lua-language-server@3.18.1
+- name: rust-lang/rust-analyzer@2026-04-13
+- name: mikefarah/yq@v4.53.2
+- name: gitleaks/gitleaks@v8.30.1
+- name: github/copilot-language-server-release@1.477.0
+# --- @latest in devbox → pinned to current aqua-registry versions ---
+- name: twistedpair/google-cloud-sdk@562.0.0
+- name: aws/aws-cli@2.36.15
+- name: anthropics/claude-code@v2.1.221
+- name: openai/codex@rust-v0.146.0
+- name: pnpm/pnpm@v11.20.0
+- name: tmux/tmux-builds@v3.7b
+# go before gopls: gopls is type go_install and needs a Go toolchain.
+- name: golang/go@go1.26.5
+- name: golang.org/x/tools/gopls@v0.21.1
+- name: bazelbuild/bazel@9.2.0
+- name: bazelbuild/bazelisk@v1.29.0
+# Not in aqua-registry (still via Nix/Devbox only):
+#   flarectl, cursor-cli, devcontainer
