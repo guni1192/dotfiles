@@ -10,7 +10,9 @@
 - zsh
 - tmux
 - neovim
-- [Nix](https://nixos.org/) + [Devbox](https://www.jetify.com/devbox)
+- CLI tool managers (pick one):
+  - [Nix](https://nixos.org/) + [Devbox](https://www.jetify.com/devbox) (default via `setup-all`)
+  - [aqua](https://aquaproj.github.io/) (opt-in via `setup-aqua` / `--setup-aqua`)
 
 ## Getting Started
 
@@ -22,10 +24,11 @@ cd dotfiles
 
 Run `./scripts/init.sh` with no arguments to print the available subcommands,
 and invoke one individually with e.g. `./scripts/init.sh setup-zsh`.
+A leading `--` is optional (`./scripts/init.sh --setup-aqua`).
 
 ## Nix + Devbox
 
-`scripts/init.sh` installs both idempotently:
+`scripts/init.sh setup-all` installs both idempotently:
 
 - **Nix**: via the [Determinate Systems installer](https://github.com/DeterminateSystems/nix-installer)
   in upstream CE mode (not `--determinate`, to stay compatible with leftover
@@ -51,6 +54,28 @@ packages added to `devbox/devbox.json` become available in new shells after
 devbox `init_hook` installs it globally into `~/.local/npm-global/bin`; it is
 evaluated once by `scripts/init.sh setup-devbox` after `devbox global install`
 completes.
+
+## aqua (Nix/Devbox alternative)
+
+If you prefer not to install Nix, use aqua instead:
+
+```console
+./scripts/init.sh setup-zsh
+./scripts/init.sh setup-aqua   # or: --setup-aqua
+```
+
+`setup-aqua` installs aqua via [aqua-installer](https://github.com/aquaproj/aqua-installer),
+symlinks `aquaproj-aqua/` into `$XDG_CONFIG_HOME/aquaproj-aqua`, and runs
+`aqua install -a` against the global config.
+
+`aquaproj-aqua/aqua.yaml` mirrors the CLI set in `devbox/devbox.json` (pinned
+versions where Devbox pins them; concrete pins for Devbox `@latest` packages).
+Packages not published in aqua-registry (`flarectl`, `cursor-cli`, `devcontainer`)
+remain Devbox-only.
+
+`zshenv` prepends aqua's bin dir and sets `AQUA_GLOBAL_CONFIG`, so tools are on
+`PATH` in new shells after install. Do not run both Devbox and aqua global
+profiles unless you intend overlapping tool versions on `PATH`.
 
 ## Cursor agent permissions
 
