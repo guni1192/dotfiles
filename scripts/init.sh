@@ -185,26 +185,44 @@ setup_cursor() {
     create_symlink ~/dotfiles/cursor/hooks "$HOME/.cursor/hooks"
 }
 
-setup_all() {
+setup_dotfiles() {
+    # Shared config symlinks / local helpers used by both tool-manager paths.
     setup_zsh
     setup_neovim
     setup_tmux
     setup_git
-    setup_nix
-    setup_devbox
     setup_ghostty
     setup_pnpm
     setup_bin
     setup_cursor
 }
 
+setup_all_with_devbox() {
+    setup_dotfiles
+    setup_nix
+    setup_devbox
+}
+
+setup_all_with_aqua() {
+    setup_dotfiles
+    setup_aqua
+}
+
+# Backward-compatible alias: same as setup-all-with-devbox.
+setup_all() {
+    setup_all_with_devbox
+}
+
 usage() {
     cat <<'EOF'
 Usage: scripts/init.sh <subcommand>
 
-Subcommands (leading -- is optional, e.g. --setup-aqua):
-  setup-all       Run every step below (default order, excludes setup-rust
-                  and setup-aqua).
+Pick one for a full initial setup (leading -- is optional):
+  setup-all-with-devbox   Dotfiles + Nix + Devbox global profile.
+  setup-all-with-aqua     Dotfiles + aqua global profile (no Nix).
+  setup-all               Alias for setup-all-with-devbox.
+
+Individual steps:
   setup-zsh       Symlink zshenv + zsh config and clone zinit.
   setup-neovim    Symlink neovim config.
   setup-tmux      Symlink tmux config.
@@ -212,13 +230,12 @@ Subcommands (leading -- is optional, e.g. --setup-aqua):
   setup-nix       Install Nix (Determinate on macOS / systemd-Linux,
                   upstream single-user on no-systemd Linux).
   setup-devbox    Install Devbox and apply the dotfiles global profile.
-  setup-aqua      Install aqua and apply aquaproj-aqua/aqua.yaml (alternative
-                  to setup-nix + setup-devbox; not part of setup-all).
+  setup-aqua      Install aqua and apply aquaproj-aqua/aqua.yaml.
   setup-ghostty   Symlink ghostty config.
   setup-pnpm      Symlink pnpm global rc config.
   setup-bin       Symlink nvim-tmux into ~/.local/bin/.
   setup-cursor    Symlink Cursor IDE/CLI permission configs.
-  setup-rust      Install rustup + stable toolchain (not part of setup-all).
+  setup-rust      Install rustup + stable toolchain (not part of setup-all*).
 
 All steps are idempotent.
 EOF

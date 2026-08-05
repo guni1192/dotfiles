@@ -2,7 +2,7 @@
 # aqua - Declarative CLI Version Manager
 # https://aquaproj.github.io/
 # Alternative to the Nix + Devbox global profile in devbox/devbox.json.
-# Prefer `./scripts/init.sh setup-aqua` when you don't want Nix.
+# Prefer `./scripts/init.sh setup-all-with-aqua` when you don't want Nix.
 registries:
 - type: standard
   ref: v4.547.0 # renovate: depName=aquaproj/aqua-registry

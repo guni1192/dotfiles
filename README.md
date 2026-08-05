@@ -10,25 +10,30 @@
 - zsh
 - tmux
 - neovim
-- CLI tool managers (pick one):
-  - [Nix](https://nixos.org/) + [Devbox](https://www.jetify.com/devbox) (default via `setup-all`)
-  - [aqua](https://aquaproj.github.io/) (opt-in via `setup-aqua` / `--setup-aqua`)
+- CLI tool managers (pick one at initial setup):
+  - [Nix](https://nixos.org/) + [Devbox](https://www.jetify.com/devbox) via `setup-all-with-devbox`
+  - [aqua](https://aquaproj.github.io/) via `setup-all-with-aqua`
 
 ## Getting Started
 
 ```console
 git clone https://github.com/guni1192/dotfiles.git
 cd dotfiles
-./scripts/init.sh setup-all
+
+# Choose one tool manager for the initial setup:
+./scripts/init.sh setup-all-with-devbox   # or: --setup-all-with-devbox
+./scripts/init.sh setup-all-with-aqua     # or: --setup-all-with-aqua
 ```
+
+`setup-all` remains as an alias for `setup-all-with-devbox`.
 
 Run `./scripts/init.sh` with no arguments to print the available subcommands,
 and invoke one individually with e.g. `./scripts/init.sh setup-zsh`.
-A leading `--` is optional (`./scripts/init.sh --setup-aqua`).
+A leading `--` is optional.
 
 ## Nix + Devbox
 
-`scripts/init.sh setup-all` installs both idempotently:
+`scripts/init.sh setup-all-with-devbox` installs both idempotently:
 
 - **Nix**: via the [Determinate Systems installer](https://github.com/DeterminateSystems/nix-installer)
   in upstream CE mode (not `--determinate`, to stay compatible with leftover
@@ -57,12 +62,13 @@ completes.
 
 ## aqua (Nix/Devbox alternative)
 
-If you prefer not to install Nix, use aqua instead:
+If you prefer not to install Nix, use the aqua path for initial setup:
 
 ```console
-./scripts/init.sh setup-zsh
-./scripts/init.sh setup-aqua   # or: --setup-aqua
+./scripts/init.sh setup-all-with-aqua   # or: --setup-all-with-aqua
 ```
+
+Or refresh tools only with `./scripts/init.sh setup-aqua`.
 
 `setup-aqua` installs aqua via [aqua-installer](https://github.com/aquaproj/aqua-installer),
 symlinks `aquaproj-aqua/` into `$XDG_CONFIG_HOME/aquaproj-aqua`, and runs
