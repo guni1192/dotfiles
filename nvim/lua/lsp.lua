@@ -134,11 +134,7 @@ vim.lsp.config('copilot', {
   },
   on_attach = function(_, bufnr)
     vim.lsp.inline_completion.enable(true, { bufnr = bufnr })
-    vim.keymap.set('i', '<C-g>', function()
-      if not vim.lsp.inline_completion.get() then
-        return '<CR>'
-      end
-    end, { expr = true, buffer = bufnr, desc = 'Copilot: accept inline completion' })
+    -- Accept is on <Tab> (see editor.lua). Cycle suggestions with Alt-] / Alt-[.
     vim.keymap.set('i', '<M-]>', function()
       vim.lsp.inline_completion.select({ count = 1 })
     end, { buffer = bufnr, desc = 'Copilot: next suggestion' })
