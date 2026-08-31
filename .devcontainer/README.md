@@ -23,7 +23,7 @@ paths inside `scripts/init.sh` resolve without modification.
 | Nix (single-user, no daemon) | `scripts/init.sh` → upstream `nix/install --no-daemon` |
 | Devbox | `scripts/init.sh` → `get.jetify.com/devbox` |
 | All `devbox/devbox.json` packages | `devbox global install` (run by `init.sh`) |
-| dotfiles (zsh, nvim, tmux, git, ghostty, zinit) | `scripts/init.sh` symlinks |
+| dotfiles (zsh, nvim, tmux, herdr, git, ghostty, zinit) | `scripts/init.sh` symlinks |
 
 `setup_nix` branches by environment:
 

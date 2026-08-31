@@ -50,6 +50,13 @@ setup_tmux() {
     create_symlink ~/dotfiles/tmux/ $XDG_CONFIG_HOME/tmux
 }
 
+setup_herdr() {
+    # Symlink just config.toml — Herdr also stores logs, sockets, and
+    # session.json under $XDG_CONFIG_HOME/herdr, which must stay local.
+    mkdir -p "$XDG_CONFIG_HOME/herdr"
+    create_symlink ~/dotfiles/herdr/config.toml "$XDG_CONFIG_HOME/herdr/config.toml"
+}
+
 setup_git() {
     create_symlink ~/dotfiles/git/ $XDG_CONFIG_HOME/git
 }
@@ -190,6 +197,7 @@ setup_dotfiles() {
     setup_zsh
     setup_neovim
     setup_tmux
+    setup_herdr
     setup_git
     setup_ghostty
     setup_pnpm
@@ -226,6 +234,7 @@ Individual steps:
   setup-zsh       Symlink zshenv + zsh config and clone zinit.
   setup-neovim    Symlink neovim config.
   setup-tmux      Symlink tmux config.
+  setup-herdr     Symlink herdr config.toml (not the whole directory).
   setup-git       Symlink git config.
   setup-nix       Install Nix (Determinate on macOS / systemd-Linux,
                   upstream single-user on no-systemd Linux).
