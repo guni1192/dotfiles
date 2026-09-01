@@ -86,6 +86,11 @@ profiles unless you intend overlapping tool versions on `PATH`.
 
 ## Herdr
 
+Installed by both tool managers, pinned to 0.8.2:
+
+- Devbox: `herdr@0.8.2` in `devbox/devbox.json` (nixpkgs `herdr`)
+- aqua: `herdrdev/herdr@v0.8.2` in `aquaproj-aqua/aqua.yaml`
+
 `scripts/init.sh setup-herdr` (also run by `setup-all*`) symlinks
 `herdr/config.toml` into `$XDG_CONFIG_HOME/herdr/config.toml`.
 

@@ -5,7 +5,7 @@
 # Prefer `./scripts/init.sh setup-all-with-aqua` when you don't want Nix.
 registries:
 - type: standard
-  ref: v4.547.0 # renovate: depName=aquaproj/aqua-registry
+  ref: v4.558.1 # renovate: depName=aquaproj/aqua-registry
 packages:
 # --- pinned (mirrors devbox/devbox.json) ---
 - name: neovim/neovim@v0.12.2
@@ -26,6 +26,7 @@ packages:
 - name: rust-lang/rust-analyzer@2026-04-13
 - name: mikefarah/yq@v4.53.2
 - name: gitleaks/gitleaks@v8.30.1
+- name: herdrdev/herdr@v0.8.2
 - name: github/copilot-language-server-release@1.477.0
 # --- @latest in devbox → pinned to current aqua-registry versions ---
 - name: twistedpair/google-cloud-sdk@562.0.0
