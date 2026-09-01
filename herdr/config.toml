@@ -41,32 +41,12 @@ new_cwd = "follow"
 # Same prefix as tmux/tmux.conf (`set -g prefix C-j`).
 prefix = "ctrl+j"
 
-# ---------------------------------------------------------------------------
-# tmux-aligned bindings (unlisted keys keep Herdr defaults)
-#   prefix+h/j/k/l  focus pane
-#   prefix+c        new tab
-#   prefix+x        close pane
-#   prefix+z        zoom
-#   prefix+[        copy mode
-#   prefix+w        workspace picker
-#   prefix+g        goto
-#   prefix+1..9     switch tab
-# ---------------------------------------------------------------------------
-
-# Splits — tmux `bind |` / `bind -` (keep Herdr's prefix+v / prefix+minus too).
+# Split right / down — tmux `bind |` / `bind -`.
+#   right: herdr default is prefix+v (unused by tmux). `|` is free in herdr, so
+#          keep v and add `|` rather than unbinding the original.
+#   down:  herdr default is already prefix+minus; same as tmux.
 split_vertical = ["prefix+v", "prefix+|"]
 split_horizontal = "prefix+minus"
-
-# Windows → tabs — tmux `bind -r C-h` / `C-l`.
-previous_tab = ["prefix+p", "prefix+ctrl+h"]
-next_tab = ["prefix+n", "prefix+ctrl+l"]
-
-# Reload — tmux `bind C-r`. Keep Herdr's prefix+shift+r as well.
-reload_config = ["prefix+shift+r", "prefix+ctrl+r"]
-
-# Rename tab — Herdr default. tmux uses prefix+R, but that chord is
-# prefix+shift+r here and is already bound to reload_config.
-rename_tab = "prefix+shift+t"
 
 # ============================================================================
 # AI helpers (tmux prefix+C / prefix+A)
