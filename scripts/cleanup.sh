@@ -10,6 +10,7 @@ rm -rf $XDG_DATA_HOME/zinit/zinit.git
 rm -rf $XDG_CONFIG_HOME/nvim
 rm -rf $XDG_DATA_HOME/nvim/plugged
 rm -rf $XDG_CONFIG_HOME/tmux
+rm -f $XDG_CONFIG_HOME/herdr/config.toml
 rm -rf $XDG_CONFIG_HOME/git
 rm -rf $XDG_DATA_HOME/devbox/global/default
 rm -rf $XDG_CONFIG_HOME/aquaproj-aqua

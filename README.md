@@ -9,6 +9,7 @@
 
 - zsh
 - tmux
+- [Herdr](https://herdr.dev/)
 - neovim
 - CLI tool managers (pick one at initial setup):
   - [Nix](https://nixos.org/) + [Devbox](https://www.jetify.com/devbox) via `setup-all-with-devbox`
@@ -82,6 +83,22 @@ remain Devbox-only.
 `zshenv` prepends aqua's bin dir and sets `AQUA_GLOBAL_CONFIG`, so tools are on
 `PATH` in new shells after install. Do not run both Devbox and aqua global
 profiles unless you intend overlapping tool versions on `PATH`.
+
+## Herdr
+
+Installed by both tool managers, pinned to 0.8.2:
+
+- Devbox: `herdr@0.8.2` in `devbox/devbox.json` (nixpkgs `herdr`)
+- aqua: `herdrdev/herdr@v0.8.2` in `aquaproj-aqua/aqua.yaml`
+
+`scripts/init.sh setup-herdr` (also run by `setup-all*`) symlinks
+`herdr/config.toml` into `$XDG_CONFIG_HOME/herdr/config.toml`.
+
+Only the config file is linked. Herdr keeps logs, sockets, and `session.json`
+next to it, so the whole `~/.config/herdr` directory stays local.
+
+Prefix is `Ctrl+J`, matching `tmux/tmux.conf`. Reload a running server with
+`herdr server reload-config` (or `prefix+Ctrl+R`).
 
 ## Cursor agent permissions
 
