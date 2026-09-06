@@ -7,29 +7,51 @@
 onboarding = false
 
 # ============================================================================
-# Color palette — shared with tmux.conf / zsh/prompt.zsh (blue / cyan)
-#   bg_base  #1c1c1c
-#   navy     #005f87
-#   sky      #00afff
-#   aqua     #00d7ff
-#   cyan     #00ffff
-#   ice      #87ffff
-#   muted    #808080
-#   fg       #eeeeee
+# Color palette
+#   Ghostty Nocturnal Winter (ghostty/config) — surfaces + semantic
+#     bg       #0d0d17
+#     fg       #e6e5e5
+#     red      #f12d52
+#     green    #09cd7e
+#     yellow   #f5f17a
+#     magenta  #ff2b6d
+#     muted    #808080
+#   zsh/prompt.zsh + tmux.conf — blue / cyan chrome
+#     navy     24  #005f87
+#     sky      39  #00afff
+#     aqua     45  #00d7ff
+#     cyan     51  #00ffff
+#     ice      123 #87ffff
+#     bg_deep  17  #00005f
 # ============================================================================
 
 [theme]
-# Follow Ghostty's palette; override accent to match tmux / prompt.
+# Inherit Ghostty's default bg/fg. Ghostty's ANSI cyan (palette 6) is green
+# (#09c87a), so chrome accents are the prompt's cyan gradient instead.
 name = "terminal"
 
 [theme.custom]
-sidebar_bg = "#1c1c1c"
-active_row_bg = "#005f87"
-selection_bg = "#00005f"
+panel_bg = "reset"
+sidebar_bg = "reset"
+text = "#e6e5e5"
+subtext0 = "#808080"
+surface0 = "#161628"
+surface1 = "#1e1e36"
+surface_dim = "#12121f"
+overlay0 = "#4d4d4d"
+overlay1 = "#808080"
+
 accent = "#00ffff"
 blue = "#00afff"
-green = "#00d7ff"
-yellow = "#87ffff"
+teal = "#00d7ff"
+mauve = "#00d7ff"
+active_row_bg = "#005f87"
+selection_bg = "#00005f"
+
+red = "#f12d52"
+green = "#09cd7e"
+yellow = "#f5f17a"
+peach = "#ff2b6d"
 
 [terminal]
 # Match tmux `default-command "${SHELL}"`: avoid macOS login-shell path_helper.
