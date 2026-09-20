@@ -1,3 +1,7 @@
+# rustup's cargo script is a #compdef wrapper that sources the active
+# toolchain's _cargo, so this directory must be on fpath before compinit.
+fpath=("$ZDOTDIR/completions" $fpath)
+
 autoload -Uz compinit promptinit
 compinit
 
