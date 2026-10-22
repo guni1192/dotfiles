@@ -71,9 +71,11 @@ If you prefer not to install Nix, use the aqua path for initial setup:
 
 Or refresh tools only with `./scripts/init.sh setup-aqua`.
 
-`setup-aqua` installs aqua via [aqua-installer](https://github.com/aquaproj/aqua-installer),
+`setup-aqua` installs aqua via [aqua-installer](https://github.com/aquaproj/aqua-installer)
+(pinned installer and aqua versions in `scripts/init.sh`),
 symlinks `aquaproj-aqua/` into `$XDG_CONFIG_HOME/aquaproj-aqua`, and runs
 `aqua install -a` against the global config.
+Renovate updates those pins and `aquaproj-aqua/aqua.yaml`.
 
 `aquaproj-aqua/aqua.yaml` mirrors the CLI set in `devbox/devbox.json` (pinned
 versions where Devbox pins them; concrete pins for Devbox `@latest` packages).
