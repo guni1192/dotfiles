@@ -77,10 +77,12 @@ symlinks `aquaproj-aqua/` into `$XDG_CONFIG_HOME/aquaproj-aqua`, and runs
 `aqua install -a` against the global config.
 Renovate updates those pins and `aquaproj-aqua/aqua.yaml`.
 
-`aquaproj-aqua/aqua.yaml` mirrors the CLI set in `devbox/devbox.json` (pinned
-versions where Devbox pins them; concrete pins for Devbox `@latest` packages).
-Packages not published in aqua-registry (`flarectl`, `cursor-cli`, `devcontainer`)
-remain Devbox-only.
+`aquaproj-aqua/aqua.yaml` mirrors the CLI set in `devbox/devbox.json`. Every
+package is pinned. Aqua follows GitHub releases; Devbox follows the nixpkgs
+attribute, so the two pins can differ. Packages not published in
+aqua-registry (`flarectl`, `cursor-cli`, `devcontainer`) remain Devbox-only.
+Devbox `bazel` is `bazel_9` so the pin stays on Bazel 9 (unversioned nixpkgs
+`bazel` is still Bazel 7).
 
 `zshenv` prepends aqua's bin dir and sets `AQUA_GLOBAL_CONFIG`, so tools are on
 `PATH` in new shells after install. Do not run both Devbox and aqua global
@@ -88,10 +90,10 @@ profiles unless you intend overlapping tool versions on `PATH`.
 
 ## Herdr
 
-Installed by both tool managers, pinned to 0.8.2:
+Installed by both tool managers, pinned to 0.9.5:
 
-- Devbox: `herdr@0.8.2` in `devbox/devbox.json` (nixpkgs `herdr`)
-- aqua: `herdrdev/herdr@v0.8.2` in `aquaproj-aqua/aqua.yaml`
+- Devbox: `herdr@0.9.5` in `devbox/devbox.json` (nixpkgs `herdr`)
+- aqua: `herdrdev/herdr@v0.9.5` in `aquaproj-aqua/aqua.yaml`
 
 `scripts/init.sh setup-herdr` (also run by `setup-all*`) symlinks
 `herdr/config.toml` into `$XDG_CONFIG_HOME/herdr/config.toml`.

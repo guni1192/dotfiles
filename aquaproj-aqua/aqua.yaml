@@ -3,42 +3,48 @@
 # https://aquaproj.github.io/
 # Alternative to the Nix + Devbox global profile in devbox/devbox.json.
 # Prefer `./scripts/init.sh setup-all-with-aqua` when you don't want Nix.
+# Versions can lead nixpkgs: Devbox pins whatever the unversioned attribute
+# currently builds, which is sometimes an older release.
 registries:
 - type: standard
-  ref: v4.558.1 # renovate: depName=aquaproj/aqua-registry
+  ref: v4.575.0 # renovate: depName=aquaproj/aqua-registry
 packages:
 # --- pinned (mirrors devbox/devbox.json) ---
-- name: neovim/neovim@v0.12.2
-- name: junegunn/fzf@v0.72.0
-- name: x-motemen/ghq@v1.9.4
-- name: cli/cli@v2.88.1
-- name: BurntSushi/ripgrep@15.1.0
-- name: kubernetes/kubernetes/kubectl@v1.36.0
-- name: helm/helm@v3.20.2
+- name: neovim/neovim@v0.12.6
+- name: junegunn/fzf@v0.74.5
+- name: x-motemen/ghq@v1.11.2
+- name: cli/cli@v2.103.0
+- name: BurntSushi/ripgrep@15.2.0
+- name: kubernetes/kubernetes/kubectl@v1.37.1
+- name: helm/helm@v4.3.1
 - name: kubernetes-sigs/krew@v0.5.0
-- name: kubernetes-sigs/kustomize@kustomize/v5.8.0
-- name: kubernetes-sigs/kind@v0.31.0
-- name: stern/stern@v1.33.1
-- name: nodejs/node@v24.12.0
-- name: tree-sitter/tree-sitter@v0.26.8
-- name: hashicorp/terraform-ls@v0.38.6
-- name: LuaLS/lua-language-server@3.18.1
-- name: rust-lang/rust-analyzer@2026-04-13
-- name: mikefarah/yq@v4.53.2
+- name: kubernetes-sigs/kustomize@kustomize/v5.8.3
+- name: kubernetes-sigs/kind@v0.33.0
+- name: stern/stern@v1.35.0
+- name: nodejs/node@v24.22.1
+- name: tree-sitter/tree-sitter@v0.27.1
+- name: hashicorp/terraform-ls@v0.39.0
+- name: LuaLS/lua-language-server@3.19.2
+- name: rust-lang/rust-analyzer@2026-10-19
+- name: mikefarah/yq@v4.54.1
 - name: gitleaks/gitleaks@v8.30.1
-- name: herdrdev/herdr@v0.8.2
-- name: github/copilot-language-server-release@1.477.0
-# --- @latest in devbox → pinned to current aqua-registry versions ---
+- name: herdrdev/herdr@v0.9.5
+- name: github/copilot-language-server-release@1.558.0
+# Stay on 562.0.0: twistedpair/google-cloud-sdk tags stopped there (2026-03-24).
+# aqua-renovate-config updates this package from GitHub tags, so a newer pin
+# is opened as a downgrade. Devbox tracks nixpkgs (583.0.0) instead.
 - name: twistedpair/google-cloud-sdk@562.0.0
-- name: aws/aws-cli@2.36.15
-- name: anthropics/claude-code@v2.1.221
-- name: openai/codex@rust-v0.146.0
-- name: pnpm/pnpm@v11.20.0
-- name: tmux/tmux-builds@v3.7b
+- name: aws/aws-cli@2.38.4
+- name: anthropics/claude-code@v2.1.308
+- name: openai/codex@rust-v0.163.0
+- name: pnpm/pnpm@v12.15.0
+- name: tmux/tmux-builds@v3.7c
 # go before gopls: gopls is type go_install and needs a Go toolchain.
-- name: golang/go@go1.26.5
-- name: golang.org/x/tools/gopls@v0.21.1
-- name: bazelbuild/bazel@9.2.0
-- name: bazelbuild/bazelisk@v1.29.0
+# Stay on the 1.26 line. nixpkgs' unversioned `go` is still go_1_26;
+# 1.27.3 is current stable and is not applied here.
+- name: golang/go@go1.26.10
+- name: golang.org/x/tools/gopls@v0.24.0
+- name: bazelbuild/bazel@9.3.1
+- name: bazelbuild/bazelisk@v1.30.0
 # Not in aqua-registry (still via Nix/Devbox only):
 #   flarectl, cursor-cli, devcontainer

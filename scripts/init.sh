@@ -155,7 +155,7 @@ setup_aqua() {
         echo "Installing aqua..."
         # v4 installs into $aqua_bin_dir (not customizable).
         # Keep this one line so Renovate can update the installer ref and -v.
-        curl -sSfL https://raw.githubusercontent.com/aquaproj/aqua-installer/v4.1.0/aqua-installer | bash -s -- -v v2.65.0
+        curl -sSfL https://raw.githubusercontent.com/aquaproj/aqua-installer/v4.1.1/aqua-installer | bash -s -- -v v2.65.2
     fi
 
     create_symlink ~/dotfiles/aquaproj-aqua/ "$XDG_CONFIG_HOME/aquaproj-aqua"
