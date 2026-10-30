@@ -1,20 +1,21 @@
 ---
 # aqua - Declarative CLI Version Manager
 # https://aquaproj.github.io/
-# Alternative to the Nix + Devbox global profile in devbox/devbox.json.
-# Prefer `./scripts/init.sh setup-all-with-aqua` when you don't want Nix.
-# Versions can lead nixpkgs: Devbox pins whatever the unversioned attribute
-# currently builds, which is sometimes an older release.
-# Checksums are verified on install. Packages whose registry entry has no
-# checksum are recorded in aqua-checksums.json (first download, TOFU).
+# CLI tools for this dotfiles. Install with `./scripts/init.sh setup-all`.
+# checksum.supported_envs limits which platforms `aqua update-checksum` records.
+# darwin/arm64 is the work Mac. linux covers Ubuntu. Windows is not precomputed.
 checksum:
   enabled: true
   require_checksum: true
+  supported_envs:
+    - darwin/arm64
+    - darwin/amd64
+    - linux/amd64
+    - linux/arm64
 registries:
 - type: standard
   ref: v4.575.0 # renovate: depName=aquaproj/aqua-registry
 packages:
-# --- pinned (mirrors devbox/devbox.json) ---
 - name: neovim/neovim@v0.12.6
 - name: junegunn/fzf@v0.74.5
 - name: x-motemen/ghq@v1.11.2
@@ -37,19 +38,22 @@ packages:
 - name: github/copilot-language-server-release@1.558.0
 # Stay on 562.0.0: twistedpair/google-cloud-sdk tags stopped there (2026-03-24).
 # aqua-renovate-config updates this package from GitHub tags, so a newer pin
-# is opened as a downgrade. Devbox tracks nixpkgs (583.0.0) instead.
+# is opened as a downgrade.
 - name: twistedpair/google-cloud-sdk@562.0.0
 - name: aws/aws-cli@2.38.4
-- name: anthropics/claude-code@v2.1.308
+# claude-code is not in this list. Auto-update follows autoUpdatesChannel in
+# claude/settings.json, so `aqua install -a` must not reinstall a pinned binary.
+# scripts/init.sh installs it once from claude.yaml when `claude` is missing.
 - name: openai/codex@rust-v0.163.0
 - name: pnpm/pnpm@v12.15.0
 - name: tmux/tmux-builds@v3.7c
 # go before gopls: gopls is type go_install and needs a Go toolchain.
-# Stay on the 1.26 line. nixpkgs' unversioned `go` is still go_1_26;
-# 1.27.3 is current stable and is not applied here.
+# Stay on the 1.26 line. 1.27 is not applied here.
 - name: golang/go@go1.26.10
 - name: golang.org/x/tools/gopls@v0.24.0
 - name: bazelbuild/bazel@9.3.1
 - name: bazelbuild/bazelisk@v1.30.0
-# Not in aqua-registry (still via Nix/Devbox only):
-#   flarectl, cursor-cli, devcontainer
+# Scripts call jq. Registry: pkgs/jqlang/jq (version_prefix jq-).
+- name: jqlang/jq@jq-1.8.2
+# Replaces the rustup curl|sh installer. Registry: pkgs/rust-lang/rustup.
+- name: rust-lang/rustup@1.29.2
