@@ -33,7 +33,41 @@ vim.lsp.config('gopls', {
 vim.lsp.enable('gopls')
 ```
 
-Apply uniformly across all servers (rust-analyzer, gopls, terraformls, lua_ls, …). Reference commit: `830b474`.
+Apply uniformly across all servers (rust_analyzer, gopls, terraformls, lua_ls, …). Reference commit: `830b474`.
+
+The config **name** must match `lsp/<name>.lua` from nvim-lspconfig. `vim.lsp.config` loads that file by name and merges it. `rust-analyzer` does not match `lsp/rust_analyzer.lua`, so the resolved config has no `cmd` and the server never starts. Call `vim.lsp.config('rust_analyzer', …)` and `vim.lsp.enable('rust_analyzer')`. The settings table key stays `['rust-analyzer']` (that is the server's own namespace, not the config name).
+
+## terraformls: `tf` / `tfvars` are not the Neovim filetypes
+
+**Symptom (in `:checkhealth vim.lsp`):**
+
+```
+⚠️ WARNING Unknown filetype 'tfvars' (Hint: filename extension != filetype).
+```
+
+`tf` is not warned about, because it is a real filetype (TinyFugue). terraform-ls still does not attach to `*.tf` buffers.
+
+**Cause:** Neovim detects `*.tf` as `terraform` and `*.tfvars` as `terraform-vars`. nvim-lspconfig's `terraformls` uses those names. Overriding `filetypes` with `tf` and `tfvars` replaces them.
+
+**Fix in `nvim/lua/lsp.lua`:**
+
+```lua
+vim.lsp.config('terraformls', {
+  filetypes = { 'terraform', 'terraform-vars' },
+})
+```
+
+## nvim-treesitter: `jsonc` is not an installable parser
+
+**Symptom (on startup):**
+
+```
+[nvim-treesitter] warning: skipping unsupported language: jsonc
+```
+
+**Cause:** Current nvim-treesitter (main) has no `jsonc` parser. `plugin/filetypes.lua` registers the `json` parser for the `jsonc` filetype.
+
+**Fix in `nvim/lua/plugins.lua`:** pass `json` to `require('nvim-treesitter').install`, and keep `jsonc` only on the `FileType` autocmd that calls `vim.treesitter.start()`.
 
 ## lazy.nvim: luarocks/hererocks ERROR when no plugin needs it
 
@@ -85,7 +119,15 @@ Only do this after confirming no installed plugin requires luarocks (`:checkheal
 
 **Cause:** The LSP server config names a filetype Neovim doesn't auto-detect, and there's no `vim.filetype.add` mapping for it.
 
-**Fix:** either (a) add the mapping in `nvim/lua/filetype.lua` so the extension resolves to that filetype, or (b) drop the filetype from the LSP's `filetypes` list if you don't actually edit those files. For gopls + gotmpl specifically, gopls handles `*.tmpl` Go template files when the filetype is set; add `vim.filetype.add({ extension = { tmpl = 'gotmpl' } })` if you want LSP on templates.
+**Fix:** either (a) add the mapping in `nvim/lua/filetype.lua` so the extension resolves to that filetype, or (b) drop the filetype from the LSP's `filetypes` list if you don't actually edit those files. This repo keeps gotmpl on gopls and maps it:
+
+```lua
+vim.filetype.add({
+  extension = { tmpl = 'gotmpl' },
+})
+```
+
+`init.lua` must `require('filetype')` before `require('lsp')`. Do not put indent settings back in `filetype.lua`; those live in `after/ftplugin/`.
 
 ## Optional media previewers (fzf-lua) — usually skip
 
