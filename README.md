@@ -3,7 +3,7 @@
 ## Environment
 
 - Ubuntu 22.04
-- macOS
+- macOS (Apple Silicon). Homebrew is not used.
 
 ## Tools
 
@@ -11,91 +11,49 @@
 - tmux
 - [Herdr](https://herdr.dev/)
 - neovim
-- CLI tool managers (pick one at initial setup):
-  - [Nix](https://nixos.org/) + [Devbox](https://www.jetify.com/devbox) via `setup-all-with-devbox`
-  - [aqua](https://aquaproj.github.io/) via `setup-all-with-aqua`
+- [aqua](https://aquaproj.github.io/) for CLI tools (`aquaproj-aqua/aqua.yaml`)
 
 ## Getting Started
+
+Needs `git`, `curl`, `tar`, `zsh`, and either `sha256sum` (Linux) or `shasum` (macOS).
+No Homebrew and no Nix.
 
 ```console
 git clone https://github.com/guni1192/dotfiles.git
 cd dotfiles
-
-# Choose one tool manager for the initial setup:
-./scripts/init.sh setup-all-with-devbox   # or: --setup-all-with-devbox
-./scripts/init.sh setup-all-with-aqua     # or: --setup-all-with-aqua
+./scripts/init.sh setup-all
 ```
 
-`setup-all` remains as an alias for `setup-all-with-devbox`.
-
-Run `./scripts/init.sh` with no arguments to print the available subcommands,
-and invoke one individually with e.g. `./scripts/init.sh setup-zsh`.
+`setup-all-with-aqua` is the same command.
+Run `./scripts/init.sh` with no arguments to print the subcommands,
+and invoke one with e.g. `./scripts/init.sh setup-zsh`.
 A leading `--` is optional.
 
-## Nix + Devbox
+This repo has no GitHub Actions workflow. The check is to run `setup-all` on a fresh machine.
 
-`scripts/init.sh setup-all-with-devbox` installs both idempotently:
+## aqua
 
-- **Nix**: via the [Determinate Systems installer](https://github.com/DeterminateSystems/nix-installer)
-  in upstream CE mode (not `--determinate`, to stay compatible with leftover
-  upstream installs). Falls back to `--no-daemon` single-user mode in containers
-  without systemd.
-- **Devbox**: via `get.jetify.com/devbox`, pinning tool versions in `devbox.json`.
+`scripts/init.sh setup-aqua` downloads the pinned aqua release tarball, checks it
+against the checksum file from the same GitHub release, then extracts the binary.
+It does not pipe a script into a shell.
+It symlinks `aquaproj-aqua/` into `$XDG_CONFIG_HOME/aquaproj-aqua` and runs
+`aqua install -a`. Renovate updates `aquaproj-aqua/*.yaml` and the aqua version in
+`scripts/init.sh`.
 
-### Global profile
+`zshenv` prepends aqua's bin directory and sets `AQUA_GLOBAL_CONFIG`.
 
-This repo ships a global devbox profile at `devbox/devbox.json`.
-`scripts/init.sh setup-devbox` creates `~/.local/share/devbox/global/default`
-as a real directory, symlinks `devbox.json` and `devbox.lock` into it (so the
-per-environment `.devbox/` state — which contains absolute `/nix/store` paths
-— stays local to each host and container), and runs `devbox global install`.
+Rustup is the aqua package `rust-lang/rustup`. `jq` is `jqlang/jq`.
+Copilot's language server is `github/copilot-language-server-release`, not an npm global install.
 
-`zsh/devbox.zsh` evaluates `devbox global shellenv` for interactive shells, so
-packages added to `devbox/devbox.json` become available in new shells after
-`devbox global install`.
-
-#### Copilot LSP
-
-`@github/copilot-language-server` is an npm package (not in nixpkgs). The
-devbox `init_hook` installs it globally into `~/.local/npm-global/bin`; it is
-evaluated once by `scripts/init.sh setup-devbox` after `devbox global install`
-completes.
-
-## aqua (Nix/Devbox alternative)
-
-If you prefer not to install Nix, use the aqua path for initial setup:
-
-```console
-./scripts/init.sh setup-all-with-aqua   # or: --setup-all-with-aqua
-```
-
-Or refresh tools only with `./scripts/init.sh setup-aqua`.
-
-`setup-aqua` installs aqua via [aqua-installer](https://github.com/aquaproj/aqua-installer)
-(pinned installer and aqua versions in `scripts/init.sh`),
-symlinks `aquaproj-aqua/` into `$XDG_CONFIG_HOME/aquaproj-aqua`, and runs
-`aqua install -a` against the global config.
-Renovate updates those pins and `aquaproj-aqua/aqua.yaml`.
-
-`aquaproj-aqua/aqua.yaml` mirrors the CLI set in `devbox/devbox.json`. Every
-package is pinned. Aqua follows GitHub releases; Devbox follows the nixpkgs
-attribute, so the two pins can differ. Packages not published in
-aqua-registry (`flarectl`, `cursor-cli`, `devcontainer`) remain Devbox-only.
-Devbox `bazel` is `bazel_9` so the pin stays on Bazel 9 (unversioned nixpkgs
-`bazel` is still Bazel 7).
-
-`zshenv` prepends aqua's bin dir and sets `AQUA_GLOBAL_CONFIG`, so tools are on
-`PATH` in new shells after install. Do not run both Devbox and aqua global
-profiles unless you intend overlapping tool versions on `PATH`.
+Claude Code is not reinstalled on every `aqua install -a`. `setup-aqua` installs it
+once, when `claude` is not already on `PATH`, from `aquaproj-aqua/claude.yaml`.
+Updates after that follow `autoUpdatesChannel` in `claude/settings.json` (`stable`).
 
 ## Herdr
 
-Installed by both tool managers, pinned to 0.9.5:
+Installed by aqua, pinned to 0.9.5 (`herdrdev/herdr@v0.9.5`).
 
-- Devbox: `herdr@0.9.5` in `devbox/devbox.json` (nixpkgs `herdr`)
-- aqua: `herdrdev/herdr@v0.9.5` in `aquaproj-aqua/aqua.yaml`
-
-`scripts/init.sh setup-herdr` (also run by `setup-all*`) symlinks
+`scripts/init.sh setup-herdr` (also run by `setup-all`) symlinks
 `herdr/config.toml` into `$XDG_CONFIG_HOME/herdr/config.toml`.
 
 Only the config file is linked. Herdr keeps logs, sockets, and `session.json`
@@ -110,7 +68,3 @@ Prefix is `Ctrl+J`, matching `tmux/tmux.conf`. Reload a running server with
 `cursor/cli-config.json`, `cursor/hooks.json`, and `cursor/hooks/` into
 `$XDG_CONFIG_HOME/cursor/` and `~/.cursor/`. See [cursor/README.md](./cursor/README.md)
 for the IDE vs CLI permission models and how to customize allow/deny rules.
-
-## Dev Container
-
-See [.devcontainer/README.md](./.devcontainer/README.md) for trying this repo in a Dev Container.

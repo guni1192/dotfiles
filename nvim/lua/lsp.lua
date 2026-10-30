@@ -110,8 +110,7 @@ vim.lsp.config('lua_ls', {
 })
 vim.lsp.enable('lua_ls')
 
--- GitHub Copilot via official LSP (@github/copilot-language-server).
--- Install: `npm install -g @github/copilot-language-server`
+-- GitHub Copilot via official LSP (copilot-language-server from aqua).
 -- Sign in: `:CopilotSignIn` (device-code flow)
 vim.lsp.config('copilot', {
   cmd = { 'copilot-language-server', '--stdio' },
