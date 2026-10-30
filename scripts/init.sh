@@ -51,10 +51,6 @@ setup_neovim() {
     create_symlink ~/dotfiles/nvim $XDG_CONFIG_HOME/nvim
 }
 
-setup_tmux() {
-    create_symlink ~/dotfiles/tmux/ $XDG_CONFIG_HOME/tmux
-}
-
 setup_herdr() {
     # Symlink just config.toml — Herdr also stores logs, sockets, and
     # session.json under $XDG_CONFIG_HOME/herdr, which must stay local.
@@ -246,11 +242,6 @@ setup_ghostty() {
     create_symlink ~/dotfiles/ghostty/ $XDG_CONFIG_HOME/ghostty
 }
 
-setup_bin() {
-    mkdir -p "$HOME/.local/bin"
-    create_symlink ~/dotfiles/bin/nvim-tmux "$HOME/.local/bin/nvim-tmux"
-}
-
 setup_cursor() {
     mkdir -p "$XDG_CONFIG_HOME/cursor" "$HOME/.cursor"
     create_symlink ~/dotfiles/cursor/permissions.json "$XDG_CONFIG_HOME/cursor/permissions.json"
@@ -262,11 +253,9 @@ setup_cursor() {
 setup_dotfiles() {
     setup_zsh
     setup_neovim
-    setup_tmux
     setup_herdr
     setup_git
     setup_ghostty
-    setup_bin
     setup_cursor
 }
 
@@ -290,14 +279,12 @@ Full initial setup (leading -- is optional):
 Individual steps:
   setup-zsh       Symlink zshenv + zsh config and clone zinit.
   setup-neovim    Symlink neovim config.
-  setup-tmux      Symlink tmux config.
   setup-herdr     Symlink herdr config.toml (not the whole directory).
   setup-git       Symlink git config.
   setup-aqua      Install aqua and apply aquaproj-aqua/aqua.yaml.
   setup-claude    Symlink Claude settings. Install claude once if missing.
   setup-ghostty   Symlink ghostty config.
-  setup-bin       Symlink nvim-tmux into ~/.local/bin/.
-  setup-cursor    Symlink Cursor IDE/CLI permission configs.
+  setup-cursor    Symlink Cursor IDE permission configs and hooks.
 
 Rustup is an aqua package (rust-lang/rustup). setup-aqua then runs
 that rustup-init with -y --default-toolchain stable.

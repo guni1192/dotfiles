@@ -31,7 +31,6 @@ path_dirs=(
     /usr/local/go/bin
     $GOPATH/bin
     $HOME/.cargo/bin
-    ${KREW_ROOT:-$HOME/.krew}/bin
     ${AQUA_ROOT_DIR:-${XDG_DATA_HOME:-$HOME/.local/share}/aquaproj-aqua}/bin
     $HOME/.local/bin
     $HOME/.local/npm-global/bin
