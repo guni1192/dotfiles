@@ -33,13 +33,18 @@ setup_zsh() {
     create_symlink ~/dotfiles/zshenv ~/.zshenv
     create_symlink ~/dotfiles/zsh/ $XDG_CONFIG_HOME/zsh
 
+    # renovate: datasource=custom.github-commit depName=zdharma-continuum/zinit
+    ZINIT_REV_VERSION=20261027132552
+    ZINIT_REV=cb4968123979cf073384e93aa8066d8fd450580f
     ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
-    if [[ -d "$ZINIT_HOME" ]]; then
-        echo "zinit already installed."
-    else
-        mkdir -p "$(dirname $ZINIT_HOME)"
+    if [[ ! -d "$ZINIT_HOME/.git" ]]; then
+        mkdir -p "$(dirname "$ZINIT_HOME")"
         git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
     fi
+    if ! git -C "$ZINIT_HOME" cat-file -e "${ZINIT_REV}^{commit}" 2>/dev/null; then
+        git -C "$ZINIT_HOME" fetch origin "$ZINIT_REV"
+    fi
+    git -C "$ZINIT_HOME" checkout --detach "$ZINIT_REV"
 }
 
 setup_neovim() {
