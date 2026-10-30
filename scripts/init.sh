@@ -134,21 +134,107 @@ setup_aqua() {
     # -a installs packages from AQUA_GLOBAL_CONFIG (ignored by default).
     # claude.yaml is a separate file and is not installed here.
     aqua install -a
+    setup_rust_toolchain
     setup_claude
+}
+
+setup_rust_toolchain() {
+    # The aqua package is only the rustup manager. Install the stable
+    # toolchain with that binary (same result as rustup-init -y
+    # --default-toolchain stable). Do not use https://sh.rustup.rs.
+    if ! command -v rustup-init >/dev/null 2>&1; then
+        echo "rustup-init is not on PATH; the stable toolchain was not installed." >&2
+        return 1
+    fi
+    rustup-init -y --default-toolchain stable
+}
+
+claude_is_aqua_proxy() {
+    local bin target
+    bin=$(command -v claude 2>/dev/null || true)
+    [[ -n "$bin" && -L "$bin" ]] || return 1
+    target=$(readlink "$bin")
+    [[ "$(basename "$target")" == "aqua-proxy" ]]
+}
+
+claude_runs() {
+    local bin
+    bin=$(command -v claude 2>/dev/null || true)
+    [[ -n "$bin" && -x "$bin" ]] || return 1
+    if claude_is_aqua_proxy; then
+        return 1
+    fi
+    "$bin" --version >/dev/null 2>&1
+}
+
+merge_claude_settings() {
+    local dest="$HOME/.claude/settings.json"
+    mkdir -p "$HOME/.claude"
+    if [[ -L "$dest" || ! -e "$dest" ]]; then
+        create_symlink ~/dotfiles/claude/settings.json "$dest"
+        return 0
+    fi
+    if [[ ! -f "$dest" ]]; then
+        echo "claude settings: skipped ($dest is not a regular file)."
+        return 0
+    fi
+    if ! command -v jq >/dev/null 2>&1; then
+        echo "claude settings: skipped (jq is not available, so autoUpdatesChannel was not added to $dest)."
+        return 0
+    fi
+    if ! jq -e 'type == "object"' "$dest" >/dev/null 2>&1; then
+        echo "claude settings: skipped ($dest is not a JSON object, so autoUpdatesChannel was not added)."
+        return 0
+    fi
+    if jq -e 'has("autoUpdatesChannel")' "$dest" >/dev/null 2>&1; then
+        echo "claude settings: autoUpdatesChannel is already set; left $dest unchanged."
+        return 0
+    fi
+    local tmp
+    tmp=$(mktemp)
+    if jq '.autoUpdatesChannel = "stable"' "$dest" > "$tmp"; then
+        mv "$tmp" "$dest"
+        echo "claude settings: added autoUpdatesChannel=stable to $dest."
+    else
+        rm -f "$tmp"
+        echo "claude settings: skipped (could not add autoUpdatesChannel to $dest)."
+    fi
+}
+
+install_claude_once() {
+    local cfg=~/dotfiles/aquaproj-aqua/claude.yaml
+    local dest="${HOME}/.local/bin/claude"
+    local real aqua_shim
+    echo "Installing claude-code once via aqua..."
+    aqua -c "$cfg" install
+    real=$(aqua -c "$cfg" which claude)
+    if [[ -z "$real" || ! -x "$real" ]]; then
+        echo "claude: aqua did not produce an executable." >&2
+        return 1
+    fi
+    if [[ -L "$real" ]] && [[ "$(basename "$(readlink "$real")")" == "aqua-proxy" ]]; then
+        echo "claude: aqua which returned the proxy, not the installed binary." >&2
+        return 1
+    fi
+    mkdir -p "${HOME}/.local/bin"
+    install -m 755 "$real" "$dest"
+    aqua_shim="${AQUA_ROOT_DIR:-${XDG_DATA_HOME:-$HOME/.local/share}/aquaproj-aqua}/bin/claude"
+    if [[ -L "$aqua_shim" ]] && [[ "$(basename "$(readlink "$aqua_shim")")" == "aqua-proxy" ]]; then
+        rm -f "$aqua_shim"
+    fi
+    "$dest" --version
 }
 
 setup_claude() {
     # Official install is `curl | bash` or Homebrew. Neither is used.
-    # aqua installs the GitHub release once. Later versions come from Claude's
-    # updater on the stable channel (claude/settings.json).
-    mkdir -p "$HOME/.claude"
-    create_symlink ~/dotfiles/claude/settings.json "$HOME/.claude/settings.json"
-    if command -v claude >/dev/null 2>&1; then
+    # aqua verifies the GitHub release once, then the binary is copied out of
+    # the aqua proxy so later `aqua install -a` does not reset auto-updates.
+    merge_claude_settings
+    if claude_runs; then
         echo "claude already installed: $(claude --version 2>/dev/null || true)"
-        return
+        return 0
     fi
-    echo "Installing claude-code once via aqua..."
-    aqua -c ~/dotfiles/aquaproj-aqua/claude.yaml install
+    install_claude_once
 }
 
 setup_ghostty() {
@@ -217,7 +303,8 @@ Individual steps:
   setup-bin       Symlink nvim-tmux into ~/.local/bin/.
   setup-cursor    Symlink Cursor IDE/CLI permission configs.
 
-Rustup is an aqua package (rust-lang/rustup) and is installed by setup-aqua.
+Rustup is an aqua package (rust-lang/rustup). setup-aqua then runs
+that rustup-init with -y --default-toolchain stable.
 All steps are idempotent.
 EOF
 }
