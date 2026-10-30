@@ -65,6 +65,6 @@ Prefix is `Ctrl+J`. Reload a running server with
 ## Cursor
 
 `scripts/init.sh setup-cursor` symlinks Cursor permissions and `cli-config.json`
-into `$XDG_CONFIG_HOME/cursor/`, and hooks plus each `cursor/skills/<name>/`
-directory into `~/.cursor/`. See [cursor/README.md](./cursor/README.md) for
-permission models, hooks, and where agent skills are installed.
+into `$XDG_CONFIG_HOME/cursor/`, and hooks into `~/.cursor/`. Project agent
+skills are `.cursor/skills/<name>/SKILL.md` and are not installed by that
+script. See [cursor/README.md](./cursor/README.md).
