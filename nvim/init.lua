@@ -1,4 +1,5 @@
 require('editor')
+require('filetype')
 require('plugins')
 require('appearance')
 require('lsp')

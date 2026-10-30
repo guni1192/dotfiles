@@ -97,17 +97,19 @@ lazy.setup({
     config = function()
       local ensure = {
         "bash", "c", "diff", "go", "hcl", "html",
-        "javascript", "jsdoc", "json", "jsonc",
+        "javascript", "jsdoc", "json",
         "lua", "luadoc", "luap",
         "markdown", "markdown_inline",
         "python", "query", "regex", "rust",
         "terraform", "toml", "tsx", "typescript",
         "vim", "vimdoc", "xml", "yaml", "jsonnet"
       }
+      -- jsonc is not its own parser. nvim-treesitter registers the json parser for it.
+      local filetypes = vim.list_extend(vim.deepcopy(ensure), { "jsonc" })
       require('nvim-treesitter').install(ensure)
 
       vim.api.nvim_create_autocmd("FileType", {
-        pattern = ensure,
+        pattern = filetypes,
         callback = function()
           vim.treesitter.start()
           vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"

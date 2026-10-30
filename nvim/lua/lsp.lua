@@ -20,7 +20,9 @@ vim.api.nvim_create_autocmd('LspAttach', {
 })
 
 
-vim.lsp.config('rust-analyzer', {
+-- Name matches nvim-lspconfig's lsp/rust_analyzer.lua so cmd and root_dir merge.
+-- The binary and the settings namespace stay `rust-analyzer`.
+vim.lsp.config('rust_analyzer', {
   flags = {
     exit_timeout = 0,
   },
@@ -42,7 +44,7 @@ vim.lsp.config('rust-analyzer', {
     },
   }
 })
-vim.lsp.enable('rust-analyzer')
+vim.lsp.enable('rust_analyzer')
 
 vim.lsp.config('gopls', {
   filetypes = {'go', 'gomod', 'gowork', 'gotmpl'},
@@ -67,9 +69,10 @@ vim.api.nvim_create_autocmd('BufWritePre', {
   end
 })
 
--- Terraform
+-- Neovim's filetypes are `terraform` (*.tf) and `terraform-vars` (*.tfvars).
+-- `tf` is TinyFugue, not Terraform.
 vim.lsp.config('terraformls', {
-  filetypes = {'tf', 'tfvars'},
+  filetypes = { 'terraform', 'terraform-vars' },
 })
 vim.lsp.enable('terraformls')
 
