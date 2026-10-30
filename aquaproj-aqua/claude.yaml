@@ -1,0 +1,16 @@
+# First install of Claude Code only. Not part of AQUA_GLOBAL_CONFIG, so
+# `aqua install -a` does not put the pinned binary back after auto-update.
+# The channel is claude/settings.json (`autoUpdatesChannel: stable`).
+checksum:
+  enabled: true
+  require_checksum: true
+  supported_envs:
+    - darwin/arm64
+    - darwin/amd64
+    - linux/amd64
+    - linux/arm64
+registries:
+- type: standard
+  ref: v4.575.0 # renovate: depName=aquaproj/aqua-registry
+packages:
+- name: anthropics/claude-code@v2.1.308

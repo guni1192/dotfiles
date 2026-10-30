@@ -61,112 +61,180 @@ setup_git() {
     create_symlink ~/dotfiles/git/ $XDG_CONFIG_HOME/git
 }
 
-load_nix_env() {
-    # Source whichever nix profile script exists so `nix` is on PATH even in
-    # non-login shells (e.g. devcontainer postCreateCommand).
-    if [[ -f /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh ]]; then
-        # shellcheck disable=SC1091
-        . /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
-    elif [[ -f "$HOME/.nix-profile/etc/profile.d/nix.sh" ]]; then
-        # shellcheck disable=SC1091
-        . "$HOME/.nix-profile/etc/profile.d/nix.sh"
-    fi
-}
+# renovate: datasource=github-releases depName=aquaproj/aqua
+AQUA_VERSION=v2.65.2
 
-install_nix_determinate() {
-    # Determinate installer running upstream Nix CE — we deliberately skip
-    # `--determinate` so the installer uses nixbld gid 30000 (upstream default)
-    # rather than 350, which collides with groups left behind by previous
-    # upstream installs.
-    curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix \
-        | sh -s -- install --no-confirm
-}
-
-install_nix_single_user() {
-    # No-systemd / container path: upstream installer in single-user mode, no
-    # daemon, profile lives under ~/.nix-profile.
-    mkdir -p "$HOME/.config/nix"
-    grep -q '^experimental-features' "$HOME/.config/nix/nix.conf" 2>/dev/null \
-        || echo 'experimental-features = nix-command flakes' \
-            >> "$HOME/.config/nix/nix.conf"
-    curl -fsSL https://nixos.org/nix/install -o /tmp/nix-install.sh
-    sh /tmp/nix-install.sh --no-daemon --yes
-    rm -f /tmp/nix-install.sh
-}
-
-setup_nix() {
-    load_nix_env
-    if command -v nix >/dev/null 2>&1; then
-        echo "nix already installed: $(nix --version)"
-        return
-    fi
-
+install_aqua_release() {
+    local aqua_bin_dir=$1
+    local os arch asset sums tmp expected actual
     case "$(uname -s)" in
-        Darwin) install_nix_determinate ;;
-        Linux)
-            if [[ -d /run/systemd/system ]]; then
-                install_nix_determinate
-            else
-                install_nix_single_user
-            fi
-            ;;
+        Darwin) os=darwin ;;
+        Linux) os=linux ;;
         *)
             echo "Unsupported OS: $(uname -s)" >&2
             exit 1
             ;;
     esac
-
-    load_nix_env
-}
-
-setup_devbox() {
-    if command -v devbox >/dev/null 2>&1; then
-        echo "devbox already installed: $(devbox version)"
-    else
-        echo "Installing Devbox..."
-        curl -fsSL https://get.jetify.com/devbox | bash -s -- -f
-    fi
-
-    # Symlink devbox.json/devbox.lock individually instead of the whole
-    # directory so per-environment .devbox/ state (absolute /nix/store paths)
-    # stays local to each host/container and doesn't leak via bind mounts.
-    local global_dir="$XDG_DATA_HOME/devbox/global/default"
-    rm -rf "$global_dir"
-    mkdir -p "$global_dir"
-    create_symlink ~/dotfiles/devbox/devbox.json "$global_dir/devbox.json"
-    create_symlink ~/dotfiles/devbox/devbox.lock "$global_dir/devbox.lock"
-
-    devbox global install
-
-    # Evaluate the init_hook once so the npm copilot-language-server install
-    # runs here, not on every interactive shell start.
-    eval "$(devbox global shellenv --init-hook)" >/dev/null 2>&1 || true
+    case "$(uname -m)" in
+        x86_64|amd64) arch=amd64 ;;
+        arm64|aarch64) arch=arm64 ;;
+        *)
+            echo "Unsupported architecture: $(uname -m)" >&2
+            exit 1
+            ;;
+    esac
+    asset="aqua_${os}_${arch}.tar.gz"
+    sums="aqua_${AQUA_VERSION#v}_checksums.txt"
+    tmp=$(mktemp -d)
+    (
+        set -euo pipefail
+        trap 'rm -rf "$tmp"' EXIT
+        curl -fsSL -o "$tmp/$asset" \
+            "https://github.com/aquaproj/aqua/releases/download/${AQUA_VERSION}/${asset}"
+        curl -fsSL -o "$tmp/$sums" \
+            "https://github.com/aquaproj/aqua/releases/download/${AQUA_VERSION}/${sums}"
+        expected=$(awk -v f="$asset" '$2 == f { print $1 }' "$tmp/$sums")
+        if [[ -z "$expected" ]]; then
+            echo "No checksum for ${asset} in ${sums}" >&2
+            exit 1
+        fi
+        if command -v sha256sum >/dev/null 2>&1; then
+            actual=$(sha256sum "$tmp/$asset" | awk '{ print $1 }')
+        elif command -v shasum >/dev/null 2>&1; then
+            actual=$(shasum -a 256 "$tmp/$asset" | awk '{ print $1 }')
+        else
+            echo "sha256sum or shasum is required to install aqua" >&2
+            exit 1
+        fi
+        if [[ "$actual" != "$expected" ]]; then
+            echo "aqua checksum mismatch for ${asset}" >&2
+            exit 1
+        fi
+        tar -xzf "$tmp/$asset" -C "$tmp" aqua
+        mkdir -p "$aqua_bin_dir"
+        install -m 755 "$tmp/aqua" "$aqua_bin_dir/aqua"
+    )
 }
 
 setup_aqua() {
-    # Alternative to setup_nix + setup_devbox. Installs CLI tools from
-    # aquaproj-aqua/aqua.yaml (mirrors the global Devbox package set).
+    # Installs CLI tools from aquaproj-aqua/aqua.yaml.
     local aqua_bin_dir="${AQUA_ROOT_DIR:-${XDG_DATA_HOME:-$HOME/.local/share}/aquaproj-aqua}/bin"
     export PATH="$aqua_bin_dir:$PATH"
 
     if command -v aqua >/dev/null 2>&1; then
         echo "aqua already installed: $(aqua -v)"
     else
-        echo "Installing aqua..."
-        # v4 installs into $aqua_bin_dir (not customizable).
-        # Keep this one line so Renovate can update the installer ref and -v.
-        curl -sSfL https://raw.githubusercontent.com/aquaproj/aqua-installer/v4.1.1/aqua-installer | bash -s -- -v v2.65.2
+        echo "Installing aqua ${AQUA_VERSION}..."
+        install_aqua_release "$aqua_bin_dir"
     fi
 
     create_symlink ~/dotfiles/aquaproj-aqua/ "$XDG_CONFIG_HOME/aquaproj-aqua"
 
     export AQUA_GLOBAL_CONFIG="${AQUA_GLOBAL_CONFIG:-}:${XDG_CONFIG_HOME}/aquaproj-aqua/aqua.yaml"
     # -a installs packages from AQUA_GLOBAL_CONFIG (ignored by default).
+    # claude.yaml is a separate file and is not installed here.
     aqua install -a
+    setup_rust_toolchain
+    setup_claude
 }
 
-setup_rust() {
-    curl https://sh.rustup.rs -sSf | sh -s -- -y --default-toolchain stable
+setup_rust_toolchain() {
+    # The aqua package is only the rustup manager. Install the stable
+    # toolchain with that binary (same result as rustup-init -y
+    # --default-toolchain stable). Do not use https://sh.rustup.rs.
+    if ! command -v rustup-init >/dev/null 2>&1; then
+        echo "rustup-init is not on PATH; the stable toolchain was not installed." >&2
+        return 1
+    fi
+    rustup-init -y --default-toolchain stable
+}
+
+claude_is_aqua_proxy() {
+    local bin target
+    bin=$(command -v claude 2>/dev/null || true)
+    [[ -n "$bin" && -L "$bin" ]] || return 1
+    target=$(readlink "$bin")
+    [[ "$(basename "$target")" == "aqua-proxy" ]]
+}
+
+claude_runs() {
+    local bin
+    bin=$(command -v claude 2>/dev/null || true)
+    [[ -n "$bin" && -x "$bin" ]] || return 1
+    if claude_is_aqua_proxy; then
+        return 1
+    fi
+    "$bin" --version >/dev/null 2>&1
+}
+
+merge_claude_settings() {
+    local dest="$HOME/.claude/settings.json"
+    mkdir -p "$HOME/.claude"
+    if [[ -L "$dest" || ! -e "$dest" ]]; then
+        create_symlink ~/dotfiles/claude/settings.json "$dest"
+        return 0
+    fi
+    if [[ ! -f "$dest" ]]; then
+        echo "claude settings: skipped ($dest is not a regular file)."
+        return 0
+    fi
+    if ! command -v jq >/dev/null 2>&1; then
+        echo "claude settings: skipped (jq is not available, so autoUpdatesChannel was not added to $dest)."
+        return 0
+    fi
+    if ! jq -e 'type == "object"' "$dest" >/dev/null 2>&1; then
+        echo "claude settings: skipped ($dest is not a JSON object, so autoUpdatesChannel was not added)."
+        return 0
+    fi
+    if jq -e 'has("autoUpdatesChannel")' "$dest" >/dev/null 2>&1; then
+        echo "claude settings: autoUpdatesChannel is already set; left $dest unchanged."
+        return 0
+    fi
+    local tmp
+    tmp=$(mktemp)
+    if jq '.autoUpdatesChannel = "stable"' "$dest" > "$tmp"; then
+        mv "$tmp" "$dest"
+        echo "claude settings: added autoUpdatesChannel=stable to $dest."
+    else
+        rm -f "$tmp"
+        echo "claude settings: skipped (could not add autoUpdatesChannel to $dest)."
+    fi
+}
+
+install_claude_once() {
+    local cfg=~/dotfiles/aquaproj-aqua/claude.yaml
+    local dest="${HOME}/.local/bin/claude"
+    local real aqua_shim
+    echo "Installing claude-code once via aqua..."
+    aqua -c "$cfg" install
+    real=$(aqua -c "$cfg" which claude)
+    if [[ -z "$real" || ! -x "$real" ]]; then
+        echo "claude: aqua did not produce an executable." >&2
+        return 1
+    fi
+    if [[ -L "$real" ]] && [[ "$(basename "$(readlink "$real")")" == "aqua-proxy" ]]; then
+        echo "claude: aqua which returned the proxy, not the installed binary." >&2
+        return 1
+    fi
+    mkdir -p "${HOME}/.local/bin"
+    install -m 755 "$real" "$dest"
+    aqua_shim="${AQUA_ROOT_DIR:-${XDG_DATA_HOME:-$HOME/.local/share}/aquaproj-aqua}/bin/claude"
+    if [[ -L "$aqua_shim" ]] && [[ "$(basename "$(readlink "$aqua_shim")")" == "aqua-proxy" ]]; then
+        rm -f "$aqua_shim"
+    fi
+    "$dest" --version
+}
+
+setup_claude() {
+    # Official install is `curl | bash` or Homebrew. Neither is used.
+    # aqua verifies the GitHub release once, then the binary is copied out of
+    # the aqua proxy so later `aqua install -a` does not reset auto-updates.
+    merge_claude_settings
+    if claude_runs; then
+        echo "claude already installed: $(claude --version 2>/dev/null || true)"
+        return 0
+    fi
+    install_claude_once
 }
 
 setup_ghostty() {
@@ -194,7 +262,6 @@ setup_cursor() {
 }
 
 setup_dotfiles() {
-    # Shared config symlinks / local helpers used by both tool-manager paths.
     setup_zsh
     setup_neovim
     setup_tmux
@@ -206,30 +273,22 @@ setup_dotfiles() {
     setup_cursor
 }
 
-setup_all_with_devbox() {
-    setup_dotfiles
-    setup_nix
-    setup_devbox
-}
-
 setup_all_with_aqua() {
     setup_dotfiles
     setup_aqua
 }
 
-# Backward-compatible alias: same as setup-all-with-devbox.
 setup_all() {
-    setup_all_with_devbox
+    setup_all_with_aqua
 }
 
 usage() {
     cat <<'EOF'
 Usage: scripts/init.sh <subcommand>
 
-Pick one for a full initial setup (leading -- is optional):
-  setup-all-with-devbox   Dotfiles + Nix + Devbox global profile.
-  setup-all-with-aqua     Dotfiles + aqua global profile (no Nix).
-  setup-all               Alias for setup-all-with-devbox.
+Full initial setup (leading -- is optional):
+  setup-all               Dotfiles + aqua (CLI tools).
+  setup-all-with-aqua     Same as setup-all.
 
 Individual steps:
   setup-zsh       Symlink zshenv + zsh config and clone zinit.
@@ -237,16 +296,15 @@ Individual steps:
   setup-tmux      Symlink tmux config.
   setup-herdr     Symlink herdr config.toml (not the whole directory).
   setup-git       Symlink git config.
-  setup-nix       Install Nix (Determinate on macOS / systemd-Linux,
-                  upstream single-user on no-systemd Linux).
-  setup-devbox    Install Devbox and apply the dotfiles global profile.
   setup-aqua      Install aqua and apply aquaproj-aqua/aqua.yaml.
+  setup-claude    Symlink Claude settings. Install claude once if missing.
   setup-ghostty   Symlink ghostty config.
   setup-pnpm      Symlink pnpm global rc config.
   setup-bin       Symlink nvim-tmux into ~/.local/bin/.
   setup-cursor    Symlink Cursor IDE/CLI permission configs.
-  setup-rust      Install rustup + stable toolchain (not part of setup-all*).
 
+Rustup is an aqua package (rust-lang/rustup). setup-aqua then runs
+that rustup-init with -y --default-toolchain stable.
 All steps are idempotent.
 EOF
 }

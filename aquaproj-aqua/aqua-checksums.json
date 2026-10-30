@@ -251,6 +251,26 @@
       "algorithm": "sha256"
     },
     {
+      "id": "github_release/github.com/jqlang/jq/jq-1.8.2/jq-linux-amd64",
+      "checksum": "B1C22172DD303F3BE49E935AA56AA48A8B7A46E0BC838B4997D3BB451495870F",
+      "algorithm": "sha256"
+    },
+    {
+      "id": "github_release/github.com/jqlang/jq/jq-1.8.2/jq-linux-arm64",
+      "checksum": "8B85C817833814DDCA00A144C33705546355AFCCF0CF39B188F3CDB48B852309",
+      "algorithm": "sha256"
+    },
+    {
+      "id": "github_release/github.com/jqlang/jq/jq-1.8.2/jq-macos-amd64",
+      "checksum": "E94B266E3C26690550006ABE63152B782280F4E14374ACCDF04CBDE844F00BC0",
+      "algorithm": "sha256"
+    },
+    {
+      "id": "github_release/github.com/jqlang/jq/jq-1.8.2/jq-macos-arm64",
+      "checksum": "2D75340BA57A4B4B4C8708A21C2DC8E958A48AAA8BBA13B27F77F6E4C0ECA07E",
+      "algorithm": "sha256"
+    },
+    {
       "id": "github_release/github.com/junegunn/fzf/v0.74.5/fzf-0.74.5-darwin_amd64.tar.gz",
       "checksum": "ACA6CAB692E6C069E724A43070A448E18586C7C0FDD1139F6D487EC1680599ED",
       "algorithm": "sha256"
@@ -651,38 +671,13 @@
       "algorithm": "sha256"
     },
     {
-      "id": "http/nodejs.org/dist/v24.22.1/node-v24.22.1-darwin-arm64.tar.gz",
-      "checksum": "89C682593D76CD44233FA53B1563264E7DE9CBB189CAD169135C5B4FADFBC0A7",
+      "id": "http/golang.org/dl/go1.26.10.darwin-amd64.tar.gz",
+      "checksum": "E820AB780C273AE4A340B79D0F3C4313B74EE029AA3874792145D44B9F4F91DA",
       "algorithm": "sha256"
     },
     {
-      "id": "http/nodejs.org/dist/v24.22.1/node-v24.22.1-darwin-x64.tar.gz",
-      "checksum": "D132557E7EE2B85AF08B0C8C34338E65C6430F2238D01F727728EF42DC83B035",
-      "algorithm": "sha256"
-    },
-    {
-      "id": "http/nodejs.org/dist/v24.22.1/node-v24.22.1-linux-x64.tar.gz",
-      "checksum": "EB6728E77C576A35162C122C45CCADF224D89FF00ABC8DAE46CC2897C6002D7C",
-      "algorithm": "sha256"
-    },
-    {
-      "id": "registries/github_content/github.com/aquaproj/aqua-registry/v4.575.0/registry.yaml",
-      "checksum": "340BC6F1FA7124077830D090576F9DC538212FDD7869F8DE973E81B0124EFFA1",
-      "algorithm": "sha256"
-    },
-    {
-      "id": "http/nodejs.org/dist/v24.22.1/node-v24.22.1-linux-arm64.tar.gz",
-      "checksum": "33C37BE234BA8BEE041961047B19160F4D7D0F164E8E246F78BDD10FEFF148B3",
-      "algorithm": "sha256"
-    },
-    {
-      "id": "http/nodejs.org/dist/v24.22.1/node-v24.22.1-win-x64.zip",
-      "checksum": "D2046D28C2C3DCD211AC5145C0BF30E2047EF9DFB306693C8C6E2ECCD8B95FA5",
-      "algorithm": "sha256"
-    },
-    {
-      "id": "http/nodejs.org/dist/v24.22.1/node-v24.22.1-win-arm64.zip",
-      "checksum": "A0C807319FEDE24C4A0D8F84564C82A619BD313B16B10C007C383C2609E99171",
+      "id": "http/golang.org/dl/go1.26.10.darwin-arm64.tar.gz",
+      "checksum": "0B5183492292ADA170F9B561A834863808DD02EDBA599E4AD0E89899330020B3",
       "algorithm": "sha256"
     },
     {
@@ -696,16 +691,6 @@
       "algorithm": "sha256"
     },
     {
-      "id": "http/golang.org/dl/go1.26.10.darwin-amd64.tar.gz",
-      "checksum": "E820AB780C273AE4A340B79D0F3C4313B74EE029AA3874792145D44B9F4F91DA",
-      "algorithm": "sha256"
-    },
-    {
-      "id": "http/golang.org/dl/go1.26.10.darwin-arm64.tar.gz",
-      "checksum": "0B5183492292ADA170F9B561A834863808DD02EDBA599E4AD0E89899330020B3",
-      "algorithm": "sha256"
-    },
-    {
       "id": "http/golang.org/dl/go1.26.10.windows-amd64.zip",
       "checksum": "7ECD2D7260E82C59BCBD7F1077A07CEE2DEA607295B858DF67195A1E4E09629B",
       "algorithm": "sha256"
@@ -713,6 +698,61 @@
     {
       "id": "http/golang.org/dl/go1.26.10.windows-arm64.zip",
       "checksum": "6831FD8C31091243D5695C8FA3A721C9F4AE2BB36482763E77E57EE01B76489F",
+      "algorithm": "sha256"
+    },
+    {
+      "id": "http/nodejs.org/dist/v24.22.1/node-v24.22.1-darwin-arm64.tar.gz",
+      "checksum": "89C682593D76CD44233FA53B1563264E7DE9CBB189CAD169135C5B4FADFBC0A7",
+      "algorithm": "sha256"
+    },
+    {
+      "id": "http/nodejs.org/dist/v24.22.1/node-v24.22.1-darwin-x64.tar.gz",
+      "checksum": "D132557E7EE2B85AF08B0C8C34338E65C6430F2238D01F727728EF42DC83B035",
+      "algorithm": "sha256"
+    },
+    {
+      "id": "http/nodejs.org/dist/v24.22.1/node-v24.22.1-linux-arm64.tar.gz",
+      "checksum": "33C37BE234BA8BEE041961047B19160F4D7D0F164E8E246F78BDD10FEFF148B3",
+      "algorithm": "sha256"
+    },
+    {
+      "id": "http/nodejs.org/dist/v24.22.1/node-v24.22.1-linux-x64.tar.gz",
+      "checksum": "EB6728E77C576A35162C122C45CCADF224D89FF00ABC8DAE46CC2897C6002D7C",
+      "algorithm": "sha256"
+    },
+    {
+      "id": "http/nodejs.org/dist/v24.22.1/node-v24.22.1-win-arm64.zip",
+      "checksum": "A0C807319FEDE24C4A0D8F84564C82A619BD313B16B10C007C383C2609E99171",
+      "algorithm": "sha256"
+    },
+    {
+      "id": "http/nodejs.org/dist/v24.22.1/node-v24.22.1-win-x64.zip",
+      "checksum": "D2046D28C2C3DCD211AC5145C0BF30E2047EF9DFB306693C8C6E2ECCD8B95FA5",
+      "algorithm": "sha256"
+    },
+    {
+      "id": "http/static.rust-lang.org/rustup/archive/1.29.2/x86_64-apple-darwin/rustup-init",
+      "checksum": "B9610730DDEEF52765723847866FD1E3540B2BF7D5AB0C324AA143A5EDF25BA0",
+      "algorithm": "sha256"
+    },
+    {
+      "id": "registries/github_content/github.com/aquaproj/aqua-registry/v4.575.0/registry.yaml",
+      "checksum": "340BC6F1FA7124077830D090576F9DC538212FDD7869F8DE973E81B0124EFFA1",
+      "algorithm": "sha256"
+    },
+    {
+      "id": "http/static.rust-lang.org/rustup/archive/1.29.2/aarch64-apple-darwin/rustup-init",
+      "checksum": "F7C7E11EB2E07F006E532A8AAAC77B32F4527D305AC386C0C633CA6133D35CA9",
+      "algorithm": "sha256"
+    },
+    {
+      "id": "http/static.rust-lang.org/rustup/archive/1.29.2/aarch64-unknown-linux-gnu/rustup-init",
+      "checksum": "A9C168DBEA81A84671C6B7A5C1795CB0EB699020110D107DDFCA427BD797E697",
+      "algorithm": "sha256"
+    },
+    {
+      "id": "http/static.rust-lang.org/rustup/archive/1.29.2/x86_64-unknown-linux-gnu/rustup-init",
+      "checksum": "5BE191E8C70A5007074254CB74D78DBFDD25CD5A61C27DE7B8E5410122EC24F4",
       "algorithm": "sha256"
     }
   ]
