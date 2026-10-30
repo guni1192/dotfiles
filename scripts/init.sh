@@ -246,13 +246,6 @@ setup_ghostty() {
     create_symlink ~/dotfiles/ghostty/ $XDG_CONFIG_HOME/ghostty
 }
 
-setup_pnpm() {
-    # Symlink just `rc` rather than the whole directory — pnpm also stores
-    # state (store-v3, etc.) under $XDG_CONFIG_HOME/pnpm on some setups.
-    mkdir -p "$XDG_CONFIG_HOME/pnpm"
-    create_symlink ~/dotfiles/pnpm/rc "$XDG_CONFIG_HOME/pnpm/rc"
-}
-
 setup_bin() {
     mkdir -p "$HOME/.local/bin"
     create_symlink ~/dotfiles/bin/nvim-tmux "$HOME/.local/bin/nvim-tmux"
@@ -273,7 +266,6 @@ setup_dotfiles() {
     setup_herdr
     setup_git
     setup_ghostty
-    setup_pnpm
     setup_bin
     setup_cursor
 }
@@ -304,7 +296,6 @@ Individual steps:
   setup-aqua      Install aqua and apply aquaproj-aqua/aqua.yaml.
   setup-claude    Symlink Claude settings. Install claude once if missing.
   setup-ghostty   Symlink ghostty config.
-  setup-pnpm      Symlink pnpm global rc config.
   setup-bin       Symlink nvim-tmux into ~/.local/bin/.
   setup-cursor    Symlink Cursor IDE/CLI permission configs.
 

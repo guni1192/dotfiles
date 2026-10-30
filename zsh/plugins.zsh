@@ -2,7 +2,7 @@ ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
 source "${ZINIT_HOME}/zinit.zsh"
 
 # Commits are pinned. `zinit light` does not pull on startup.
-# `zinit update` checks out `ver` again. The renovate markers are for a later config.
+# `zinit update` checks out `ver` again. Renovate updates the hashes (renovate.json).
 
 # renovate: datasource=custom.github-commit depName=chrissicool/zsh-256color
 ZSH_256COLOR_REV_VERSION=20220913214714

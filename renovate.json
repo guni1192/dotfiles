@@ -7,9 +7,19 @@
   "prHourlyLimit": 0,
   "prConcurrentLimit": 0,
   "branchConcurrentLimit": 0,
+  "minimumReleaseAge": "7 days",
   "enabledManagers": [
     "custom.regex"
   ],
+  "customDatasources": {
+    "github-commit": {
+      "defaultRegistryUrlTemplate": "https://api.github.com/repos/{{packageName}}/commits?per_page=100",
+      "format": "json",
+      "transformTemplates": [
+        "{ \"releases\": $map($, function($v) { { \"version\": $replace($v.commit.committer.date, /[-:TZ]/, \"\"), \"digest\": $v.sha, \"releaseTimestamp\": $v.commit.committer.date } }) }"
+      ]
+    }
+  },
   "customManagers": [
     {
       "customType": "regex",
@@ -19,6 +29,19 @@
       ],
       "datasourceTemplate": "github-releases",
       "versioningTemplate": "semver"
+    },
+    {
+      "customType": "regex",
+      "managerFilePatterns": [
+        "/^scripts/init\\.sh$/",
+        "/^zsh/plugins\\.zsh$/"
+      ],
+      "matchStrings": [
+        "# renovate: datasource=custom\\.github-commit depName=(?<depName>\\S+)\\n\\s*(?:local )?[A-Z0-9_]+=(?<currentValue>\\d{14})\\n\\s*(?:local )?[A-Z0-9_]+=(?<currentDigest>[0-9a-f]{40})"
+      ],
+      "datasourceTemplate": "custom.github-commit",
+      "packageNameTemplate": "{{depName}}",
+      "versioningTemplate": "loose"
     }
   ]
 }
