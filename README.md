@@ -34,12 +34,12 @@ This repo has no GitHub Actions workflow. The check is to run `setup-all` on a f
 
 ## aqua
 
-`scripts/init.sh setup-aqua` downloads the pinned aqua release tarball, checks it
-against the checksum file from the same GitHub release, then extracts the binary.
-It does not pipe a script into a shell.
+`scripts/init.sh setup-aqua` downloads `aqua-installer` and runs
+`aqua-installer -v v2.65.2`. It does not pipe the script into a shell.
+That installer checks the bootstrap tarball checksum, then installs the `-v` version.
 It symlinks `aquaproj-aqua/` into `$XDG_CONFIG_HOME/aquaproj-aqua` and runs
-`aqua install -a`. Renovate updates `aquaproj-aqua/*.yaml` and the aqua version in
-`scripts/init.sh`.
+`aqua install -a`. Renovate's `installer-script` preset updates both versions in
+`scripts/init.sh`, and the file preset updates `aquaproj-aqua/*.yaml`.
 
 `zshenv` prepends aqua's bin directory and sets `AQUA_GLOBAL_CONFIG`.
 

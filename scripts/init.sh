@@ -60,58 +60,23 @@ setup_git() {
     create_symlink ~/dotfiles/git/ $XDG_CONFIG_HOME/git
 }
 
-# renovate: datasource=github-releases depName=aquaproj/aqua
-AQUA_VERSION=v2.65.2
-
 install_aqua_release() {
-    local aqua_bin_dir=$1
-    local os arch asset sums tmp expected actual
-    case "$(uname -s)" in
-        Darwin) os=darwin ;;
-        Linux) os=linux ;;
-        *)
-            echo "Unsupported OS: $(uname -s)" >&2
-            exit 1
-            ;;
-    esac
-    case "$(uname -m)" in
-        x86_64|amd64) arch=amd64 ;;
-        arm64|aarch64) arch=arm64 ;;
-        *)
-            echo "Unsupported architecture: $(uname -m)" >&2
-            exit 1
-            ;;
-    esac
-    asset="aqua_${os}_${arch}.tar.gz"
-    sums="aqua_${AQUA_VERSION#v}_checksums.txt"
+    # aqua-renovate-config installer-script matches the raw URL (aqua-installer)
+    # and `aqua-installer -v` (aqua). The script is downloaded, then executed.
+    # It is not piped into a shell. aqua-installer v4.1.1 checks the bootstrap
+    # tarball checksum, then `update-aqua` installs the -v version.
+    local tmp
     tmp=$(mktemp -d)
     (
         set -euo pipefail
         trap 'rm -rf "$tmp"' EXIT
-        curl -fsSL -o "$tmp/$asset" \
-            "https://github.com/aquaproj/aqua/releases/download/${AQUA_VERSION}/${asset}"
-        curl -fsSL -o "$tmp/$sums" \
-            "https://github.com/aquaproj/aqua/releases/download/${AQUA_VERSION}/${sums}"
-        expected=$(awk -v f="$asset" '$2 == f { print $1 }' "$tmp/$sums")
-        if [[ -z "$expected" ]]; then
-            echo "No checksum for ${asset} in ${sums}" >&2
-            exit 1
-        fi
-        if command -v sha256sum >/dev/null 2>&1; then
-            actual=$(sha256sum "$tmp/$asset" | awk '{ print $1 }')
-        elif command -v shasum >/dev/null 2>&1; then
-            actual=$(shasum -a 256 "$tmp/$asset" | awk '{ print $1 }')
-        else
-            echo "sha256sum or shasum is required to install aqua" >&2
-            exit 1
-        fi
-        if [[ "$actual" != "$expected" ]]; then
-            echo "aqua checksum mismatch for ${asset}" >&2
-            exit 1
-        fi
-        tar -xzf "$tmp/$asset" -C "$tmp" aqua
-        mkdir -p "$aqua_bin_dir"
-        install -m 755 "$tmp/aqua" "$aqua_bin_dir/aqua"
+        curl -fsSL -o "$tmp/aqua-installer" \
+            "https://raw.githubusercontent.com/aquaproj/aqua-installer/v4.1.1/aqua-installer"
+        chmod +x "$tmp/aqua-installer"
+        (
+            cd "$tmp"
+            ./aqua-installer -v v2.65.2
+        )
     )
 }
 
@@ -123,8 +88,8 @@ setup_aqua() {
     if command -v aqua >/dev/null 2>&1; then
         echo "aqua already installed: $(aqua -v)"
     else
-        echo "Installing aqua ${AQUA_VERSION}..."
-        install_aqua_release "$aqua_bin_dir"
+        echo "Installing aqua..."
+        install_aqua_release
     fi
 
     create_symlink ~/dotfiles/aquaproj-aqua/ "$XDG_CONFIG_HOME/aquaproj-aqua"
@@ -257,7 +222,23 @@ setup_dotfiles() {
     setup_cursor
 }
 
+remove_removed_tool_symlinks() {
+    # setup_pnpm, setup_tmux, and setup_bin used to create these. The repo
+    # files are gone, so an old symlink is dangling. Leave a real file alone.
+    local path
+    for path in \
+        "$XDG_CONFIG_HOME/pnpm/rc" \
+        "$XDG_CONFIG_HOME/tmux" \
+        "$HOME/.local/bin/nvim-tmux"
+    do
+        if [[ -L "$path" ]]; then
+            rm -f "$path"
+        fi
+    done
+}
+
 setup_all_with_aqua() {
+    remove_removed_tool_symlinks
     setup_dotfiles
     setup_aqua
 }

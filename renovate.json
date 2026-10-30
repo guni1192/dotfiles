@@ -2,7 +2,8 @@
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
     "config:recommended",
-    "github>aquaproj/aqua-renovate-config:file#2.13.0(aquaproj-aqua/.*\\.ya?ml)"
+    "github>aquaproj/aqua-renovate-config:file#2.13.0(aquaproj-aqua/.*\\.ya?ml)",
+    "github>aquaproj/aqua-renovate-config:installer-script#2.13.0(scripts/init\\.sh)"
   ],
   "prHourlyLimit": 0,
   "prConcurrentLimit": 0,
@@ -10,16 +11,5 @@
   "minimumReleaseAge": "7 days",
   "enabledManagers": [
     "custom.regex"
-  ],
-  "customManagers": [
-    {
-      "customType": "regex",
-      "managerFilePatterns": ["/^scripts/init\\.sh$/"],
-      "matchStrings": [
-        "# renovate: datasource=github-releases depName=(?<depName>aquaproj/aqua)\\nAQUA_VERSION=(?<currentValue>v\\d+\\.\\d+\\.\\d+)"
-      ],
-      "datasourceTemplate": "github-releases",
-      "versioningTemplate": "semver"
-    }
   ]
 }
