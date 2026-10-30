@@ -671,6 +671,26 @@
       "algorithm": "sha256"
     },
     {
+      "id": "http/dl.k8s.io/v1.37.1/bin/darwin/amd64/kubectl",
+      "checksum": "6851381C486FF6EDD691623E3D65C87CB9A5B02887FF8FBBB38D8A031B748387",
+      "algorithm": "sha256"
+    },
+    {
+      "id": "http/dl.k8s.io/v1.37.1/bin/darwin/arm64/kubectl",
+      "checksum": "FD65982C97DDAD3106754B69FFA196D0E543AA591930AE52AED1ADFB92F8C77F",
+      "algorithm": "sha256"
+    },
+    {
+      "id": "http/dl.k8s.io/v1.37.1/bin/linux/amd64/kubectl",
+      "checksum": "65691FF77EB6FA44C908B77A1082C9F092C3B9733B5CEFABEC0D1104890E21A8",
+      "algorithm": "sha256"
+    },
+    {
+      "id": "http/dl.k8s.io/v1.37.1/bin/linux/arm64/kubectl",
+      "checksum": "FF749F4B78D9C4F1EC87307DF9B50119ED819E2094AA9810CB9ACFFC3286C8C7",
+      "algorithm": "sha256"
+    },
+    {
       "id": "http/golang.org/dl/go1.26.10.darwin-amd64.tar.gz",
       "checksum": "E820AB780C273AE4A340B79D0F3C4313B74EE029AA3874792145D44B9F4F91DA",
       "algorithm": "sha256"
@@ -731,13 +751,23 @@
       "algorithm": "sha256"
     },
     {
-      "id": "http/static.rust-lang.org/rustup/archive/1.29.2/x86_64-apple-darwin/rustup-init",
-      "checksum": "B9610730DDEEF52765723847866FD1E3540B2BF7D5AB0C324AA143A5EDF25BA0",
+      "id": "http/releases.hashicorp.com/terraform-ls/0.39.0/terraform-ls_0.39.0_darwin_amd64.zip",
+      "checksum": "CC5BBC5B5A39D12D455C0D2B1E4B3A2C1F237D02D2CF819CF5252358F2D674DE",
       "algorithm": "sha256"
     },
     {
-      "id": "registries/github_content/github.com/aquaproj/aqua-registry/v4.575.0/registry.yaml",
-      "checksum": "340BC6F1FA7124077830D090576F9DC538212FDD7869F8DE973E81B0124EFFA1",
+      "id": "http/releases.hashicorp.com/terraform-ls/0.39.0/terraform-ls_0.39.0_darwin_arm64.zip",
+      "checksum": "6F80FE0B34AF184175508F3D9135D8159F5DCE4000D9B39540553EB1C267C54B",
+      "algorithm": "sha256"
+    },
+    {
+      "id": "http/releases.hashicorp.com/terraform-ls/0.39.0/terraform-ls_0.39.0_linux_amd64.zip",
+      "checksum": "7750EDC736845FD8C04FF0FC6332423C12D8275B358668C8C17E8AEDC43EF971",
+      "algorithm": "sha256"
+    },
+    {
+      "id": "http/releases.hashicorp.com/terraform-ls/0.39.0/terraform-ls_0.39.0_linux_arm64.zip",
+      "checksum": "62F32EA22CB78E5E5667ED638AD6E0FBDE30AB59228D073C3C9BB249F89C7F5A",
       "algorithm": "sha256"
     },
     {
@@ -751,8 +781,18 @@
       "algorithm": "sha256"
     },
     {
+      "id": "http/static.rust-lang.org/rustup/archive/1.29.2/x86_64-apple-darwin/rustup-init",
+      "checksum": "B9610730DDEEF52765723847866FD1E3540B2BF7D5AB0C324AA143A5EDF25BA0",
+      "algorithm": "sha256"
+    },
+    {
       "id": "http/static.rust-lang.org/rustup/archive/1.29.2/x86_64-unknown-linux-gnu/rustup-init",
       "checksum": "5BE191E8C70A5007074254CB74D78DBFDD25CD5A61C27DE7B8E5410122EC24F4",
+      "algorithm": "sha256"
+    },
+    {
+      "id": "registries/github_content/github.com/aquaproj/aqua-registry/v4.575.0/registry.yaml",
+      "checksum": "340BC6F1FA7124077830D090576F9DC538212FDD7869F8DE973E81B0124EFFA1",
       "algorithm": "sha256"
     }
   ]
