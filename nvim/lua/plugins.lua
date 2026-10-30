@@ -1,13 +1,28 @@
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.uv.fs_stat(lazypath) then
+  -- First clone uses the commit in lazy-lock.json, not the stable branch.
+  local lock = vim.fn.json_decode(vim.fn.readfile(vim.fn.stdpath("config") .. "/lazy-lock.json"))
+  local commit = lock["lazy.nvim"].commit
+  local function fail(msg)
+    vim.fn.delete(lazypath, "rf")
+    vim.api.nvim_echo({ { msg, "ErrorMsg" } }, true, {})
+  end
   vim.fn.system({
     "git",
     "clone",
     "--filter=blob:none",
     "https://github.com/folke/lazy.nvim.git",
-    "--branch=stable",
     lazypath,
   })
+  if vim.v.shell_error ~= 0 then
+    fail("Failed to clone lazy.nvim\n")
+    return
+  end
+  vim.fn.system({ "git", "-C", lazypath, "checkout", "--detach", commit })
+  if vim.v.shell_error ~= 0 then
+    fail("Failed to checkout lazy.nvim " .. commit .. "\n")
+    return
+  end
 end
 vim.opt.rtp:prepend(lazypath)
 
