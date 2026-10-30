@@ -62,9 +62,9 @@ next to it, so the whole `~/.config/herdr` directory stays local.
 Prefix is `Ctrl+J`. Reload a running server with
 `herdr server reload-config` (or `prefix+Ctrl+R`).
 
-## Cursor agent permissions
+## Cursor
 
-`scripts/init.sh setup-cursor` symlinks `cursor/permissions.json`,
-`cursor/cli-config.json`, `cursor/hooks.json`, and `cursor/hooks/` into
-`$XDG_CONFIG_HOME/cursor/` and `~/.cursor/`. See [cursor/README.md](./cursor/README.md)
-for the IDE vs CLI permission models and how to customize allow/deny rules.
+`scripts/init.sh setup-cursor` symlinks Cursor permissions and `cli-config.json`
+into `$XDG_CONFIG_HOME/cursor/`, and hooks plus each `cursor/skills/<name>/`
+directory into `~/.cursor/`. See [cursor/README.md](./cursor/README.md) for
+permission models, hooks, and where agent skills are installed.
