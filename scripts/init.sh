@@ -33,21 +33,20 @@ setup_zsh() {
     create_symlink ~/dotfiles/zshenv ~/.zshenv
     create_symlink ~/dotfiles/zsh/ $XDG_CONFIG_HOME/zsh
 
+    ZINIT_REV=cb4968123979cf073384e93aa8066d8fd450580f
     ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
-    if [[ -d "$ZINIT_HOME" ]]; then
-        echo "zinit already installed."
-    else
-        mkdir -p "$(dirname $ZINIT_HOME)"
+    if [[ ! -d "$ZINIT_HOME/.git" ]]; then
+        mkdir -p "$(dirname "$ZINIT_HOME")"
         git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
     fi
+    if ! git -C "$ZINIT_HOME" cat-file -e "${ZINIT_REV}^{commit}" 2>/dev/null; then
+        git -C "$ZINIT_HOME" fetch origin "$ZINIT_REV"
+    fi
+    git -C "$ZINIT_HOME" checkout --detach "$ZINIT_REV"
 }
 
 setup_neovim() {
     create_symlink ~/dotfiles/nvim $XDG_CONFIG_HOME/nvim
-}
-
-setup_tmux() {
-    create_symlink ~/dotfiles/tmux/ $XDG_CONFIG_HOME/tmux
 }
 
 setup_herdr() {
@@ -61,58 +60,23 @@ setup_git() {
     create_symlink ~/dotfiles/git/ $XDG_CONFIG_HOME/git
 }
 
-# renovate: datasource=github-releases depName=aquaproj/aqua
-AQUA_VERSION=v2.65.2
-
 install_aqua_release() {
-    local aqua_bin_dir=$1
-    local os arch asset sums tmp expected actual
-    case "$(uname -s)" in
-        Darwin) os=darwin ;;
-        Linux) os=linux ;;
-        *)
-            echo "Unsupported OS: $(uname -s)" >&2
-            exit 1
-            ;;
-    esac
-    case "$(uname -m)" in
-        x86_64|amd64) arch=amd64 ;;
-        arm64|aarch64) arch=arm64 ;;
-        *)
-            echo "Unsupported architecture: $(uname -m)" >&2
-            exit 1
-            ;;
-    esac
-    asset="aqua_${os}_${arch}.tar.gz"
-    sums="aqua_${AQUA_VERSION#v}_checksums.txt"
+    # aqua-renovate-config installer-script matches the raw URL (aqua-installer)
+    # and `aqua-installer -v` (aqua). The script is downloaded, then executed.
+    # It is not piped into a shell. aqua-installer v4.1.1 checks the bootstrap
+    # tarball checksum, then `update-aqua` installs the -v version.
+    local tmp
     tmp=$(mktemp -d)
     (
         set -euo pipefail
         trap 'rm -rf "$tmp"' EXIT
-        curl -fsSL -o "$tmp/$asset" \
-            "https://github.com/aquaproj/aqua/releases/download/${AQUA_VERSION}/${asset}"
-        curl -fsSL -o "$tmp/$sums" \
-            "https://github.com/aquaproj/aqua/releases/download/${AQUA_VERSION}/${sums}"
-        expected=$(awk -v f="$asset" '$2 == f { print $1 }' "$tmp/$sums")
-        if [[ -z "$expected" ]]; then
-            echo "No checksum for ${asset} in ${sums}" >&2
-            exit 1
-        fi
-        if command -v sha256sum >/dev/null 2>&1; then
-            actual=$(sha256sum "$tmp/$asset" | awk '{ print $1 }')
-        elif command -v shasum >/dev/null 2>&1; then
-            actual=$(shasum -a 256 "$tmp/$asset" | awk '{ print $1 }')
-        else
-            echo "sha256sum or shasum is required to install aqua" >&2
-            exit 1
-        fi
-        if [[ "$actual" != "$expected" ]]; then
-            echo "aqua checksum mismatch for ${asset}" >&2
-            exit 1
-        fi
-        tar -xzf "$tmp/$asset" -C "$tmp" aqua
-        mkdir -p "$aqua_bin_dir"
-        install -m 755 "$tmp/aqua" "$aqua_bin_dir/aqua"
+        curl -fsSL -o "$tmp/aqua-installer" \
+            "https://raw.githubusercontent.com/aquaproj/aqua-installer/v4.1.1/aqua-installer"
+        chmod +x "$tmp/aqua-installer"
+        (
+            cd "$tmp"
+            ./aqua-installer -v v2.65.2
+        )
     )
 }
 
@@ -124,8 +88,8 @@ setup_aqua() {
     if command -v aqua >/dev/null 2>&1; then
         echo "aqua already installed: $(aqua -v)"
     else
-        echo "Installing aqua ${AQUA_VERSION}..."
-        install_aqua_release "$aqua_bin_dir"
+        echo "Installing aqua..."
+        install_aqua_release
     fi
 
     create_symlink ~/dotfiles/aquaproj-aqua/ "$XDG_CONFIG_HOME/aquaproj-aqua"
@@ -241,18 +205,6 @@ setup_ghostty() {
     create_symlink ~/dotfiles/ghostty/ $XDG_CONFIG_HOME/ghostty
 }
 
-setup_pnpm() {
-    # Symlink just `rc` rather than the whole directory — pnpm also stores
-    # state (store-v3, etc.) under $XDG_CONFIG_HOME/pnpm on some setups.
-    mkdir -p "$XDG_CONFIG_HOME/pnpm"
-    create_symlink ~/dotfiles/pnpm/rc "$XDG_CONFIG_HOME/pnpm/rc"
-}
-
-setup_bin() {
-    mkdir -p "$HOME/.local/bin"
-    create_symlink ~/dotfiles/bin/nvim-tmux "$HOME/.local/bin/nvim-tmux"
-}
-
 setup_cursor() {
     mkdir -p "$XDG_CONFIG_HOME/cursor" "$HOME/.cursor"
     create_symlink ~/dotfiles/cursor/permissions.json "$XDG_CONFIG_HOME/cursor/permissions.json"
@@ -264,16 +216,29 @@ setup_cursor() {
 setup_dotfiles() {
     setup_zsh
     setup_neovim
-    setup_tmux
     setup_herdr
     setup_git
     setup_ghostty
-    setup_pnpm
-    setup_bin
     setup_cursor
 }
 
+remove_removed_tool_symlinks() {
+    # setup_pnpm, setup_tmux, and setup_bin used to create these. The repo
+    # files are gone, so an old symlink is dangling. Leave a real file alone.
+    local path
+    for path in \
+        "$XDG_CONFIG_HOME/pnpm/rc" \
+        "$XDG_CONFIG_HOME/tmux" \
+        "$HOME/.local/bin/nvim-tmux"
+    do
+        if [[ -L "$path" ]]; then
+            rm -f "$path"
+        fi
+    done
+}
+
 setup_all_with_aqua() {
+    remove_removed_tool_symlinks
     setup_dotfiles
     setup_aqua
 }
@@ -293,15 +258,12 @@ Full initial setup (leading -- is optional):
 Individual steps:
   setup-zsh       Symlink zshenv + zsh config and clone zinit.
   setup-neovim    Symlink neovim config.
-  setup-tmux      Symlink tmux config.
   setup-herdr     Symlink herdr config.toml (not the whole directory).
   setup-git       Symlink git config.
   setup-aqua      Install aqua and apply aquaproj-aqua/aqua.yaml.
   setup-claude    Symlink Claude settings. Install claude once if missing.
   setup-ghostty   Symlink ghostty config.
-  setup-pnpm      Symlink pnpm global rc config.
-  setup-bin       Symlink nvim-tmux into ~/.local/bin/.
-  setup-cursor    Symlink Cursor IDE/CLI permission configs.
+  setup-cursor    Symlink Cursor IDE permission configs and hooks.
 
 Rustup is an aqua package (rust-lang/rustup). setup-aqua then runs
 that rustup-init with -y --default-toolchain stable.

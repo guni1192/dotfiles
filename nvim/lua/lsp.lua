@@ -67,12 +67,6 @@ vim.api.nvim_create_autocmd('BufWritePre', {
   end
 })
 
--- Protobuf
-vim.lsp.config('clangd', {
-  filetypes = {'proto'},
-})
-vim.lsp.enable('clangd')
-
 -- Terraform
 vim.lsp.config('terraformls', {
   filetypes = {'tf', 'tfvars'},
