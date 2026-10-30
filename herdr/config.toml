@@ -16,7 +16,7 @@ onboarding = false
 #     yellow   #f5f17a
 #     magenta  #ff2b6d
 #     muted    #808080
-#   zsh/prompt.zsh + tmux.conf — blue / cyan chrome
+#   zsh/prompt.zsh — blue / cyan chrome
 #     navy     24  #005f87
 #     sky      39  #00afff
 #     aqua     45  #00d7ff
@@ -54,24 +54,20 @@ yellow = "#f5f17a"
 peach = "#ff2b6d"
 
 [terminal]
-# Match tmux `default-command "${SHELL}"`: avoid macOS login-shell path_helper.
+# Avoid macOS login-shell path_helper.
 shell_mode = "non_login"
-# New panes / tabs inherit the source pane cwd (tmux `split-window -c`).
+# New panes / tabs inherit the source pane cwd.
 new_cwd = "follow"
 
 [keys]
-# Same prefix as tmux/tmux.conf (`set -g prefix C-j`).
 prefix = "ctrl+j"
 
-# Split right / down — tmux `bind |` / `bind -`.
-#   right: herdr default is prefix+v (unused by tmux). `|` is free in herdr, so
-#          keep v and add `|` rather than unbinding the original.
-#   down:  herdr default is already prefix+minus; same as tmux.
+# Split right / down. `|` is added next to herdr's default prefix+v.
 split_vertical = ["prefix+v", "prefix+|"]
 split_horizontal = "prefix+minus"
 
 # ============================================================================
-# AI helpers (tmux prefix+C / prefix+A)
+# AI helpers
 #   type = "pane"  — temporary zoomed pane; closes when the command exits
 #   type = "popup" — session-modal overlay; does not change the tab layout
 # ============================================================================
@@ -94,11 +90,9 @@ height = "100%"
 mouse_capture = true
 copy_on_select = true
 pane_borders = true
-# tmux-style internal splitters, no outer frame.
+# Internal splitters, no outer frame.
 pane_outer_borders = false
-# tmux status-position bottom.
 tab_bar_position = "bottom"
-# tmux `bind c` creates a window immediately.
 prompt_new_tab_name = false
 accent = "cyan"
 window_title = "{hostname}: {workspace}"
@@ -145,4 +139,4 @@ resume_agents_on_restore = true
 switch_ascii_input_source_in_prefix = true
 # Keep the IME candidate window tracking agent TUIs that hide the hardware cursor.
 reveal_hidden_cursor_for_cjk_ime = true
-cjk_ime_agents = ["claude", "codex", "cursor", "copilot"]
+cjk_ime_agents = ["claude", "cursor", "copilot"]

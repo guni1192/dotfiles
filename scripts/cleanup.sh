@@ -9,7 +9,6 @@ rm -rf $XDG_CONFIG_HOME/zsh
 rm -rf $XDG_DATA_HOME/zinit/zinit.git
 rm -rf $XDG_CONFIG_HOME/nvim
 rm -rf $XDG_DATA_HOME/nvim/plugged
-rm -rf $XDG_CONFIG_HOME/tmux
 rm -f $XDG_CONFIG_HOME/herdr/config.toml
 rm -rf $XDG_CONFIG_HOME/git
 rm -f $HOME/.claude/settings.json
