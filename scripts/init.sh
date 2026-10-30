@@ -33,8 +33,6 @@ setup_zsh() {
     create_symlink ~/dotfiles/zshenv ~/.zshenv
     create_symlink ~/dotfiles/zsh/ $XDG_CONFIG_HOME/zsh
 
-    # renovate: datasource=custom.github-commit depName=zdharma-continuum/zinit
-    ZINIT_REV_VERSION=20261027132552
     ZINIT_REV=cb4968123979cf073384e93aa8066d8fd450580f
     ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
     if [[ ! -d "$ZINIT_HOME/.git" ]]; then
