@@ -27,13 +27,10 @@ vim.opt.foldlevel = 100
 -- are wired automatically on LspAttach.
 vim.o.autocomplete = true
 
--- <Tab>: accept Copilot ghost text, else confirm popup completion, else insert Tab.
+-- <Tab>: confirm popup completion, else insert Tab.
 vim.keymap.set('i', '<Tab>', function()
-  if vim.lsp.inline_completion.get() then
-    return
-  end
   if vim.fn.pumvisible() == 1 then
     return '<C-y>'
   end
   return '<Tab>'
-end, { expr = true, silent = true, desc = 'Accept Copilot/completion or insert Tab' })
+end, { expr = true, silent = true, desc = 'Confirm completion or insert Tab' })

@@ -18,7 +18,6 @@ GitHub Actions のワークフローは無い。
 - yq: Cursor の許可リストにある YAML の CLI。
 - gitleaks: git hook は無い。残すと決めたので入れたまま。
 - herdr: 端末のワークスペース。設定は `herdr/config.toml`。
-- copilot-language-server: `lsp.lua` の Copilot。
 - pnpm: パッケージマネージャ。Cursor の許可リストにある。
 - go: Go のツールチェーン。gopls の `go install` にも要る。
 - gopls: `lsp.lua` の Go。

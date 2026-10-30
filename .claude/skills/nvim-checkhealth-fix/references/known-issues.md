@@ -33,7 +33,7 @@ vim.lsp.config('gopls', {
 vim.lsp.enable('gopls')
 ```
 
-Apply uniformly across all servers (rust-analyzer, gopls, terraformls, lua_ls, copilot, …). Reference commit: `830b474`.
+Apply uniformly across all servers (rust-analyzer, gopls, terraformls, lua_ls, …). Reference commit: `830b474`.
 
 ## lazy.nvim: luarocks/hererocks ERROR when no plugin needs it
 
