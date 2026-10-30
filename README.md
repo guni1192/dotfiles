@@ -44,7 +44,6 @@ It symlinks `aquaproj-aqua/` into `$XDG_CONFIG_HOME/aquaproj-aqua` and runs
 `zshenv` prepends aqua's bin directory and sets `AQUA_GLOBAL_CONFIG`.
 
 Rustup is the aqua package `rust-lang/rustup`. `jq` is `jqlang/jq`.
-Copilot's language server is `github/copilot-language-server-release`, not an npm global install.
 
 Claude Code is not reinstalled on every `aqua install -a`. `setup-aqua` installs it
 once, when `claude` is not already on `PATH`, from `aquaproj-aqua/claude.yaml`.
