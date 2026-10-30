@@ -8,10 +8,11 @@
 ## Tools
 
 - zsh
-- tmux
 - [Herdr](https://herdr.dev/)
 - neovim
 - [aqua](https://aquaproj.github.io/) for CLI tools (`aquaproj-aqua/aqua.yaml`)
+
+Why each CLI and plugin stays: [docs/tools.md](./docs/tools.md).
 
 ## Getting Started
 
@@ -59,7 +60,7 @@ Installed by aqua, pinned to 0.9.5 (`herdrdev/herdr@v0.9.5`).
 Only the config file is linked. Herdr keeps logs, sockets, and `session.json`
 next to it, so the whole `~/.config/herdr` directory stays local.
 
-Prefix is `Ctrl+J`, matching `tmux/tmux.conf`. Reload a running server with
+Prefix is `Ctrl+J`. Reload a running server with
 `herdr server reload-config` (or `prefix+Ctrl+R`).
 
 ## Cursor agent permissions
