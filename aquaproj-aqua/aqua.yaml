@@ -5,6 +5,11 @@
 # Prefer `./scripts/init.sh setup-all-with-aqua` when you don't want Nix.
 # Versions can lead nixpkgs: Devbox pins whatever the unversioned attribute
 # currently builds, which is sometimes an older release.
+# Checksums are verified on install. Packages whose registry entry has no
+# checksum are recorded in aqua-checksums.json (first download, TOFU).
+checksum:
+  enabled: true
+  require_checksum: true
 registries:
 - type: standard
   ref: v4.575.0 # renovate: depName=aquaproj/aqua-registry
