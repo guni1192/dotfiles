@@ -205,12 +205,32 @@ setup_ghostty() {
     create_symlink ~/dotfiles/ghostty/ $XDG_CONFIG_HOME/ghostty
 }
 
+remove_retired_user_skill_links() {
+    # Project skills live in .cursor/skills. An earlier setup-cursor linked
+    # ~/dotfiles/cursor/skills/<name> into ~/.cursor/skills. Drop those links
+    # so the same skill is not also installed for every project.
+    local dest="$HOME/.cursor/skills"
+    local src_root="$HOME/dotfiles/cursor/skills"
+    local link target
+    [[ -d "$dest" ]] || return 0
+    for link in "$dest"/*; do
+        [[ -L "$link" ]] || continue
+        target=$(readlink "$link")
+        case "$target" in
+            "$src_root"/*)
+                rm -f "$link"
+                ;;
+        esac
+    done
+}
+
 setup_cursor() {
     mkdir -p "$XDG_CONFIG_HOME/cursor" "$HOME/.cursor"
     create_symlink ~/dotfiles/cursor/permissions.json "$XDG_CONFIG_HOME/cursor/permissions.json"
     create_symlink ~/dotfiles/cursor/cli-config.json "$XDG_CONFIG_HOME/cursor/cli-config.json" replace
     create_symlink ~/dotfiles/cursor/hooks.json "$HOME/.cursor/hooks.json"
     create_symlink ~/dotfiles/cursor/hooks "$HOME/.cursor/hooks"
+    remove_retired_user_skill_links
 }
 
 setup_dotfiles() {
@@ -263,7 +283,7 @@ Individual steps:
   setup-aqua      Install aqua and apply aquaproj-aqua/aqua.yaml.
   setup-claude    Symlink Claude settings. Install claude once if missing.
   setup-ghostty   Symlink ghostty config.
-  setup-cursor    Symlink Cursor IDE permission configs and hooks.
+  setup-cursor    Symlink Cursor permissions and hooks.
 
 Rustup is an aqua package (rust-lang/rustup). setup-aqua then runs
 that rustup-init with -y --default-toolchain stable.
