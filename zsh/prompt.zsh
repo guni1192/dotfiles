@@ -1,7 +1,7 @@
 autoload -Uz colors
 
 # ============================================================================
-# Color palette — shared with tmux.conf (blue / cyan gradient)
+# Color palette — blue / cyan gradient
 #   navy   24   background accent
 #   sky    39   secondary highlight (user/host)
 #   aqua   45   mid-tone accent (git)

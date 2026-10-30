@@ -8,10 +8,11 @@
 ## Tools
 
 - zsh
-- tmux
 - [Herdr](https://herdr.dev/)
 - neovim
 - [aqua](https://aquaproj.github.io/) for CLI tools (`aquaproj-aqua/aqua.yaml`)
+
+Why each CLI and plugin stays: [docs/tools.md](./docs/tools.md).
 
 ## Getting Started
 
@@ -33,12 +34,12 @@ This repo has no GitHub Actions workflow. The check is to run `setup-all` on a f
 
 ## aqua
 
-`scripts/init.sh setup-aqua` downloads the pinned aqua release tarball, checks it
-against the checksum file from the same GitHub release, then extracts the binary.
-It does not pipe a script into a shell.
+`scripts/init.sh setup-aqua` downloads `aqua-installer` and runs
+`aqua-installer -v v2.65.2`. It does not pipe the script into a shell.
+That installer checks the bootstrap tarball checksum, then installs the `-v` version.
 It symlinks `aquaproj-aqua/` into `$XDG_CONFIG_HOME/aquaproj-aqua` and runs
-`aqua install -a`. Renovate updates `aquaproj-aqua/*.yaml` and the aqua version in
-`scripts/init.sh`.
+`aqua install -a`. Renovate's `installer-script` preset updates both versions in
+`scripts/init.sh`, and the file preset updates `aquaproj-aqua/*.yaml`.
 
 `zshenv` prepends aqua's bin directory and sets `AQUA_GLOBAL_CONFIG`.
 
@@ -59,7 +60,7 @@ Installed by aqua, pinned to 0.9.5 (`herdrdev/herdr@v0.9.5`).
 Only the config file is linked. Herdr keeps logs, sockets, and `session.json`
 next to it, so the whole `~/.config/herdr` directory stays local.
 
-Prefix is `Ctrl+J`, matching `tmux/tmux.conf`. Reload a running server with
+Prefix is `Ctrl+J`. Reload a running server with
 `herdr server reload-config` (or `prefix+Ctrl+R`).
 
 ## Cursor agent permissions
