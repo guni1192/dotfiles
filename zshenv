@@ -22,6 +22,10 @@ export GOPATH=$HOME/go
 # aqua (scripts/init.sh setup-aqua)
 export AQUA_GLOBAL_CONFIG=${AQUA_GLOBAL_CONFIG:-}:${XDG_CONFIG_HOME:-$HOME/.config}/aquaproj-aqua/aqua.yaml
 
+# pnpm 12 reads this (minutes). 10080 = 7 days.
+# `pnpm login` writes tokens to global config.yaml, which this repo does not manage.
+export pnpm_config_minimum_release_age=10080
+
 # PATH
 path_dirs=(
     /usr/local/go/bin
