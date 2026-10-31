@@ -12,8 +12,6 @@
 - neovim
 - [aqua](https://aquaproj.github.io/) for CLI tools (`aquaproj-aqua/aqua.yaml`)
 
-Why each CLI and plugin stays: [docs/tools.md](./docs/tools.md).
-
 ## Getting Started
 
 Needs `git`, `curl`, `tar`, `zsh`, and either `sha256sum` (Linux) or `shasum` (macOS).
