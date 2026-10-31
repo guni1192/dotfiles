@@ -11,6 +11,6 @@ checksum:
     - linux/arm64
 registries:
 - type: standard
-  ref: v4.575.0 # renovate: depName=aquaproj/aqua-registry
+  ref: v4.576.0 # renovate: depName=aquaproj/aqua-registry
 packages:
 - name: anthropics/claude-code@v2.1.308
