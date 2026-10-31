@@ -91,33 +91,23 @@
       "algorithm": "sha256"
     },
     {
-      "id": "github_release/github.com/cli/cli/v2.103.0/gh_2.103.0_linux_amd64.tar.gz",
-      "checksum": "FDD768EB70F6409F80FCFA9F3A1C0ADF0FC98D827AB3CE0BED2AC22762C5D786",
+      "id": "github_release/github.com/cli/cli/v2.103.1/gh_2.103.1_linux_amd64.tar.gz",
+      "checksum": "57500F347B5E84EFB6578C9B644EEB3B4E54046762635A939DD0EE2CCA1C1ADD",
       "algorithm": "sha256"
     },
     {
-      "id": "github_release/github.com/cli/cli/v2.103.0/gh_2.103.0_linux_arm64.tar.gz",
-      "checksum": "7F322DF34E624D14F5EC0C4ACB121FD6DFA14392FDBBD1066AA8E0A05AC3721E",
+      "id": "github_release/github.com/cli/cli/v2.103.1/gh_2.103.1_linux_arm64.tar.gz",
+      "checksum": "25B1287471A73A3CCA32E5D2D2798AE26ABEA0243DB1B9E4A8C1BE506FAD1BFE",
       "algorithm": "sha256"
     },
     {
-      "id": "github_release/github.com/cli/cli/v2.103.0/gh_2.103.0_macOS_amd64.zip",
-      "checksum": "64D1734941F104F996271C820DAA50E96902C2618F9B4C1E63C41519517A9C6B",
+      "id": "github_release/github.com/cli/cli/v2.103.1/gh_2.103.1_macOS_amd64.zip",
+      "checksum": "9ADB0D23FE3C463E8600EA5288B5AC0BA9438A49678DB0B3E955471BE1DF42C3",
       "algorithm": "sha256"
     },
     {
-      "id": "github_release/github.com/cli/cli/v2.103.0/gh_2.103.0_macOS_arm64.zip",
-      "checksum": "54BE566E9F614BEA5DE8021E95B9AD33DFEE3B9D2EA120C9C294C00DEFAA5014",
-      "algorithm": "sha256"
-    },
-    {
-      "id": "github_release/github.com/cli/cli/v2.103.0/gh_2.103.0_windows_amd64.zip",
-      "checksum": "80C846A5B8432672CA6373B34CE9DE998C9686AAA1885C845F2E1EE81F713726",
-      "algorithm": "sha256"
-    },
-    {
-      "id": "github_release/github.com/cli/cli/v2.103.0/gh_2.103.0_windows_arm64.zip",
-      "checksum": "BC8C27C396C683A7A823446FD0C16B923E60EC3FAC5D26A875C646865D513A48",
+      "id": "github_release/github.com/cli/cli/v2.103.1/gh_2.103.1_macOS_arm64.zip",
+      "checksum": "71B5FFC74BB69CDB72CA397D9B486D78755019BE33CA927288299197AD7F6807",
       "algorithm": "sha256"
     },
     {
@@ -421,63 +411,43 @@
       "algorithm": "sha256"
     },
     {
-      "id": "http/golang.org/dl/go1.26.10.darwin-amd64.tar.gz",
-      "checksum": "E820AB780C273AE4A340B79D0F3C4313B74EE029AA3874792145D44B9F4F91DA",
+      "id": "http/golang.org/dl/go1.27.3.darwin-amd64.tar.gz",
+      "checksum": "B6F8E931E4AB497FCDE6DA8AE4499A58F9D258E55C8A80824A516EAE5950A750",
       "algorithm": "sha256"
     },
     {
-      "id": "http/golang.org/dl/go1.26.10.darwin-arm64.tar.gz",
-      "checksum": "0B5183492292ADA170F9B561A834863808DD02EDBA599E4AD0E89899330020B3",
+      "id": "http/golang.org/dl/go1.27.3.darwin-arm64.tar.gz",
+      "checksum": "DD3908CF20959D798C1E06EBE5B72213F0505CE01373B40CE3110975A6CD99C2",
       "algorithm": "sha256"
     },
     {
-      "id": "http/golang.org/dl/go1.26.10.linux-amd64.tar.gz",
-      "checksum": "CCFE7AE822D2C2F41F4FE7C956199967A4DAC22D0EE0D2B2BFDB440AAB3B20C5",
+      "id": "http/golang.org/dl/go1.27.3.linux-amd64.tar.gz",
+      "checksum": "65EFBC80FDC1FA2CD2631CAD5B481777A68E8725F34E89F50FC6AC714E379B40",
       "algorithm": "sha256"
     },
     {
-      "id": "http/golang.org/dl/go1.26.10.linux-arm64.tar.gz",
-      "checksum": "3F4227CE7B206A513E794F1393ADB473A07B46E94D18BD15D1C684BBB7319797",
+      "id": "http/golang.org/dl/go1.27.3.linux-arm64.tar.gz",
+      "checksum": "A06E99309DBCBDCA1A8CCD2282C3EE146E55930886E26B4F1193269587165F49",
       "algorithm": "sha256"
     },
     {
-      "id": "http/golang.org/dl/go1.26.10.windows-amd64.zip",
-      "checksum": "7ECD2D7260E82C59BCBD7F1077A07CEE2DEA607295B858DF67195A1E4E09629B",
+      "id": "http/nodejs.org/dist/v26.12.1/node-v26.12.1-darwin-arm64.tar.gz",
+      "checksum": "1901D539912C02AFA10D1CC126943A8855A7EEDEBE830119463470DB5E6C59E8",
       "algorithm": "sha256"
     },
     {
-      "id": "http/golang.org/dl/go1.26.10.windows-arm64.zip",
-      "checksum": "6831FD8C31091243D5695C8FA3A721C9F4AE2BB36482763E77E57EE01B76489F",
+      "id": "http/nodejs.org/dist/v26.12.1/node-v26.12.1-darwin-x64.tar.gz",
+      "checksum": "B85C2EA4420AD0BC4ABF2DC6CF1F55130ED681F1CABF60CF3F526E4C9E2712FF",
       "algorithm": "sha256"
     },
     {
-      "id": "http/nodejs.org/dist/v24.22.1/node-v24.22.1-darwin-arm64.tar.gz",
-      "checksum": "89C682593D76CD44233FA53B1563264E7DE9CBB189CAD169135C5B4FADFBC0A7",
+      "id": "http/nodejs.org/dist/v26.12.1/node-v26.12.1-linux-arm64.tar.gz",
+      "checksum": "A6C01AF459DD8972AB3FB08EE5DA81244D26BA8C4944A62D5BBBA8C597AE154F",
       "algorithm": "sha256"
     },
     {
-      "id": "http/nodejs.org/dist/v24.22.1/node-v24.22.1-darwin-x64.tar.gz",
-      "checksum": "D132557E7EE2B85AF08B0C8C34338E65C6430F2238D01F727728EF42DC83B035",
-      "algorithm": "sha256"
-    },
-    {
-      "id": "http/nodejs.org/dist/v24.22.1/node-v24.22.1-linux-arm64.tar.gz",
-      "checksum": "33C37BE234BA8BEE041961047B19160F4D7D0F164E8E246F78BDD10FEFF148B3",
-      "algorithm": "sha256"
-    },
-    {
-      "id": "http/nodejs.org/dist/v24.22.1/node-v24.22.1-linux-x64.tar.gz",
-      "checksum": "EB6728E77C576A35162C122C45CCADF224D89FF00ABC8DAE46CC2897C6002D7C",
-      "algorithm": "sha256"
-    },
-    {
-      "id": "http/nodejs.org/dist/v24.22.1/node-v24.22.1-win-arm64.zip",
-      "checksum": "A0C807319FEDE24C4A0D8F84564C82A619BD313B16B10C007C383C2609E99171",
-      "algorithm": "sha256"
-    },
-    {
-      "id": "http/nodejs.org/dist/v24.22.1/node-v24.22.1-win-x64.zip",
-      "checksum": "D2046D28C2C3DCD211AC5145C0BF30E2047EF9DFB306693C8C6E2ECCD8B95FA5",
+      "id": "http/nodejs.org/dist/v26.12.1/node-v26.12.1-linux-x64.tar.gz",
+      "checksum": "0FD1EB7770598F52A21995EDF6ED35FC690400FA437C2386AF329519E9143132",
       "algorithm": "sha256"
     },
     {
@@ -521,13 +491,13 @@
       "algorithm": "sha256"
     },
     {
-      "id": "http/unofficial-builds.nodejs.org/download/release/v24.22.1/node-v24.22.1-linux-arm64-musl.tar.gz",
-      "checksum": "8254125825A3E5E834BD8A260DAB4C8303F720464A741506EC27989B9BA1769B",
+      "id": "http/unofficial-builds.nodejs.org/download/release/v26.12.1/node-v26.12.1-linux-arm64-musl.tar.gz",
+      "checksum": "C3694551F6CB888FE0BEFB4CB2E13FFE45B0BB2528EC141E7C3A29A7D7974D13",
       "algorithm": "sha256"
     },
     {
-      "id": "http/unofficial-builds.nodejs.org/download/release/v24.22.1/node-v24.22.1-linux-x64-musl.tar.gz",
-      "checksum": "0A9EDDCE2D2E8F3ADDBE94FA46D751325B2D74F7FD1CE63296164D36B6DFC6E5",
+      "id": "http/unofficial-builds.nodejs.org/download/release/v26.12.1/node-v26.12.1-linux-x64-musl.tar.gz",
+      "checksum": "8BF9CC0E7F8E3C7EC5368DCA19242CAD651B6B09D35BCDCF290AC3F80925E8DD",
       "algorithm": "sha256"
     },
     {
