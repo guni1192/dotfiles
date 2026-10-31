@@ -33,9 +33,6 @@ lazy.setup({
     "nvim-tree/nvim-tree.lua",
     version = "*",
     lazy = false,
-    dependencies = {
-      "nvim-tree/nvim-web-devicons",
-    },
     config = function()
       local function my_on_attach(bufnr)
         local api = require "nvim-tree.api"
@@ -52,40 +49,44 @@ lazy.setup({
       end
       require("nvim-tree").setup {
         on_attach = my_on_attach,
+        -- Names only. File and folder icons stay off so startup does not load an icon font plugin.
+        renderer = {
+          icons = {
+            show = {
+              file = false,
+              folder = false,
+              folder_arrow = false,
+              git = false,
+              modified = false,
+              diagnostics = false,
+              bookmarks = false,
+            },
+            web_devicons = {
+              file = { enable = false, color = false },
+              folder = { enable = false, color = false },
+            },
+          },
+        },
       }
     end,
   },
   {
     "ibhagwan/fzf-lua",
-    dependencies = { "nvim-tree/nvim-web-devicons" },
     config = function()
-      require("fzf-lua").setup({})
+      -- defaults.file_icons is merged into every picker on this fzf-lua version.
+      require("fzf-lua").setup({
+        defaults = {
+          file_icons = false,
+        },
+      })
     end
   },
   -- LSP
   {"neovim/nvim-lspconfig"},
-  -- statusline / tabline
-  {'nvim-lualine/lualine.nvim'},
-  {
-    'akinsho/bufferline.nvim',
-    version = "*",
-    dependencies = 'nvim-tree/nvim-web-devicons',
-  },
   {
     'windwp/nvim-autopairs',
     event = "InsertEnter",
     opts = {}
-  },
-  {
-    "brianhuster/live-preview.nvim",
-    dependencies = { "ibhagwan/fzf-lua" },
-    cmd = { "LivePreview" },
-    ft = { "markdown", "html", "asciidoc", "svg" },
-    config = function()
-      require("livepreview.config").set({
-        picker = "fzf-lua",
-      })
-    end,
   },
   { "EdenEast/nightfox.nvim" },
   -- treesitter (main branch, Neovim 0.12+ API)
@@ -115,30 +116,6 @@ lazy.setup({
           vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
         end,
       })
-    end,
-  },
-  {
-    "nvim-treesitter/nvim-treesitter-textobjects",
-    branch = "main",
-    dependencies = { "nvim-treesitter/nvim-treesitter" },
-    config = function()
-      require("nvim-treesitter-textobjects").setup({
-        move = { set_jumps = true },
-        select = { lookahead = true },
-      })
-
-      local move = require("nvim-treesitter-textobjects.move")
-      local function map(lhs, fn, desc)
-        vim.keymap.set({ "n", "x", "o" }, lhs, fn, { desc = desc })
-      end
-      map("]f", function() move.goto_next_start("@function.outer", "textobjects") end, "Next function start")
-      map("]c", function() move.goto_next_start("@class.outer", "textobjects") end, "Next class start")
-      map("]F", function() move.goto_next_end("@function.outer", "textobjects") end, "Next function end")
-      map("]C", function() move.goto_next_end("@class.outer", "textobjects") end, "Next class end")
-      map("[f", function() move.goto_previous_start("@function.outer", "textobjects") end, "Prev function start")
-      map("[c", function() move.goto_previous_start("@class.outer", "textobjects") end, "Prev class start")
-      map("[F", function() move.goto_previous_end("@function.outer", "textobjects") end, "Prev function end")
-      map("[C", function() move.goto_previous_end("@class.outer", "textobjects") end, "Prev class end")
     end,
   },
 }, {
