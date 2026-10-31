@@ -4,7 +4,7 @@ GitHub Actions のワークフローは無い。
 
 ## CLI
 
-- neovim: エディタ本体。設定は `nvim/`。
+- neovim: エディタ本体。設定は `nvim/`。`<C-n>` / `<C-p>` は `:bnext` / `:bprevious`。
 - fzf: `repos` / `gwt` と git の `co` で一覧を選ぶ。
 - ghq: `repos` と `git` の `ghq.root`。
 - gh: GitHub の CLI。Cursor の許可リストにある。
@@ -28,17 +28,12 @@ GitHub Actions のワークフローは無い。
 ## Neovim プラグイン
 
 - lazy.nvim: プラグインの読み込み。初回 clone は `lazy-lock.json` の commit。
-- nvim-tree: ファイルツリー。`<C-e>`。
-- nvim-web-devicons: nvim-tree、bufferline、fzf-lua のアイコン。
-- fzf-lua: `<c-f>` のファイルと grep。
+- nvim-tree: ファイルツリー。`<C-e>`。`renderer.icons` は出さない。
+- fzf-lua: `<c-f>` のファイルと grep。`defaults.file_icons` は false。
 - nvim-lspconfig: LSP の土台。
-- lualine: ステータスライン。`appearance.lua`。
-- bufferline: バッファの並び。`appearance.lua` の `<C-n>` / `<C-p>`。
 - nvim-autopairs: 挿入モードで括弧を閉じる。
-- live-preview.nvim: `LivePreview`。markdown など。
 - nightfox.nvim: カラースキーム `carbonfox`。
-- nvim-treesitter: ハイライトとインデント。パーサのリビジョンはロックしない。
-- nvim-treesitter-textobjects: `]f` などの移動。
+- nvim-treesitter: ハイライトとインデント。パーサのリビジョンは `parsers.lua` がパーサごとに固定していて、`lazy-lock.json` の nvim-treesitter の commit 経由で間接的に固定される。tarball のチェックサムは検証しない。
 
 ## シェルプラグイン
 

@@ -34,3 +34,7 @@ vim.keymap.set('i', '<Tab>', function()
   end
   return '<Tab>'
 end, { expr = true, silent = true, desc = 'Confirm completion or insert Tab' })
+
+-- Buffer cycle. Neovim 0.12 also provides built-in ]b / [b.
+vim.keymap.set('n', '<C-n>', ':bnext<CR>', { silent = true, desc = 'Next buffer' })
+vim.keymap.set('n', '<C-p>', ':bprevious<CR>', { silent = true, desc = 'Previous buffer' })
