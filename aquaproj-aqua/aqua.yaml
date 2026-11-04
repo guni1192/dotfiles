@@ -24,7 +24,7 @@ packages:
 - name: kubernetes/kubernetes/kubectl@v1.37.1
 - name: nodejs/node@v26.12.1
 - name: tree-sitter/tree-sitter@v0.27.1
-- name: hashicorp/terraform-ls@v0.39.0
+- name: hashicorp/terraform-ls@v0.39.1
 - name: LuaLS/lua-language-server@3.19.2
 - name: rust-lang/rust-analyzer@2026-10-19
 - name: mikefarah/yq@v4.54.1
