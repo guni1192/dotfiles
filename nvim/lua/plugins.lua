@@ -49,6 +49,13 @@ lazy.setup({
       end
       require("nvim-tree").setup {
         on_attach = my_on_attach,
+        -- Default git_ignored=true hides status "!!" (.gitignore matches).
+        -- Untracked files ("??") are already listed. Show ignored files too.
+        -- .git is not an ignore match, and dotfiles stay visible, so name-filter it.
+        filters = {
+          git_ignored = false,
+          custom = { [[^\.git$]] },
+        },
         -- Names only. File and folder icons stay off so startup does not load an icon font plugin.
         renderer = {
           icons = {
@@ -77,6 +84,18 @@ lazy.setup({
       require("fzf-lua").setup({
         defaults = {
           file_icons = false,
+        },
+        -- <C-f><C-f> calls files(). fd and rg skip .gitignore matches unless
+        -- no_ignore is set. Non-ignored untracked files were already included.
+        -- git.files (<C-f><C-g>) and grep (<C-f><C-s>) keep their own commands.
+        -- .git stays excluded. node_modules is excluded here only: a recursive
+        -- listing of dependency trees makes the picker unusable. The tree still
+        -- shows that directory; nvim-tree already skips watching it.
+        files = {
+          no_ignore = true,
+          fd_opts = [[--color=never --type f --type l --exclude .git --exclude .jj --exclude node_modules]],
+          rg_opts = [[--color=never --files -g "!.git" -g "!.jj" -g "!**/node_modules/**"]],
+          find_opts = [[-type f \! -path '*/.git/*' \! -path '*/.jj/*' \! -path '*/node_modules/*']],
         },
       })
     end
