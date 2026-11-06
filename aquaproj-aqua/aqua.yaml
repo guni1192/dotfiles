@@ -33,7 +33,7 @@ packages:
 # claude-code is not in this list. Auto-update follows autoUpdatesChannel in
 # claude/settings.json, so `aqua install -a` must not reinstall a pinned binary.
 # scripts/init.sh installs it once from claude.yaml when `claude` is missing.
-- name: pnpm/pnpm@v12.15.0
+- name: pnpm/pnpm@v12.17.0
 # go before gopls: gopls is type go_install and needs a Go toolchain.
 # Stay on the 1.26 line. 1.27 is not applied here.
 - name: golang/go@go1.27.3
