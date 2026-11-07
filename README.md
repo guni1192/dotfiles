@@ -32,12 +32,16 @@ This repo has no GitHub Actions workflow. The check is to run `setup-all` on a f
 
 ## aqua
 
-`scripts/init.sh setup-aqua` downloads `aqua-installer` and runs
-`aqua-installer -v v2.65.2`. It does not pipe the script into a shell.
-That installer checks the bootstrap tarball checksum, then installs the `-v` version.
+`scripts/init.sh setup-aqua` downloads the pinned aqua v2.65.2 release
+archive for this OS and CPU from GitHub Releases. It checks the file with
+`sha256sum` (Linux) or `shasum -a 256` (macOS) against a sha256 stored in
+`scripts/init.sh`, and extracts the binary only after that check succeeds.
+A missing checksum tool or a hash mismatch stops the script. It does not
+use aqua-installer or Homebrew.
 It symlinks `aquaproj-aqua/` into `$XDG_CONFIG_HOME/aquaproj-aqua` and runs
-`aqua install -a`. Renovate's `installer-script` preset updates both versions in
-`scripts/init.sh`, and the file preset updates `aquaproj-aqua/*.yaml`.
+`aqua install -a`. Renovate's file preset updates `aquaproj-aqua/*.yaml`.
+Bump the aqua version by editing that version and the four sha256 lines in
+`scripts/init.sh`.
 
 `zshenv` prepends aqua's bin directory and sets `AQUA_GLOBAL_CONFIG`.
 
