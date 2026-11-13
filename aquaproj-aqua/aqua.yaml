@@ -27,7 +27,7 @@ packages:
 - name: hashicorp/terraform-ls@v0.39.0
 - name: LuaLS/lua-language-server@3.19.2
 - name: rust-lang/rust-analyzer@2026-10-19
-- name: mikefarah/yq@v4.54.1
+- name: mikefarah/yq@v4.54.2
 - name: gitleaks/gitleaks@v8.30.1
 - name: herdrdev/herdr@v0.9.5
 # claude-code is not in this list. Auto-update follows autoUpdatesChannel in
