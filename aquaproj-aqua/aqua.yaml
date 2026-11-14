@@ -23,7 +23,7 @@ packages:
 - name: BurntSushi/ripgrep@15.2.0
 - name: kubernetes/kubernetes/kubectl@v1.37.1
 - name: nodejs/node@v26.12.1
-- name: tree-sitter/tree-sitter@v0.27.1
+- name: tree-sitter/tree-sitter@v0.27.2
 - name: hashicorp/terraform-ls@v0.39.0
 - name: LuaLS/lua-language-server@3.19.2
 - name: rust-lang/rust-analyzer@2026-10-19
