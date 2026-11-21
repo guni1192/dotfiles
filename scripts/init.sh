@@ -60,23 +60,120 @@ setup_git() {
     create_symlink ~/dotfiles/git/ $XDG_CONFIG_HOME/git
 }
 
+require_aqua_sha256_tool() {
+    case "$(uname -s)" in
+        Linux)
+            if ! command -v sha256sum >/dev/null 2>&1; then
+                echo "aqua: sha256sum is required to verify the release archive and was not found" >&2
+                exit 1
+            fi
+            ;;
+        Darwin)
+            if ! command -v shasum >/dev/null 2>&1; then
+                echo "aqua: shasum is required to verify the release archive and was not found" >&2
+                exit 1
+            fi
+            ;;
+        *)
+            echo "aqua: unsupported OS $(uname -s)" >&2
+            exit 1
+            ;;
+    esac
+}
+
+sha256_file() {
+    local file=$1
+    local sum
+    case "$(uname -s)" in
+        Linux)
+            sum=$(sha256sum -- "$file")
+            ;;
+        Darwin)
+            sum=$(shasum -a 256 -- "$file")
+            ;;
+        *)
+            echo "aqua: unsupported OS $(uname -s)" >&2
+            exit 1
+            ;;
+    esac
+    if [[ ! "$sum" =~ ^[0-9a-f]{64}[[:space:]] ]]; then
+        echo "aqua: sha256 tool did not return a hash for $(basename "$file")" >&2
+        exit 1
+    fi
+    printf '%s\n' "${sum%% *}"
+}
+
+check_aqua_sha256() {
+    local file=$1
+    local expected=$2
+    local actual
+    actual=$(sha256_file "$file")
+    if [[ "$actual" != "$expected" ]]; then
+        echo "aqua: sha256 mismatch for $(basename "$file")" >&2
+        echo "aqua: expected ${expected}" >&2
+        echo "aqua: actual   ${actual}" >&2
+        exit 1
+    fi
+}
+
 install_aqua_release() {
-    # aqua-renovate-config installer-script matches the raw URL (aqua-installer)
-    # and `aqua-installer -v` (aqua). The script is downloaded, then executed.
-    # It is not piped into a shell. aqua-installer v4.1.1 checks the bootstrap
-    # tarball checksum, then `update-aqua` installs the -v version.
-    local tmp
+    # aqua v2.65.2 GitHub Release tarballs. These sha256 values are pinned in
+    # this repo. Check them before extracting. Do not download aqua-installer,
+    # and do not trust a checksums file fetched at runtime.
+    # Bump this version and all four hashes together.
+    local aqua_version=v2.65.2
+    local os arch key expected asset tmp bindir
+    case "$(uname -s)" in
+        Linux) os=linux ;;
+        Darwin) os=darwin ;;
+        *)
+            echo "aqua: unsupported OS $(uname -s)" >&2
+            exit 1
+            ;;
+    esac
+    case "$(uname -m)" in
+        x86_64) arch=amd64 ;;
+        arm64|aarch64) arch=arm64 ;;
+        *)
+            echo "aqua: unsupported architecture $(uname -m)" >&2
+            exit 1
+            ;;
+    esac
+    key="${os}/${arch}"
+    case "$key" in
+        darwin/amd64) expected=6552dc8cd3b4e51f781b4341cc3bb396028755080c6927f5a6d20b8ada85d4d1 ;;
+        darwin/arm64) expected=74096ac247be24ec3340e134b9ecdae37465009d7bd1acca934a14a5beeb3314 ;;
+        linux/amd64) expected=971abaccd16d0521fdb8e45990dba2aea17587f476aa075b621aeb972f52a61f ;;
+        linux/arm64) expected=7abd3d2c27efad797c3284ab1ff21875b143daba28aecb2088917115b7f9cc81 ;;
+        *)
+            echo "aqua: no pinned sha256 for ${key}" >&2
+            exit 1
+            ;;
+    esac
+    if [[ ! "$expected" =~ ^[0-9a-f]{64}$ ]]; then
+        echo "aqua: pinned sha256 for ${key} is not 64 hex characters" >&2
+        exit 1
+    fi
+    require_aqua_sha256_tool
+    asset="aqua_${os}_${arch}.tar.gz"
+    bindir="${AQUA_ROOT_DIR:-${XDG_DATA_HOME:-$HOME/.local/share}/aquaproj-aqua}/bin"
     tmp=$(mktemp -d)
     (
         set -euo pipefail
         trap 'rm -rf "$tmp"' EXIT
-        curl -fsSL -o "$tmp/aqua-installer" \
-            "https://raw.githubusercontent.com/aquaproj/aqua-installer/v4.1.1/aqua-installer"
-        chmod +x "$tmp/aqua-installer"
-        (
-            cd "$tmp"
-            ./aqua-installer -v v2.65.2
-        )
+        curl -fsSL -o "$tmp/$asset" \
+            "https://github.com/aquaproj/aqua/releases/download/${aqua_version}/${asset}"
+        check_aqua_sha256 "$tmp/$asset" "$expected"
+        mkdir -p "$tmp/extract"
+        tar -xzf "$tmp/$asset" -C "$tmp/extract" aqua
+        if [[ ! -f "$tmp/extract/aqua" || -L "$tmp/extract/aqua" ]]; then
+            echo "aqua: release archive did not contain a regular aqua binary" >&2
+            exit 1
+        fi
+        mkdir -p "$bindir"
+        rm -f "$bindir/aqua"
+        cp "$tmp/extract/aqua" "$bindir/aqua"
+        chmod 755 "$bindir/aqua"
     )
 }
 
