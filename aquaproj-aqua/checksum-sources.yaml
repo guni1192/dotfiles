@@ -1,0 +1,24 @@
+# Loaded only by `aqua update-checksum --prune -c checksum-sources.yaml`.
+# Default discovery reads aqua.yaml / aqua.yml / .aqua.yaml / .aqua.yml only,
+# so claude.yaml is invisible and --prune would delete its rows from the
+# shared aqua-checksums.json. -c accepts one path; a second -c replaces the
+# first, and a second prune of this same JSON would drop the other file.
+# Import keeps both package lists in one prune.
+# This file is not a default config name. `aqua install -a` still reads
+# aqua.yaml only and does not reinstall claude-code.
+# Import copies packages only. Platforms and the registry come from here
+# and must stay aligned with aqua.yaml and claude.yaml.
+checksum:
+  enabled: true
+  require_checksum: true
+  supported_envs:
+    - darwin/arm64
+    - darwin/amd64
+    - linux/amd64
+    - linux/arm64
+registries:
+- type: standard
+  ref: v4.575.0 # renovate: depName=aquaproj/aqua-registry
+packages:
+- import: aqua.yaml
+- import: claude.yaml

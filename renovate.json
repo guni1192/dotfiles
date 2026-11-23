@@ -15,5 +15,18 @@
   "automerge": true,
   "automergeType": "pr",
   "automergeStrategy": "squash",
-  "platformAutomerge": true
+  "platformAutomerge": true,
+  "packageRules": [
+    {
+      "description": "Refresh aqua-checksums.json in the same branch before the PR opens. Does not match the aqua-installer pin in scripts/init.sh. Default aqua config discovery does not read claude.yaml, and both files share aqua-checksums.json, so the command loads checksum-sources.yaml (it imports aqua.yaml and claude.yaml) instead of a bare update-checksum --prune.",
+      "matchManagers": ["custom.regex"],
+      "matchFileNames": ["aquaproj-aqua/*.yaml", "aquaproj-aqua/*.yml"],
+      "postUpgradeTasks": {
+        "commands": ["aqua update-checksum --prune -c checksum-sources.yaml"],
+        "fileFilters": ["aquaproj-aqua/aqua-checksums.json"],
+        "executionMode": "branch",
+        "workingDirTemplate": "aquaproj-aqua"
+      }
+    }
+  ]
 }

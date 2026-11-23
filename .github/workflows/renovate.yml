@@ -1,0 +1,88 @@
+# Scheduled self-hosted Renovate. Runs this file from the default branch.
+# It does not use pull_request or pull_request_target, so a PR head cannot
+# generate checksums with the workflow token.
+name: Renovate
+
+on:
+  schedule:
+    - cron: "23 4 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  renovate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Check the checksum command is the only allowed command
+        run: |
+          node <<'EOF'
+          const fs = require('fs');
+          const config = require('./.github/renovate-global.js');
+          const repo = JSON.parse(fs.readFileSync('renovate.json', 'utf8'));
+          const commands = (repo.packageRules || []).flatMap(
+            (rule) => (rule.postUpgradeTasks && rule.postUpgradeTasks.commands) || [],
+          );
+          if (commands.length !== 1 || config.allowedCommands.length !== 1) {
+            console.error('expected exactly one postUpgradeTasks command and one allowedCommands entry');
+            process.exit(1);
+          }
+          if (!new RegExp(config.allowedCommands[0]).test(commands[0])) {
+            console.error('postUpgradeTasks command is not allowed: ' + commands[0]);
+            process.exit(1);
+          }
+          console.log('allowed command: ' + commands[0]);
+          EOF
+
+      - name: Install pinned aqua
+        run: |
+          set -euo pipefail
+          # scripts/init.sh pins aqua v2.65.2. GitHub-hosted ubuntu is linux/amd64.
+          # Hash is the v2.65.2 aqua_linux_amd64.tar.gz checksum. No aqua-installer.
+          if [[ "$(uname -s)/$(uname -m)" != "Linux/x86_64" ]]; then
+            echo "pinned aqua v2.65.2 checksum is for Linux/x86_64; got $(uname -s)/$(uname -m)" >&2
+            exit 1
+          fi
+          version=v2.65.2
+          asset=aqua_linux_amd64.tar.gz
+          expected=971abaccd16d0521fdb8e45990dba2aea17587f476aa075b621aeb972f52a61f
+          tmp=$(mktemp -d)
+          trap 'rm -rf "$tmp"' EXIT
+          curl -fsSL -o "$tmp/$asset" \
+            "https://github.com/aquaproj/aqua/releases/download/${version}/${asset}"
+          echo "${expected}  ${asset}" | (cd "$tmp" && sha256sum -c -)
+          tar -xzf "$tmp/$asset" -C "$tmp" aqua
+          sudo install -m 0755 "$tmp/aqua" /usr/local/bin/aqua
+          test "$(aqua -v)" = "2.65.2"
+
+      - name: Check aqua inside the Renovate image
+        run: |
+          docker run --rm \
+            --volume /usr/local/bin/aqua:/usr/local/bin/aqua:ro \
+            --entrypoint aqua \
+            ghcr.io/renovatebot/renovate@sha256:d6b65ff3562dd499240b23d34ef806ec7e5fd2675e4236a027dfb36774f2aa75 \
+            -v
+
+      - name: Run Renovate
+        env:
+          # github.token opens PRs only after the repository setting
+          # "Allow GitHub Actions to create and approve pull requests" is on.
+          # This workflow cannot enable that setting. There is no RENOVATE_TOKEN.
+          RENOVATE_TOKEN: ${{ github.token }}
+          LOG_LEVEL: info
+        run: |
+          docker run --rm \
+            --env RENOVATE_TOKEN \
+            --env LOG_LEVEL \
+            --env RENOVATE_CONFIG_FILE=/opt/renovate-global.js \
+            --volume "${GITHUB_WORKSPACE}/.github/renovate-global.js:/opt/renovate-global.js:ro" \
+            --volume /usr/local/bin/aqua:/usr/local/bin/aqua:ro \
+            ghcr.io/renovatebot/renovate@sha256:d6b65ff3562dd499240b23d34ef806ec7e5fd2675e4236a027dfb36774f2aa75
