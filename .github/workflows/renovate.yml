@@ -1,0 +1,74 @@
+name: Renovate
+
+on:
+  workflow_dispatch:
+  schedule:
+    # Daily, off the hour. Quoted because YAML treats * specially.
+    - cron: '17 5 * * *'
+
+# The workflow token only checks out this repository. Renovate writes with
+# the RENOVATE_TOKEN secret, not this GITHUB_TOKEN.
+permissions:
+  contents: read
+
+concurrency:
+  group: renovate
+  cancel-in-progress: false
+
+jobs:
+  renovate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+          show-progress: false
+
+      - name: Require RENOVATE_TOKEN
+        env:
+          RENOVATE_TOKEN: ${{ secrets.RENOVATE_TOKEN }}
+        run: |
+          if [ -z "${RENOVATE_TOKEN}" ]; then
+            echo "Set the RENOVATE_TOKEN repository secret before this workflow can run."
+            exit 1
+          fi
+
+      - name: Install pinned aqua
+        run: |
+          set -euo pipefail
+          if [ "$(uname -m)" != "x86_64" ]; then
+            echo "This workflow pins the linux/amd64 aqua release asset."
+            exit 1
+          fi
+          version=v2.65.2
+          asset=aqua_linux_amd64.tar.gz
+          # aqua v2.65.2, same CLI pin as scripts/init.sh. Release checksum file
+          # line for aqua_linux_amd64.tar.gz. Not downloaded at runtime.
+          expected=971abaccd16d0521fdb8e45990dba2aea17587f476aa075b621aeb972f52a61f
+          dest="${RUNNER_TEMP}/aqua-bin"
+          work=$(mktemp -d)
+          mkdir -p "${dest}"
+          curl -fsSL -o "${work}/${asset}" \
+            "https://github.com/aquaproj/aqua/releases/download/${version}/${asset}"
+          echo "${expected}  ${work}/${asset}" | sha256sum -c -
+          tar -xzf "${work}/${asset}" -C "${dest}" aqua
+          chmod 755 "${dest}/aqua"
+          "${dest}/aqua" version
+
+      - name: Self-hosted Renovate
+        uses: renovatebot/github-action@acdd6bda8b035c99ce59d5675816af2aa65a1774 # v46.3.14
+        with:
+          token: ${{ secrets.RENOVATE_TOKEN }}
+          # Tag and digest pinned together in renovatebot/github-action v46.3.14 CI.
+          renovate-image: ghcr.io/renovatebot/renovate:44.239.1@sha256:7dba1a3b916a2cf302ba0df458ddcc8fcbac3c92d0fe9882ac13ba0363de656b
+          docker-cmd-file: .github/renovate-entrypoint.sh
+          docker-volumes: |
+            /tmp:/tmp ;
+            ${{ runner.temp }}/aqua-bin:/opt/aqua:ro
+        env:
+          LOG_LEVEL: info
+          RENOVATE_REPOSITORIES: '["${{ github.repository }}"]'
+          # allowedCommands is global-only. A regex, anchored to this command.
+          RENOVATE_ALLOWED_COMMANDS: '["^aqua update-checksum --prune$"]'
