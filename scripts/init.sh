@@ -75,7 +75,7 @@ install_aqua_release() {
         chmod +x "$tmp/aqua-installer"
         (
             cd "$tmp"
-            ./aqua-installer -v v2.65.2
+            ./aqua-installer -v v2.66.1
         )
     )
 }
