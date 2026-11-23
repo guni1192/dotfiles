@@ -28,7 +28,7 @@ Run `./scripts/init.sh` with no arguments to print the subcommands,
 and invoke one with e.g. `./scripts/init.sh setup-zsh`.
 A leading `--` is optional.
 
-This repo has no GitHub Actions workflow. The check is to run `setup-all` on a fresh machine.
+`.github/workflows/renovate.yml` runs self-hosted Renovate. It does not run `setup-all`. The check for a new machine is still to run `setup-all`.
 
 ## aqua
 
