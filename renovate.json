@@ -15,18 +15,5 @@
   "automerge": true,
   "automergeType": "pr",
   "automergeStrategy": "squash",
-  "platformAutomerge": true,
-  "packageRules": [
-    {
-      "description": "Refresh aqua-checksums.json in the same PR when an aqua YAML file changes. Does not match the aqua-installer pin in scripts/init.sh.",
-      "matchManagers": ["custom.regex"],
-      "matchFileNames": ["aquaproj-aqua/*.yaml", "aquaproj-aqua/*.yml"],
-      "postUpgradeTasks": {
-        "commands": ["aqua update-checksum --prune"],
-        "fileFilters": ["aquaproj-aqua/aqua-checksums.json"],
-        "executionMode": "branch",
-        "workingDirTemplate": "aquaproj-aqua"
-      }
-    }
-  ]
+  "platformAutomerge": true
 }
